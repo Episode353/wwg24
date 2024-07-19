@@ -1,0 +1,29 @@
+@baseclass = Angle [
+	// https://github.com/TrenchBroom/TrenchBroom/issues/3827
+	angles(string) : "Pitch Yaw Roll" : "0 0 0"
+]
+
+@baseclass = Targets [
+	target(string) : "Target"
+	targetname(string) : "Target Name"
+]
+
+@SolidClass = worldspawn : "World entity" []
+
+@SolidClass = area : "Area" []
+
+
+
+@PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light : "Light" [
+	range(float) : "Range" : 10
+	energy(float) : "Energy" : 1 : "The light's strength multiplier"
+	attenuation(float) : "Attenuation" : 1 : "The drop-off curve (lower values emit more light far away)"
+	specular(float) : "Specular" : 0.5 : "Intensity of the specular blob on reflective surfaces"
+	light_color(color255) : "Color" : "255 255 255"
+]
+
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = mana_drop : "Mana Drop" []
+
+@PointClass size(-8 -8 -8, 8 8 8) color(255 0 0) = health_drop : "Health Drop" []
+
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = info_player_start : "info_player_start" []
