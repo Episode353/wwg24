@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx4pyyicmkycf"]
+
+[ext_resource type="PackedScene" uid="uid://bfkd2s733x2b" path="res://models/mana_drop/mana_potion.glb" id="2_i8m7q"]
+[ext_resource type="Script" path="res://entities/mana_drop.gd" id="2_ln06f"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3qfhx"]
+radius = 3.0
+
+[node name="mana_drop_scene" type="Node3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("2_i8m7q")]
+transform = Transform3D(70, 0, 0, 0, 70, 0, 0, 0, 70, 0, 0.289271, 0)
+
+[node name="Area3D" type="Area3D" parent="Sketchfab_Scene"]
+transform = Transform3D(-6.24449e-10, 0.0142857, 0, -0.0142857, -6.24449e-10, 0, 0, 0, 0.0142857, 0, -0.00413244, 0)
+collision_layer = 49
+collision_mask = 49
+script = ExtResource("2_ln06f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene/Area3D"]
+shape = SubResource("SphereShape3D_3qfhx")

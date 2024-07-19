@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=3 format=3 uid="uid://b1gcuee3knuwf"]
+
+[ext_resource type="Script" path="res://sys/weapon_resource.gd" id="1_7jqly"]
+[ext_resource type="PackedScene" uid="uid://d1lgwvy4u24q6" path="res://models/rocket_launcher/rocket.tscn" id="1_efht4"]
+
+[resource]
+script = ExtResource("1_7jqly")
+weapon_name = "rocket_launcher"
+activate_anim = "rocket_launcher_activate"
+shoot_anim = "rocket_launcher_shoot"
+reload_anim = "rocket_launcher_reload"
+deactivate_anim = "rocket_launcher_deactivate"
+out_of_ammo_anim = ""
+wall_raise_anim = "rocket_launcher_wall_raise"
+wall_lower_anim = "rocket_launcher_wall_lower"
+has_idle_anim = true
+idle_anim = "rocket_launcher_idle"
+current_ammo = 2
+current_ammo_default = 2
+reserve_ammo = 50
+reserve_ammo_default = 50
+mag_ammo = 20
+mag_ammo_default = 20
+max_ammo = 10
+damage = 0
+weapon_range = 0
+auto_fire = true
+disable_wall_prox = true
+disable_ammo = false
+is_gun = true
+is_spell = false
+is_projectile_launcher = true
+projectile = ExtResource("1_efht4")
+use_area_damage_collision = false
+area_damage_radius = 0
+skip_animation_on_fire = false
+fire_rate = 0.0

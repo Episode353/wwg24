@@ -1,0 +1,16 @@
+res://models/grenade/grenade_proj.tscn
+res://sys/weapon_resource.gd
+res://manadrop.gd
+res://Player.gd
+res://shaders/manadrop.gdshader
+res://sys/weapon_resources/ak47.tres
+res://sys/weapon_resources/shotgun.tres
+res://sys/weapon_resources/knife.tres
+res://player.gdshader
+res://tscn/playerview.gdshader
+res://player.tscn
+res://world.tscn
+res://models/rocket_launcher/rocket.tscn
+res://models/rocket_launcher/explosion.tscn
+res://manadrop.tscn
+res://world.gd
