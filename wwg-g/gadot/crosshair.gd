@@ -1,11 +1,11 @@
 extends TextureRect
 
 # Set the desired scale factor
-var scale_factor = Vector2(0.03, 0.03)
+var scale_factor: Vector2 = Vector2(0.03, 0.03)
 
-func _process(delta):
+func _process(delta: float) -> void:
 	# Get the screen size
-	var screen_size = get_viewport_rect().size
+	var screen_size: Vector2 = get_viewport_rect().size
 
 	# Set the scale of the TextureRect
 	scale = scale_factor

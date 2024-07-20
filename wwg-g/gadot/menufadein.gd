@@ -1,6 +1,6 @@
 extends ColorRect
 
-@onready var menufadein = $"."
+@onready var menufadein: Node = $"."
 
 
 

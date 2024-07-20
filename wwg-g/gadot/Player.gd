@@ -1,118 +1,108 @@
 extends CharacterBody3D
 
-signal health_changed(health_value)
-signal mana_changed(mana_value)
+signal health_changed(health_value : int)
+signal mana_changed(mana_value : int)
 
 # Player Nodes
+@onready var head : Node3D = $neck/head
+@onready var neck : Node3D = $neck
+@onready var muzzle_flash : Node3D = $neck/head/Camera3D/Pistol/MuzzleFlash
+@onready var crouching_collision_shape : CollisionShape3D = $crouching_collision_shape
+@onready var standing_collision_shape : CollisionShape3D = $standing_collision_shape
+@onready var raycast_crouching : RayCast3D = $raycast_crouching
 
-@onready var head = $neck/head
-@onready var neck = $neck
-@onready var muzzle_flash = $neck/head/Camera3D/Pistol/MuzzleFlash
-@onready var crouching_collision_shape = $crouching_collision_shape
-@onready var standing_collision_shape = $standing_collision_shape
-@onready var raycast_crouching = $raycast_crouching
+@onready var main_camera : Camera3D = $neck/head/main_camera
+@onready var viewmodel_camera : Camera3D = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport/viewmodel_camera
+@onready var viewmodel_viewport : SubViewport = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport
 
-@onready var main_camera = $neck/head/main_camera
-@onready var viewmodel_camera = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport/viewmodel_camera
-@onready var viewmodel_viewport = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport
-
-@onready var raycast_wall = $raycast_wall
-@onready var sub_viewport = $CanvasLayer/SubViewportContainer/SubViewport
+@onready var raycast_wall : RayCast3D = $raycast_wall
+@onready var sub_viewport : SubViewport = $CanvasLayer/SubViewportContainer/SubViewport
 
 const MANADROP = preload("res://manadrop.tscn")
-@onready var _3p_model = $"3p_model"
-
-
+@onready var _3p_model : Node3D = $"3p_model"
 
 # Source
-const MAX_VELOCITY_AIR = 0.6
-const MAX_VELOCITY_GROUND = 8.0
-const MAX_ACCELERATION = 10 * MAX_VELOCITY_GROUND
-const GRAVITY = 15.34
-const STOP_SPEED = 1.5
-const JUMP_IMPULSE = sqrt(2 * GRAVITY * 1.85)
-const PLAYER_WALKING_MULTIPLIER = 0.666
-var direction = Vector3.ZERO
-var friction = 4
-var wish_jump = false
-var sensitivity = 0.05
-var walking = false
+const MAX_VELOCITY_AIR : float = 0.6
+const MAX_VELOCITY_GROUND : float = 8.0
+const MAX_ACCELERATION : float = 10 * MAX_VELOCITY_GROUND
+const GRAVITY : float = 15.34
+const STOP_SPEED : float = 1.5
+const JUMP_IMPULSE : float = sqrt(2 * GRAVITY * 1.85)
+const PLAYER_WALKING_MULTIPLIER : float = 0.666
+var direction : Vector3 = Vector3.ZERO
+var friction : float = 4
+var wish_jump : bool = false
+var sensitivity : float = 0.05
+var walking : bool = false
 
+var health : int = 20 # Initial health
+var max_health : int = 20 # Health set to max health on respawn
 
-var health = 20 # Inital health
-var max_health = 20 # Health set to max health on respawn
-
-var mana = 2 # Inital mana
-var max_mana = 20 # mana set to max health on respaw
+var mana : int = 2 # Initial mana
+var max_mana : int = 20 # Mana set to max health on respawn
 
 # Speed Variables
-const walking_speed = 5.0
-const sprinting_speed = 10.0
-const crouching_speed = 3.0
-var current_speed = 10.0
-const JUMP_VELOCITY = 10.0
-var lerp_speed = 20.0
-var crouching_depth = -0.5
-var standing_depth = 1.8
-var free_look_tilt_ammount = 8
+const walking_speed : float = 5.0
+const sprinting_speed : float = 10.0
+const crouching_speed : float = 3.0
+var current_speed : float = 10.0
+const JUMP_VELOCITY : float = 10.0
+var lerp_speed : float = 20.0
+var crouching_depth : float = -0.5
+var standing_depth : float = 1.8
+var free_look_tilt_amount : float = 8
 
 # States
-# Moved walking to Source Section
-var sprinting = false
-var crouching = false
-var free_looking = false
-var sliding = false
+var sprinting : bool = false
+var crouching : bool = false
+var free_looking : bool = false
+var sliding : bool = false
 
 # Slide Vars
-var slide_timer = 0.0
-var slide_timer_max = 1.0
-var slide_vector = Vector2.ZERO
-var slide_speed = 15.0
-
+var slide_timer : float = 0.0
+var slide_timer_max : float = 1.0
+var slide_vector : Vector2 = Vector2.ZERO
+var slide_speed : float = 15.0
 
 # Input Variables
-const mouse_sens = 0.1
-# Moved Direction to Source
+const mouse_sens : float = 0.1
 
 # Bhop Variables
-var bhop_count = 0
-var time_on_floor = 0.0
-const bhop_reset_delay = 0.2  # How long the player can be on the floor before resetting bhop counter
-const bhop_increase_speed_multiplier = 5 # How much speed is added per bhop
+var bhop_count : int = 0
+var time_on_floor : float = 0.0
+const bhop_reset_delay : float = 0.2  # How long the player can be on the floor before resetting bhop counter
+const bhop_increase_speed_multiplier : float = 5 # How much speed is added per bhop
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = 20.0
+var gravity : float = 20.0
 
-# Create  a Three second cool down, to not allow spamming of the Kill key
-var kill_timeout = 3
-var kill_max_timeout = 3
-var can_die = true
-
+# Create a three-second cool down, to not allow spamming of the Kill key
+var kill_timeout : float = 3
+var kill_max_timeout : float = 3
+var can_die : bool = true
 
 var username : String = "init"
 
-func _enter_tree():
+func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
-	
-	
+
 # Peer id.
 @export var peer_id : int : 
 	set(value):
 		peer_id = value
 		name = str(peer_id)
 		$username_label.text = str(peer_id)
-	
+
 # Function to adjust the viewport size
-func _adjust_viewport_size():
+func _adjust_viewport_size() -> void:
 	if viewmodel_viewport:
 		viewmodel_viewport.size = get_viewport().size
 
-
 # Signal handler for size changes
-func _on_size_changed():
+func _on_size_changed() -> void:
 	_adjust_viewport_size()
 
-func _ready():
+func _ready() -> void:
 	if not is_multiplayer_authority(): return
 	_3p_model.hide()
 	
@@ -124,24 +114,19 @@ func _ready():
 	# Initial adjustment of the viewport size
 	_adjust_viewport_size()
 
-	
-
-func _unhandled_input(event):
+func _unhandled_input(event : InputEvent) -> void:
 	if not is_multiplayer_authority(): return
 	
 	if event is InputEventMouseMotion:
 		if free_looking:
 			neck.rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
-			neck.rotation.y = clamp(neck.rotation.y, deg_to_rad(-120), deg_to_rad(120)) #How far left and right you can look like freelooking
+			neck.rotation.y = clamp(neck.rotation.y, deg_to_rad(-120), deg_to_rad(120)) # How far left and right you can look like freelooking
 		else:
 			rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
 			head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-98), deg_to_rad(89))
-	
 
-
-
-func _physics_process(delta):
+func _physics_process(delta : float) -> void:
 	if not is_multiplayer_authority():
 		return
 	
@@ -159,12 +144,10 @@ func _physics_process(delta):
 		neck.rotation.y = lerp(neck.rotation.y, 0.0, delta * 5)
 		neck.rotation.z = lerp(neck.rotation.z, 0.0, delta * 5)
 
-
-	
-func process_input():
+func process_input() -> void:
 	direction = Vector3()
 	
-	if Input.is_action_pressed("kill") && can_die:
+	if Input.is_action_pressed("kill") and can_die:
 		can_die = false
 		kill_timeout = kill_max_timeout
 		player_death()
@@ -187,17 +170,14 @@ func process_input():
 		
 	# Jumping
 	wish_jump = Input.is_action_pressed("jump")  # Change to is_action_pressed
-	
-	# Walking
-	#walking = Input.is_action_pressed("walk")
 
-func process_movement(delta):
+func process_movement(delta : float) -> void:
 	if self.position.y < -100:
 		print("Player has fallen off of map, Respawning...")
 		player_death()
 	
 	# Get the normalized input direction so that we don't move faster on diagonals
-	var wish_dir = direction.normalized()
+	var wish_dir : Vector3 = direction.normalized()
 
 	if is_on_floor():
 		# If wish_jump is true then we won't apply any friction and allow the 
@@ -221,69 +201,66 @@ func process_movement(delta):
 	# Move the player once velocity has been calculated
 	move_and_slide()
 
-func accelerate(wish_dir: Vector3, max_speed: float, delta):
+func accelerate(wish_dir : Vector3, max_speed : float, delta : float) -> Vector3:
 	# Get our current speed as a projection of velocity onto the wish_dir
-	var current_speed = velocity.dot(wish_dir)
+	var current_speed : float = velocity.dot(wish_dir)
 	# How much we accelerate is the difference between the max speed and the current speed
 	# clamped to be between 0 and MAX_ACCELERATION which is intended to stop you from going too fast
-	var add_speed = clamp(max_speed - current_speed, 0, MAX_ACCELERATION * delta)
+	var add_speed : float = clamp(max_speed - current_speed, 0, MAX_ACCELERATION * delta)
 	
 	return velocity + add_speed * wish_dir
-	
-func update_velocity_ground(wish_dir: Vector3, delta):
+
+func update_velocity_ground(wish_dir : Vector3, delta : float) -> Vector3:
 	# Apply friction when on the ground and then accelerate
-	var speed = velocity.length()
+	var speed : float = velocity.length()
 	
 	if speed != 0:
-		var control = max(STOP_SPEED, speed)
-		var drop = control * friction * delta
+		var control : float = max(STOP_SPEED, speed)
+		var drop : float = control * friction * delta
 		
 		# Scale the velocity based on friction
 		velocity *= max(speed - drop, 0) / speed
 	
 	return accelerate(wish_dir, MAX_VELOCITY_GROUND, delta)
-	
-func update_velocity_air(wish_dir: Vector3, delta):
+
+func update_velocity_air(wish_dir : Vector3, delta : float) -> Vector3:
 	# Do not apply any friction
 	return accelerate(wish_dir, MAX_VELOCITY_AIR, delta)
-	
 
-func player_death():
-	var world_pos = global_transform.origin
+func player_death() -> void:
+	var world_pos : Vector3 = global_transform.origin
 	# Reset momentum
 	velocity = Vector3.ZERO
 	# Reset ammo for all weapons
-
 	$neck/head/main_camera/Weapons_Manager.reset_all_ammo()
 	# Spawn mana drop only for the local player who died
 	if is_multiplayer_authority():
 		rpc("spawn_mana_for_all", world_pos)
 
 	# Call the world's respawn player function
-	var world = get_parent()
+	var world : Node = get_parent()
 	world.respawn_player(self)
 	health = max_health
 	mana = max_mana
 	mana_changed.emit(mana)
 	health_changed.emit(health)
 
-
 @rpc("call_local")
-func launch_rocket():
+func launch_rocket() -> void:
 	const ROCKET = preload("res://models/rocket_launcher/rocket.tscn")
-	var proj_instance = ROCKET.instantiate()
+	var proj_instance : Node3D = ROCKET.instantiate()
 
 	proj_instance.global_transform = main_camera.global_transform
 	
 	# Set the owner of the projectile
 	proj_instance.owner_player = self
-	var world = get_parent()
+	var world : Node = get_parent()
 	world.add_child.call_deferred(proj_instance)
-	
+
 @rpc("call_local")
-func launch_he_grenade():
+func launch_he_grenade() -> void:
 	const GRENADE_PROJ = preload("res://models/grenade/grenade_proj.tscn")
-	var proj_instance = GRENADE_PROJ.instantiate()
+	var proj_instance : Node3D = GRENADE_PROJ.instantiate()
 
 	proj_instance.global_transform = main_camera.global_transform
 	
@@ -291,72 +268,44 @@ func launch_he_grenade():
 	proj_instance.owner_player = self
 	
 	# Calculate the initial velocity based on the camera's forward direction
-	var launch_speed = 20.0 # Adjust the speed as necessary
-	var forward_direction = main_camera.global_transform.basis.z.normalized()
+	var launch_speed : float = 20.0 # Adjust the speed as necessary
+	var forward_direction : Vector3 = main_camera.global_transform.basis.z.normalized()
 	proj_instance.linear_velocity = -forward_direction * launch_speed
 	
-	var world = get_parent()
+	var world : Node = get_parent()
 	world.add_child.call_deferred(proj_instance)
-
-
-
 
 # Define an RPC to spawn mana drop for all clients
 @rpc("call_local")
-func spawn_mana_for_all(world_pos):
+func spawn_mana_for_all(world_pos : Vector3) -> void:
 	# Wait for 1 second
 	get_tree().create_timer(1.0)
 	# Instantiate MANADROP
-	var instance = MANADROP.instantiate()
+	var instance : Node3D = MANADROP.instantiate()
 	# Set the position slightly above the world_pos
-	var spawn_height = 1  # Adjust this value as needed
+	var spawn_height : float = 1  # Adjust this value as needed
 	instance.transform.origin = Vector3(world_pos.x, world_pos.y + spawn_height, world_pos.z)
 	# Add the instance to the current scene
 	get_tree().current_scene.add_child(instance)
-	
-	
 
-
-
-#func player_respawn():
-	#health = max_health
-	#mana = 0
-	## Randomize spawn to prevent spawn collision
-	#position.x = randi_range(-10, 10)
-	#position.z = randi_range(-10, 10)
-	#position.y = 10
-	#mana_changed.emit(mana)
-	#health_changed.emit(health)
-	
 @rpc("any_peer", "call_local")
-func receive_damage(dmg):
+func receive_damage(dmg : int) -> void:
 	health -= dmg
 	health_changed.emit(health)
 	if health <= 0:
 		player_death()
 	print(health)
-	
+
 @rpc("any_peer", "call_local")
-func receive_health(rcv_hp):
+func receive_health(rcv_hp : int) -> void:
 	health += rcv_hp
 	health_changed.emit(health)
 	if health >= max_health:
 		health = max_health
 	print(health)
 
-	
-	
 @rpc("any_peer", "call_local")
-func receive_mana(received_mana):
+func receive_mana(received_mana : int) -> void:
 	print("receive_mana:", received_mana)
 	mana += received_mana
 	mana_changed.emit(mana)
-	
-	
-	
-	
-	
-	
-
-
-

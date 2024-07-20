@@ -2,7 +2,7 @@ extends Node3D
 
 var target_body_position: Vector3
 var speed: float = 50.0
-@onready var despawn = $RigidBody3D/despawnasd
+@onready var despawn: Node = $RigidBody3D/despawnasd
 
 # This Controls the Height of the Target position the 
 # Mana ball will travel towards
@@ -11,22 +11,22 @@ var speed: float = 50.0
 # This is supposed to make collecting them more satisfying and interactable
 var offset_above_target: float = 6.0 
 
-func _process(delta: float):
+func _process(delta: float) -> void:
 	if target_body_position:
-		var target_position = target_body_position + Vector3(0, offset_above_target, 0)
-		var direction = (target_position - global_transform.origin).normalized()
+		var target_position: Vector3 = target_body_position + Vector3(0, offset_above_target, 0)
+		var direction: Vector3 = (target_position - global_transform.origin).normalized()
 		translate(direction * speed * delta)
 
-func _on_area_3d_body_entered(body: Node):
+func _on_area_3d_body_entered(body: Node) -> void:
 	if body.is_in_group("players"):
-		var animation_player = $RigidBody3D/CSGSphere3D/AnimationPlayer
+		var animation_player: AnimationPlayer = $RigidBody3D/CSGSphere3D/AnimationPlayer
 		animation_player.play("dissapear")
 		body.rpc("receive_mana", 1)
 		target_body_position = body.global_transform.origin
 
-func _on_despawn_timeout():
+func _on_despawn_timeout() -> void:
 	queue_free()
 
-func _on_spawn_timeout():
-	var area_3d = $RigidBody3D/CSGSphere3D/Area3D
+func _on_spawn_timeout() -> void:
+	var area_3d: Area3D = $RigidBody3D/CSGSphere3D/Area3D
 	area_3d.monitoring = true
