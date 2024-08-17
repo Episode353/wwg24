@@ -1,8 +1,0 @@
-[configuration]
-entry_symbol = "tbloader_init"
-compatibility_minimum = "4.1"
-
-[libraries]
-windows.x86_64 = "bin/tbloader.windows.x86_64.dll"
-linux.x86_64 = "bin/libtbloader.linux.x86_64.so"
-macos.x86_64 = "bin/libtbloader.macos.universal.dylib"
