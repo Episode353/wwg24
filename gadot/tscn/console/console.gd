@@ -1,0 +1,147 @@
+class_name Console
+extends CanvasLayer
+
+var expression = Expression.new()
+var command_history = []
+var history_index = -1
+var commands = {
+	"help": {"func": func() -> String:
+		return get_available_commands(),
+		"args": 0},
+	"greet": {"func": func(name: String) -> String:
+		return "Hello, %s!" % name,
+		"args": 1},
+	"add": {"func": func(a: float, b: float) -> float:
+		return a + b,
+		"args": 2},
+	"clear": {"func": func() -> String:
+		$VBoxContainer/output.text = ""
+		return "Console cleared.",
+		"args": 0},
+	"quit": {"func": func() -> String:
+		return quit_function(),
+		"args": 0},
+	"bind": {"func": func(action, key):
+		return bind_key(action, key),
+		"args": 2}
+}
+
+
+func _ready():
+	$VBoxContainer/input.text_submitted.connect(self._on_text_submitted)
+	$VBoxContainer/input.connect("gui_input", self._on_input_gui)
+
+	# Example usage of the config file execution
+	execute_config_file("res://config.txt")
+
+func _on_text_submitted(command):
+	command = command.strip_edges()
+	if command == "":
+		return
+	
+	command_history.append(command)
+	history_index = len(command_history)
+	
+	var tokens = command.split(" ")
+	var cmd = tokens[0].to_lower()
+	var args = tokens.slice(1, tokens.size())
+	
+	if commands.has(cmd):
+		var command_info = commands[cmd]
+		var func_ref = command_info["func"]
+		var expected_arg_count = command_info["args"]
+
+		if args.size() == expected_arg_count:
+			var result = func_ref.callv(args)
+			_output_command(command, result)
+		else:
+			_output_error("Error: '%s' command requires %d arguments." % [cmd, expected_arg_count])
+	else:
+		_output_error("Unknown command: %s" % cmd)
+	
+	# Clear the input field
+	$VBoxContainer/input.text = ""
+
+func _output_command(command, result):
+	$VBoxContainer/output.text += "> " + command + "\n"
+	$VBoxContainer/output.text += str(result) + "\n"
+
+func _output_error(error_text):
+	$VBoxContainer/output.text += "[Error] " + error_text + "\n"
+
+func _on_input_gui(event):
+	if event is InputEventKey:
+		if event.pressed:
+			if event.keycode == KEY_UP:
+				_navigate_history(-1)
+			elif event.keycode == KEY_DOWN:
+				_navigate_history(1)
+
+func _navigate_history(direction):
+	history_index += direction
+	history_index = clamp(history_index, 0, len(command_history))
+	if history_index < len(command_history) and history_index >= 0:
+		$VBoxContainer/input.text = command_history[history_index]
+		$VBoxContainer/input.caret_column = $VBoxContainer/input.text.length()
+	else:
+		$VBoxContainer/input.text = ""
+
+# Custom function to be run by the command
+func quit_function() -> String:
+	# Perform some custom logic here
+	get_tree().quit()
+	return "Quitting"
+
+# Function to dynamically return all available commands
+func get_available_commands() -> String:
+	var command_list = ""
+	for cmd in commands.keys():
+		command_list += "- " + cmd + ", "
+	command_list += "\n"
+	return command_list
+
+func bind_key(action: String, key: String) -> String:
+	var all_actions = InputMap.get_actions()
+	var key_event
+	
+	if action in all_actions:
+		InputMap.action_erase_events(action)
+		InputMap.add_action(action)
+
+		if key.begins_with("mouse"):
+			key_event = InputEventMouseButton.new()
+			match key:
+				"mouse1":
+					key_event.button_index = MOUSE_BUTTON_LEFT
+				"mouse2":
+					key_event.button_index = MOUSE_BUTTON_RIGHT
+				"mouse3":
+					key_event.button_index = MOUSE_BUTTON_MIDDLE
+				"mouse_scroll_up":
+					key_event.button_index = 4 # MOUSE_BUTTON_WHEEL_UP
+				"mouse_scroll_down":
+					key_event.button_index = 5 # MOUSE_BUTTON_WHEEL_DOWN
+				_:
+					return "Error: '%s' is not a valid mouse button." % key
+		else:
+			key_event = InputEventKey.new()
+			key_event.keycode = OS.find_keycode_from_string(key)
+		
+		InputMap.action_add_event(action, key_event)
+		return "Bound %s to %s" % [action, key]
+	else:
+		return "Error: '%s' is not a valid action." % action
+
+# Function to execute each command in the config file
+func execute_config_file(file_path: String):
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	if file:
+		while not file.eof_reached():
+			var line = file.get_line().strip_edges()
+			# Ignore lines starting with a hashtag (#)
+			if line != "" and line[0] != "#":
+				_on_text_submitted(line)
+		file.close()
+	else:
+		_output_error("Error: Unable to open config file: %s" % file_path)
+

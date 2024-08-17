@@ -1,0 +1,23 @@
+# Start a line with a Hashtag to place a comment
+
+# Movement Keys
+bind forward w
+bind backward s
+bind left a
+bind right d
+bind jump space
+bind free_look c
+
+# Weapon Keys
+bind shoot mouse1
+bind w_up mouse_scroll_up
+bind w_down mouse_scroll_down
+bind reload r
+
+# Utility Keys
+bind quit escape
+bind kill k
+bind respawn f2
+bind main_menu f1
+bind fullscreen f11
+

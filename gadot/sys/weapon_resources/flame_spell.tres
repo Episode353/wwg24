@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://bqgyx232itglx"]
+
+[ext_resource type="Script" path="res://sys/weapon_resource.gd" id="1_d61d8"]
+
+[resource]
+script = ExtResource("1_d61d8")
+weapon_name = "flame_spell"
+activate_anim = "flame_spell_activate"
+shoot_anim = "flame_spell_shoot"
+reload_anim = "knife_activate"
+deactivate_anim = "flame_spell_deactivate"
+out_of_ammo_anim = "knife_activate"
+wall_raise_anim = ""
+wall_lower_anim = ""
+has_idle_anim = true
+idle_anim = "flame_spell_idle"
+current_ammo = 999
+current_ammo_default = 999
+reserve_ammo = 999
+reserve_ammo_default = 999
+mag_ammo = 999
+mag_ammo_default = 999
+max_ammo = 999
+damage = 2
+weapon_range = 10
+auto_fire = true
+disable_wall_prox = true
+disable_ammo = false
+is_gun = true
+is_spell = false
+use_area_damage_collision = true
+area_damage_radius = 20
+skip_animation_on_fire = true
+fire_rate = 0.1

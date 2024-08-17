@@ -1,0 +1,14 @@
+CollisionShape3D
+Area3D
+Node3D
+Node
+OmniLight3D
+LineEdit
+RichTextLabel
+TextEdit
+VBoxContainer
+CanvasLayer
+GPUParticles3D
+RigidBody3D
+Button
+Control

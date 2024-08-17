@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8o8hrnk4qsdx"]
+
+[ext_resource type="Texture2D" uid="uid://bnovd1chd3bti" path="res://addons/kenney_particle_pack/magic_05.png" id="1_0ghrb"]
+
+[node name="marker" type="Sprite3D"]
+texture = ExtResource("1_0ghrb")

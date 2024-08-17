@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1lfio6su6m7o"]
+
+[ext_resource type="Script" path="res://menufadein.gd" id="1_yqkyx"]
+
+[node name="menufadein" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.00392157, 0, 0, 1)
+script = ExtResource("1_yqkyx")

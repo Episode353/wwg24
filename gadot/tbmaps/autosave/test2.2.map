@@ -1,0 +1,25 @@
+// Game: Godot
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"_tb_textures" "textures/dark;textures/green;textures/light;textures/orange;textures/purple;textures/red"
+// brush 0
+{
+( -256 -256 -32 ) ( -256 -255 -32 ) ( -256 -256 -31 ) dark/texture_08 0 0 0 1 1
+( 128 -256 -32 ) ( 128 -256 -31 ) ( 129 -256 -32 ) dark/texture_08 0 0 0 1 1
+( 128 -256 -32 ) ( 129 -256 -32 ) ( 128 -255 -32 ) dark/texture_08 0 0 0 1 1
+( 256 -128 0 ) ( 256 -127 0 ) ( 257 -128 0 ) dark/texture_08 0 0 0 1 1
+( 256 256 0 ) ( 257 256 0 ) ( 256 256 1 ) dark/texture_08 0 0 0 1 1
+( 256 -128 0 ) ( 256 -128 1 ) ( 256 -127 0 ) dark/texture_08 0 0 0 1 1
+}
+// brush 1
+{
+( -96 -64 160 ) ( -96 -63 160 ) ( -96 -64 161 ) orange/texture_01 0 0 0 1 1
+( -96 -64 160 ) ( -96 -64 161 ) ( -95 -64 160 ) orange/texture_01 0 0 0 1 1
+( -96 -64 160 ) ( -95 -64 160 ) ( -96 -63 160 ) orange/texture_01 0 0 0 1 1
+( 160 0 192 ) ( 160 1 192 ) ( 161 0 192 ) orange/texture_01 0 0 0 1 1
+( 160 0 192 ) ( 161 0 192 ) ( 160 0 193 ) orange/texture_01 0 0 0 1 1
+( 160 0 192 ) ( 160 0 193 ) ( 160 1 192 ) orange/texture_01 0 0 0 1 1
+}
+}

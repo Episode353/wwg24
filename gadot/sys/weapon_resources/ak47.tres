@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://bof3ewi4ljhjc"]
+
+[ext_resource type="Script" path="res://sys/weapon_resource.gd" id="1_vylb0"]
+
+[resource]
+script = ExtResource("1_vylb0")
+weapon_name = "ak47"
+activate_anim = "ak47_activate"
+shoot_anim = "ak47_shoot"
+reload_anim = "ak47_reload"
+deactivate_anim = "ak47_deactivate"
+out_of_ammo_anim = "ak47_ooa"
+wall_raise_anim = "ak47_wall_raise"
+wall_lower_anim = "ak47_wall_lower"
+has_idle_anim = false
+idle_anim = ""
+current_ammo = 64
+current_ammo_default = 64
+reserve_ammo = 65
+reserve_ammo_default = 65
+mag_ammo = 65
+mag_ammo_default = 65
+max_ammo = 9999
+damage = 5
+weapon_range = -30
+auto_fire = true
+disable_wall_prox = false
+disable_ammo = false
+is_gun = true
+is_spell = false
+is_projectile_launcher = false
+use_area_damage_collision = false
+area_damage_radius = 0
+skip_animation_on_fire = false
+fire_rate = 0.0
