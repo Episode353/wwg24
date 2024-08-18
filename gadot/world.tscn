@@ -73,7 +73,6 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_lkytg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qy444")
-max_value = 20.0
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD"]
 layout_mode = 1
@@ -86,8 +85,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_3lhvk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vcby2")
-max_value = 20.0
-value = 20.0
+value = 100.0
 
 [node name="FPSCount" type="Label" parent="CanvasLayer/HUD"]
 layout_mode = 0

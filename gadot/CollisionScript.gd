@@ -22,7 +22,6 @@ func _process(delta):
 		if has_set_on_fire_method and not was_on_fire:
 			player.set_on_fire(true)
 			was_on_fire = true
-		print(flame_timer)
 	else:
 		# Set is_on_fire to false if timer is zero and only if it was previously true
 		if has_set_on_fire_method and was_on_fire:
@@ -30,8 +29,5 @@ func _process(delta):
 			was_on_fire = false
 
 func _on_area_3d_body_entered(body):
-	print("Body Entered Collision Script", body)
 	if body.is_in_group("flammable"):
-		print("Is In Group Flammable", body)
 		flame_timer = FLAME_TIMER_MAX
-		print(flame_timer)

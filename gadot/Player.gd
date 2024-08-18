@@ -39,11 +39,11 @@ var sensitivity = 0.05
 var walking = false
 
 
-var health = 20 # Inital health
-var max_health = 20 # Health set to max health on respawn
+var health = 100 # Inital health
+var max_health = 100 # Health set to max health on respawn
 
-var mana = 2 # Inital mana
-var max_mana = 20 # mana set to max health on respaw
+var mana = 0 # Inital mana
+var max_mana = 100 # mana set to max health on respaw
 
 # Speed Variables
 const walking_speed = 5.0
@@ -68,6 +68,11 @@ var slide_timer = 0.0
 var slide_timer_max = 1.0
 var slide_vector = Vector2.ZERO
 var slide_speed = 15.0
+
+# Health States
+var is_on_fire = false
+@onready var player_flames_fx = $Area3D/PlayerFlamesFx
+var fire_counter = 0
 
 
 # Input Variables
@@ -144,7 +149,8 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
-
+		
+	calculate_fire_damage()
 	
 	viewmodel_camera.global_transform = main_camera.global_transform
 	process_input()
@@ -159,6 +165,8 @@ func _physics_process(delta):
 		neck.rotation.x = lerp(neck.rotation.x, 0.0, delta * 5)
 		neck.rotation.y = lerp(neck.rotation.y, 0.0, delta * 5)
 		neck.rotation.z = lerp(neck.rotation.z, 0.0, delta * 5)
+		
+	
 
 
 	
@@ -264,7 +272,8 @@ func player_death():
 	var world = get_parent()
 	world.respawn_player(self)
 	health = max_health
-	mana = max_mana
+	mana = 0
+	self.set_on_fire(false)
 	mana_changed.emit(mana)
 	health_changed.emit(health)
 
@@ -362,9 +371,6 @@ func receive_mana(received_mana):
 	mana_changed.emit(mana)
 	
 	
-var is_on_fire = false
-@onready var player_flames_fx = $Area3D/PlayerFlamesFx
-
 
 # Method to set the on_fire state
 func set_on_fire(state: bool) -> void:
@@ -374,7 +380,20 @@ func set_on_fire(state: bool) -> void:
 	print("Player is_on_fire set to: ", is_on_fire)
 	
 	
+func calculate_fire_damage():
 	
+	if is_on_fire:
+		fire_counter += 1
+	else:
+		fire_counter -= 1
+	
+	
+	fire_counter = clamp(fire_counter, 0, 20) # Set a maximum and minumum value for the variable
+	
+	if fire_counter >= 20:
+		receive_damage(1)
+		fire_counter = 0
+
 	
 
 
