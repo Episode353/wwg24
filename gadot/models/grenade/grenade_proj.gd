@@ -20,7 +20,7 @@ func _physics_process(delta):
 	# Delete the grenade if it does not collide after a time
 	grenade_timer += delta
 	if grenade_timer > 4.0:
-		check_area_and_explode()
+		explode()
 
 
 func _on_body_entered(body):
@@ -30,11 +30,6 @@ func _on_body_entered(body):
 	
 	explode()
 
-func check_area_and_explode():
-	# Get all bodies in the Area3D
-	var bodies = area.get_overlapping_bodies()
-	if bodies.size() > 0:
-		explode()
 
 func explode():
 	var explosion_scene = EXPLOSION_PRELOAD.instantiate()

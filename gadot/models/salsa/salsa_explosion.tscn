@@ -1,59 +1,65 @@
 [gd_scene load_steps=8 format=3 uid="uid://c5uqivlpnwarb"]
 
 [ext_resource type="Script" path="res://models/salsa/salsa_explosion.gd" id="1_p04c0"]
-[ext_resource type="Texture2D" uid="uid://bvxusr4s0aia" path="res://models/rocket_launcher/Flare00.PNG" id="2_4kxt2"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_johg4"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_6y44b"]
+size = Vector3(4, 1, 4)
+
+[sub_resource type="Gradient" id="Gradient_1e66n"]
+offsets = PackedFloat32Array(0, 0.120654, 1)
+colors = PackedColorArray(1, 0.194376, 0.144153, 1, 1, 0, 0, 1, 1, 0.380392, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xfs1a"]
+gradient = SubResource("Gradient_1e66n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eg7er"]
+emission_shape = 3
+emission_box_extents = Vector3(2, 0.1, 2)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.4
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = 0.4
+tangential_accel_max = 0.5
+scale_min = 0.5
+color_ramp = SubResource("GradientTexture1D_xfs1a")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmnrb"]
 transparency = 1
-albedo_color = Color(1, 0, 0, 1)
-albedo_texture = ExtResource("2_4kxt2")
-albedo_texture_force_srgb = true
-albedo_texture_msdf = true
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.396078)
 
-[sub_resource type="Curve" id="Curve_y576j"]
-_data = [Vector2(0, 0.981928), 0.0, 0.082925, 0, 0, Vector2(1, 0.0180724), -1.00374, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="SphereMesh" id="SphereMesh_jxty8"]
+material = SubResource("StandardMaterial3D_qmnrb")
+radius = 0.05
+height = 0.1
 
-[sub_resource type="CurveTexture" id="CurveTexture_2rssp"]
-curve = SubResource("Curve_y576j")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g0tem"]
-lifetime_randomness = 0.5
-emission_shape = 1
-emission_sphere_radius = 1.0
-spread = 180.0
-initial_velocity_min = 0.5
-initial_velocity_max = 2.0
-scale_min = 3.0
-scale_max = 4.0
-scale_curve = SubResource("CurveTexture_2rssp")
-scale_over_velocity_min = 3.0
-scale_over_velocity_max = 4.0
-color = Color(0, 0, 0, 1)
-
-[sub_resource type="QuadMesh" id="QuadMesh_5cnd7"]
-
-[node name="Explosion" type="Node3D"]
+[node name="RigidBody3D" type="RigidBody3D" groups=["flammable"]]
+collision_layer = 32768
 script = ExtResource("1_p04c0")
 
-[node name="Smoke" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_johg4")
-emitting = false
-amount = 10
-lifetime = 0.8
-one_shot = true
-explosiveness = 1.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_g0tem")
-draw_pass_1 = SubResource("QuadMesh_5cnd7")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_6y44b")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+[node name="Explosion" type="Node3D" parent="."]
+
+[node name="Timer" type="Timer" parent="Explosion"]
+wait_time = 0.001
 one_shot = true
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="RayCast3D" type="RayCast3D" parent="Explosion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.347059, 0)
+target_position = Vector3(0, -20, 0)
+
+[node name="flames" type="GPUParticles3D" parent="Explosion"]
+amount = 100
+randomness = 1.0
+fixed_fps = 20
+process_material = SubResource("ParticleProcessMaterial_eg7er")
+draw_pass_1 = SubResource("SphereMesh_jxty8")
+
+[connection signal="timeout" from="Explosion/Timer" to="." method="_on_timer_timeout"]

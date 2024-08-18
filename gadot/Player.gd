@@ -144,6 +144,7 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
+
 	
 	viewmodel_camera.global_transform = main_camera.global_transform
 	process_input()
@@ -361,6 +362,16 @@ func receive_mana(received_mana):
 	mana_changed.emit(mana)
 	
 	
+var is_on_fire = false
+@onready var player_flames_fx = $Area3D/PlayerFlamesFx
+
+
+# Method to set the on_fire state
+func set_on_fire(state: bool) -> void:
+	is_on_fire = state
+	player_flames_fx.emitting = state
+	# Add additional logic here, such as applying damage or visual effects
+	print("Player is_on_fire set to: ", is_on_fire)
 	
 	
 	

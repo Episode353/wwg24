@@ -1,13 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgbhwcvrnd5q0"]
+[gd_scene load_steps=8 format=3 uid="uid://cgbhwcvrnd5q0"]
 
 [ext_resource type="Script" path="res://models/salsa/salsa_proj.gd" id="1_nqjva"]
 [ext_resource type="Texture2D" uid="uid://6c3oi65oxila" path="res://models/salsa/salsa_0.png" id="2_7546e"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gho32"]
 bounce = 0.35
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_mpo7y"]
-radius = 0.195138
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jwnwd"]
 resource_name = "Material.1"
@@ -49,19 +46,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_c2212")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yjrpb"]
-radius = 34.724
-height = 73.502
+[sub_resource type="SphereShape3D" id="SphereShape3D_my08e"]
+radius = 21.783
 
 [node name="RigidBody3D" type="RigidBody3D"]
 collision_layer = 0
 mass = 0.05
 physics_material_override = SubResource("PhysicsMaterial_gho32")
 script = ExtResource("1_nqjva")
-
-[node name="ground-collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0699637, 0.132659, -0.10199)
-shape = SubResource("SphereShape3D_mpo7y")
 
 [node name="salsa" type="Node3D" parent="."]
 
@@ -76,6 +68,9 @@ skeleton = NodePath("")
 [node name="Area3D" type="Area3D" parent="salsa/Node/Layer_1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="salsa/Node/Layer_1/Area3D"]
-shape = SubResource("CapsuleShape3D_yjrpb")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.5604)
+shape = SubResource("SphereShape3D_my08e")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
 
 [connection signal="body_entered" from="salsa/Node/Layer_1/Area3D" to="." method="_on_area_3d_body_entered"]
