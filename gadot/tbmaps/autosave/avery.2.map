@@ -1,0 +1,46 @@
+// Game: Godot
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"_tb_textures" "textures;textures/dev_textures;textures/dev_textures/dark;textures/dev_textures/green;textures/dev_textures/light;textures/dev_textures/orange;textures/dev_textures/purple;textures/dev_textures/red"
+// brush 0
+{
+( -128 80 -16 ) ( -128 80 -17 ) ( -128 81 -16 ) dev_textures/light/texture_06 0 0 0 1 1
+( 80 -128 0 ) ( 80 -128 -1 ) ( 79 -128 0 ) dev_textures/light/texture_06 0 0 0 1 1
+( -64 80 -16 ) ( -64 81 -16 ) ( -65 80 -16 ) dev_textures/light/texture_06 0 0 0 1 1
+( 80 0 0 ) ( 79 0 0 ) ( 80 1 0 ) dev_textures/light/texture_06 0 0 0 1 1
+( -64 128 -16 ) ( -65 128 -16 ) ( -64 128 -17 ) dev_textures/light/texture_06 0 0 0 1 1
+( 128 0 0 ) ( 128 1 0 ) ( 128 0 -1 ) dev_textures/light/texture_06 0 0 0 1 1
+}
+// brush 1
+{
+( 128 128 0 ) ( 128 -128 0 ) ( 128 -128 -16 ) dev_textures/light/texture_06 0 0 0 1 1
+( 528 -128 -64 ) ( 528 128 -64 ) ( 128 128 -16 ) dev_textures/light/texture_06 0 0 0 1 1
+( 128 -128 0 ) ( 528 -128 -48 ) ( 528 -128 -64 ) dev_textures/light/texture_06 0 0 0 1 1
+( 528 128 -64 ) ( 528 128 -48 ) ( 128 128 0 ) dev_textures/light/texture_06 0 0 0 1 1
+( 128 128 0 ) ( 528 128 -48 ) ( 528 -128 -48 ) dev_textures/light/texture_06 0 0 0 1 1
+( 528 -128 -48 ) ( 528 128 -48 ) ( 528 128 -64 ) dev_textures/light/texture_06 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "info_player_start"
+"origin" "8 8 8"
+}
+// entity 2
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "pad"
+"_tb_id" "6"
+"_tb_layer_sort_index" "0"
+}
+// entity 3
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "stairs"
+"_tb_id" "10"
+"_tb_layer_sort_index" "1"
+}

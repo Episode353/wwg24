@@ -1,0 +1,32 @@
+// Game: Godot
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"_tb_textures" "textures;textures/dev_textures;textures/dev_textures/dark;textures/dev_textures/green;textures/dev_textures/light;textures/dev_textures/orange;textures/dev_textures/purple;textures/dev_textures/red"
+// brush 0
+{
+( -16 128 -96 ) ( -16 128 -97 ) ( -16 129 -96 ) dev_textures/light/texture_06 0 0 0 1 1
+( 128 48 -80 ) ( 128 48 -81 ) ( 127 48 -80 ) dev_textures/light/texture_06 0 0 0 1 1
+( -16 128 -96 ) ( -16 129 -96 ) ( -17 128 -96 ) dev_textures/light/texture_06 0 0 0 1 1
+( 128 48 -80 ) ( 127 48 -80 ) ( 128 49 -80 ) dev_textures/light/texture_06 0 0 0 1 1
+( -16 128 -96 ) ( -17 128 -96 ) ( -16 128 -97 ) dev_textures/light/texture_06 0 0 0 1 1
+( 128 48 -80 ) ( 128 49 -80 ) ( 128 48 -81 ) dev_textures/light/texture_06 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "pad"
+"_tb_id" "6"
+"_tb_layer_sort_index" "0"
+}
+// entity 2
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "stairs"
+"_tb_id" "10"
+"_tb_layer_sort_index" "1"
+}
