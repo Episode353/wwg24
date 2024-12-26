@@ -112,51 +112,51 @@ w_down={
 "deadzone": 0.5,
 "events": []
 }
-kb_1={
+C={
 "deadzone": 0.5,
 "events": []
 }
-kb_2={
+CS={
 "deadzone": 0.5,
 "events": []
 }
-kb_3={
+D={
 "deadzone": 0.5,
 "events": []
 }
-kb_4={
+DS={
 "deadzone": 0.5,
 "events": []
 }
-kb_5={
+E={
 "deadzone": 0.5,
 "events": []
 }
-kb_6={
+F={
 "deadzone": 0.5,
 "events": []
 }
-kb_7={
+FS={
 "deadzone": 0.5,
 "events": []
 }
-kb_8={
+G={
 "deadzone": 0.5,
 "events": []
 }
-kb_9={
+GS={
 "deadzone": 0.5,
 "events": []
 }
-kb_10={
+A={
 "deadzone": 0.5,
 "events": []
 }
-kb_11={
+AS={
 "deadzone": 0.5,
 "events": []
 }
-kb_12={
+B={
 "deadzone": 0.5,
 "events": []
 }

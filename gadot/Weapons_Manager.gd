@@ -222,7 +222,7 @@ func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
 	
-	handle_keyboard_input()
+
 
 	if not current_weapon.disable_wall_prox:
 		if raycast_wall.is_colliding() and animation_player.current_animation != current_weapon.wall_raise_anim and not weapon_raise:
@@ -240,19 +240,9 @@ func _physics_process(delta):
 		elif Input.is_action_just_released("shoot"):
 			ac_timer.stop()
 
-# Predefined list of actions
-var numpad_actions = [
-	"kb_1", "kb_2", "kb_3", "kb_4", 
-	"kb_5", "kb_6", "kb_7", "kb_8", 
-	"kb_9", "kb_10", "kb_11", "kb_12"
-]
 
-func handle_keyboard_input():
-	for action in numpad_actions:
-		if Input.is_action_just_pressed(action):
-			print(action + " Pressed")
-			if str(current_weapon.weapon_name) == "keyboard":  # Ensure string comparison
-				print("And player has keyboard equipped")
+
+
 
 
 

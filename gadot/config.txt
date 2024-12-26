@@ -23,15 +23,15 @@ bind main_menu f1
 bind fullscreen f11
 
 # Musical Buttons
-bind kb_1 f
-bind kb_2 t
-bind kb_3 g
-bind kb_4 y
-bind kb_5 h
-bind kb_6 u
-bind kb_7 j
-bind kb_8 i
-bind kb_9 k
-bind kb_10 o
-bind kb_11 l
-bind kb_12 p
+bind C f
+bind CS t
+bind D g
+bind DS y
+bind E h
+bind F u
+bind FS j
+bind G i
+bind GS k
+bind A o
+bind AS l
+bind B p
