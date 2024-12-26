@@ -121,6 +121,7 @@ func _ready():
 	if not is_multiplayer_authority(): return
 	_3p_model.hide()
 	
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	main_camera.current = true
 	
@@ -128,7 +129,7 @@ func _ready():
 	get_viewport().connect("size_changed", Callable(self, "_on_size_changed"))
 	# Initial adjustment of the viewport size
 	_adjust_viewport_size()
-
+	
 	
 
 func _unhandled_input(event):
@@ -368,6 +369,10 @@ func receive_health(rcv_hp):
 func receive_mana(received_mana):
 	print("receive_mana:", received_mana)
 	mana += received_mana
+	if mana >= max_mana:# Dont let Mana exceed the maximum
+		mana = max_mana
+	if mana < 0:# Prevent mama from going negative
+		mana = 0
 	mana_changed.emit(mana)
 	
 	

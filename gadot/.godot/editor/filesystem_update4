@@ -10,12 +10,10 @@ res://sys/weapon_resources/shotgun.tres
 res://sys/weapon_resources/keyboard.tres
 res://player.gdshader
 res://tscn/playerview.gdshader
-res://mat/grey_grid_3.tres
 res://models/salsa/salsa_proj.tscn
 res://models/rocket_launcher/rocket.tscn
 res://models/salsa/salsa_explosion.tscn
 res://models/grenade/grenade_proj.tscn
 res://entities/mana_drop.tscn
 res://world.tscn
-res://Weapons_Manager.gd
 res://keyboard.gd
