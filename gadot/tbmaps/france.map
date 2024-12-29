@@ -443,7 +443,7 @@
 ( 192 928 -32 ) ( 193 928 -32 ) ( 192 929 -32 ) dev_textures/orange/texture_02 256 -288 0 1 1
 ( 384 960 64 ) ( 384 961 64 ) ( 385 960 64 ) dev_textures/orange/texture_02 256 -288 0 1 1
 ( 384 960 64 ) ( 385 960 64 ) ( 384 960 65 ) dev_textures/orange/texture_02 256 0 0 1 1
-( 384 960 64 ) ( 384 960 65 ) ( 384 961 64 ) dev_textures/orange/texture_02 288 0 0 1 1
+( 832 960 64 ) ( 832 960 65 ) ( 832 961 64 ) dev_textures/orange/texture_02 288 0 0 1 1
 }
 // brush 49
 {
@@ -496,7 +496,7 @@
 ( 832 -192 0 ) ( 831 -192 0 ) ( 832 -192 1 ) dev_textures/orange/texture_02 -320 0 180 1 -1
 ( 864 768 -32 ) ( 863 768 -32 ) ( 864 767 -32 ) dev_textures/orange/texture_02 -320 -576 180 1 1
 ( 832 512 64 ) ( 832 511 64 ) ( 831 512 64 ) dev_textures/orange/texture_02 -320 -576 180 1 1
-( 864 768 -32 ) ( 864 768 -31 ) ( 863 768 -32 ) dev_textures/orange/texture_02 -320 0 180 1 -1
+( 864 928 -32 ) ( 864 928 -31 ) ( 863 928 -32 ) dev_textures/orange/texture_02 -320 0 180 1 -1
 ( 864 768 -32 ) ( 864 767 -32 ) ( 864 768 -31 ) dev_textures/orange/texture_02 576 0 180 1 -1
 }
 }
