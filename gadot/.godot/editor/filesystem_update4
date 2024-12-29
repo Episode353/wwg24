@@ -1,4 +1,4 @@
-res://player.tscn
+res://world.tscn
 res://sys/weapon_resource.gd
 res://CollisionScript.gd
 res://manadrop.gd
@@ -10,10 +10,11 @@ res://sys/weapon_resources/shotgun.tres
 res://sys/weapon_resources/keyboard.tres
 res://player.gdshader
 res://tscn/playerview.gdshader
-res://world.tscn
-res://tscn/console/console.tscn
-res://main_camera.gd
-res://sys/globals.gd
-res://tscn/console/console.gd
-res://Weapons_Manager.gd
 res://world.gd
+res://Weapons_Manager.gd
+res://player.tscn
+res://tscn/console/console.tscn
+res://sys/username_label.gd
+res://tscn/killfeed_object.tscn
+res://tscn/killfeed_object/killfeed_object_timer.gd
+res://tscn/killfeed_object/killfeed_object.tscn

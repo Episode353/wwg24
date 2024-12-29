@@ -131,10 +131,9 @@ func raycast_shoot_procc():
 		b.look_at(col_point - col_nor, Vector3(0, 1, 0))
 	# Check if the hit object is a player
 	if hit_object.is_in_group("players"):
-		# Assuming the player has a "receive_w" method marked as an RPC
+		# Assuming the player has a "receive_w" method marked as an rpxc
 		hit_object.rpc("receive_damage", current_weapon.damage)
-		print(hit_object)
-		print("Player Hit!")
+		hit_object.rpc("update_last_tagged_by", player.name)
 	else:
 		print("Hit object is not a player.")
 
@@ -150,6 +149,7 @@ func area_collision_procc(self_id):
 			if e.name != str(self_id): # Compare with the player ID passed to the function
 				print("Damaging player: Entity ID: ", e_id) # Debug print
 				e.rpc("receive_damage", current_weapon.damage)
+				e.rpc("update_last_tagged_by", player.name)
 			else:
 				print("Ignoring self: Entity ID: ", e_id) # Debug print
 
@@ -192,9 +192,11 @@ func reload():
 	print("reload")
 	if current_weapon.disable_ammo == false:
 		if current_weapon.current_ammo == current_weapon.mag_ammo:
+			print("Current Ammo is equal to Mag Ammo")
 			return
 		elif !animation_player.is_playing() or animation_player.current_animation == current_weapon.idle_anim:
 			if current_weapon.reserve_ammo != 0:
+				print("current_weapon.reserve_ammo != 0")
 				animation_player.play(current_weapon.reload_anim)
 				var reload_ammount = min(current_weapon.mag_ammo - current_weapon.current_ammo,current_weapon.mag_ammo,current_weapon.reserve_ammo)
 				
@@ -204,6 +206,7 @@ func reload():
 				
 			else:
 				animation_player.play(current_weapon.out_of_ammo_anim)
+				print("Triggered Reload()")
 
 
 func idle():

@@ -39,6 +39,8 @@ func remove_player(peer_id):
 		print("Removed player: ", peer_id)
 	else:
 		print("Player not found: ", peer_id)
+		
+
 
 func send_to_main_menu():
 	var current_scene = get_tree().current_scene
@@ -196,7 +198,6 @@ var current_weapon_reserve_ammo = 0
 var weapon_stack = []
 
 # Handle updates for weapon info sent from weapons_manager.gd
-	
 @rpc("reliable", "call_local")
 func update_weapon_info(weapon_name: String, ammo: int, reserve_ammo: int, stack: Array):
 	current_weapon_name = weapon_name
@@ -217,9 +218,35 @@ func update_weapon_hud():
 	
 	weapon_stack_label.text = formatted_stack.strip_edges()  # Remove any unnecessary trailing newline
 
-
 func _on_button_pressed():
 	if is_multiplayer_authority():
 		rpc("_on_server_disconnected")
 	rpc("kick_players")
 	send_to_main_menu()
+	
+	
+# We Put the killfeed code here because we let the players RPC when to display to the killfeed
+# And then the world will call everyone and tell them about it.
+@onready var killfeed_container = $CanvasLayer/HUD/KillfeedContainter
+@onready var killfeed_object_scene = preload("res://tscn/killfeed_object/killfeed_object.tscn")  # Load the killfeed object scene
+
+# Display kills on the killfeed
+@rpc("any_peer", "call_local")
+func display_to_killfeed(last_tagged_by, name):
+	print("Kill feed update: ", last_tagged_by, " killed ", name)
+
+	# Instantiate the killfeed object
+	var killfeed_label = killfeed_object_scene.instantiate()
+	
+	# Set the text of the killfeed label
+	killfeed_label.text = name + " was killed by " + last_tagged_by
+
+
+	# Add the label to the killfeed container
+	killfeed_container.add_child(killfeed_label)
+
+
+
+
+
+

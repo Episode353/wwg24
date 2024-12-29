@@ -1,3 +1,5 @@
+res://tscn/killfeed_object
+res://tscn
 res://sys
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/24.8.18
 C:/Users/creat/Desktop/github/wizards-with-guns/wwg24/gadot
@@ -10,7 +12,6 @@ res://sys/weapon_resources
 res://models/rocket_launcher
 res://shaders
 res://entities
-res://tscn
 res://addons
 res://tbmaps
 res://addons/kenney_particle_pack

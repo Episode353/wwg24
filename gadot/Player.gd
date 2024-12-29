@@ -3,6 +3,9 @@ extends CharacterBody3D
 signal health_changed(health_value)
 signal mana_changed(mana_value)
 
+@onready var world = get_tree().get_root().get_node("World")
+@onready var player = $"."
+
 # Player Nodes
 
 @onready var head = $neck/head
@@ -21,7 +24,7 @@ signal mana_changed(mana_value)
 
 const MANADROP = preload("res://manadrop.tscn")
 @onready var _3p_model = $"3p_model"
-
+var last_tagged_by = "Unknown"
 
 
 # Source
@@ -269,6 +272,7 @@ func player_death():
 	# Spawn mana drop only for the local player who died
 	if is_multiplayer_authority():
 		rpc("spawn_mana_for_all", world_pos)
+		world.rpc("display_to_killfeed", last_tagged_by, self.name)
 
 	# Call the world's respawn player function
 	var world = get_parent()
@@ -336,7 +340,9 @@ func spawn_mana_for_all(world_pos):
 	
 	
 
-
+@rpc("any_peer", "call_local")
+func update_last_tagged_by(name):
+	last_tagged_by = name
 
 #func player_respawn():
 	#health = max_health
@@ -347,7 +353,7 @@ func spawn_mana_for_all(world_pos):
 	#position.y = 10
 	#mana_changed.emit(mana)
 	#health_changed.emit(health)
-	
+		
 @rpc("any_peer", "call_local")
 func receive_damage(dmg):
 	health -= dmg

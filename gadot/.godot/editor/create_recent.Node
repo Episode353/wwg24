@@ -1,7 +1,8 @@
+Timer
+HBoxContainer
 RigidBody3D
 Node3D
 Node
-Timer
 CollisionShape3D
 Area3D
 GPUParticles3D
@@ -11,4 +12,3 @@ CSGCylinder3D
 OmniLight3D
 LineEdit
 RichTextLabel
-TextEdit

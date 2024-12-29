@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctcbqavi7p0sn"]
+
+[ext_resource type="Script" path="res://tscn/killfeed_object/killfeed_object_timer.gd" id="1_d1qyt"]
+
+[node name="Killfeed" type="Label"]
+size_flags_horizontal = 8
+text = "Testing 123"
+script = ExtResource("1_d1qyt")

@@ -1,8 +1,8 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1735509652
+::res://::1735515019
 CanvasLayer.gd::GDScript::-1::1735500413::0::1::::<>Node<>::
-CollisionScript.gd::GDScript::-1::1735508726::0::1::::<>CollisionShape3D<>::
-config.txt::TextFile::-1::1735509547::0::1::::<><>::
+CollisionScript.gd::GDScript::-1::1735512430::0::1::::<>CollisionShape3D<>::
+config.txt::TextFile::-1::1735511177::0::1::::<><>::
 crosshair.gd::GDScript::-1::1735500413::0::1::::<>TextureRect<>::
 default_bus_layout.tres::AudioBusLayout::3826074138955985274::1735500413::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1735500413::0::1::::<><>::
@@ -10,19 +10,19 @@ FPSCount.gd::GDScript::-1::1735503421::0::1::::<>Label<>::
 icon.svg::CompressedTexture2D::3834951400861193108::1735500413::1735500413::1::::<><>::
 keyboard.gd::GDScript::-1::1735500413::0::1::::<>Node3D<>::
 main_cam.gd::GDScript::-1::1735500413::0::1::::<>RefCounted<>::
-main_camera.gd::GDScript::-1::1735509631::0::1::::<>Camera3D<>::
-manadrop.gd::GDScript::-1::1735508726::0::1::::<>Node3D<>::
+main_camera.gd::GDScript::-1::1735509673::0::1::::<>Camera3D<>::
+manadrop.gd::GDScript::-1::1735512430::0::1::::<>Node3D<>::
 manadrop.tscn::PackedScene::4827938261691877241::1735500413::0::1::::<><>::res://manadrop.gd<>res://shaders/manadrop.gdshader
 menufadein.gd::GDScript::-1::1735500413::0::1::::<>ColorRect<>::
 menufadein.tscn::PackedScene::6620778112646409782::1735500413::0::1::::<><>::res://menufadein.gd
-Player.gd::GDScript::-1::1735508726::0::1::::<>CharacterBody3D<>::
-player.gdshader::Shader::-1::1735509647::0::1::::<><>::
-player.tscn::PackedScene::1619049469406958580::1735509642::0::1::::<><>::res://Player.gd<>res://main_camera.gd<>res://Weapons_Manager.gd<>uid://bof3ewi4ljhjc::::res://sys/weapon_resources/ak47.tres<>uid://bqgyx232itglx::::res://sys/weapon_resources/flame_spell.tres<>uid://cea7mprhctago::::res://sys/weapon_resources/knife.tres<>uid://cqscctj06yo0b::::res://sys/weapon_resources/he_grenade.tres<>uid://b1gcuee3knuwf::::res://sys/weapon_resources/rocket_launcher.tres<>uid://bhrts7n8xjy7d::::res://sys/weapon_resources/shotgun.tres<>uid://cbhmka5u64bv1::::res://sys/weapon_resources/salsa.tres<>res://sys/weapon_resource.gd<>uid://b6mnu213mqdmu::::res://models/shotgun/shotgun_Map #2-Map #2.png<>uid://bjcnly1knqax3::::res://models/shotgun/shotgun_Map #4.png<>uid://c60tj7uhbwduv::::res://addons/kenney_particle_pack/smoke_04.png<>uid://b7hn11nldeyn6::::res://sys/weapon_resources/keyboard.tres<>uid://crkhsyvj310yu::::res://models/shotgun/shotgun_Map #5.png<>uid://den0wvsqncxys::::res://models/ak47/ak47_Map #2-Map #2.png<>uid://hih1qgq512cb::::res://models/ak47/ak47_Map #4.png<>uid://igg6fc77vnot::::res://models/ak47/ak47_Map #5.png<>uid://c8nmwycpo5sc3::::res://models/knife/Knife_Albedo.png<>uid://cppb5j8hb7ryq::::res://models/knife/Knife_Metalness-Roughness.png<>uid://brcileg6pp4w6::::res://models/knife/Knife_OpenGL_normal.png<>uid://wt4kifchk2pd::::res://models/rocket_launcher/rocket_launcher_0.png<>uid://dtu65gjsb1q5::::res://models/rocket_launcher/rocket_0.png<>uid://c328o8gs1t5x1::::res://models/grenade/grenade_0.png<>uid://6c3oi65oxila::::res://models/salsa/salsa_0.png<>res://CollisionScript.gd<>res://keyboard.gd
+Player.gd::GDScript::-1::1735514574::0::1::::<>CharacterBody3D<>::
+player.gdshader::Shader::-1::1735515081::0::1::::<><>::
+player.tscn::PackedScene::1619049469406958580::1735514935::0::1::::<><>::res://Player.gd<>res://main_camera.gd<>res://Weapons_Manager.gd<>uid://bof3ewi4ljhjc::::res://sys/weapon_resources/ak47.tres<>uid://bqgyx232itglx::::res://sys/weapon_resources/flame_spell.tres<>uid://cea7mprhctago::::res://sys/weapon_resources/knife.tres<>uid://cqscctj06yo0b::::res://sys/weapon_resources/he_grenade.tres<>uid://b1gcuee3knuwf::::res://sys/weapon_resources/rocket_launcher.tres<>uid://bhrts7n8xjy7d::::res://sys/weapon_resources/shotgun.tres<>uid://cbhmka5u64bv1::::res://sys/weapon_resources/salsa.tres<>res://sys/weapon_resource.gd<>uid://b6mnu213mqdmu::::res://models/shotgun/shotgun_Map #2-Map #2.png<>uid://bjcnly1knqax3::::res://models/shotgun/shotgun_Map #4.png<>uid://c60tj7uhbwduv::::res://addons/kenney_particle_pack/smoke_04.png<>uid://b7hn11nldeyn6::::res://sys/weapon_resources/keyboard.tres<>uid://crkhsyvj310yu::::res://models/shotgun/shotgun_Map #5.png<>uid://den0wvsqncxys::::res://models/ak47/ak47_Map #2-Map #2.png<>uid://hih1qgq512cb::::res://models/ak47/ak47_Map #4.png<>uid://igg6fc77vnot::::res://models/ak47/ak47_Map #5.png<>uid://c8nmwycpo5sc3::::res://models/knife/Knife_Albedo.png<>uid://cppb5j8hb7ryq::::res://models/knife/Knife_Metalness-Roughness.png<>uid://brcileg6pp4w6::::res://models/knife/Knife_OpenGL_normal.png<>uid://wt4kifchk2pd::::res://models/rocket_launcher/rocket_launcher_0.png<>uid://dtu65gjsb1q5::::res://models/rocket_launcher/rocket_0.png<>uid://c328o8gs1t5x1::::res://models/grenade/grenade_0.png<>uid://6c3oi65oxila::::res://models/salsa/salsa_0.png<>res://CollisionScript.gd<>res://keyboard.gd<>res://sys/username_label.gd
 standing_collision_shape.gd::GDScript::-1::1735500414::0::1::::<>CollisionShape3D<>::
-Weapons_Manager.gd::GDScript::-1::1735502827::0::1::::<>Node3D<>::
+Weapons_Manager.gd::GDScript::-1::1735514278::0::1::::<>Node3D<>::
 world-old.gd::GDScript::-1::1735500414::0::1::::<>Node<>::
-world.gd::GDScript::-1::1735502982::0::1::::<>Node<>::
-world.tscn::PackedScene::7118987691217281615::1735509635::0::1::::<><>::res://world.gd<>res://CanvasLayer.gd<>uid://bmqgel0cu22ly::::res://addons/kenney_particle_pack/magic_03.png<>res://FPSCount.gd<>res://crosshair.gd<>uid://c1lfio6su6m7o::::res://menufadein.tscn
+world.gd::GDScript::-1::1735514935::0::1::::<>Node<>::
+world.tscn::PackedScene::7118987691217281615::1735515002::0::1::::<><>::res://world.gd<>res://CanvasLayer.gd<>uid://bmqgel0cu22ly::::res://addons/kenney_particle_pack/magic_03.png<>res://FPSCount.gd<>res://crosshair.gd<>uid://c1lfio6su6m7o::::res://menufadein.tscn
 ::res://addons/::1735500413
 ::res://addons/kenney_particle_pack/::1735500413
 circle_01.png::CompressedTexture2D::5792837905305388373::1735500413::1735500413::1::::<><>::
@@ -214,7 +214,7 @@ icon.png::CompressedTexture2D::2167963110524063886::1735500413::1735500413::1:::
 plugin.cfg::TextFile::-1::1735500413::0::1::::<><>::
 tbloader.gdextension::GDExtension::-1::1735500413::0::1::::<><>::
 Usage.md::TextFile::-1::1735500413::0::1::::<><>::
-::res://addons/tbloader/bin/::1735509650
+::res://addons/tbloader/bin/::1735512416
 ::res://addons/tbloader/icons/::1735500413
 tbloader.svg::CompressedTexture2D::2993236575448671217::1735500413::1735500413::1::::<><>::
 ::res://addons/tbloader/src/::1735500413
@@ -295,20 +295,21 @@ shotgun_Image.png::CompressedTexture2D::8123640178533327207::1735500413::1735500
 shotgun_Map #2-Map #2.png::CompressedTexture2D::4587873865889113592::1735500413::1735500413::1::::<><>::
 shotgun_Map #4.png::CompressedTexture2D::3023059297780104506::1735500413::1735500413::1::::<><>::
 shotgun_Map #5.png::CompressedTexture2D::5987153943461687832::1735500413::1735500413::1::::<><>::
-::res://shaders/::1735509647
-manadrop.gdshader::Shader::-1::1735509647::0::1::::<><>::
-::res://sys/::1735509161
-globals.gd::GDScript::-1::1735509161::0::1::::<>Node<>::
-weapon_resource.gd::GDScript::-1::1735508726::0::1::::Weapon_Resource<>Resource<>::
-::res://sys/weapon_resources/::1735508726
-ak47.tres::Resource/Weapon_Resource::3381094771573761512::1735508726::0::1::::<><>::res://sys/weapon_resource.gd
+::res://shaders/::1735515019
+manadrop.gdshader::Shader::-1::1735515081::0::1::::<><>::
+::res://sys/::1735514411
+globals.gd::GDScript::-1::1735510487::0::1::::<>Node<>::
+username_label.gd::GDScript::-1::1735514411::0::1::::<>Label3D<>::
+weapon_resource.gd::GDScript::-1::1735512430::0::1::::Weapon_Resource<>Resource<>::
+::res://sys/weapon_resources/::1735512430
+ak47.tres::Resource/Weapon_Resource::3381094771573761512::1735512430::0::1::::<><>::res://sys/weapon_resource.gd
 flame_spell.tres::Resource/Resource::3523328192135364381::1735500414::0::1::::<><>::res://sys/weapon_resource.gd
 he_grenade.tres::Resource/Resource::5933147683766303771::1735500414::0::1::::<><>::res://sys/weapon_resource.gd
-keyboard.tres::Resource/Weapon_Resource::4647751462129592361::1735508726::0::1::::<><>::res://sys/weapon_resource.gd
-knife.tres::Resource/Weapon_Resource::5055561929667112114::1735508726::0::1::::<><>::res://sys/weapon_resource.gd
+keyboard.tres::Resource/Weapon_Resource::4647751462129592361::1735512430::0::1::::<><>::res://sys/weapon_resource.gd
+knife.tres::Resource/Weapon_Resource::5055561929667112114::1735512430::0::1::::<><>::res://sys/weapon_resource.gd
 rocket_launcher.tres::Resource/Resource::4223874252228640841::1735500414::0::1::::<><>::res://sys/weapon_resource.gd<>uid://d1lgwvy4u24q6::::res://models/rocket_launcher/rocket.tscn
 salsa.tres::Resource/Resource::4858227364450308544::1735500414::0::1::::<><>::res://sys/weapon_resource.gd
-shotgun.tres::Resource/Weapon_Resource::2914024480491344187::1735508726::0::1::::<><>::res://sys/weapon_resource.gd
+shotgun.tres::Resource/Weapon_Resource::2914024480491344187::1735512430::0::1::::<><>::res://sys/weapon_resource.gd
 ::res://tbmaps/::1735500414
 How to Make and Edit Maps.txt::TextFile::-1::1735500414::0::1::::<><>::
 ::res://tbmaps/autosave/::1735500414
@@ -398,14 +399,17 @@ texture_10.png::CompressedTexture2D::1234037963331036000::1735500414::1735500414
 texture_11.png::CompressedTexture2D::5695322871680034650::1735500414::1735500414::1::::<><>::
 texture_12.png::CompressedTexture2D::8135002312696530473::1735500414::1735500414::1::::<><>::
 texture_13.png::CompressedTexture2D::5621334246966429684::1735500414::1735500414::1::::<><>::
-::res://tscn/::1735509647
+::res://tscn/::1735515040
 bullet_decal.gd::GDScript::-1::1735500414::0::1::::<>Node3D<>::
 bullet_decal.tscn::PackedScene::3431053198701815903::1735500414::0::1::::<><>::uid://hu37f2jhi0lj::::res://mat/bullet_hole_0.png<>res://tscn/bullet_decal.gd
 environment.tscn::PackedScene::6618274380330821371::1735500414::0::1::::<><>::uid://ckf3250w8jpro::::res://models/Environment.glb<>uid://bugwfwhpqfp1n::::res://textures/dark/texture_09.png<>uid://1opha1cxcimy::::res://textures/orange/texture_10.png
 MainMenu.gd::GDScript::-1::1735500414::0::1::::<>RefCounted<>::
 main_menu.gd::GDScript::-1::1735500414::0::1::::<>Node2D<>::
 main_menu.tscn::PackedScene::8251717129917211348::1735500414::0::1::::<><>::res://tscn/main_menu.gd
-playerview.gdshader::Shader::-1::1735509647::0::1::::<><>::
-::res://tscn/console/::1735509635
-console.gd::GDScript::-1::1735509350::0::1::::Console<>CanvasLayer<>::
-console.tscn::PackedScene::3433913999925710156::1735509635::0::1::::<><>::res://tscn/console/console.gd
+playerview.gdshader::Shader::-1::1735515081::0::1::::<><>::
+killfeed_object.tscn::PackedScene::6110647474559939725::1735515081::0::1::::<><>::res://tscn/killfeed_object/killfeed_object_timer.gd
+::res://tscn/console/::1735514936
+console.gd::GDScript::-1::1735511350::0::1::::Console<>CanvasLayer<>::
+console.tscn::PackedScene::3433913999925710156::1735514936::0::1::::<><>::res://tscn/console/console.gd
+::res://tscn/killfeed_object/::1735515046
+killfeed_object_timer.gd::GDScript::-1::1735515080::0::1::::<>Node<>::
