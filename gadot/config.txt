@@ -35,3 +35,7 @@ bind GS k
 bind A o
 bind AS l
 bind B p
+
+# Settings
+camera_fov = 85
+max_fps = 144

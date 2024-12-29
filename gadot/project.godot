@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/image="res://mat/splash.png"
 config/icon="res://mat/ico.png"
 
+[autoload]
+
+Globals="*res://sys/globals.gd"
+
 [display]
 
 window/size/viewport_width=1280

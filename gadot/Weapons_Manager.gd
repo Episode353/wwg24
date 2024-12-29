@@ -192,11 +192,9 @@ func reload():
 	print("reload")
 	if current_weapon.disable_ammo == false:
 		if current_weapon.current_ammo == current_weapon.mag_ammo:
-			print("Current Ammo is equal to Mag Ammo")
 			return
 		elif !animation_player.is_playing() or animation_player.current_animation == current_weapon.idle_anim:
 			if current_weapon.reserve_ammo != 0:
-				print("current_weapon.reserve_ammo != 0")
 				animation_player.play(current_weapon.reload_anim)
 				var reload_ammount = min(current_weapon.mag_ammo - current_weapon.current_ammo,current_weapon.mag_ammo,current_weapon.reserve_ammo)
 				
@@ -206,7 +204,6 @@ func reload():
 				
 			else:
 				animation_player.play(current_weapon.out_of_ammo_anim)
-				print("Triggered Reload()")
 
 
 func idle():
@@ -230,11 +227,9 @@ func _physics_process(delta):
 		if raycast_wall.is_colliding() and animation_player.current_animation != current_weapon.wall_raise_anim and not weapon_raise:
 			animation_player.play(current_weapon.wall_raise_anim)
 			weapon_raise = true
-			print("Weapon_Raise:", weapon_raise)
 		elif not raycast_wall.is_colliding() and weapon_raise:
 			animation_player.play(current_weapon.wall_lower_anim)
 			weapon_raise = false
-			print("Weapon_Raise:", weapon_raise)
 
 	if current_weapon.use_area_damage_collision:
 		if Input.is_action_just_pressed("shoot"):

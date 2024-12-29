@@ -140,11 +140,16 @@ func upnp_setup():
 	var discover_result = upnp.discover()
 	assert(discover_result == UPNP.UPNP_RESULT_SUCCESS, "UPNP Discover Failed! Error %s" % discover_result)
 	var gateway = upnp.get_gateway()
-	print("Gateway: %s" % gateway)
+	
 	assert(gateway and gateway.is_valid_gateway(), "UPNP Invalid Gateway!")
 	var map_result = upnp.add_port_mapping(PORT)
 	assert(map_result == UPNP.UPNP_RESULT_SUCCESS, "UPNP Port Mapping Failed! Error %s" % map_result)
+	print("----------------------------")
+	print("|")
+	print("Gateway: %s" % gateway)
 	print("Success! Join Address: %s" % upnp.query_external_address())
+	print("|")
+	print("----------------------------")
 
 func _ready():
 	if map_name != "":
@@ -208,7 +213,7 @@ func update_weapon_hud():
 	# Format weapon_stack to make it more readable
 	var formatted_stack = ""
 	for weapon in weapon_stack:
-		formatted_stack += weapon + "\n"  # Add each weapon on a new line
+		formatted_stack += weapon + ", "  # Add each weapon on a new line
 	
 	weapon_stack_label.text = formatted_stack.strip_edges()  # Remove any unnecessary trailing newline
 

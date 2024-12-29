@@ -1,3 +1,5 @@
+	
+
 class_name Console
 extends CanvasLayer
 
@@ -25,7 +27,6 @@ var commands = {
 		return bind_key(action, key),
 		"args": 2}
 }
-
 
 func _ready():
 	$VBoxContainer/input.text_submitted.connect(self._on_text_submitted)
@@ -56,6 +57,8 @@ func _on_text_submitted(command):
 			_output_command(command, result)
 		else:
 			_output_error("Error: '%s' command requires %d arguments." % [cmd, expected_arg_count])
+	elif "=" in command:  # Detecting variable assignment
+		_handle_variable_assignment(command)
 	else:
 		_output_error("Unknown command: %s" % cmd)
 	
@@ -132,6 +135,30 @@ func bind_key(action: String, key: String) -> String:
 	else:
 		return "Error: '%s' is not a valid action." % action
 
+# Function to handle variable assignment
+func _handle_variable_assignment(command: String):
+	var tokens = command.split("=")
+	if tokens.size() == 2:
+		var variable_name = tokens[0].strip_edges()
+		var value = tokens[1].strip_edges()
+		
+		# Set Max FPS
+		if variable_name == "max_fps":
+			Engine.max_fps = int(value)
+			print(command, "Set Engine.max_fps to %d" % Engine.max_fps)
+		
+		# Handle global variable assignments like `camera_fov = 90`
+		elif variable_name == "camera_fov":
+			Globals.camera_fov = float(value)
+			print(command, "Set camera_fov to %f" % Globals.camera_fov)
+		
+		# Handle other global variables if needed
+		else:
+			_output_error("Invalid variable assignment: %s" % variable_name)
+	else:
+		_output_error("Invalid assignment format.")
+
+
 # Function to execute each command in the config file
 func execute_config_file(file_path: String):
 	var file = FileAccess.open(file_path, FileAccess.READ)
@@ -144,4 +171,5 @@ func execute_config_file(file_path: String):
 		file.close()
 	else:
 		_output_error("Error: Unable to open config file: %s" % file_path)
+
 
