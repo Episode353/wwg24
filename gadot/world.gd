@@ -176,10 +176,41 @@ func _send_map_name(received_map_name: String):
 func _on_peer_disconnected(peer_id):
 	print("_on_peer_disconnected", peer_id)
 
-@rpc("any_peer", "call_remote")
+@rpc("reliable")
 func _on_server_disconnected():
 	print("Server disconnected")
 	send_to_main_menu()
+
+@onready var current_weapon_label = $CanvasLayer/HUD/VBoxContainer/HBoxContainer/CurrentWeapon
+@onready var current_ammo_label = $CanvasLayer/HUD/VBoxContainer/HBoxContainer2/CurrentAmmo
+@onready var weapon_stack_label = $CanvasLayer/HUD/VBoxContainer/HBoxContainer3/WeaponStack
+
+var current_weapon_name = ""
+var current_weapon_ammo = 0
+var current_weapon_reserve_ammo = 0
+var weapon_stack = []
+
+# Handle updates for weapon info sent from weapons_manager.gd
+	
+@rpc("reliable", "call_local")
+func update_weapon_info(weapon_name: String, ammo: int, reserve_ammo: int, stack: Array):
+	current_weapon_name = weapon_name
+	current_weapon_ammo = ammo
+	current_weapon_reserve_ammo = reserve_ammo
+	weapon_stack = stack
+	update_weapon_hud()  # Update the HUD elements
+
+
+func update_weapon_hud():
+	current_weapon_label.text = current_weapon_name
+	current_ammo_label.text = str(current_weapon_ammo) + "/" + str(current_weapon_reserve_ammo)
+	
+	# Format weapon_stack to make it more readable
+	var formatted_stack = ""
+	for weapon in weapon_stack:
+		formatted_stack += weapon + "\n"  # Add each weapon on a new line
+	
+	weapon_stack_label.text = formatted_stack.strip_edges()  # Remove any unnecessary trailing newline
 
 
 func _on_button_pressed():

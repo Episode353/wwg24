@@ -10,4 +10,6 @@ res://sys/weapon_resources/shotgun.tres
 res://sys/weapon_resources/keyboard.tres
 res://player.gdshader
 res://tscn/playerview.gdshader
+res://Weapons_Manager.gd
+res://world.gd
 res://world.tscn

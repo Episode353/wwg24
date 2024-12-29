@@ -222,6 +222,8 @@ func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
 	
+	# in the future i don't want to update this every frame :(
+	rpc_update_weapon_info()
 
 
 	if not current_weapon.disable_wall_prox:
@@ -240,10 +242,10 @@ func _physics_process(delta):
 		elif Input.is_action_just_released("shoot"):
 			ac_timer.stop()
 
-
-
-
-
+@rpc("reliable")
+func rpc_update_weapon_info():
+	# RPC to send weapon info to the world script for the local player
+	world.rpc_id(multiplayer.get_unique_id(), "update_weapon_info", current_weapon.weapon_name, current_weapon.current_ammo, current_weapon.reserve_ammo, weapon_stack)
 
 
 
