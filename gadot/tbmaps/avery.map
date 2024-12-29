@@ -3,7 +3,7 @@
 // entity 0
 {
 "classname" "worldspawn"
-"_tb_textures" "textures;textures/dev_textures;textures/dev_textures/dark;textures/dev_textures/green;textures/dev_textures/light;textures/dev_textures/orange"
+"_tb_textures" "textures;textures/dev_textures;textures/dev_textures/dark;textures/dev_textures/green;textures/dev_textures/light;textures/dev_textures/orange;textures/dev_textures/purple;textures/dev_textures/red"
 // brush 0
 {
 ( -96 96 0 ) ( -96 -96 0 ) ( -96 -96 -16 ) dev_textures/dark/texture_02 0 0 0 1 1
@@ -1134,16 +1134,16 @@
 }
 // brush 125
 {
-( 864 992 144 ) ( 864 880 144 ) ( 864 880 16 ) dev_textures/green/texture_02 0 0 0 1 1
-( 896 832 80 ) ( 848 960 80 ) ( 848 960 208 ) dev_textures/green/texture_02 0 0 0 1 1
-( 864 880 16 ) ( 864 880 144 ) ( 912 848 144 ) dev_textures/green/texture_02 -64 0 0 1 1
-( 912 848 16 ) ( 912 848 144 ) ( 960 848 144 ) dev_textures/green/texture_02 0 0 0 1 1
-( 864 992 16 ) ( 864 880 16 ) ( 912 848 16 ) dev_textures/green/texture_02 0 0 0 1 1
-( 912 848 144 ) ( 864 880 144 ) ( 864 992 144 ) dev_textures/green/texture_02 0 0 0 1 1
-( 1008 992 144 ) ( 864 992 144 ) ( 864 992 16 ) dev_textures/green/texture_02 0 0 0 1 1
-( 960 848 16 ) ( 960 848 144 ) ( 1008 880 144 ) dev_textures/green/texture_02 -16 0 0 1 1
-( 1024 960 80 ) ( 976 832 80 ) ( 976 832 208 ) dev_textures/green/texture_02 0 0 0 1 1
-( 1008 880 144 ) ( 1008 992 144 ) ( 1008 992 16 ) dev_textures/green/texture_02 0 0 0 1 1
+( 864 992 144 ) ( 864 880 144 ) ( 864 880 16 ) dev_textures/purple/texture_10 0 0 0 1 1
+( 896 832 80 ) ( 848 960 80 ) ( 848 960 208 ) dev_textures/purple/texture_10 0 0 0 1 1
+( 864 880 16 ) ( 864 880 144 ) ( 912 848 144 ) dev_textures/purple/texture_10 -64 0 0 1 1
+( 912 848 16 ) ( 912 848 144 ) ( 960 848 144 ) dev_textures/purple/texture_10 0 0 0 1 1
+( 864 992 16 ) ( 864 880 16 ) ( 912 848 16 ) dev_textures/purple/texture_10 0 0 0 1 1
+( 912 848 144 ) ( 864 880 144 ) ( 864 992 144 ) dev_textures/purple/texture_10 0 0 0 1 1
+( 1008 992 144 ) ( 864 992 144 ) ( 864 992 16 ) dev_textures/purple/texture_10 0 0 0 1 1
+( 960 848 16 ) ( 960 848 144 ) ( 1008 880 144 ) dev_textures/purple/texture_10 -16 0 0 1 1
+( 1024 960 80 ) ( 976 832 80 ) ( 976 832 208 ) dev_textures/purple/texture_10 0 0 0 1 1
+( 1008 880 144 ) ( 1008 992 144 ) ( 1008 992 16 ) dev_textures/purple/texture_10 0 0 0 1 1
 }
 // brush 126
 {
