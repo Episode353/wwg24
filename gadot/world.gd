@@ -77,6 +77,7 @@ func start_host(map: String):
 	multiplayer.peer_disconnected.connect(Callable(self, "_on_peer_disconnected"))
 	add_player(multiplayer.get_unique_id())
 	upnp_setup()
+	display_to_killfeed("last_tagged_by", "Name")
 
 func start_join(address: String):
 	hud.show()
@@ -240,7 +241,6 @@ func display_to_killfeed(last_tagged_by, name):
 	
 	# Set the text of the killfeed label
 	killfeed_label.text = name + " was killed by " + last_tagged_by
-
 
 	# Add the label to the killfeed container
 	killfeed_container.add_child(killfeed_label)

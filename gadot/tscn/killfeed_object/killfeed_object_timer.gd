@@ -2,8 +2,8 @@ extends Node
 
 # Variables for timing and fade effect
 var time_elapsed: float = 0.0
-var fade_duration: float = 2.0  # Time for fading
-var destroy_delay: float = 1.0  # Time before object is freed after fade
+var fade_duration: float = 4.0  # Time for fading
+var destroy_delay: float = 2.0  # Time before object is freed after fade
 
 # Reference to the label node
 @onready var killfeed = $"."
