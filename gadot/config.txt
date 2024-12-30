@@ -38,4 +38,5 @@ bind B p
 
 # Settings
 camera_fov = 85
+viewmodel_camera_fov = 75
 max_fps = 144

@@ -13,3 +13,6 @@ res://tscn/playerview.gdshader
 res://world.tscn
 res://tscn/main_menu.tscn
 res://tscn/killfeed_object/killfeed_object.tscn
+res://viewmodel_camera.gd
+res://tscn/console/console.gd
+res://sys/globals.gd

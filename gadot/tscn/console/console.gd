@@ -142,15 +142,17 @@ func _handle_variable_assignment(command: String):
 		var variable_name = tokens[0].strip_edges()
 		var value = tokens[1].strip_edges()
 		
-		# Set Max FPS
 		if variable_name == "max_fps":
 			Engine.max_fps = int(value)
 			print(command, "Set Engine.max_fps to %d" % Engine.max_fps)
 		
-		# Handle global variable assignments like `camera_fov = 90`
 		elif variable_name == "camera_fov":
 			Globals.camera_fov = float(value)
 			print(command, "Set camera_fov to %f" % Globals.camera_fov)
+		
+		elif variable_name == "viewmodel_camera_fov":
+			Globals.viewmodel_camera_fov = float(value)
+			print(command, "Set viewmodel_camera_fov to %f" % Globals.camera_fov)
 		
 		# Handle other global variables if needed
 		else:
