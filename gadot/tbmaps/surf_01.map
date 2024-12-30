@@ -1,0 +1,88 @@
+// Game: Godot
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"_tb_textures" "textures;textures/dev_textures;textures/dev_textures/dark;textures/dev_textures/green;textures/dev_textures/light;textures/dev_textures/orange;textures/dev_textures/purple;textures/dev_textures/red"
+// brush 0
+{
+( -2256 -64 -16 ) ( -2256 -63 -16 ) ( -2256 -64 -15 ) dev_textures/dark/texture_02 0 0 0 1 1
+( -64 -2528 -16 ) ( -64 -2528 -15 ) ( -63 -2528 -16 ) dev_textures/dark/texture_02 0 0 0 1 1
+( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) dev_textures/dark/texture_02 0 0 0 1 1
+( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) dev_textures/dark/texture_02 0 0 0 1 1
+( 64 1104 16 ) ( 65 1104 16 ) ( 64 1104 17 ) dev_textures/dark/texture_02 0 0 0 1 1
+( 4112 64 16 ) ( 4112 64 17 ) ( 4112 65 16 ) dev_textures/dark/texture_02 0 0 0 1 1
+}
+// brush 1
+{
+( -1248 0 176 ) ( -1248 -144 16 ) ( -1248 160 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( -1248 0 176 ) ( 2896 0 176 ) ( 2896 -144 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2896 -144 16 ) ( 2896 160 16 ) ( -1248 160 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( -1248 160 16 ) ( 2896 160 16 ) ( 2896 0 176 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2896 0 176 ) ( 2896 160 16 ) ( 2896 -144 16 ) dev_textures/red/texture_08 0 0 0 1 1
+}
+// brush 2
+{
+( -1232 -448 240 ) ( -1232 -608 16 ) ( -1232 -304 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( -1232 -448 240 ) ( 2912 -448 240 ) ( 2912 -608 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2912 -608 16 ) ( 2912 -304 16 ) ( -1232 -304 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2912 -448 240 ) ( -1232 -448 240 ) ( -1232 -304 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2912 -448 240 ) ( 2912 -304 16 ) ( 2912 -608 16 ) dev_textures/red/texture_08 0 0 0 1 1
+}
+// brush 3
+{
+( -1216 -864 320 ) ( -1216 -1008 16 ) ( -1216 -704 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( -1216 -864 320 ) ( 2928 -864 320 ) ( 2928 -1008 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2928 -1008 16 ) ( 2928 -704 16 ) ( -1216 -704 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( -1216 -704 16 ) ( 2928 -704 16 ) ( 2928 -864 320 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2928 -864 320 ) ( 2928 -704 16 ) ( 2928 -1008 16 ) dev_textures/red/texture_08 0 0 0 1 1
+}
+// brush 4
+{
+( -1216 -1280 448 ) ( -1216 -1424 16 ) ( -1216 -1120 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2928 -1424 16 ) ( -1216 -1424 16 ) ( -1216 -1280 448 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2928 -1424 16 ) ( 2928 -1120 16 ) ( -1216 -1120 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2928 -1280 448 ) ( -1216 -1280 448 ) ( -1216 -1120 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2928 -1280 448 ) ( 2928 -1120 16 ) ( 2928 -1424 16 ) dev_textures/red/texture_08 0 0 0 1 1
+}
+// brush 5
+{
+( -1216 -1696 464 ) ( -1216 -1840 16 ) ( -1216 -1536 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( -1216 -1696 464 ) ( 2928 -1696 464 ) ( 2928 -1840 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2928 -1840 16 ) ( 2928 -1536 16 ) ( -1216 -1536 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( -1216 -1536 16 ) ( 2928 -1536 16 ) ( 2928 -1696 464 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2928 -1696 464 ) ( 2928 -1536 16 ) ( 2928 -1840 16 ) dev_textures/red/texture_08 0 0 0 1 1
+}
+// brush 6
+{
+( -1248 352 64 ) ( -1248 208 16 ) ( -1248 512 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( -1248 352 64 ) ( 2896 352 64 ) ( 2896 208 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2896 208 16 ) ( 2896 512 16 ) ( -1248 512 16 ) dev_textures/red/texture_08 0 0 0 1 1
+( -1248 512 16 ) ( 2896 512 16 ) ( 2896 352 64 ) dev_textures/red/texture_08 0 0 0 1 1
+( 2896 352 64 ) ( 2896 512 16 ) ( 2896 208 16 ) dev_textures/red/texture_08 0 0 0 1 1
+}
+// brush 7
+{
+( -1696 -1872 16 ) ( -1696 -1871 16 ) ( -1696 -1872 17 ) dev_textures/green/texture_02 0 0 0 1 1
+( -1696 -1872 16 ) ( -1696 -1872 17 ) ( -1695 -1872 16 ) dev_textures/green/texture_02 0 0 0 1 1
+( -1696 -1872 16 ) ( -1695 -1872 16 ) ( -1696 -1871 16 ) dev_textures/green/texture_02 0 0 0 1 1
+( -1376 -1040 496 ) ( -1376 -1039 496 ) ( -1375 -1040 496 ) dev_textures/green/texture_02 0 0 0 1 1
+( -1376 560 48 ) ( -1375 560 48 ) ( -1376 560 49 ) dev_textures/green/texture_02 0 0 0 1 1
+( -1376 -1040 48 ) ( -1376 -1040 49 ) ( -1376 -1039 48 ) dev_textures/green/texture_02 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "info_player_start"
+"origin" "-1576 -792 504"
+}
+// entity 2
+{
+"classname" "health_drop"
+"origin" "-1560 -1080 504"
+}
+// entity 3
+{
+"classname" "mana_drop"
+"origin" "-1592 -616 504"
+}
