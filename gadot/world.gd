@@ -142,18 +142,34 @@ func _on_multiplayer_spawner_spawned(node):
 func upnp_setup():
 	var upnp = UPNP.new()
 	var discover_result = upnp.discover()
-	assert(discover_result == UPNP.UPNP_RESULT_SUCCESS, "UPNP Discover Failed! Error %s" % discover_result)
+	
+	# Check for UPNP discovery failure (Error 27)
+	if discover_result != UPNP.UPNP_RESULT_SUCCESS:
+		print("UPNP Discover Failed! Error %s" % discover_result)
+		send_to_main_menu()  # Send to main menu
+		return  # Do nothing further if discovery fails
+	
 	var gateway = upnp.get_gateway()
 	
-	assert(gateway and gateway.is_valid_gateway(), "UPNP Invalid Gateway!")
+	if !gateway or !gateway.is_valid_gateway():
+		print("UPNP Invalid Gateway!")
+		send_to_main_menu()  # Send to main menu
+		return  # Do nothing further if gateway is invalid
+
 	var map_result = upnp.add_port_mapping(PORT)
-	assert(map_result == UPNP.UPNP_RESULT_SUCCESS, "UPNP Port Mapping Failed! Error %s" % map_result)
+	
+	if map_result != UPNP.UPNP_RESULT_SUCCESS:
+		print("UPNP Port Mapping Failed! Error %s" % map_result)
+		send_to_main_menu()  # Send to main menu
+		return  # Do nothing further if port mapping fails
+
 	print("----------------------------")
 	print("|")
 	print("Gateway: %s" % gateway)
 	print("Success! Join Address: %s" % upnp.query_external_address())
 	print("|")
 	print("----------------------------")
+
 
 func _ready():
 	if map_name != "":

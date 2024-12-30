@@ -1,3 +1,4 @@
+RayCast3D
 Timer
 HBoxContainer
 RigidBody3D
@@ -6,7 +7,6 @@ Node
 CollisionShape3D
 Area3D
 GPUParticles3D
-RayCast3D
 CSGSphere3D
 CSGCylinder3D
 OmniLight3D

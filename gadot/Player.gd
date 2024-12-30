@@ -216,7 +216,7 @@ func process_movement(delta):
 	if is_on_floor():
 		# If wish_jump is true then we won't apply any friction and allow the 
 		# player to jump instantly, this gives us a single frame where we can 
-		# perfectly bunny hop
+		# perfectly bunny hop"mesh"
 		if wish_jump:
 			velocity.y = JUMP_IMPULSE
 			# Update velocity as if we are in the air
