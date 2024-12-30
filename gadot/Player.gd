@@ -46,7 +46,7 @@ var walking = false
 var health = 100 # Inital health
 var max_health = 100 # Health set to max health on respawn
 
-var mana = 0 # Inital mana
+var mana = 50 # Inital mana
 var max_mana = 100 # mana set to max health on respaw
 
 # Speed Variables
@@ -278,7 +278,7 @@ func player_death():
 	var world = get_parent()
 	world.respawn_player(self)
 	health = max_health
-	mana = 0
+	mana = 50
 	self.set_on_fire(false)
 	mana_changed.emit(mana)
 	health_changed.emit(health)

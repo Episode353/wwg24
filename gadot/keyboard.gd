@@ -8,8 +8,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	_time_since_last_note += delta  # Increment elapsed time
-	handle_keyboard_input()
+	if is_visible_in_tree():
+		_time_since_last_note += delta  # Increment elapsed time
+		handle_keyboard_input()
 
 # Predefined list of actions
 var numpad_actions = [

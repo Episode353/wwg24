@@ -132,6 +132,7 @@ func update_health_bar(health_value):
 
 func update_mana_bar(mana_value):
 	mana_bar.value = mana_value
+	
 
 func _on_multiplayer_spawner_spawned(node):
 	if node.is_multiplayer_authority():

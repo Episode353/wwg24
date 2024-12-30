@@ -156,6 +156,8 @@ func area_collision_procc(self_id):
 
 
 func shoot():
+	if !current_weapon.is_gun and !current_weapon.is_projectile_launcher:
+		return
 	if current_weapon.current_ammo != 0:
 		if !animation_player.is_playing() or animation_player.current_animation == current_weapon.idle_anim:
 			animation_player.play(current_weapon.shoot_anim)
@@ -211,11 +213,15 @@ func reload():
 
 func idle():
 	await get_tree().create_timer(.1).timeout
-	if !Input.is_action_pressed("shoot") and current_weapon.has_idle_anim:
-		if !animation_player.current_animation == "weapon_raise":
+	if animation_player.current_animation == "wall_raise_anim" or "wall_lower_anim":
+		# If the weapon is raised, do not play the idle animation
+		return
+	if not Input.is_action_pressed("shoot") and current_weapon.has_idle_anim:
+		if animation_player.current_animation == "weapon_raise":
 			return
 		animation_player.play(current_weapon.idle_anim)
-		print("Plaing Idle Animation")
+		print("Playing Idle Animation")
+
 
 func _physics_process(delta):
 	
