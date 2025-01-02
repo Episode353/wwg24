@@ -1,5 +1,6 @@
 A Multiplayer Gadot game using (UDP Protocol)
 Multiplayer Based off of: (https://youtu.be/n8D3vEx7NAE)
+Stair Stepping Based off of: (https://www.youtube.com/watch?v=Tb-R3l0SQdc)
 
 To host a server: 
 Open wizards-with-guns.console.exe, which should launch the game and a console window.
@@ -22,6 +23,9 @@ Made with Godot_v4.2.2-stable_win64.exe
 ----------------------------------------------------------------
 Features to add:
 	- Single PLayer Shooting range
+		- Make entities that look like a shooting range dummy and play an animation when shot, so they can be used in trenchbroom
+		-making more entitites would be cool for those maps, and the sooner we make the entities the more they can be used in maps / 
+		as we build more maps
 	- Scoreboard
 	- Usernames
 	- Replace Sprite Charachter with Low Poly Wizard

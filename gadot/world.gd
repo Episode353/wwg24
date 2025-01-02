@@ -167,9 +167,10 @@ func upnp_setup():
 	print("|")
 	print("Gateway: %s" % gateway)
 	print("Success! Join Address: %s" % upnp.query_external_address())
+	print("IP adress has been copied to clipboard")
 	print("|")
 	print("----------------------------")
-
+	DisplayServer.clipboard_set(upnp.query_external_address())
 
 func _ready():
 	if map_name != "":
