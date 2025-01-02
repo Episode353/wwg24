@@ -164,6 +164,42 @@ B={
 "deadzone": 0.5,
 "events": []
 }
+w1={
+"deadzone": 0.5,
+"events": []
+}
+w2={
+"deadzone": 0.5,
+"events": []
+}
+w3={
+"deadzone": 0.5,
+"events": []
+}
+w4={
+"deadzone": 0.5,
+"events": []
+}
+w5={
+"deadzone": 0.5,
+"events": []
+}
+w6={
+"deadzone": 0.5,
+"events": []
+}
+w7={
+"deadzone": 0.5,
+"events": []
+}
+w8={
+"deadzone": 0.5,
+"events": []
+}
+w9={
+"deadzone": 0.5,
+"events": []
+}
 
 [physics]
 

@@ -22,6 +22,17 @@ bind respawn f2
 bind main_menu f1
 bind fullscreen f11
 
+# Weapon Buttons
+bind w1 1
+bind w2 2
+bind w3 3
+bind w4 4
+bind w5 5
+bind w6 6
+bind w7 7
+bind w8 8
+bind w9 9
+
 # Musical Buttons
 bind C f
 bind CS t

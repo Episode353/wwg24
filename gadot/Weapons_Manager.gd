@@ -45,7 +45,33 @@ func _input(event):
 	
 	if event.is_action_pressed("reload"):
 		reload()
+		
+	if event.is_action_pressed("w1"):
+		switch_weapon(0)
+	elif event.is_action_pressed("w2"):
+		switch_weapon(1)
+	elif event.is_action_pressed("w3"):
+		switch_weapon(2)
+	elif event.is_action_pressed("w4"):
+		switch_weapon(3)
+	elif event.is_action_pressed("w5"):
+		switch_weapon(4)
+	elif event.is_action_pressed("w6"):
+		switch_weapon(5)
+	elif event.is_action_pressed("w7"):
+		switch_weapon(6)
+	elif event.is_action_pressed("w8"):
+		switch_weapon(7)
+	elif event.is_action_pressed("w9"):
+		switch_weapon(8)
 	
+func switch_weapon(slot_index: int):
+	if slot_index < weapon_stack.size():
+		var selected_weapon = weapon_stack[slot_index]
+		if selected_weapon != current_weapon.weapon_name:
+			exit(selected_weapon)  # Play deactivate animation first
+	else:
+		print("Debug: No weapon in slot", slot_index + 1)  # No weapon in this slot
 
 func reset_all_ammo():
 	print("weapons_manager reset all ammo")
