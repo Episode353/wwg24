@@ -31,7 +31,7 @@ Features to add:
 		- Custom Player Color
 		- Edit Username
 		- Fov Adjustment
-	- Magic wand
+	- Magic wand weapon?
 	- Keyboard
 		- Remake model with movable keys so each button press can move the key and play a noise
 	- Improve the pause menu
