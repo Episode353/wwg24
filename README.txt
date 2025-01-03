@@ -41,6 +41,7 @@ Features to add:
 	- Improve the pause menu
 	- Improve the home screen, have a background level be loaded in for a background for the
 	menus to be ontop of like in half-life2, and add a logo
+	- A guitar that shoots musicv as bullet gun, reload the gun by cocking the frettboard from the neck to the bodty and when shooting the effeftrs come from the nck of the guitar
 
 Bugs to fix:
 	- Prevent input to charachter controller when game is paused
