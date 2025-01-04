@@ -35,14 +35,13 @@ script = ExtResource("1_jlapi")
 [node name="CanvasLayer" type="CanvasLayer" parent="Node2D"]
 
 [node name="MainMenu" type="PanelContainer" parent="Node2D/CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 423.0
-offset_top = 216.0
-offset_right = -423.0
-offset_bottom = -115.0
-grow_horizontal = 2
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -353.0
+offset_right = 678.0
+offset_bottom = 355.0
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Node2D/CanvasLayer/MainMenu"]
@@ -54,14 +53,8 @@ theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Node2D/CanvasLayer/MainMenu/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_constants/separation = 15
-
-[node name="Title" type="Label" parent="Node2D/CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_type_variation = &"HeaderLarge"
-text = "Wizards With Guns"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="HostButton" type="Button" parent="Node2D/CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -91,13 +84,37 @@ alignment = 1
 layout_mode = 2
 auto_height = true
 
-[node name="Label2" type="Label" parent="Node2D/CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="Node" type="Node" parent="Node2D/CanvasLayer/MainMenu"]
+script = ExtResource("2_i1si5")
+
+[node name="Copyright" type="Label" parent="Node2D/CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = -23.0
+offset_right = 89.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
 text = "© Joseph Toscano 2024"
 horizontal_alignment = 1
 
-[node name="Node" type="Node" parent="Node2D/CanvasLayer/MainMenu"]
-script = ExtResource("2_i1si5")
+[node name="Title" type="Label" parent="Node2D/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -324.0
+offset_right = 324.0
+offset_bottom = 39.0
+grow_horizontal = 2
+theme_type_variation = &"HeaderLarge"
+text = "Wizards With Guns"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Node2D/CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="Node2D" method="_on_host_button_pressed"]
 [connection signal="pressed" from="Node2D/CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="Node2D" method="_on_join_button_pressed"]
