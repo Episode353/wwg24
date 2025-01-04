@@ -1,4 +1,5 @@
 extends Node2D
+@onready var tb_loader = $"../TBLoader"
 
 @onready var map_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MapEntry
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
@@ -22,6 +23,8 @@ func _ready():
 		print("Selected map: ", selected_map_name)
 	else:
 		print("No maps found in tbmaps")
+		
+	load_map()
 
 func _on_host_button_pressed():
 	switch_scene_and_run_func("res://world.tscn", "start_host", "", selected_map_name)
@@ -47,3 +50,7 @@ func switch_scene_and_run_func(scene_path: String, func_name: String, param: Str
 func _on_map_entry_item_selected(index):
 	selected_map_name = map_entry.get_item_text(index)
 	print("Selected map: ", selected_map_name)
+
+func load_map():
+	tb_loader.build_meshes()
+	print(tb_loader.map_resource)

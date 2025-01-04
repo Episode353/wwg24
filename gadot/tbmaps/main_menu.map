@@ -1,0 +1,31 @@
+// Game: Godot
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"_tb_textures" "textures;textures/dev_textures;textures/dev_textures/dark;textures/dev_textures/green;textures/dev_textures/light;textures/dev_textures/orange"
+// brush 0
+{
+( -320 -320 -16 ) ( -320 -319 -16 ) ( -320 -320 -15 ) dev_textures/dark/texture_02 0 0 0 1 1
+( -128 -256 -16 ) ( -128 -256 -15 ) ( -127 -256 -16 ) dev_textures/dark/texture_02 0 0 0 1 1
+( -128 -320 -16 ) ( -127 -320 -16 ) ( -128 -319 -16 ) dev_textures/dark/texture_02 0 0 0 1 1
+( 0 -192 16 ) ( 0 -191 16 ) ( 1 -192 16 ) dev_textures/dark/texture_02 0 0 0 1 1
+( 0 320 16 ) ( 1 320 16 ) ( 0 320 17 ) dev_textures/dark/texture_02 0 0 0 1 1
+( 64 -192 16 ) ( 64 -192 17 ) ( 64 -191 16 ) dev_textures/dark/texture_02 0 0 0 1 1
+}
+// brush 1
+{
+( 64 -256 16 ) ( 64 -255 16 ) ( 64 -256 17 ) dev_textures/green/texture_02 0 32 0 1 1
+( 64 -256 16 ) ( 64 -256 17 ) ( 65 -256 16 ) dev_textures/green/texture_02 0 32 0 1 1
+( 64 -256 16 ) ( 65 -256 16 ) ( 64 -255 16 ) dev_textures/green/texture_02 0 0 0 1 1
+( 80 320 256 ) ( 80 321 256 ) ( 81 320 256 ) dev_textures/green/texture_02 0 0 0 1 1
+( 80 320 48 ) ( 81 320 48 ) ( 80 320 49 ) dev_textures/green/texture_02 0 32 0 1 1
+( 80 320 48 ) ( 80 320 49 ) ( 80 321 48 ) dev_textures/green/texture_02 0 32 0 1 1
+}
+}
+// entity 1
+{
+"classname" "main_menu_camera"
+"origin" "-253.072 8 165.072"
+"angles" "30 0 0"
+}

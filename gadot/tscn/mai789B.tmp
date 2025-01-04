@@ -1,35 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dptgttk8gkprg"]
+[gd_scene load_steps=3 format=3 uid="uid://dptgttk8gkprg"]
 
 [ext_resource type="Script" path="res://tscn/main_menu.gd" id="1_jlapi"]
 [ext_resource type="Script" path="res://server_search.gd" id="2_i1si5"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0cgy5"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_w2qqb"]
-sky_material = SubResource("ProceduralSkyMaterial_0cgy5")
-
-[sub_resource type="Environment" id="Environment_iwq32"]
-background_mode = 2
-sky = SubResource("Sky_w2qqb")
-tonemap_mode = 2
-glow_enabled = true
-
 [node name="Node3D" type="Node3D"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_iwq32")
-
 [node name="TBLoader" type="TBLoader" parent="."]
-map_resource = "res://tbmaps/main_menu.map"
 
 [node name="Node2D" type="Node2D" parent="."]
-visible = false
 script = ExtResource("1_jlapi")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Node2D"]
