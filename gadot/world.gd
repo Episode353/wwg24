@@ -10,14 +10,18 @@ const PORT = 7777
 var enet_peer = ENetMultiplayerPeer.new()
 var map_name = ""
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit"):
 		close_game()
 	if Input.is_action_just_pressed("fullscreen"):
 		swap_fullscreen_mode()
 	if Input.is_action_just_pressed("respawn"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		get_tree().reload_current_scene()
+		var player_node = get_node_or_null(str(multiplayer.get_unique_id()))
+		if player_node:
+			respawn_player(player_node)
+		else:
+			print("Player node not found for respawn.")
+
 		
 func close_game():
 	get_tree().quit()
@@ -61,9 +65,7 @@ func start_offline(map: String):
 	map_name = map
 	hud.show()
 	load_map(map_name)
-	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
-	multiplayer.peer_disconnected.connect(Callable(self, "_on_peer_disconnected"))
 	multiplayer.peer_disconnected.connect(Callable(self, "_on_peer_disconnected"))
 	add_player(multiplayer.get_unique_id())
 
@@ -89,8 +91,8 @@ func start_join(address: String):
 	print("Connected server_disconnected signal")
 	add_player(multiplayer.get_unique_id())
 
-func load_map(map_name: String):
-	tb_loader.map_resource = "tbmaps/" + map_name
+func load_map(load_map_name: String):
+	tb_loader.map_resource = "tbmaps/" + load_map_name
 	tb_loader.build_meshes()
 	print(tb_loader.map_resource)
 
@@ -117,10 +119,9 @@ func spawn_player(player):
 		player.global_transform.origin = Vector3(0, 0, 0)
 	else:
 		var chosen_spawn_point = spawn_points[randi() % spawn_points.size()]
-		var start_position = chosen_spawn_point.global_transform.origin
+		var start_position = chosen_spawn_point.global_transform
 		print("Chosen spawn point: ", chosen_spawn_point.name, " at position: ", start_position)
-		player.global_transform.origin = start_position
-	print("Player ", player.name, " spawned at position: ", player.global_transform.origin)
+		player.global_transform = start_position
 
 func respawn_player(player):
 	print("Respawning player: ", player.name)
@@ -251,8 +252,8 @@ func _on_button_pressed():
 
 # Display kills on the killfeed
 @rpc("any_peer", "call_local")
-func display_to_killfeed(last_tagged_by, name):
-	print("Kill feed update: ", last_tagged_by, " killed ", name)
+func display_to_killfeed(last_tagged_by, display_name):
+	print("Kill feed update: ", last_tagged_by, " killed ", display_name)
 
 	# Instantiate the killfeed object
 	var killfeed_label = killfeed_object_scene.instantiate()

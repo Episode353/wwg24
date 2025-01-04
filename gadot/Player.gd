@@ -10,7 +10,6 @@ signal mana_changed(mana_value)
 
 @onready var head = $neck/head
 @onready var neck = $neck
-@onready var muzzle_flash = $neck/head/Camera3D/Pistol/MuzzleFlash
 @onready var crouching_collision_shape = $crouching_collision_shape
 @onready var standing_collision_shape = $standing_collision_shape
 @onready var raycast_crouching = $raycast_crouching
@@ -20,7 +19,6 @@ signal mana_changed(mana_value)
 @onready var viewmodel_viewport = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport
 
 @onready var raycast_wall = $raycast_wall
-@onready var sub_viewport = $CanvasLayer/SubViewportContainer/SubViewport
 
 const MANADROP = preload("res://manadrop.tscn")
 @onready var _3p_model = $"3p_model"
@@ -252,10 +250,10 @@ func process_movement(delta):
 
 func accelerate(wish_dir: Vector3, max_speed: float, delta):
 	# Get our current speed as a projection of velocity onto the wish_dir
-	var current_speed = velocity.dot(wish_dir)
+	var current_accelerte_speed = velocity.dot(wish_dir)
 	# How much we accelerate is the difference between the max speed and the current speed
 	# clamped to be between 0 and MAX_ACCELERATION which is intended to stop you from going too fast
-	var add_speed = clamp(max_speed - current_speed, 0, MAX_ACCELERATION * delta)
+	var add_speed = clamp(max_speed - current_accelerte_speed, 0, MAX_ACCELERATION * delta)
 	
 	return velocity + add_speed * wish_dir
 	
@@ -290,8 +288,8 @@ func player_death():
 		world.rpc("display_to_killfeed", last_tagged_by, self.name)
 
 	# Call the world's respawn player function
-	var world = get_parent()
-	world.respawn_player(self)
+	var world_to_respawn = get_parent()
+	world_to_respawn.respawn_player(self)
 	health = max_health
 	mana = 50
 	self.set_on_fire(false)
@@ -308,8 +306,8 @@ func launch_rocket():
 	
 	# Set the owner of the projectile
 	proj_instance.owner_player = self
-	var world = get_parent()
-	world.add_child.call_deferred(proj_instance)
+	var launch_rocket_to_world = get_parent()
+	launch_rocket_to_world.add_child.call_deferred(proj_instance)
 	
 @rpc("call_local")
 func launch_he_grenade():
@@ -321,8 +319,8 @@ func launch_he_grenade():
 	var forward_direction = main_camera.global_transform.basis.z.normalized()
 	proj_instance.linear_velocity = -forward_direction * launch_speed
 
-	var world = get_parent()
-	world.add_child.call_deferred(proj_instance)
+	var launch_grenade_to_world = get_parent()
+	launch_grenade_to_world.add_child.call_deferred(proj_instance)
 	
 	
 @rpc("call_local")
@@ -334,8 +332,8 @@ func launch_salsa():
 	var launch_speed = 20.0 # Adjust the speed as necessary
 	var forward_direction = main_camera.global_transform.basis.z.normalized()
 	proj_instance.linear_velocity = -forward_direction * launch_speed
-	var world = get_parent()
-	world.add_child.call_deferred(proj_instance)
+	var launch_salsa_to_world = get_parent()
+	launch_salsa_to_world.add_child.call_deferred(proj_instance)
 
 
 
@@ -356,8 +354,8 @@ func spawn_mana_for_all(world_pos):
 	
 
 @rpc("any_peer", "call_local")
-func update_last_tagged_by(name):
-	last_tagged_by = name
+func update_last_tagged_by(tagged_name):
+	last_tagged_by = tagged_name
 
 #func player_respawn():
 	#health = max_health

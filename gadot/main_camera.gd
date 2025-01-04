@@ -9,7 +9,7 @@ func _ready():
 		print("Warning: Globals.camera_fov is not defined.")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	# Optionally, update the FOV dynamically during the game
 	if Globals.camera_fov != null:
 		fov = Globals.camera_fov

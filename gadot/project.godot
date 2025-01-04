@@ -84,10 +84,6 @@ respawn={
 "deadzone": 0.5,
 "events": []
 }
-forward={
-"deadzone": 0.5,
-"events": []
-}
 left={
 "deadzone": 0.5,
 "events": []
@@ -197,6 +193,10 @@ w8={
 "events": []
 }
 w9={
+"deadzone": 0.5,
+"events": []
+}
+forward={
 "deadzone": 0.5,
 "events": []
 }

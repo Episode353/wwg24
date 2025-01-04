@@ -7,7 +7,7 @@ var console_instance: Node = null
 var pause_menu_visibility = false
 @onready var pause_menu = $"Pause Menu"
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("main_menu"):
 		toggle_pause_menu()
 
@@ -38,7 +38,7 @@ func _ready():
 		# Initially, set the console to be hidden
 		console_instance.visible = false
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("console"):
 		toggle_console()
 

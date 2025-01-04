@@ -33,7 +33,7 @@ func calculate_damage(distance: float) -> float:
 	# Ensure that the damage does not exceed max_damage or go below min_damage
 	return clamp(damage, min_damage, max_damage)
 
-func _process(delta):
+func _process(_delta):
 	if raycast.is_colliding() and (times_moved < 10):
 		# Get the collision point and set the object's position to that point
 		var collision_point = raycast.get_collision_point()

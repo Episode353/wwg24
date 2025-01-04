@@ -6,7 +6,7 @@ const EXPLOSION_PRELOAD = preload("res://models/rocket_launcher/explosion.tscn")
 
 var owner_player
 var rocket_timer = 0
-func _process(delta):
+func _process(_delta):
 	# Move the rocket forward
 	rocket_proj.position.z -= 0.4
 	# Delete the rocket if it does not collide after a time
@@ -21,7 +21,7 @@ func _on_area_3d_body_entered(body):
 	
 	var explosion_scene = EXPLOSION_PRELOAD.instantiate()
 	explosion_scene.owner_player = owner_player
-	explosion_scene.global_position = rocket_proj.global_position
+	explosion_scene.global_transform = rocket_proj.global_transform
 	world.add_child.call_deferred(explosion_scene)
 	
 	queue_free()

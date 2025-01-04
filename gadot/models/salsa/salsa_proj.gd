@@ -14,7 +14,7 @@ func _ready():
 	self.angular_velocity.z = 40
 
 # Called every physics frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	if self.angular_velocity.z > 0:
 		self.angular_velocity.z -= .05
 

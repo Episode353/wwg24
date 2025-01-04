@@ -10,8 +10,8 @@ var commands = {
 	"help": {"func": func() -> String:
 		return get_available_commands(),
 		"args": 0},
-	"greet": {"func": func(name: String) -> String:
-		return "Hello, %s!" % name,
+	"greet": {"func": func(greet_name: String) -> String:
+		return "Hello, %s!" % greet_name,
 		"args": 1},
 	"add": {"func": func(a: float, b: float) -> float:
 		return a + b,
@@ -107,33 +107,35 @@ func bind_key(action: String, key: String) -> String:
 	var all_actions = InputMap.get_actions()
 	var key_event
 	
-	if action in all_actions:
-		InputMap.action_erase_events(action)
+	# Check if the action already exists
+	if not action in all_actions:
 		InputMap.add_action(action)
 
-		if key.begins_with("mouse"):
-			key_event = InputEventMouseButton.new()
-			match key:
-				"mouse1":
-					key_event.button_index = MOUSE_BUTTON_LEFT
-				"mouse2":
-					key_event.button_index = MOUSE_BUTTON_RIGHT
-				"mouse3":
-					key_event.button_index = MOUSE_BUTTON_MIDDLE
-				"mouse_scroll_up":
-					key_event.button_index = 4 # MOUSE_BUTTON_WHEEL_UP
-				"mouse_scroll_down":
-					key_event.button_index = 5 # MOUSE_BUTTON_WHEEL_DOWN
-				_:
-					return "Error: '%s' is not a valid mouse button." % key
-		else:
-			key_event = InputEventKey.new()
-			key_event.keycode = OS.find_keycode_from_string(key)
-		
-		InputMap.action_add_event(action, key_event)
-		return "Bound %s to %s" % [action, key]
+	# Clear all events from the action
+	InputMap.action_erase_events(action)
+
+	if key.begins_with("mouse"):
+		key_event = InputEventMouseButton.new()
+		match key:
+			"mouse1":
+				key_event.button_index = MOUSE_BUTTON_LEFT
+			"mouse2":
+				key_event.button_index = MOUSE_BUTTON_RIGHT
+			"mouse3":
+				key_event.button_index = MOUSE_BUTTON_MIDDLE
+			"mouse_scroll_up":
+				key_event.button_index = 4 # MOUSE_BUTTON_WHEEL_UP
+			"mouse_scroll_down":
+				key_event.button_index = 5 # MOUSE_BUTTON_WHEEL_DOWN
+			_:
+				return "Error: '%s' is not a valid mouse button." % key
 	else:
-		return "Error: '%s' is not a valid action." % action
+		key_event = InputEventKey.new()
+		key_event.keycode = OS.find_keycode_from_string(key)
+	
+	InputMap.action_add_event(action, key_event)
+	return "Bound %s to %s" % [action, key]
+
 
 # Function to handle variable assignment
 func _handle_variable_assignment(command: String):

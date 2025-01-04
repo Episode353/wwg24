@@ -6,7 +6,3 @@ extends Label3D
 func _ready():
 	self.text = player.name
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

@@ -119,7 +119,11 @@ func change_weapon(weapon_name: String):
 	var weapon_range = current_weapon.weapon_range
 	raycast_shoot.target_position.z = weapon_range
 	print("Switched to Weapon: ", current_weapon.weapon_name)
-	ac_timer.wait_time = current_weapon.fire_rate
+	if current_weapon.fire_rate <= 0:
+		print("Error: Fire rate for weapon ", current_weapon.weapon_name, " is zero. Defaulting to 0.1.")
+		ac_timer.wait_time = 0.1  # Set a default valid value
+	else:
+		ac_timer.wait_time = current_weapon.fire_rate
 	next_weapon = ""
 	enter()
 
@@ -249,7 +253,7 @@ func idle():
 		print("Playing Idle Animation")
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	if not is_multiplayer_authority():
 		return
