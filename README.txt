@@ -7,7 +7,7 @@ Open wizards-with-guns.console.exe, which should launch the game and a console w
 Click host, in the console window the server IP adress should print out, you can share this with your friends.
 They can type it into the server Ip Adress bar and hit join
 
-How to Make Maps:
+How to Make Maps:	
 Open trenchbroom/TrenchBroom.exe
 Save maps to the tbmaps folder
 the game compiles the map when loading it, so you dont need to restart the game when/
