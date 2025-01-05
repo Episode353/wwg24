@@ -155,6 +155,10 @@ func _handle_variable_assignment(command: String):
 		elif variable_name == "viewmodel_camera_fov":
 			Globals.viewmodel_camera_fov = float(value)
 			print(command, "Set viewmodel_camera_fov to %f" % Globals.camera_fov)
+			
+		elif variable_name == "mouse_sensitivity":
+			Globals.mouse_sensitivity = float(value)
+			print(command, "Set mouse_sensitivity to %f" % Globals.mouse_sensitivity)
 		
 		# Handle other global variables if needed
 		else:

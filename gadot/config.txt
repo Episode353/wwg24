@@ -51,6 +51,7 @@ bind B p
 camera_fov = 85
 viewmodel_camera_fov = 75
 max_fps = 144
+mouse_sensitivity = 0.1
 
 # Clear the console
 clear

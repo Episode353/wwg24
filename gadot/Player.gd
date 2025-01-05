@@ -83,8 +83,6 @@ var is_on_fire = false
 var fire_counter = 0
 
 
-# Input Variables
-const mouse_sens = 0.1
 # Moved Direction to Source
 
 # Bhop Variables
@@ -145,11 +143,11 @@ func _unhandled_input(event):
 	
 	if event is InputEventMouseMotion:
 		if free_looking:
-			neck.rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
+			neck.rotate_y(deg_to_rad(-event.relative.x * Globals.mouse_sensitivity))
 			neck.rotation.y = clamp(neck.rotation.y, deg_to_rad(-120), deg_to_rad(120)) #How far left and right you can look like freelooking
 		else:
-			rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
-			head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
+			rotate_y(deg_to_rad(-event.relative.x * Globals.mouse_sensitivity))
+			head.rotate_x(deg_to_rad(-event.relative.y * Globals.mouse_sensitivity))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-98), deg_to_rad(89))
 	
 
