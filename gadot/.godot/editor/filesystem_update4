@@ -15,5 +15,5 @@ res://tscn/main_menu.tscn
 res://models/rocket_launcher/explosion.tscn
 res://models/rocket_launcher/rocket.tscn
 res://models/grenade/grenade_explosion.tscn
-res://tscn/console/console.gd
-res://sys/globals.gd
+res://models/grenade/grenade_proj.tscn
+res://models/grenade/grenade_proj.gd
