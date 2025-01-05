@@ -6,6 +6,7 @@ const EXPLOSION_PRELOAD = preload("res://models/rocket_launcher/explosion.tscn")
 
 var owner_player
 var rocket_timer = 0
+
 func _process(_delta):
 	# Move the rocket forward
 	rocket_proj.position.z -= 0.4
@@ -22,6 +23,7 @@ func _on_area_3d_body_entered(body):
 	var explosion_scene = EXPLOSION_PRELOAD.instantiate()
 	explosion_scene.owner_player = owner_player
 	explosion_scene.global_transform = rocket_proj.global_transform
+	explosion_scene.scale = Vector3.ONE  # Ensure the explosion scale is 1
 	world.add_child.call_deferred(explosion_scene)
 	
 	queue_free()

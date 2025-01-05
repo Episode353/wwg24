@@ -74,8 +74,8 @@ transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 0, 0.289271, 0)
 
 [node name="Area3D" type="Area3D" parent="Sketchfab_Scene"]
 transform = Transform3D(-6.24449e-10, 0.0142857, 0, -0.0142857, -6.24449e-10, 0, 0, 0, 0.0142857, 0, -0.00413244, 0)
-collision_layer = 49
-collision_mask = 49
+collision_layer = 16
+collision_mask = 16
 script = ExtResource("2_ln06f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene/Area3D"]

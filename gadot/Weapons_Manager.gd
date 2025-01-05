@@ -147,25 +147,30 @@ func _on_animation_player_animation_finished(anim_name):
 		
 func raycast_shoot_procc():
 	var hit_object = raycast_shoot.get_collider()
-	# Place the Bullet Decal
 	var col_nor = raycast_shoot.get_collision_normal()
 	var col_point = raycast_shoot.get_collision_point()
-	var b = bullet_decal.instantiate()
-	raycast_shoot.get_collider().add_child(b)
-	b.global_transform.origin = col_point
-	if col_nor == Vector3.DOWN or col_nor == Vector3.UP:
-		# For floors and ceilings, set rotation to face upwards
-		b.rotation_degrees.x = 90
-	else:
-		# For walls, use look_at to orient the decal
-		b.look_at(col_point - col_nor, Vector3(0, 1, 0))
-	# Check if the hit object is a player
+
+	# Place the Bullet Decal
+	rpc("create_bullet_decal", col_point, col_nor)
+	
+	# Handle hitting a player
 	if hit_object.is_in_group("players"):
-		# Assuming the player has a "receive_w" method marked as an rpxc
 		hit_object.rpc("receive_damage", current_weapon.damage)
 		hit_object.rpc("update_last_tagged_by", player.name)
 	else:
 		print("Hit object is not a player.")
+
+@rpc("any_peer", "call_local")
+func create_bullet_decal(col_point: Vector3, col_nor: Vector3):
+	var b = bullet_decal.instantiate()
+	world.add_child(b)  # Ensure it's added to the global scene tree
+	b.global_transform.origin = col_point
+
+	if col_nor == Vector3.DOWN or col_nor == Vector3.UP:
+		b.rotation_degrees.x = 90
+	else:
+		b.look_at(col_point - col_nor, Vector3(0, 1, 0))
+
 
 	
 func area_collision_procc(self_id):

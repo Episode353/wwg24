@@ -1,4 +1,4 @@
-res://player.tscn
+res://tscn/main_menu.tscn
 res://sys/weapon_resource.gd
 res://CollisionScript.gd
 res://manadrop.gd
@@ -10,7 +10,14 @@ res://sys/weapon_resources/shotgun.tres
 res://sys/weapon_resources/keyboard.tres
 res://player.gdshader
 res://tscn/playerview.gdshader
+res://tscn/bullet_decal.tscn
+res://player.tscn
 res://world.tscn
-res://tscn/main_menu.tscn
 res://tscn/killfeed_object/killfeed_object.tscn
 res://entities/main_menu_camera.tscn
+res://entities/mana_drop.tscn
+res://models/rocket_launcher/explosion.tscn
+res://models/rocket_launcher/rocket.tscn
+res://models/rocket_launcher/rocket.gd
+res://models/grenade/grenade_explosion.tscn
+res://Weapons_Manager.gd

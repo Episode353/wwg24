@@ -42,7 +42,7 @@ script = ExtResource("1_dxays")
 [node name="Smoke" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_johg4")
 emitting = false
-amount = 10
+amount = 100
 lifetime = 0.8
 one_shot = true
 explosiveness = 1.0
