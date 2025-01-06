@@ -1,3 +1,5 @@
+CollisionShape3D
+Area3D
 AnimationPlayer
 CSGBox3D
 VBoxContainer
@@ -8,8 +10,5 @@ RayCast3D
 Timer
 HBoxContainer
 RigidBody3D
-CollisionShape3D
-Area3D
 GPUParticles3D
 CSGSphere3D
-CSGCylinder3D

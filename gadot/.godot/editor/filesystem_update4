@@ -1,4 +1,5 @@
-res://player.tscn
+res://models/grenade/grenade_proj.tscn
+res://models/grenade/grenade_proj.gd
 res://sys/weapon_resource.gd
 res://CollisionScript.gd
 res://manadrop.gd
@@ -10,10 +11,11 @@ res://sys/weapon_resources/shotgun.tres
 res://sys/weapon_resources/keyboard.tres
 res://player.gdshader
 res://tscn/playerview.gdshader
+res://player.tscn
 res://world.tscn
 res://tscn/main_menu.tscn
 res://models/rocket_launcher/explosion.tscn
 res://models/rocket_launcher/rocket.tscn
 res://models/grenade/grenade_explosion.tscn
-res://models/grenade/grenade_proj.tscn
-res://models/grenade/grenade_proj.gd
+res://Weapons_Manager.gd
+res://FPS_RIG.gd

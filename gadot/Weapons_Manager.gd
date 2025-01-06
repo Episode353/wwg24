@@ -146,7 +146,7 @@ func _on_animation_player_animation_finished(anim_name):
 		
 		
 func raycast_shoot_procc():
-	var hit_object = raycast_shoot.get_collider()
+	var hit_object = raycast_shoot.get_collider().get_parent()
 	var col_nor = raycast_shoot.get_collision_normal()
 	var col_point = raycast_shoot.get_collision_point()
 
@@ -157,6 +157,7 @@ func raycast_shoot_procc():
 	if hit_object.is_in_group("players"):
 		hit_object.rpc("receive_damage", current_weapon.damage)
 		hit_object.rpc("update_last_tagged_by", player.name)
+		print("Hit Object is player")
 	else:
 		print("Hit object is not a player.")
 

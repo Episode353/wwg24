@@ -126,7 +126,7 @@ func _on_size_changed():
 func _ready():
 	if not is_multiplayer_authority(): return
 	_3p_model.hide()
-	
+	$neck/head/main_camera/Weapons_Manager/FPS_RIG.show()
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	main_camera.current = true
