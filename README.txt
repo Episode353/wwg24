@@ -22,6 +22,8 @@ Made with Godot_v4.2.2-stable_win64.exe
 
 ----------------------------------------------------------------
 Features to add:
+	- Make certain objects be destroyed when theyre shot
+		Make it so if you shoot a rocket it will explode mid air
 	- Single PLayer Shooting range
 		- Make entities that look like a shooting range dummy and play an animation when shot, so they can be used in trenchbroom
 		-making more entitites would be cool for those maps, and the sooner we make the entities the more they can be used in maps / 

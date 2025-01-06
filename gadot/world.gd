@@ -122,6 +122,10 @@ func spawn_player(player):
 		var start_position = chosen_spawn_point.global_transform
 		print("Chosen spawn point: ", chosen_spawn_point.name, " at position: ", start_position)
 		player.global_transform = start_position
+		# Set the player's velocity to zero
+	if player is RigidBody3D:
+		player.linear_velocity = Vector3.ZERO
+		player.angular_velocity = Vector3.ZERO
 
 func respawn_player(player):
 	print("Respawning player: ", player.name)
