@@ -46,6 +46,8 @@ Features to add:
 	- A guitar that shoots musicv as bullet gun, reload the gun by cocking the frettboard from the neck to the bodty and when shooting the effeftrs come from the nck of the guitar
 
 Bugs to fix:
+	- Older computers have an error and require starting the game in opengl 3, which will cause issues
+	- some computers are unable to join / host a game due to networking issues
 	- Prevent input to charachter controller when game is paused
 	- Awkward stuttery movement when walking close to wall
 	- If you enter a ip adress wrong, or no server is found, display/
