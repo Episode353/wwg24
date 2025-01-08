@@ -1,4 +1,4 @@
-res://tscn/main_menu.tscn
+res://entities/planet_model.tscn
 res://models/grenade/grenade_proj.gd
 res://sys/weapon_resource.gd
 res://CollisionScript.gd
@@ -11,6 +11,6 @@ res://sys/weapon_resources/shotgun.tres
 res://sys/weapon_resources/keyboard.tres
 res://player.gdshader
 res://tscn/playerview.gdshader
+res://entities/planet_model.gd
 res://world.tscn
-res://entities/planet_model.tscn
-res://tscn/main_menu.gd
+res://tscn/main_menu.tscn
