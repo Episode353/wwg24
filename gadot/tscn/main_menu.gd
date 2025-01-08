@@ -29,8 +29,11 @@ func _ready():
 		print("No maps found in tbmaps")
 		
 	load_map()
+
+func _process(_delta):
 	if menu_music.playing == false:
 		menu_music.play()
+		print("Track ended, Looping Track")
 
 		
 func _on_host_button_pressed():

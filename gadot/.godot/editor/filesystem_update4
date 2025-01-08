@@ -1,4 +1,4 @@
-res://player.tscn
+res://tscn/main_menu.tscn
 res://models/grenade/grenade_proj.gd
 res://sys/weapon_resource.gd
 res://CollisionScript.gd
@@ -12,18 +12,5 @@ res://sys/weapon_resources/keyboard.tres
 res://player.gdshader
 res://tscn/playerview.gdshader
 res://world.tscn
-res://tscn/main_menu.tscn
-res://models/rocket_launcher/explosion.tscn
-res://models/rocket_launcher/rocket.tscn
-res://models/grenade/grenade_explosion.tscn
-res://models/grenade/grenade_proj.tscn
-res://tscn/main_menu.gd
-res://default_bus_layout.tres
-res://sys/globals.gd
-res://tscn/init.gd
-res://tscn/main_menu_canvas_layer.gd
-res://tscn/console/console.gd
-res://config.txt
 res://entities/planet_model.tscn
-res://mat/grey_grid_3.tres
-res://entities/planet_model.gd
+res://tscn/main_menu.gd
