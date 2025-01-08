@@ -17,5 +17,13 @@ res://models/rocket_launcher/explosion.tscn
 res://models/rocket_launcher/rocket.tscn
 res://models/grenade/grenade_explosion.tscn
 res://models/grenade/grenade_proj.tscn
-res://world.gd
-res://display_health.gd
+res://tscn/main_menu.gd
+res://default_bus_layout.tres
+res://sys/globals.gd
+res://tscn/init.gd
+res://tscn/main_menu_canvas_layer.gd
+res://tscn/console/console.gd
+res://config.txt
+res://entities/planet_model.tscn
+res://mat/grey_grid_3.tres
+res://entities/planet_model.gd

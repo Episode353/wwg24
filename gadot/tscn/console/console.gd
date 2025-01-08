@@ -159,7 +159,21 @@ func _handle_variable_assignment(command: String):
 		elif variable_name == "mouse_sensitivity":
 			Globals.mouse_sensitivity = float(value)
 			print(command, "Set mouse_sensitivity to %f" % Globals.mouse_sensitivity)
-		
+
+		elif variable_name == "master_volume":
+			Globals.master_volume = float(value)
+			
+			# Map the value from 0-1 to -40 to +6 dB
+			var min_db = -40
+			var max_db = 6
+			var db_value = min_db + (Globals.master_volume * (max_db - min_db))
+			
+			# Set the audio bus volume
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), db_value)
+			
+			print("%s Set master_volume to %f dB (%f scaled)" % [command, db_value, Globals.master_volume])
+
+
 		# Handle other global variables if needed
 		else:
 			_output_error("Invalid variable assignment: %s" % variable_name)

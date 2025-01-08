@@ -1,3 +1,9 @@
+DirectionalLight3D
+OmniLight3D
+WorldEnvironment
+CSGSphere3D
+Node
+AudioStreamPlayer
 CollisionShape3D
 Area3D
 AnimationPlayer
@@ -5,10 +11,5 @@ CSGBox3D
 VBoxContainer
 Camera3D
 Node3D
-Node
 RayCast3D
 Timer
-HBoxContainer
-RigidBody3D
-GPUParticles3D
-CSGSphere3D

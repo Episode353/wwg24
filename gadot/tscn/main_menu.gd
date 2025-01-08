@@ -4,8 +4,12 @@ extends Node2D
 @onready var map_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MapEntry
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
 var selected_map_name = ""
+@onready var menu_music = $"../Menu_music"
+
+
 
 func _ready():
+	
 	# Populate map_entry with .map files from the res://tbmaps folder
 	var dir = DirAccess.open("tbmaps")
 	if dir:
@@ -25,7 +29,10 @@ func _ready():
 		print("No maps found in tbmaps")
 		
 	load_map()
+	if menu_music.playing == false:
+		menu_music.play()
 
+		
 func _on_host_button_pressed():
 	switch_scene_and_run_func("res://world.tscn", "start_host", "", selected_map_name)
 

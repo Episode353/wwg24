@@ -29,3 +29,5 @@
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = info_player_start : "info_player_start" []
 
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = main_menu_camera : "main_menu_camera" [angles(string) : "Pitch Yaw Roll" : "0 0 0"]
+
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = planet_model : "planet_model" []
