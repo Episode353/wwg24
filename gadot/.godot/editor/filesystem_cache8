@@ -1,8 +1,8 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1736472922
+::res://::1736477237
 CanvasLayer.gd::GDScript::-1::1736471501::0::1::::<>Node<>::
 CollisionScript.gd::GDScript::-1::1736470554::0::1::::<>CollisionShape3D<>::
-config.txt::TextFile::-1::1736468901::0::1::::<><>::
+config.txt::TextFile::-1::1736474020::0::1::::<><>::
 crosshair.gd::GDScript::-1::1736468901::0::1::::<>TextureRect<>::
 default_bus_layout.tres::AudioBusLayout::3826074138955985274::1736468901::0::1::::<><>::
 display_health.gd::GDScript::-1::1736468901::0::1::::<>Label3D<>::
@@ -17,15 +17,15 @@ manadrop.tscn::PackedScene::4827938261691877241::1736468901::0::1::::<><>::res:/
 menufadein.gd::GDScript::-1::1736468901::0::1::::<>ColorRect<>::
 menufadein.tscn::PackedScene::6620778112646409782::1736468901::0::1::::<><>::res://menufadein.gd
 Player.gd::GDScript::-1::1736471516::0::1::::<>CharacterBody3D<>::
-player.gdshader::Shader::-1::1736472922::0::1::::<><>::
-player.tscn::PackedScene::1619049469406958580::1736472922::0::1::::<><>::res://Player.gd<>res://main_camera.gd<>res://Weapons_Manager.gd<>uid://bof3ewi4ljhjc::::res://sys/weapon_resources/ak47.tres<>uid://bqgyx232itglx::::res://sys/weapon_resources/flame_spell.tres<>uid://cea7mprhctago::::res://sys/weapon_resources/knife.tres<>uid://cqscctj06yo0b::::res://sys/weapon_resources/he_grenade.tres<>uid://b1gcuee3knuwf::::res://sys/weapon_resources/rocket_launcher.tres<>uid://bhrts7n8xjy7d::::res://sys/weapon_resources/shotgun.tres<>uid://cbhmka5u64bv1::::res://sys/weapon_resources/salsa.tres<>uid://b6mnu213mqdmu::::res://models/shotgun/shotgun_Map #2-Map #2.png<>uid://bjcnly1knqax3::::res://models/shotgun/shotgun_Map #4.png<>uid://c60tj7uhbwduv::::res://addons/kenney_particle_pack/smoke_04.png<>uid://b7hn11nldeyn6::::res://sys/weapon_resources/keyboard.tres<>uid://crkhsyvj310yu::::res://models/shotgun/shotgun_Map #5.png<>uid://den0wvsqncxys::::res://models/ak47/ak47_Map #2-Map #2.png<>uid://hih1qgq512cb::::res://models/ak47/ak47_Map #4.png<>uid://igg6fc77vnot::::res://models/ak47/ak47_Map #5.png<>uid://c8nmwycpo5sc3::::res://models/knife/Knife_Albedo.png<>uid://cppb5j8hb7ryq::::res://models/knife/Knife_Metalness-Roughness.png<>uid://brcileg6pp4w6::::res://models/knife/Knife_OpenGL_normal.png<>uid://wt4kifchk2pd::::res://models/rocket_launcher/rocket_launcher_0.png<>uid://dtu65gjsb1q5::::res://models/rocket_launcher/rocket_0.png<>uid://c328o8gs1t5x1::::res://models/grenade/grenade_0.png<>uid://6c3oi65oxila::::res://models/salsa/salsa_0.png<>res://CollisionScript.gd<>uid://du2yeiomih8pj::::res://models/the_power/the_power_0.png<>res://keyboard.gd<>res://sys/username_label.gd<>res://viewmodel_camera.gd<>res://display_health.gd
+player.gdshader::Shader::-1::1736474253::0::1::::<><>::
+player.tscn::PackedScene::1619049469406958580::1736474217::0::1::::<><>::res://Player.gd<>res://main_camera.gd<>res://Weapons_Manager.gd<>uid://bof3ewi4ljhjc::::res://sys/weapon_resources/ak47.tres<>uid://bqgyx232itglx::::res://sys/weapon_resources/flame_spell.tres<>uid://cea7mprhctago::::res://sys/weapon_resources/knife.tres<>uid://cqscctj06yo0b::::res://sys/weapon_resources/he_grenade.tres<>uid://b1gcuee3knuwf::::res://sys/weapon_resources/rocket_launcher.tres<>uid://bhrts7n8xjy7d::::res://sys/weapon_resources/shotgun.tres<>uid://cbhmka5u64bv1::::res://sys/weapon_resources/salsa.tres<>uid://b6mnu213mqdmu::::res://models/shotgun/shotgun_Map #2-Map #2.png<>uid://bjcnly1knqax3::::res://models/shotgun/shotgun_Map #4.png<>uid://c60tj7uhbwduv::::res://addons/kenney_particle_pack/smoke_04.png<>uid://b7hn11nldeyn6::::res://sys/weapon_resources/keyboard.tres<>uid://crkhsyvj310yu::::res://models/shotgun/shotgun_Map #5.png<>uid://den0wvsqncxys::::res://models/ak47/ak47_Map #2-Map #2.png<>uid://hih1qgq512cb::::res://models/ak47/ak47_Map #4.png<>uid://igg6fc77vnot::::res://models/ak47/ak47_Map #5.png<>uid://c8nmwycpo5sc3::::res://models/knife/Knife_Albedo.png<>uid://cppb5j8hb7ryq::::res://models/knife/Knife_Metalness-Roughness.png<>uid://brcileg6pp4w6::::res://models/knife/Knife_OpenGL_normal.png<>uid://wt4kifchk2pd::::res://models/rocket_launcher/rocket_launcher_0.png<>uid://dtu65gjsb1q5::::res://models/rocket_launcher/rocket_0.png<>uid://c328o8gs1t5x1::::res://models/grenade/grenade_0.png<>uid://6c3oi65oxila::::res://models/salsa/salsa_0.png<>res://CollisionScript.gd<>uid://du2yeiomih8pj::::res://models/the_power/the_power_0.png<>res://keyboard.gd<>res://sys/username_label.gd<>res://viewmodel_camera.gd<>res://display_health.gd
 server_search.gd::GDScript::-1::1736468902::0::1::::<>Node<>::
 standing_collision_shape.gd::GDScript::-1::1736468902::0::1::::<>CollisionShape3D<>::
-viewmodel_camera.gd::GDScript::-1::1736468903::0::1::::<>Camera3D<>::
+viewmodel_camera.gd::GDScript::-1::1736474091::0::1::::<>Camera3D<>::
 Weapons_Manager.gd::GDScript::-1::1736472746::0::1::::<>Node3D<>::
 world-old.gd::GDScript::-1::1736468903::0::1::::<>Node<>::
 world.gd::GDScript::-1::1736468903::0::1::::<>Node<>::
-world.tscn::PackedScene::7118987691217281615::1736472922::0::1::::<><>::res://world.gd<>res://CanvasLayer.gd<>uid://bmqgel0cu22ly::::res://addons/kenney_particle_pack/magic_03.png<>res://FPSCount.gd<>res://crosshair.gd<>uid://c1lfio6su6m7o::::res://menufadein.tscn
+world.tscn::PackedScene::7118987691217281615::1736474216::0::1::::<><>::res://world.gd<>res://CanvasLayer.gd<>uid://bmqgel0cu22ly::::res://addons/kenney_particle_pack/magic_03.png<>res://FPSCount.gd<>res://crosshair.gd<>uid://c1lfio6su6m7o::::res://menufadein.tscn
 ::res://addons/::1736468901
 ::res://addons/kenney_particle_pack/::1736468901
 circle_01.png::CompressedTexture2D::5792837905305388373::1736468901::1736468901::1::::<><>::
@@ -217,7 +217,7 @@ icon.png::CompressedTexture2D::2167963110524063886::1736468901::1736468901::1:::
 plugin.cfg::TextFile::-1::1736468901::0::1::::<><>::
 tbloader.gdextension::GDExtension::-1::1736468901::0::1::::<><>::
 Usage.md::TextFile::-1::1736468901::0::1::::<><>::
-::res://addons/tbloader/bin/::1736470545
+::res://addons/tbloader/bin/::1736477235
 ::res://addons/tbloader/icons/::1736468901
 tbloader.svg::CompressedTexture2D::2993236575448671217::1736468901::1736468901::1::::<><>::
 ::res://addons/tbloader/src/::1736468901
@@ -225,8 +225,9 @@ plugin.gd::GDScript::-1::1736468901::0::1::::TBPlugin<>EditorPlugin<>::
 ::res://addons/tbloader/tb-gameconfig/::1736468901
 GameConfig.cfg::TextFile::-1::1736468901::0::1::::<><>::
 Icon.png::CompressedTexture2D::2430080003456102873::1736468901::1736468901::1::::<><>::
-::res://entities/::1736472922
-box_shootable.tscn::PackedScene::4528364598881036332::1736472922::0::1::::<><>::res://entities/box_shootable.gd<>uid://d0big0tf6sgkd::::res://textures/__TB_empty.png
+::res://entities/::1736474245
+box_shootable.gd::GDScript::-1::1736473992::0::1::::<>CSGBox3D<>::
+box_shootable.tscn::PackedScene::4528364598881036332::1736474245::0::1::::<><>::res://entities/box_shootable.gd<>uid://cfamjwvgojhre::::res://textures/461223101.jpg
 health_drop.gd::GDScript::-1::1736468901::0::1::::<>Area3D<>::
 health_drop.tscn::PackedScene::7698933862847333742::1736468901::0::1::::<><>::res://entities/health_drop.gd
 InfoPlayerStart.gd::GDScript::-1::1736468901::0::1::::<>Node3D<>::
@@ -240,8 +241,7 @@ mana_potion_0.png::CompressedTexture2D::4246288951241932231::1736468901::1736468
 mana_potion_1.png::CompressedTexture2D::6622050904984713038::1736468901::1736468901::1::::<><>::
 mana_potion_2.png::CompressedTexture2D::6925392056125556654::1736468901::1736468901::1::::<><>::
 planet_model.gd::GDScript::-1::1736468901::0::1::::<>Node3D<>::
-planet_model.tscn::PackedScene::5495680334624503638::1736472922::0::1::::<><>::res://entities/planet_model.gd<>uid://4d8iaqn1w7yj::::res://mat/planet.png
-box_shootable.gd::GDScript::-1::1736472887::0::1::::<>CSGBox3D<>::
+planet_model.tscn::PackedScene::5495680334624503638::1736474216::0::1::::<><>::res://entities/planet_model.gd<>uid://4d8iaqn1w7yj::::res://mat/planet.png
 ::res://fonts/::1736468901
 chcard.otf::FontFile::5972339966935975008::1736468901::1736468901::1::::<><>::
 Daydream.ttf::FontFile::2185797338778625005::1736468901::1736468901::1::::<><>::
@@ -267,12 +267,12 @@ ak47_Image.png::CompressedTexture2D::1529150812497108710::1736468901::1736468901
 ak47_Map #2-Map #2.png::CompressedTexture2D::7468412680260556798::1736468901::1736468901::1::::<><>::
 ak47_Map #4.png::CompressedTexture2D::508309227500136289::1736468901::1736468901::1::::<><>::
 ak47_Map #5.png::CompressedTexture2D::574316944400165067::1736468902::1736468902::1::::<><>::
-::res://models/grenade/::1736470554
+::res://models/grenade/::1736474217
 Flare00.PNG::CompressedTexture2D::2933288609325326017::1736468902::1736468902::1::::<><>::
 grenade.gltf::PackedScene::753731821795052274::1736468902::1736468902::1::::<><>::
 grenade_0.png::CompressedTexture2D::6795897593879430552::1736468902::1736468902::1::::<><>::
-grenade_explosion.gd::GDScript::-1::1736468902::0::1::::<>Node3D<>::
-grenade_explosion.tscn::PackedScene::4910544766356092022::1736468902::0::1::::<><>::res://models/grenade/grenade_explosion.gd<>uid://bvxusr4s0aia::::res://models/rocket_launcher/Flare00.PNG
+grenade_explosion.gd::GDScript::-1::1736473374::0::1::::<>Node3D<>::
+grenade_explosion.tscn::PackedScene::4910544766356092022::1736474217::0::1::::<><>::res://models/grenade/grenade_explosion.gd<>uid://bvxusr4s0aia::::res://models/rocket_launcher/Flare00.PNG
 grenade_proj.gd::GDScript::-1::1736470554::0::1::::<>RigidBody3D<>::
 grenade_proj.tscn::PackedScene::1833988452766483777::1736468902::0::1::::<><>::res://models/grenade/grenade_proj.gd<>uid://c328o8gs1t5x1::::res://models/grenade/grenade_0.png<>uid://bvxusr4s0aia::::res://models/rocket_launcher/Flare00.PNG
 ::res://models/knife/::1736468902
@@ -287,23 +287,23 @@ mana_potion_1.png::CompressedTexture2D::3593063945295866461::1736468902::1736468
 mana_potion_2.png::CompressedTexture2D::2739024512114888080::1736468902::1736468902::1::::<><>::
 ::res://models/misc/::1736468902
 marker.tscn::PackedScene::7119991570789902869::1736468902::0::1::::<><>::uid://bnovd1chd3bti::::res://addons/kenney_particle_pack/magic_05.png
-::res://models/rocket_launcher/::1736468902
-explosion.gd::GDScript::-1::1736468902::0::1::::<>Node3D<>::
-explosion.tscn::PackedScene::4910544766356092022::1736468902::0::1::::<><>::res://models/rocket_launcher/explosion.gd<>uid://bvxusr4s0aia::::res://models/rocket_launcher/Flare00.PNG
+::res://models/rocket_launcher/::1736474217
+explosion.gd::GDScript::-1::1736473195::0::1::::<>Node3D<>::
+explosion.tscn::PackedScene::4910544766356092022::1736474217::0::1::::<><>::res://models/rocket_launcher/explosion.gd<>uid://bvxusr4s0aia::::res://models/rocket_launcher/Flare00.PNG
 Flare00.PNG::CompressedTexture2D::114973956209656152::1736468902::1736468902::1::::<><>::
 rocket.gd::GDScript::-1::1736468902::0::1::::<>Node3D<>::
 rocket.gltf::PackedScene::7682399936976312241::1736468902::1736468902::1::::<><>::
-rocket.tscn::PackedScene::9007284871796417515::1736468902::0::1::::<><>::res://models/rocket_launcher/rocket.gd<>uid://dhpoafi2om3a8::::res://models/rocket_launcher/rocket.gltf
+rocket.tscn::PackedScene::9007284871796417515::1736474217::0::1::::<><>::res://models/rocket_launcher/rocket.gd<>uid://dhpoafi2om3a8::::res://models/rocket_launcher/rocket.gltf
 rocket_0.png::CompressedTexture2D::251060993109987566::1736468902::1736468902::1::::<><>::
 rocket_launcher.gltf::PackedScene::6847098199324593675::1736468902::1736468902::1::::<><>::
 rocket_launcher.tscn::PackedScene::1799619302930553060::1736468902::0::1::::<><>::
 rocket_launcher_0.png::CompressedTexture2D::1585156816104597805::1736468902::1736468902::1::::<><>::
-::res://models/salsa/::1736468902
+::res://models/salsa/::1736474217
 Flare00.PNG::CompressedTexture2D::6580612660975078013::1736468902::1736468902::1::::<><>::
 salsa.gltf::PackedScene::3702738543543612861::1736468902::1736468902::1::::<><>::
 salsa_0.png::CompressedTexture2D::2181708454657676078::1736468902::1736468902::1::::<><>::
-salsa_explosion.gd::GDScript::-1::1736468902::0::1::::<>Node3D<>::
-salsa_explosion.tscn::PackedScene::6920781110526842339::1736468902::0::1::::<><>::res://models/salsa/salsa_explosion.gd
+salsa_explosion.gd::GDScript::-1::1736473374::0::1::::<>Node3D<>::
+salsa_explosion.tscn::PackedScene::6920781110526842339::1736474217::0::1::::<><>::res://models/salsa/salsa_explosion.gd
 salsa_proj.gd::GDScript::-1::1736468902::0::1::::<>RigidBody3D<>::
 salsa_proj.tscn::PackedScene::5196503251661249913::1736468902::0::1::::<><>::res://models/salsa/salsa_proj.gd<>uid://6c3oi65oxila::::res://models/salsa/salsa_0.png
 ::res://models/shotgun/::1736468902
@@ -318,10 +318,10 @@ the_power_0.png::CompressedTexture2D::8620241916571872067::1736468902::173646890
 ::res://music/::1736468902
 credits.txt::TextFile::-1::1736468902::0::1::::<><>::
 main_menu_01.ogg::AudioStreamOggVorbis::4952139745172353459::1736468902::1736468902::1::::<><>::
-::res://shaders/::1736472922
-manadrop.gdshader::Shader::-1::1736472922::0::1::::<><>::
-::res://sys/::1736471295
-globals.gd::GDScript::-1::1736471295::0::1::::<>Node<>::
+::res://shaders/::1736474253
+manadrop.gdshader::Shader::-1::1736474253::0::1::::<><>::
+::res://sys/::1736474059
+globals.gd::GDScript::-1::1736474059::0::1::::<>Node<>::
 username_label.gd::GDScript::-1::1736468902::0::1::::<>Label3D<>::
 weapon_resource.gd::GDScript::-1::1736470554::0::1::::Weapon_Resource<>Resource<>::
 ::res://sys/weapon_resources/::1736470554
@@ -336,7 +336,7 @@ shotgun.tres::Resource/Weapon_Resource::2914024480491344187::1736470554::0::1:::
 ::res://tbmaps/::1736468902
 How to Make and Edit Maps.txt::TextFile::-1::1736468902::0::1::::<><>::
 ::res://tbmaps/autosave/::1736468902
-::res://textures/::1736472921
+::res://textures/::1736472943
 01Brick_01.png::CompressedTexture2D::1992749039700450801::1736468902::1736468902::1::::<><>::
 01Brick_01_Nrm.png::CompressedTexture2D::2949422028087901911::1736468902::1736468902::1::::<><>::
 01Brick_02.png::CompressedTexture2D::8038109232796331627::1736468902::1736468902::1::::<><>::
@@ -585,7 +585,7 @@ texture_10.png::CompressedTexture2D::1234037963331036000::1736468903::1736468903
 texture_11.png::CompressedTexture2D::5695322871680034650::1736468903::1736468903::1::::<><>::
 texture_12.png::CompressedTexture2D::8135002312696530473::1736468903::1736468903::1::::<><>::
 texture_13.png::CompressedTexture2D::5621334246966429684::1736468903::1736468903::1::::<><>::
-::res://textures/skyboxes/::1736469925
+::res://textures/skyboxes/::1736474344
 0004_2.jpg::CompressedTexture2D::9075221555618073810::1736468903::1736468903::1::::<><>::
 0005_1.jpg::CompressedTexture2D::5905739565088050323::1736468903::1736468903::1::::<><>::
 corona_bk.png::CompressedTexture2D::6865999453644470587::1736468903::1736468903::1::::<><>::
@@ -600,12 +600,6 @@ redeclipse_ft.png::CompressedTexture2D::3393980503881961941::1736468903::1736468
 redeclipse_lf.png::CompressedTexture2D::4264952607754310448::1736468903::1736468903::1::::<><>::
 redeclipse_rt.png::CompressedTexture2D::3956710967849796781::1736468903::1736468903::1::::<><>::
 redeclipse_up.png::CompressedTexture2D::2905235915081524954::1736468903::1736468903::1::::<><>::
-sky_box_01_back6.png::CompressedTexture2D::2030311508871720946::1736469924::1736469925::1::::<><>::
-sky_box_01_bottom4.png::CompressedTexture2D::8630045079671933954::1736469924::1736469925::1::::<><>::
-sky_box_01_front5.png::CompressedTexture2D::1710102858184075427::1736469924::1736469925::1::::<><>::
-sky_box_01_left2.png::CompressedTexture2D::6733283454543978519::1736469924::1736469925::1::::<><>::
-sky_box_01_right1.png::CompressedTexture2D::2072601582171016444::1736469924::1736469925::1::::<><>::
-sky_box_01_top3.png::CompressedTexture2D::3185215776997133803::1736469924::1736469925::1::::<><>::
 sky_cartoon_space.png::CompressedTexture2D::1060037177645155969::1736468903::1736468903::1::::<><>::
 sky_dark_space1.png::CompressedTexture2D::8820086657713411111::1736468903::1736468903::1::::<><>::
 sky_dark_space2.png::CompressedTexture2D::4424776676305226341::1736468903::1736468903::1::::<><>::
@@ -619,18 +613,18 @@ sky_kurt_space_ft.png::CompressedTexture2D::6103000921859680144::1736468903::173
 sky_kurt_space_lf.png::CompressedTexture2D::6422447123369723382::1736468903::1736469217::1::::<><>::
 sky_kurt_space_rt.png::CompressedTexture2D::6126745778259073545::1736468903::1736468903::1::::<><>::
 sky_kurt_space_up.png::CompressedTexture2D::5053547723713565182::1736468903::1736468903::1::::<><>::
-::res://tscn/::1736472922
+::res://tscn/::1736474253
 bullet_decal.gd::GDScript::-1::1736468903::0::1::::<>Node3D<>::
 bullet_decal.tscn::PackedScene::3431053198701815903::1736468903::0::1::::<><>::uid://hu37f2jhi0lj::::res://mat/bullet_hole_0.png<>res://tscn/bullet_decal.gd
 environment.tscn::PackedScene::6618274380330821371::1736468903::0::1::::<><>::uid://ckf3250w8jpro::::res://models/Environment.glb<>uid://bugwfwhpqfp1n::::res://textures/dark/texture_09.png<>uid://1opha1cxcimy::::res://textures/orange/texture_10.png
 MainMenu.gd::GDScript::-1::1736468903::0::1::::<>RefCounted<>::
 main_menu.gd::GDScript::-1::1736468903::0::1::::<>Node2D<>::
-main_menu.tscn::PackedScene::8251717129917211348::1736472922::0::1::::<><>::res://tscn/main_menu.gd<>res://tscn/main_menu_canvas_layer.gd<>res://server_search.gd<>uid://ccs4au54nqqwx::::res://music/main_menu_01.ogg<>res://tscn/main_menu_stars.gdshader
+main_menu.tscn::PackedScene::8251717129917211348::1736474216::0::1::::<><>::res://tscn/main_menu.gd<>res://tscn/main_menu_canvas_layer.gd<>res://server_search.gd<>uid://ccs4au54nqqwx::::res://music/main_menu_01.ogg<>res://tscn/main_menu_stars.gdshader
 main_menu_canvas_layer.gd::GDScript::-1::1736468903::0::1::::<>CanvasLayer<>::
-playerview.gdshader::Shader::-1::1736472922::0::1::::<><>::
-main_menu_stars.gdshader::Shader::-1::1736472922::0::1::::<><>::
-::res://tscn/console/::1736468903
-console.gd::GDScript::-1::1736468903::0::1::::Console<>CanvasLayer<>::
+main_menu_stars.gdshader::Shader::-1::1736474253::0::1::::<><>::
+playerview.gdshader::Shader::-1::1736474253::0::1::::<><>::
+::res://tscn/console/::1736474102
+console.gd::GDScript::-1::1736474102::0::1::::Console<>CanvasLayer<>::
 console.tscn::PackedScene::3433913999925710156::1736468903::0::1::::<><>::res://tscn/console/console.gd
 ::res://tscn/killfeed_object/::1736468903
 killfeed_object.tscn::PackedScene::6110647474559939725::1736468903::0::1::::<><>::res://tscn/killfeed_object/killfeed_object_timer.gd<>uid://crdbtjdaouu7q::::res://fonts/chcard.otf

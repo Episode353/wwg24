@@ -22,23 +22,52 @@ Made with Godot_v4.2.2-stable_win64.exe
 
 ----------------------------------------------------------------
 Features to add:
-	- Make certain objects be destroyed when theyre shot
-		Make it so if you shoot a rocket it will explode mid air
-	- Single PLayer Shooting range
-		- Make entities that look like a shooting range dummy and play an animation when shot, so they can be used in trenchbroom
-		-making more entitites would be cool for those maps, and the sooner we make the entities the more they can be used in maps / 
-		as we build more maps
-	- Scoreboard
-	- Replace Sprite Charachter with Low Poly Wizard
-		- Model has Customizable Color, use shader from: http://y2u.be/sCZFttl8TZk
-	- Settings Menu that will save and load data to/from the config.txt
-		- Custom Player Color
-		- Edit Username
-	- Magic wand weapon?
-	- Improve the pause menu
-	- A guitar that shoots musicv as bullet gun, reload the gun by cocking the frettboard from the neck to the bodty and when shooting the effeftrs come from the nck of the guitar
 
+	Menus
+		- Settings Menu that will save and load data to/from the config.txt
+		- Should be openable from a settings icon on the main menu or pause menu
+		- Should console be open by default when opening pause menu?
+		- Custom Player Color
+		- Visual settings, such as anti aliasing, resolution, etc
+		- Edit Username
+			- Should be a "Username" in the config.txt that is used for the players username
+			- Have a hardcoded default, that if not changed will let the game choose a random one
+			from a predetermined list, and not let there be duplicates
+		- Scoreboard
+		- Replace Sprite Charachter with Low Poly Wizard
+			- Model has Customizable Color, use shader from: http://y2u.be/sCZFttl8TZk
+	Console:
+		- When opening console via console button, have the console be selected so the user can type without clicking into it
+		- Console cant be opened on main menu, it should be able to
+		- Add Disconnect Command
+		- Add Load Map Command
+
+	Objects:
+		- Make it so if you shoot a rocket it will explode mid air
+		- Ammo crate, it refills your ammo
+		- Rework the mana and health drops so that they will respawn after a duration
+
+	Maps:
+		- Single PLayer Shooting range
+			- Make entities that look like a shooting range dummy and play an animation when shot, so they can be used in trenchbroom
+			-making more entitites would be cool for those maps, and the sooner we make the entities the more they can be used in maps / 
+			as we build more maps
+		- "Tutorial Map" which is a on rails map where signs say "use this button to do this"
+			and then has a scenario which you need to do the thing to get past
+			- This would benefit if it had the shooting range enimies from the shooting range map
+	Weapons:
+	- Magic wand weapon?
+	- A guitar that shoots musicv as bullet gun, reload the gun by cocking the frettboard from the neck to the bodty and when shooting the effeftrs come from the nck of the guitar
+	- Another movement based weapon like the rocket launcher would be really cool
+
+	Website:
+		- Would be cool if there was a page to upload user created maps that could be added to the game
+		- Some sort of server list where when you make a server it pings the website and the website adds it to a list
+		- The game can then ping the website and request the list, which will sorta be a list of all available servers
+		- Whenever the list is pinged it would be useful if the website could ping the connection and see if ther is a game on the port, so the server list isnt full of a buch of closed servers
 Bugs to fix:
+	- Set globals.paused to false when player is initalizied
+	- when In pause menu/console menu do not process mouse inputs, reloading, weaponswitch, respawn buttons,
 	- Older computers have an error and require starting the game in opengl 3, which will cause issues
 	- some computers are unable to join / host a game due to networking issues
 	- Awkward stuttery movement when walking close to wall
