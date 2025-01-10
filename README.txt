@@ -64,7 +64,11 @@ Features to add:
 		- Would be cool if there was a page to upload user created maps that could be added to the game
 		- Some sort of server list where when you make a server it pings the website and the website adds it to a list
 		- The game can then ping the website and request the list, which will sorta be a list of all available servers
-		- Whenever the list is pinged it would be useful if the website could ping the connection and see if ther is a game on the port, so the server list isnt full of a buch of closed servers
+		- Whenever the list is pinged it would be useful if the website could ping the connection and see if there is a game on the port, so the server list isnt full of a buch of closed servers
+		(Will be based off of this project)
+		(https://www.youtube.com/watch?v=x-PF_EZI2ZM)
+		(https://github.com/Brandt-J/GodotServerBrowser)
+
 Bugs to fix:
 	- Set globals.paused to false when player is initalizied
 	- when In pause menu/console menu do not process mouse inputs, reloading, weaponswitch, respawn buttons,
