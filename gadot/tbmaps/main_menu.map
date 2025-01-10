@@ -4,15 +4,6 @@
 {
 "classname" "worldspawn"
 "_tb_textures" "textures;textures/dev_textures;textures/dev_textures/dark;textures/dev_textures/green;textures/dev_textures/light;textures/dev_textures/orange;textures/dev_textures/purple;textures/dev_textures/red;textures/skyboxes"
-// brush 0
-{
-( 248 -108 -16 ) ( 248 -107 -16 ) ( 248 -108 -15 ) skyboxes/sky_dark_space1 0 0 0 1 1
-( 248 -620 -16 ) ( 248 -620 -15 ) ( 249 -620 -16 ) skyboxes/sky_dark_space1 0 0 0 1 1
-( 248 -108 -652 ) ( 249 -108 -652 ) ( 248 -107 -652 ) skyboxes/sky_dark_space1 0 0 0 1 1
-( 256 140 392 ) ( 256 141 392 ) ( 257 140 392 ) skyboxes/sky_dark_space1 0 0 0 1 1
-( 256 1128 0 ) ( 257 1128 0 ) ( 256 1128 1 ) skyboxes/sky_dark_space1 0 0 0 1 1
-( 256 140 0 ) ( 256 140 1 ) ( 256 141 0 ) skyboxes/sky_dark_space1 0 0 0 1 1
-}
 }
 // entity 1
 {

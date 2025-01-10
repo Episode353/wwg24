@@ -41,7 +41,8 @@ func _input(event):
 		exit(weapon_stack[weapon_indicator])
 
 	if event.is_action_pressed("shoot") && weapon_raise == false:
-		shoot()
+		if !Globals.paused:
+			shoot()
 	
 	if event.is_action_pressed("reload"):
 		reload()
@@ -146,7 +147,7 @@ func _on_animation_player_animation_finished(anim_name):
 		
 		
 func raycast_shoot_procc():
-	var hit_object = raycast_shoot.get_collider().get_parent()
+	var hit_object = raycast_shoot.get_collider()
 	var col_nor = raycast_shoot.get_collision_normal()
 	var col_point = raycast_shoot.get_collision_point()
 
@@ -154,12 +155,18 @@ func raycast_shoot_procc():
 	rpc("create_bullet_decal", col_point, col_nor)
 	
 	# Handle hitting a player
-	if hit_object.is_in_group("players"):
-		hit_object.rpc("receive_damage", current_weapon.damage)
-		hit_object.rpc("update_last_tagged_by", player.name)
+	if hit_object.get_parent().is_in_group("players"):
+		hit_object.get_parent().rpc("receive_damage", current_weapon.damage)
+		hit_object.get_parent().rpc("update_last_tagged_by", player.name)
 		print("Hit Object is player")
-	else:
+		
+	if hit_object.is_in_group("destructable"):
+		print("Hit Destructable Object")
+		hit_object.rpc("destruct")
+		
+	if !hit_object.get_parent().is_in_group("players"):
 		print("Hit object is not a player.")
+		
 
 @rpc("any_peer", "call_local")
 func create_bullet_decal(col_point: Vector3, col_nor: Vector3):

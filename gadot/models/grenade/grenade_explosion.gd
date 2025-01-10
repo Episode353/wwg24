@@ -44,7 +44,13 @@ func _ready():
 			apply_explosion_force(player)
 			if player != owner_player:
 				player.rpc("receive_damage", calculate_damage(distance))
-	
+
+	# Scan for destructable objects
+	var objects = get_tree().get_nodes_in_group("destructable")
+	for object in objects:
+		var distance = object.global_transform.origin.distance_to(global_transform.origin)
+		if distance <= explosion_radius:
+				object.rpc("destruct")
 
 
 

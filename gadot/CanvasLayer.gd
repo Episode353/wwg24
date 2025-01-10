@@ -16,7 +16,7 @@ func toggle_pause_menu():
 	print("Pause Menu is ", pause_menu_visibility)
 	# Toggle visibility of the pause menu
 	pause_menu.visible = pause_menu_visibility
-	
+
 	# Toggle visibility of the console
 	if console_instance:
 		console_instance.visible = pause_menu_visibility
@@ -47,6 +47,8 @@ func toggle_console():
 		# Show the console and the pause menu
 		console_instance.visible = not console_instance.visible
 		pause_menu.visible = console_instance.visible
+	Globals.paused = console_instance.visible
+	print(Globals.paused)
 		
 	# Set the mouse mode based on the visibility of the console
 	if console_instance.visible:

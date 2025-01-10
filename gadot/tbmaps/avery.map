@@ -1543,13 +1543,33 @@
 }
 // entity 18
 {
+"classname" "box_shootable"
+"origin" "168 -104 24"
+}
+// entity 19
+{
+"classname" "box_shootable"
+"origin" "-56 232 24"
+}
+// entity 20
+{
+"classname" "box_shootable"
+"origin" "840 888 24"
+}
+// entity 21
+{
+"classname" "box_shootable"
+"origin" "1080 584 24"
+}
+// entity 22
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "pad"
 "_tb_id" "6"
 "_tb_layer_sort_index" "0"
 }
-// entity 19
+// entity 23
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"

@@ -1,14 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://dptgttk8gkprg"]
+[gd_scene load_steps=9 format=3 uid="uid://dptgttk8gkprg"]
 
 [ext_resource type="Script" path="res://tscn/main_menu.gd" id="1_jlapi"]
 [ext_resource type="Script" path="res://tscn/main_menu_canvas_layer.gd" id="2_5pqri"]
 [ext_resource type="Script" path="res://server_search.gd" id="2_i1si5"]
 [ext_resource type="AudioStream" uid="uid://ccs4au54nqqwx" path="res://music/main_menu_01.ogg" id="3_3mkf0"]
+[ext_resource type="Shader" path="res://tscn/main_menu_stars.gdshader" id="5_j8ubb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_86sxb"]
+shader = ExtResource("5_j8ubb")
+shader_parameter/vertical_sections = 21
+shader_parameter/star_size = 0.02
+shader_parameter/star_falloff = 4.0
+shader_parameter/margin = 0.05
+
+[sub_resource type="Sky" id="Sky_fd2ev"]
+sky_material = SubResource("ShaderMaterial_86sxb")
+process_mode = 1
 
 [sub_resource type="Environment" id="Environment_dt0kg"]
+background_mode = 2
 background_color = Color(0.541176, 0, 0, 1)
+sky = SubResource("Sky_fd2ev")
+sky_rotation = Vector3(0, -0.139626, 0)
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.0962047, 0.0962048, 0.0962047, 1)
 
 [node name="Node3D" type="Node3D"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.93779)
+omni_range = 14.4893
 
 [node name="TBLoader" type="TBLoader" parent="."]
 map_resource = "res://tbmaps/main_menu.map"
@@ -109,9 +130,6 @@ volume_db = -4.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dt0kg")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-light_energy = 0.4
 
 [connection signal="pressed" from="Node2D/CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="Node2D" method="_on_host_button_pressed"]
 [connection signal="pressed" from="Node2D/CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="Node2D" method="_on_join_button_pressed"]

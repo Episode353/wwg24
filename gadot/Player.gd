@@ -156,13 +156,8 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
-		
-	
-		
+
 	calculate_fire_damage()
-	
-	
-	
 	process_input()
 	process_movement(delta)
 	kill_timeout -= delta
@@ -175,15 +170,11 @@ func _physics_process(delta):
 		neck.rotation.x = lerp(neck.rotation.x, 0.0, delta * 5)
 		neck.rotation.y = lerp(neck.rotation.y, 0.0, delta * 5)
 		neck.rotation.z = lerp(neck.rotation.z, 0.0, delta * 5)
-	
-		
-	
 
-
-	
 func process_input():
 	direction = Vector3()
-	
+	if Globals.paused:
+		return
 	if Input.is_action_pressed("kill") && can_die:
 		can_die = false
 		kill_timeout = kill_max_timeout

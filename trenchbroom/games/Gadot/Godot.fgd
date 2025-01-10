@@ -31,3 +31,5 @@
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = main_menu_camera : "main_menu_camera" [angles(string) : "Pitch Yaw Roll" : "0 0 0"]
 
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = planet_model : "planet_model" []
+
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = box_shootable : "box_shootable" []

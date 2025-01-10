@@ -21,17 +21,6 @@ var owner_player
 
 
 
-func calculate_damage(distance: float) -> float:
-	# If the distance is greater than the explosion radius, the player is outside the explosion range
-	if distance > explosion_radius:
-		return 0
-	
-	# Linear interpolation between max_damage and min_damage based on the distance
-	var t = distance / explosion_radius
-	var damage = max_damage - t * (max_damage - min_damage)
-	
-	# Ensure that the damage does not exceed max_damage or go below min_damage
-	return clamp(damage, min_damage, max_damage)
 
 func _process(_delta):
 	if raycast.is_colliding() and (times_moved < 10):

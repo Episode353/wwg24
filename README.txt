@@ -29,26 +29,18 @@ Features to add:
 		-making more entitites would be cool for those maps, and the sooner we make the entities the more they can be used in maps / 
 		as we build more maps
 	- Scoreboard
-	- Usernames
 	- Replace Sprite Charachter with Low Poly Wizard
 		- Model has Customizable Color, use shader from: http://y2u.be/sCZFttl8TZk
-	- Server Browser
 	- Settings Menu that will save and load data to/from the config.txt
 		- Custom Player Color
 		- Edit Username
-		- Fov Adjustment
 	- Magic wand weapon?
-	- Keyboard
-		- Remake model with movable keys so each button press can move the key and play a noise
 	- Improve the pause menu
-	- Improve the home screen, have a background level be loaded in for a background for the
-	menus to be ontop of like in half-life2, and add a logo
 	- A guitar that shoots musicv as bullet gun, reload the gun by cocking the frettboard from the neck to the bodty and when shooting the effeftrs come from the nck of the guitar
 
 Bugs to fix:
 	- Older computers have an error and require starting the game in opengl 3, which will cause issues
 	- some computers are unable to join / host a game due to networking issues
-	- Prevent input to charachter controller when game is paused
 	- Awkward stuttery movement when walking close to wall
 	- If you enter a ip adress wrong, or no server is found, display/
 	 message and go back to main menu, or maybe Display a message educating/
