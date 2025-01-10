@@ -82,6 +82,19 @@ var is_on_fire = false
 @onready var player_flames_fx = $Area3D/PlayerFlamesFx
 var fire_counter = 0
 
+# View Bobbing Variables
+var bob_amplitude = 0.0
+const MAX_BOB_AMPLITUDE = 0.006  # Maximum bobbing amplitude
+const BOB_FREQUENCY = 10.0       # Frequency of the bobbing (adjust as needed)
+const BOB_ACCELERATION = 0.08   # Rate at which bob_amplitude increases
+const BOB_DECELERATION = 0.014     # Rate at which bob_amplitude decreases
+var bob_phase = 0.0
+const VELOCITY_THRESHOLD = 6  # Adjust as needed
+
+
+@onready var fps_rig = $neck/head/main_camera/Weapons_Manager/FPS_RIG
+var base_fps_rig_position = Vector3.ZERO  # To store the original position
+
 
 # Moved Direction to Source
 
@@ -126,15 +139,19 @@ func _on_size_changed():
 func _ready():
 	if not is_multiplayer_authority(): return
 	_3p_model.hide()
-	$neck/head/main_camera/Weapons_Manager/FPS_RIG.show()
-	
+	fps_rig.show()  # Ensure FPS_RIG is visible
+
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	main_camera.current = true
-	
+
 	# Connect the size_changed signal to the _on_size_changed function
 	get_viewport().connect("size_changed", Callable(self, "_on_size_changed"))
 	# Initial adjustment of the viewport size
 	_adjust_viewport_size()
+
+	# Store the original position of the FPS_RIG
+	base_fps_rig_position = fps_rig.position
+
 	
 	
 
@@ -163,13 +180,50 @@ func _physics_process(delta):
 	kill_timeout -= delta
 	if kill_timeout <= 0:
 		can_die = true
-	
+
+	# Update View Bobbing
+	update_view_bobbing(delta)
+
 	# Check and lerp neck rotation if not free looking
 	if not free_looking and neck != null:  # Ensure neck node is valid
 		# Lerp neck rotation back to default (Vector3.ZERO)
 		neck.rotation.x = lerp(neck.rotation.x, 0.0, delta * 5)
 		neck.rotation.y = lerp(neck.rotation.y, 0.0, delta * 5)
 		neck.rotation.z = lerp(neck.rotation.z, 0.0, delta * 5)
+
+func update_view_bobbing(delta):
+	# Calculate the horizontal velocity (ignore Y component)
+	var horizontal_velocity = Vector3(velocity.x, 0, velocity.z).length()
+	
+	# Determine if the player is moving based on horizontal velocity and being on the floor
+	var is_moving = horizontal_velocity > VELOCITY_THRESHOLD and is_on_floor()
+	
+	if is_moving:
+		# Increase the bob amplitude based on player's speed
+		# You can adjust how the speed affects the amplitude
+		# For example, scale amplitude with horizontal_velocity
+		var speed_factor = clamp(horizontal_velocity / sprinting_speed, 0.0, 1.0)
+		bob_amplitude += BOB_ACCELERATION * speed_factor * delta
+		bob_amplitude = clamp(bob_amplitude, 0.0, MAX_BOB_AMPLITUDE)
+	else:
+		# Decrease the bob amplitude when not moving
+		bob_amplitude -= BOB_DECELERATION * delta
+		bob_amplitude = clamp(bob_amplitude, 0.0, MAX_BOB_AMPLITUDE)
+	
+	# Update the bob phase
+	bob_phase += BOB_FREQUENCY * delta
+	if bob_phase > 2 * PI:
+		bob_phase -= 2 * PI  # Keep the phase within 0 to 2π
+	
+	# Calculate the sine wave offsets
+	var bob_offset_y = sin(bob_phase) * bob_amplitude
+	var bob_offset_x = sin(bob_phase ) * (bob_amplitude * 0.5)
+	var bob_offset_z = cos(bob_phase * 2) * (bob_amplitude * 0.2)
+	
+	# Apply the offsets to the FPS_RIG's position relative to the base position
+	fps_rig.position = base_fps_rig_position + Vector3(bob_offset_x, bob_offset_y, bob_offset_z)
+
+
 
 func process_input():
 	direction = Vector3()
@@ -211,13 +265,12 @@ func process_movement(delta):
 	var wish_dir = direction.normalized()
 
 	if is_on_floor():
-		# If wish_jump is true then we won't apply any friction and allow the 
-		# player to jump instantly, this gives us a single frame where we can 
-		# perfectly bunny hop"mesh"
 		if wish_jump:
 			velocity.y = JUMP_IMPULSE
-			# Update velocity as if we are in the air
 			velocity = update_velocity_air(wish_dir, delta)
+			# Reset bobbing when jumping
+			bob_amplitude = 0.0
+			bob_phase = 0.0
 		else:
 			if walking:
 				velocity.x *= PLAYER_WALKING_MULTIPLIER
@@ -225,17 +278,14 @@ func process_movement(delta):
 			
 			velocity = update_velocity_ground(wish_dir, delta)
 	else:
-		# Only apply gravity while in the air
 		velocity.y -= GRAVITY * delta
 		velocity = update_velocity_air(wish_dir, delta)
 
 	if not _snap_up_stairs_check(delta):
-		# Because _snap_up_stairs_check moves the body manually, don't call move_and_slide
-		# This should be fine since we ensure with the body_test_motion that it doesn't 
-		# collide with anything except the stairs it's moving up to.
 		move_and_slide()
 		_snap_down_to_stairs_check()
 	viewmodel_camera.global_transform = main_camera.global_transform
+
 
 func accelerate(wish_dir: Vector3, max_speed: float, delta):
 	# Get our current speed as a projection of velocity onto the wish_dir
