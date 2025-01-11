@@ -57,6 +57,10 @@ Features to add:
 	- Magic wand weapon?
 	- A guitar that shoots musicv as bullet gun, reload the gun by cocking the frettboard from the neck to the bodty and when shooting the effeftrs come from the nck of the guitar
 	- Another movement based weapon like the rocket launcher would be really cool
+	-Portal Gun
+	- The Power
+		- has a number of different effects such as low gravity or resistance
+		- only one effect can be active at a time
 
 	Website:
 		- Would be cool if there was a page to upload user created maps that could be added to the game
@@ -68,6 +72,11 @@ Features to add:
 		(https://github.com/Brandt-J/GodotServerBrowser)
 
 Bugs to fix:
+	- Whatever name the current player has, all players have it above their head
+	- Make healt and mana respawn
+	- Sound
+	- Dont make escape close the game
+	- Viewmodel (floating gun)
 	- Older computers have an error and require starting the game in opengl 3, which will cause issues
 	- some computers are unable to join / host a game due to networking issues
 	- Awkward stuttery movement when walking close to wall
