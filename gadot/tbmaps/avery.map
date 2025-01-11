@@ -1563,13 +1563,43 @@
 }
 // entity 22
 {
+"classname" "ammo_small"
+"origin" "728 -264 -120"
+}
+// entity 23
+{
+"classname" "ammo_small"
+"origin" "1048 856 24"
+}
+// entity 24
+{
+"classname" "ammo_small"
+"origin" "312 1016 24"
+}
+// entity 25
+{
+"classname" "ammo_small"
+"origin" "408 -200 8"
+}
+// entity 26
+{
+"classname" "ammo_medium"
+"origin" "360 -200 8"
+}
+// entity 27
+{
+"classname" "ammo_large"
+"origin" "312 -200 8"
+}
+// entity 28
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "pad"
 "_tb_id" "6"
 "_tb_layer_sort_index" "0"
 }
-// entity 23
+// entity 29
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"

@@ -1,7 +1,11 @@
+Timer
+CollisionShape3D
+Area3D
+Node3D
+Label3D
+CSGBox3D
 GPUParticles3D
 DirectionalLight3D
-CollisionShape3D
-CSGBox3D
 CSGCylinder3D
 OmniLight3D
 SpotLight3D
@@ -9,7 +13,3 @@ WorldEnvironment
 CSGSphere3D
 Node
 AudioStreamPlayer
-Area3D
-AnimationPlayer
-VBoxContainer
-Camera3D

@@ -33,3 +33,7 @@
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = planet_model : "planet_model" []
 
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = box_shootable : "box_shootable" []
+
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = ammo_small : "ammo_small" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = ammo_medium : "ammo_medium" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = ammo_large : "ammo_large" []

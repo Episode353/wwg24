@@ -36,21 +36,25 @@ func calculate_damage(distance: float) -> float:
 
 func _ready():
 	smoke.emitting = true
+	if owner_player == null:
+		return
+	
 	# Scan for all players within the explosion radius
 	var players = get_tree().get_nodes_in_group("players")
 	for player in players:
 		var distance = player.global_transform.origin.distance_to(global_transform.origin)
 		if distance <= explosion_radius:
 			apply_explosion_force(player)
-			if player != owner_player:
+			if player != owner_player and player.has_method("receive_damage"):
 				player.rpc("receive_damage", calculate_damage(distance))
-				
-	# Scan for destructable objects
+	
+	# Scan for destructible objects
 	var objects = get_tree().get_nodes_in_group("destructable")
 	for object in objects:
 		var distance = object.global_transform.origin.distance_to(global_transform.origin)
-		if distance <= explosion_radius:
-				object.rpc("destruct")
+		if distance <= explosion_radius and object.has_method("destruct"):
+			object.rpc("destruct")
+
 	
 
 

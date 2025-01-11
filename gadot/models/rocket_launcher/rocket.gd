@@ -27,3 +27,14 @@ func _on_area_3d_body_entered(body):
 	world.add_child.call_deferred(explosion_scene)
 	
 	queue_free()
+
+func explode():
+	# Create and configure the explosion
+	var explosion_scene = EXPLOSION_PRELOAD.instantiate()
+	explosion_scene.owner_player = null
+	explosion_scene.global_transform = rocket_proj.global_transform
+	explosion_scene.scale = Vector3.ONE  # Ensure the explosion scale is 1
+	world.add_child.call_deferred(explosion_scene)
+
+	# Free the rocket
+	queue_free()

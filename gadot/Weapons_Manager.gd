@@ -85,6 +85,46 @@ func reset_all_ammo():
 		emit_signal("update_ammo", [current_weapon.current_ammo, current_weapon.reserve_ammo])
 		
 
+func is_all_ammo_full() -> bool:
+	for weapon_name in weapon_stack:
+		var weapon = weapon_list[weapon_name]
+		if weapon.reserve_ammo < weapon.reserve_ammo_default or weapon.current_ammo < weapon.mag_ammo:
+			return false
+	return true
+
+
+func add_ammo_to_all(amount: int):
+	if weapon_list.size() == 0:
+		print("Debug: Weapon list is empty. Ensure it's initialized before calling add_ammo_to_all.")
+		return
+
+	print("Adding ammo to all weapons")
+	for weapon_name in weapon_stack:
+		if not weapon_list.has(weapon_name):
+			print("Debug: Weapon", weapon_name, "not found in weapon_list.")
+			continue
+		
+		var weapon = weapon_list[weapon_name]
+		if weapon == null:
+			print("Debug: Weapon is null for", weapon_name)
+			continue
+
+		# Add ammo to the reserve
+		weapon.reserve_ammo = min(weapon.reserve_ammo + amount, weapon.reserve_ammo_default)
+
+		# Check if the magazine needs to be topped off
+		if weapon.current_ammo < weapon.mag_ammo:
+			var missing_ammo = weapon.mag_ammo - weapon.current_ammo
+			var ammo_to_load = min(missing_ammo, weapon.reserve_ammo)
+			weapon.current_ammo += ammo_to_load
+			weapon.reserve_ammo -= ammo_to_load
+
+		print("Updated ammo for weapon:", weapon_name, 
+			  " | Current Ammo:", weapon.current_ammo, 
+			  " | Reserve Ammo:", weapon.reserve_ammo)
+
+	emit_signal("update_ammo", [current_weapon.current_ammo, current_weapon.reserve_ammo])
+
 
 
 
@@ -162,6 +202,7 @@ func raycast_shoot_procc():
 		
 	if hit_object.is_in_group("destructable"):
 		print("Hit Destructable Object")
+		print(hit_object)
 		hit_object.rpc("destruct")
 		
 	if !hit_object.get_parent().is_in_group("players"):
@@ -178,6 +219,7 @@ func create_bullet_decal(col_point: Vector3, col_nor: Vector3):
 		b.rotation_degrees.x = 90
 	else:
 		b.look_at(col_point - col_nor, Vector3(0, 1, 0))
+
 
 
 	

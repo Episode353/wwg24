@@ -43,7 +43,6 @@ Features to add:
 		- Add Load Map Command
 
 	Objects:
-		- Make it so if you shoot a rocket it will explode mid air
 		- Ammo crate, it refills your ammo
 		- Rework the mana and health drops so that they will respawn after a duration
 

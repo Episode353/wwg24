@@ -17,6 +17,7 @@ signal mana_changed(mana_value)
 @onready var main_camera = $neck/head/main_camera
 @onready var viewmodel_camera = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport/viewmodel_camera
 @onready var viewmodel_viewport = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport
+@onready var weapons_manager = $neck/head/main_camera/Weapons_Manager
 
 @onready var raycast_wall = $raycast_wall
 
@@ -434,6 +435,13 @@ func receive_mana(received_mana):
 		mana = 0
 	mana_changed.emit(mana)
 	
+@rpc("any_peer", "call_local")
+func receive_ammo(received_ammo):
+	weapons_manager.add_ammo_to_all(received_ammo)
+
+func is_ammo_full() -> bool:
+	return weapons_manager.is_all_ammo_full()
+
 	
 
 # Method to set the on_fire state
