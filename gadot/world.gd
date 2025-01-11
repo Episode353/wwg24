@@ -11,6 +11,8 @@ var enet_peer = ENetMultiplayerPeer.new()
 var map_name = ""
 
 func _unhandled_input(_event):
+	if Globals.paused:
+		return
 	if Input.is_action_just_pressed("quit"):
 		close_game()
 	if Input.is_action_just_pressed("fullscreen"):
@@ -263,7 +265,7 @@ func display_to_killfeed(last_tagged_by, display_name):
 	var killfeed_label = killfeed_object_scene.instantiate()
 	
 	# Set the text of the killfeed label
-	killfeed_label.text = name + " was killed by " + last_tagged_by
+	killfeed_label.text = display_name + " was killed by " + last_tagged_by
 
 	# Add the label to the killfeed container
 	killfeed_container.add_child(killfeed_label)

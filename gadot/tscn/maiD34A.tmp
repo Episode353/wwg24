@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dptgttk8gkprg"]
+[gd_scene load_steps=10 format=3 uid="uid://dptgttk8gkprg"]
 
 [ext_resource type="Script" path="res://tscn/main_menu.gd" id="1_jlapi"]
 [ext_resource type="Script" path="res://tscn/main_menu_canvas_layer.gd" id="2_5pqri"]
 [ext_resource type="Script" path="res://server_search.gd" id="2_i1si5"]
 [ext_resource type="AudioStream" uid="uid://ccs4au54nqqwx" path="res://music/main_menu_01.ogg" id="3_3mkf0"]
+[ext_resource type="Script" path="res://tscn/UsernameEntry.gd" id="3_wqu55"]
 [ext_resource type="Shader" path="res://tscn/main_menu_stars.gdshader" id="5_j8ubb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_86sxb"]
@@ -83,11 +84,11 @@ placeholder_text = "Enter Address to Join Here"
 alignment = 1
 
 [node name="UsernameEntry" type="LineEdit" parent="Node2D/CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 text = "defaultvalue"
 placeholder_text = "Enter Username"
 alignment = 1
+script = ExtResource("3_wqu55")
 
 [node name="MapEntry" type="ItemList" parent="Node2D/CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2

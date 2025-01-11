@@ -1,7 +1,7 @@
-	
-
 class_name Console
 extends CanvasLayer
+
+signal console_loaded  # Define a custom signal
 
 var expression = Expression.new()
 var command_history = []
@@ -31,6 +31,9 @@ var commands = {
 func _ready():
 	$VBoxContainer/input.text_submitted.connect(self._on_text_submitted)
 	$VBoxContainer/input.connect("gui_input", self._on_input_gui)
+
+	# Emit the signal when the console is ready
+	emit_signal("console_loaded")
 
 	# Example usage of the config file execution
 	execute_config_file("res://config.txt")
@@ -155,6 +158,10 @@ func _handle_variable_assignment(command: String):
 		elif variable_name == "mouse_sensitivity":
 			Globals.mouse_sensitivity = float(value)
 			print(command, "Set mouse_sensitivity to %f" % Globals.mouse_sensitivity)
+			
+		elif variable_name == "username":
+			Globals.username = str(value)
+			print(command, "Set username to %s" % Globals.username)
 
 		elif variable_name == "master_volume":
 			Globals.master_volume = float(value)
@@ -189,5 +196,3 @@ func execute_config_file(file_path: String):
 		file.close()
 	else:
 		_output_error("Error: Unable to open config file: %s" % file_path)
-
-

@@ -204,3 +204,4 @@ forward={
 [physics]
 
 common/physics_ticks_per_second=144
+common/max_physics_steps_per_frame=100

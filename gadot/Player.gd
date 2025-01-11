@@ -96,6 +96,7 @@ const VELOCITY_THRESHOLD = 6  # Adjust as needed
 @onready var fps_rig = $neck/head/main_camera/Weapons_Manager/FPS_RIG
 var base_fps_rig_position = Vector3.ZERO  # To store the original position
 
+var player_username = Globals.username
 
 # Moved Direction to Source
 
@@ -114,7 +115,7 @@ var kill_max_timeout = 3
 var can_die = true
 
 
-var username : String = "init"
+
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
@@ -124,8 +125,8 @@ func _enter_tree():
 @export var peer_id : int : 
 	set(value):
 		peer_id = value
-		name = str(peer_id)
-		$username_label.text = str(peer_id)
+		
+
 	
 # Function to adjust the viewport size
 func _adjust_viewport_size():
@@ -140,6 +141,7 @@ func _on_size_changed():
 func _ready():
 	if not is_multiplayer_authority(): return
 	_3p_model.hide()
+	Globals.paused = false
 	fps_rig.show()  # Ensure FPS_RIG is visible
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -158,7 +160,8 @@ func _ready():
 
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
-	
+	if Globals.paused:
+		return
 	if event is InputEventMouseMotion:
 		if free_looking:
 			neck.rotate_y(deg_to_rad(-event.relative.x * Globals.mouse_sensitivity))
@@ -325,7 +328,7 @@ func player_death():
 	# Spawn mana drop only for the local player who died
 	if is_multiplayer_authority():
 		rpc("spawn_mana_for_all", world_pos)
-		world.rpc("display_to_killfeed", last_tagged_by, self.name)
+		world.rpc("display_to_killfeed", last_tagged_by, self.player_username)
 
 	# Call the world's respawn player function
 	var world_to_respawn = get_parent()

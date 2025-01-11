@@ -1,5 +1,8 @@
 # Start a line with a Hashtag to place a comment
 
+# Player Options
+username = Jewswapo
+
 # Movement Keys
 bind forward w
 bind backward s

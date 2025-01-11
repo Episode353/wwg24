@@ -32,6 +32,8 @@ func _ready():
 	
 func _input(event):
 	if not is_multiplayer_authority(): return
+	if Globals.paused:
+		return
 	if event.is_action_pressed("w_up"):
 		weapon_indicator = (weapon_indicator + 1) % weapon_stack.size()
 		exit(weapon_stack[weapon_indicator])
@@ -197,7 +199,7 @@ func raycast_shoot_procc():
 	# Handle hitting a player
 	if hit_object.get_parent().is_in_group("players"):
 		hit_object.get_parent().rpc("receive_damage", current_weapon.damage)
-		hit_object.get_parent().rpc("update_last_tagged_by", player.name)
+		hit_object.get_parent().rpc("update_last_tagged_by", player.player_username)
 		print("Hit Object is player")
 		
 	if hit_object.is_in_group("destructable"):
@@ -234,7 +236,7 @@ func area_collision_procc(self_id):
 			if e.name != str(self_id): # Compare with the player ID passed to the function
 				print("Damaging player: Entity ID: ", e_id) # Debug print
 				e.rpc("receive_damage", current_weapon.damage)
-				e.rpc("update_last_tagged_by", player.name)
+				e.rpc("update_last_tagged_by", player.player_username)
 			else:
 				print("Ignoring self: Entity ID: ", e_id) # Debug print
 

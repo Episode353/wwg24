@@ -43,7 +43,6 @@ Features to add:
 		- Add Load Map Command
 
 	Objects:
-		- Ammo crate, it refills your ammo
 		- Rework the mana and health drops so that they will respawn after a duration
 
 	Maps:
@@ -69,8 +68,6 @@ Features to add:
 		(https://github.com/Brandt-J/GodotServerBrowser)
 
 Bugs to fix:
-	- Set globals.paused to false when player is initalizied
-	- when In pause menu/console menu do not process mouse inputs, reloading, weaponswitch, respawn buttons,
 	- Older computers have an error and require starting the game in opengl 3, which will cause issues
 	- some computers are unable to join / host a game due to networking issues
 	- Awkward stuttery movement when walking close to wall

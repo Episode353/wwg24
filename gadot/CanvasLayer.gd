@@ -8,6 +8,8 @@ var pause_menu_visibility = false
 @onready var pause_menu = $"Pause Menu"
 
 func _unhandled_input(_event):
+	if Globals.paused:
+		return
 	if Input.is_action_just_pressed("main_menu"):
 		toggle_pause_menu()
 
@@ -20,6 +22,7 @@ func toggle_pause_menu():
 	# Toggle visibility of the console
 	if console_instance:
 		console_instance.visible = pause_menu_visibility
+		Globals.paused = pause_menu_visibility
 
 	# Set the mouse mode based on the visibility of the pause menu
 	if pause_menu.visible:
