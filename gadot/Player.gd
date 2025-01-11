@@ -288,8 +288,9 @@ func process_movement(delta):
 	if not _snap_up_stairs_check(delta):
 		move_and_slide()
 		_snap_down_to_stairs_check()
-	viewmodel_camera.global_transform = main_camera.global_transform
 
+func _process(delta):
+	viewmodel_camera.global_transform = main_camera.global_transform
 
 func accelerate(wish_dir: Vector3, max_speed: float, delta):
 	# Get our current speed as a projection of velocity onto the wish_dir
