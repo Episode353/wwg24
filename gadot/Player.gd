@@ -21,7 +21,6 @@ signal mana_changed(mana_value)
 
 @onready var raycast_wall = $raycast_wall
 
-const MANADROP = preload("res://manadrop.tscn")
 @onready var _3p_model = $"3p_model"
 var last_tagged_by = "Unknown"
 
@@ -139,14 +138,16 @@ func _on_size_changed():
 	_adjust_viewport_size()
 
 func _ready():
-	if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority():
+		fps_rig.hide()
+		return
 	_3p_model.hide()
 	Globals.paused = false
 	fps_rig.show()  # Ensure FPS_RIG is visible
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	main_camera.current = true
-
+	
 	# Connect the size_changed signal to the _on_size_changed function
 	get_viewport().connect("size_changed", Callable(self, "_on_size_changed"))
 	# Initial adjustment of the viewport size
@@ -385,13 +386,16 @@ func launch_salsa():
 # Define an RPC to spawn mana drop for all clients
 @rpc("call_local")
 func spawn_mana_for_all(world_pos):
+	const MANADROP = preload("res://manadrop.tscn")
 	# Instantiate MANADROP
 	var instance = MANADROP.instantiate()
 	# Set the position slightly above the world_pos
 	var spawn_height = 1  # Adjust this value as needed
 	instance.transform.origin = Vector3(world_pos.x, world_pos.y + spawn_height, world_pos.z)
-	# Add the instance to the current scene
+	instance.mana_drop_ammount = mana
+	instance.mana_drop_owner = self
 	get_tree().current_scene.add_child(instance)
+	
 	
 	
 
@@ -520,4 +524,3 @@ func _snap_up_stairs_check(delta) -> bool:
 			return true
 	return false
 	
-

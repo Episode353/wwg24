@@ -160,6 +160,7 @@ func spawn_player(player):
 	if player is RigidBody3D:
 		player.linear_velocity = Vector3.ZERO
 		player.angular_velocity = Vector3.ZERO
+		player.velocity = Vector3.ZERO
 
 func respawn_player(player):
 	print("Respawning player: ", player.name)
@@ -335,6 +336,3 @@ func display_to_killfeed(last_tagged_by, display_name):
 
 	# Add the label to the killfeed container
 	killfeed_container.add_child(killfeed_label)
-
-
-

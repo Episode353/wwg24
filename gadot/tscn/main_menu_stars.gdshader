@@ -51,4 +51,3 @@ void sky() {
     float brightness = star_brightness(SKY_COORDS);
     COLOR = brightness * star_color;
 }
-

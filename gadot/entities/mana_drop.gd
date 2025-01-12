@@ -1,31 +1,60 @@
 extends Area3D
 
+@export var mana_amount: int = 25
+@export var mana_respawn_delay: float = 5.0
 
+@onready var mana_root = $".."
+@onready var timer = $"../../Timer"
+@onready var omni_light_3d = $"../../OmniLight3D"
 
-@onready var mana_drop_scene = $"../.."
-
-
-var used = false
+var has_been_picked_up = false
 
 func _ready():
-	# Connect the body_entered signal to the _on_body_entered function
-	self.connect("body_entered", Callable(self, "_on_body_entered"))
+	monitoring = true
+	monitorable = true
 
-func _on_body_entered(body):
-	# Check if the entered body is the desired object
-	if body.is_in_group("players"):
-		# Execute your code here
-		if body.mana != body.max_mana:
-			used = true
-			body.rpc("receive_mana", 5)  # Ensure -25 is an integer
-		# Add your custom code here
-		if used == true:
-			rpc("sync_queue_free")
+	# Timer setup
+	mana_root.add_child(timer)
+	timer.one_shot = true
+	timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 
-@rpc("any_peer", "call_local")
-func sync_queue_free():
-	rpc_id(0, "queue_free_mana_drop")
+func _physics_process(delta: float) -> void:
+	# Only check if visible and not picked up yet
+	if mana_root.visible and not has_been_picked_up:
+		for body in get_overlapping_bodies():
+			# Is this a player who needs mana?
+			if body.is_in_group("players") and body.mana < body.max_mana:
+				# Give mana via RPC
+				body.rpc("receive_mana", mana_amount)
 
-@rpc("any_peer", "call_local")
-func queue_free_mana_drop():
-	mana_drop_scene.queue_free()
+				# Hide locally and sync with the network
+				_hide_mana()
+				rpc("hide_mana_global")
+
+				has_been_picked_up = true
+				break
+
+func _hide_mana():
+	mana_root.visible = false
+	omni_light_3d.visible = false
+	timer.start(mana_respawn_delay)
+
+func _show_mana():
+	mana_root.visible = true
+	omni_light_3d.visible = true
+	has_been_picked_up = false
+
+func _on_timer_timeout():
+	_show_mana()
+	rpc("show_mana_global")
+
+#
+# RPC methods to sync hide/show across all peers
+#
+@rpc("any_peer")
+func hide_mana_global():
+	_hide_mana()
+
+@rpc("any_peer")
+func show_mana_global():
+	_show_mana()

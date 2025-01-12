@@ -7,5 +7,7 @@ func _ready():
 		fov = Globals.camera_fov
 	else:
 		print("Warning: Globals.camera_fov is not defined.")
-
-
+	
+	# Stop the viewmodel objects from being visible on the opposite players screen!
+	if !is_multiplayer_authority():
+		self.set_cull_mask_value(2, false)

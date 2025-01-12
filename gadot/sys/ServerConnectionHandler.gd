@@ -40,4 +40,3 @@ func send_server_info(ip_adress):
 		if serverBrowserReached:
 			emit_signal("ConsoleMessage", "Lost connection to remote Server Browser. Scanning for local servers only.")
 			serverBrowserReached = false
-

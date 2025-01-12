@@ -1,6 +1,7 @@
 A Multiplayer Gadot game using (UDP Protocol)
 Multiplayer Based off of: (https://youtu.be/n8D3vEx7NAE)
 Stair Stepping Based off of: (https://www.youtube.com/watch?v=Tb-R3l0SQdc)
+The Multiplayer Server pinging was based off of (https://github.com/Brandt-J/GodotServerBrowser)
 
 To host a server: 
 Open wizards-with-guns.console.exe, which should launch the game and a console window.
@@ -18,7 +19,7 @@ Make sure the texture folders trenchbroom uses and the texture folders godot use
 How to edit your settings.
 Edit the config.txt
 
-Made with Godot_v4.2.2-stable_win64.exe
+Made with Godot_v4.3-stable_win64.exe
 
 ----------------------------------------------------------------
 Features to add:
@@ -37,13 +38,10 @@ Features to add:
 		- Replace Sprite Charachter with Low Poly Wizard
 			- Model has Customizable Color, use shader from: http://y2u.be/sCZFttl8TZk
 	Console:
-		- When opening console via console button, have the console be selected so the user can type without clicking into it
 		- Console cant be opened on main menu, it should be able to
 		- Add Disconnect Command
 		- Add Load Map Command
 
-	Objects:
-		- Rework the mana and health drops so that they will respawn after a duration
 
 	Maps:
 		- Single PLayer Shooting range
@@ -68,15 +66,10 @@ Features to add:
 		- The game can then ping the website and request the list, which will sorta be a list of all available servers
 		- Whenever the list is pinged it would be useful if the website could ping the connection and see if there is a game on the port, so the server list isnt full of a buch of closed servers
 		(Will be based off of this project)
-		(https://www.youtube.com/watch?v=x-PF_EZI2ZM)
-		(https://github.com/Brandt-J/GodotServerBrowser)
+
 
 Bugs to fix:
-	- Whatever name the current player has, all players have it above their head
-	- Make healt and mana respawn
 	- Sound
-	- Dont make escape close the game
-	- Viewmodel (floating gun)
 	- Older computers have an error and require starting the game in opengl 3, which will cause issues
 	- some computers are unable to join / host a game due to networking issues
 	- Awkward stuttery movement when walking close to wall

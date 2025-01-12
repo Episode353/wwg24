@@ -24,3 +24,5 @@ script = ExtResource("1_gwm2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CSGMesh3D/Area3D"]
 shape = SubResource("SphereShape3D_3qfhx")
+
+[node name="Timer" type="Timer" parent="."]
