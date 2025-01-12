@@ -1,3 +1,7 @@
+ItemList
+VBoxContainer
+HTTPRequest
+Node
 Timer
 CollisionShape3D
 Area3D
@@ -9,7 +13,3 @@ DirectionalLight3D
 CSGCylinder3D
 OmniLight3D
 SpotLight3D
-WorldEnvironment
-CSGSphere3D
-Node
-AudioStreamPlayer

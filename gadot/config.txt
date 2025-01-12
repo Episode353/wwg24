@@ -55,7 +55,7 @@ camera_fov = 85
 viewmodel_camera_fov = 85
 max_fps = 144
 mouse_sensitivity = 0.1
-master_volume = 0.7 # Set between 0.0 and 1.0
+master_volume = 0.1 # Set between 0.0 and 1.0
 
 # Clear the console
 clear

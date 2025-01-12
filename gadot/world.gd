@@ -4,12 +4,15 @@ extends Node
 @onready var health_bar = $CanvasLayer/HUD/HealthBar
 @onready var mana_bar = $CanvasLayer/HUD/ManaBar
 @onready var tb_loader = $TBLoader
+@onready var server_connection_handler = $ServerConnectionHandler
+var server_info_timer: Timer
+var server_info_resend_duration : int = 5
+var external_ip : String = "NULL"
 
-
-const PORT = 7777
+const PORT : int = 7777
 var enet_peer = ENetMultiplayerPeer.new()
 var map_name = ""
-
+var num_players = 0
 func _unhandled_input(_event):
 	if Globals.paused:
 		return
@@ -49,6 +52,12 @@ func remove_player(peer_id):
 
 
 func send_to_main_menu():
+	# Example of also stopping the timer if you're returning to main menu
+	if server_info_timer:
+		server_info_timer.stop()
+		server_info_timer.queue_free()
+		server_info_timer = null
+	# Then do the rest of your main-menu logic
 	var current_scene = get_tree().current_scene
 	var new_scene = load("res://tscn/main_menu.tscn").instantiate()
 	get_tree().root.add_child(new_scene)
@@ -72,26 +81,49 @@ func start_offline(map: String):
 	add_player(multiplayer.get_unique_id())
 
 func start_host(map: String):
-	map_name = map
+	# Set up your map, create the server, etc.
 	hud.show()
+	map_name = map
 	load_map(map_name)
+
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
+
+	# Connect multiplayer signals
 	multiplayer.peer_connected.connect(Callable(self, "_on_peer_connected"))
 	multiplayer.peer_disconnected.connect(Callable(self, "_on_peer_disconnected"))
+
+	# Add the local player
 	add_player(multiplayer.get_unique_id())
+
+	# Example: setting up UPnP, etc.
 	upnp_setup()
-	display_to_killfeed("last_tagged_by", "Name")
+
+	# Now create a Timer to periodically send server info
+	setup_server_info_timer()
+	print("Host started on port %d. Timer set up to re-send server info periodically.")
 
 func start_join(address: String):
 	hud.show()
-	enet_peer.create_client(address, PORT)
+
+	# If the address might contain a colon, parse out the port
+	var ip = address
+	var port = PORT  # default fallback, e.g. 7777
+
+	if address.find(":") != -1:
+		var splitted = address.split(":")
+		ip = splitted[0]
+		port = int(splitted[1])
+	enet_peer.create_client(ip, port)
 	multiplayer.multiplayer_peer = enet_peer
+
 	multiplayer.connect("network_peer_connected", Callable(self, "_on_peer_connected"))
 	multiplayer.connect("network_peer_disconnected", Callable(self, "_on_peer_disconnected"))
 	multiplayer.connect("server_disconnected", Callable(self, "_on_server_disconnected"))
 	print("Connected server_disconnected signal")
+
 	add_player(multiplayer.get_unique_id())
+
 
 func load_map(load_map_name: String):
 	tb_loader.map_resource = "tbmaps/" + load_map_name
@@ -169,15 +201,41 @@ func upnp_setup():
 		print("UPNP Port Mapping Failed! Error %s" % map_result)
 		send_to_main_menu()  # Send to main menu
 		return  # Do nothing further if port mapping fails
-
+	external_ip = upnp.query_external_address()
 	print("----------------------------")
 	print("|")
 	print("Gateway: %s" % gateway)
-	print("Success! Join Address: %s" % upnp.query_external_address())
+	print("Success! Join Address: %s" % external_ip)
 	print("IP adress has been copied to clipboard")
 	print("|")
 	print("----------------------------")
-	DisplayServer.clipboard_set(upnp.query_external_address())
+	server_connection_handler.send_server_info(external_ip)
+	DisplayServer.clipboard_set(external_ip)
+
+func setup_server_info_timer():
+	# If it already exists (just in case), clean it up
+	if server_info_timer and server_info_timer.is_inside_tree():
+		server_info_timer.stop()
+		server_info_timer.queue_free()
+
+	server_info_timer = Timer.new()
+	server_info_timer.wait_time = server_info_resend_duration
+	server_info_timer.one_shot = false
+	# Connect the Timer’s timeout to our function that re-sends info
+	server_info_timer.connect("timeout", Callable(self, "_on_server_info_timer_timeout"))
+	add_child(server_info_timer)
+	server_info_timer.start()
+
+
+func _on_server_info_timer_timeout():
+	# Only send if we are indeed the server/host
+	if is_multiplayer_authority():
+		server_connection_handler.send_server_info(external_ip)
+		print("Resending server info to master server at address:", external_ip)
+	else:
+		# If for some reason we lost authority, stop the timer
+		if server_info_timer:
+			server_info_timer.stop()
 
 func _ready():
 	if map_name != "":
@@ -208,6 +266,14 @@ func _send_map_name(received_map_name: String):
 @rpc("any_peer", "call_local")
 func _on_peer_disconnected(peer_id):
 	print("_on_peer_disconnected", peer_id)
+
+	# If the host (our local ID) is disconnecting, stop sending updates
+	if peer_id == multiplayer.get_unique_id():
+		if server_info_timer:
+			server_info_timer.stop()
+			server_info_timer.queue_free()
+			server_info_timer = null
+		print("Host disconnected. Stopped sending server info.")
 
 @rpc("reliable")
 func _on_server_disconnected():
@@ -269,9 +335,6 @@ func display_to_killfeed(last_tagged_by, display_name):
 
 	# Add the label to the killfeed container
 	killfeed_container.add_child(killfeed_label)
-
-
-
 
 
 

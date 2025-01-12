@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8oqxmm2w2wvv"]
+[gd_scene load_steps=15 format=3 uid="uid://c8oqxmm2w2wvv"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_6tkge"]
+[ext_resource type="Script" path="res://sys/ServerConnectionHandler.gd" id="2_hna3u"]
 [ext_resource type="Script" path="res://CanvasLayer.gd" id="2_sgno6"]
 [ext_resource type="Texture2D" uid="uid://bmqgel0cu22ly" path="res://addons/kenney_particle_pack/magic_03.png" id="4_2t2bm"]
 [ext_resource type="Script" path="res://FPSCount.gd" id="4_04ai0"]
@@ -45,6 +46,11 @@ environment = SubResource("Environment_6knbf")
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player.tscn")
 spawn_path = NodePath("..")
+
+[node name="ServerConnectionHandler" type="Node" parent="."]
+script = ExtResource("2_hna3u")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="ServerConnectionHandler"]
 
 [node name="TBLoader" type="TBLoader" parent="."]
 

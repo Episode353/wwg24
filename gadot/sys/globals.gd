@@ -1,6 +1,10 @@
 # Globals.gd
 extends Node
 
+# Server Information
+const PORT_UDP_COMM: int = 7777
+const IP_SERVER_BROWSER: String = "www.wizardswithguns.com"
+
 var camera_fov = 85
 var max_fps = 60  # Default FPS limit
 var mouse_sensitivity = 0.1

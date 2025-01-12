@@ -385,8 +385,6 @@ func launch_salsa():
 # Define an RPC to spawn mana drop for all clients
 @rpc("call_local")
 func spawn_mana_for_all(world_pos):
-	# Wait for 1 second
-	get_tree().create_timer(1.0)
 	# Instantiate MANADROP
 	var instance = MANADROP.instantiate()
 	# Set the position slightly above the world_pos

@@ -1,4 +1,4 @@
-res://models/rocket_launcher/rocket.tscn
+res://world.tscn
 res://models/grenade/grenade_proj.gd
 res://sys/weapon_resource.gd
 res://CollisionScript.gd
@@ -12,7 +12,6 @@ res://sys/weapon_resources/keyboard.tres
 res://tscn/main_menu_stars.gdshader
 res://player.gdshader
 res://tscn/playerview.gdshader
-res://world.tscn
-res://player.tscn
 res://tscn/main_menu.tscn
-res://tscn/console/console.tscn
+res://sys/globals.gd
+res://config.txt
