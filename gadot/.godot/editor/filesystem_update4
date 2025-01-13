@@ -1,4 +1,4 @@
-res://player.tscn
+res://world.tscn
 res://Player.gd
 res://models/grenade/grenade_proj.gd
 res://manadrop.gd
@@ -11,17 +11,10 @@ res://CollisionScript.gd
 res://player.gdshader
 res://tscn/playerview.gdshader
 res://tscn/main_menu_stars.gdshader
-res://config.txt
-res://entities/mana_drop.tscn
-res://models/salsa/salsa_proj.tscn
-res://manadrop.tscn
-res://world.tscn
-res://menufadein.gd
-res://sys/username_label.gd
-res://CanvasLayer.gd
-res://display_health.gd
+res://player.tscn
 res://entities/ammo_large.tscn
-res://entities/mana_drop.gd
+res://entities/mana_drop.tscn
 res://entities/health_drop.tscn
-res://entities/health_drop.gd
 res://tscn/console/console.tscn
+res://config.txt
+res://models/rocket_launcher/rocket.tscn

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://models/rocket_launcher/Area3D.gd" id="3_kkh6h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_31wx4"]
-radius = 9.65
+radius = 6.0
 height = 25.7
 
 [node name="Rocket" type="Node3D"]

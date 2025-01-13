@@ -9,17 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://c1lfio6su6m7o" path="res://menufadein.tscn" id="7_bypg1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u5pdl"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sun_angle_max = 60.85
+sun_curve = 0.0989632
 
 [sub_resource type="Sky" id="Sky_o7fep"]
 sky_material = SubResource("ProceduralSkyMaterial_u5pdl")
 
 [sub_resource type="Environment" id="Environment_6knbf"]
 background_mode = 2
+background_energy_multiplier = 2.03
 sky = SubResource("Sky_o7fep")
-tonemap_mode = 2
-glow_enabled = true
+ambient_light_sky_contribution = 0.64
+ambient_light_energy = 1.38
+tonemap_mode = 1
+tonemap_exposure = 0.46
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkytg"]
 bg_color = Color(0.678431, 0.0980392, 0.772549, 1)
@@ -38,6 +41,7 @@ script = ExtResource("1_6tkge")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_color = Color(1, 0.723748, 0.440429, 1)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
