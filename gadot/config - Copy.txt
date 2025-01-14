@@ -1,7 +1,7 @@
 # Start a line with a Hashtag to place a comment
 
 # Player Options
-username = ""Jewswapo""
+username = Jewswapo
 
 # Movement Keys
 bind forward w
@@ -53,37 +53,10 @@ bind B p
 # Settings
 camera_fov = 85
 viewmodel_camera_fov = 85
-max_fps = 200
+max_fps = 144
 mouse_sensitivity = 0.1
-master_volume = 0.1
+master_volume = 0.1 # Set between 0.0 and 1.0
 show_host_popup = true
 
 # Clear the console
 clear
-
-1.0
-show_host_popup = true
-
-# Clear the console
-clear
-
-ar
-
-
-
-the console
-clear
-
-ar
-
-
-
-
-
-
-
-
-
-
-
-
