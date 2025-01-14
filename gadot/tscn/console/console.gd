@@ -223,7 +223,7 @@ func _handle_variable_assignment(command: String):
 		config_data[variable_name] = value
 		save_config()
 		
-		_output_command(command, "Successfully set %s to %s." % [variable_name, str(value)])
+		_output_command(command, "set %s to %s." % [variable_name, str(value)])
 	else:
 		_output_error("Invalid assignment format. Use 'variable = value'.")
 

@@ -1,4 +1,4 @@
-res://tscn/console/console.tscn
+res://tscn/main_menu.tscn
 res://Player.gd
 res://models/grenade/grenade_proj.gd
 res://manadrop.gd
@@ -12,5 +12,6 @@ res://tscn/main_menu_stars.gdshader
 res://player.gdshader
 res://tscn/playerview.gdshader
 res://tscn/console/console.gd
+res://tscn/autoexec.gd
 res://world.tscn
-res://tscn/main_menu.tscn
+res://tscn/console/console.tscn

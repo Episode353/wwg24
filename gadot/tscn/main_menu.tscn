@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dptgttk8gkprg"]
+[gd_scene load_steps=10 format=3 uid="uid://dptgttk8gkprg"]
 
 [ext_resource type="Script" path="res://sys/ServerDataCollection.gd" id="1_7wr8n"]
 [ext_resource type="Script" path="res://tscn/main_menu.gd" id="1_jlapi"]
+[ext_resource type="Script" path="res://tscn/autoexec.gd" id="2_3wnrv"]
 [ext_resource type="Script" path="res://tscn/main_menu_canvas_layer.gd" id="2_5pqri"]
 [ext_resource type="AudioStream" uid="uid://ccs4au54nqqwx" path="res://music/main_menu_01.ogg" id="3_3mkf0"]
 [ext_resource type="Shader" path="res://tscn/main_menu_stars.gdshader" id="5_j8ubb"]
@@ -38,6 +39,9 @@ script = ExtResource("1_7wr8n")
 
 [node name="TBLoader" type="TBLoader" parent="."]
 map_resource = "res://tbmaps/main_menu.map"
+
+[node name="Autoexec" type="Node" parent="."]
+script = ExtResource("2_3wnrv")
 
 [node name="MenuNodes" type="Node2D" parent="."]
 visible = false
