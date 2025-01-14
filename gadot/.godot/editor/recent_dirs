@@ -1,3 +1,4 @@
+res://tscn/console
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.1.12
 res://entities
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.1.11
@@ -19,4 +20,3 @@ res://sys/weapon_resources
 res://models/rocket_launcher
 res://shaders
 res://addons
-res://addons/kenney_particle_pack

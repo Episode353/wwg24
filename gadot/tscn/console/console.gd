@@ -1,7 +1,9 @@
-class_name Console
-extends CanvasLayer
+extends Window
 
 signal console_loaded  # Define a custom signal
+@onready var output: RichTextLabel = $VBoxContainer/output
+@onready var input: LineEdit = $VBoxContainer/input
+
 
 var expression = Expression.new()
 var command_history = []
@@ -17,7 +19,7 @@ var commands = {
 		return a + b,
 		"args": 2},
 	"clear": {"func": func() -> String:
-		$VBoxContainer/output.text = ""
+		output.text = ""
 		return "Console cleared.",
 		"args": 0},
 	"quit": {"func": func() -> String:
@@ -29,8 +31,8 @@ var commands = {
 }
 
 func _ready():
-	$VBoxContainer/input.text_submitted.connect(self._on_text_submitted)
-	$VBoxContainer/input.connect("gui_input", self._on_input_gui)
+	input.text_submitted.connect(self._on_text_submitted)
+	input.connect("gui_input", self._on_input_gui)
 
 	# Emit the signal when the console is ready
 	emit_signal("console_loaded")
@@ -66,14 +68,14 @@ func _on_text_submitted(command):
 		_output_error("Unknown command: %s" % cmd)
 	
 	# Clear the input field
-	$VBoxContainer/input.text = ""
+	input.text = ""
 
 func _output_command(command, result):
-	$VBoxContainer/output.text += "> " + command + "\n"
-	$VBoxContainer/output.text += str(result) + "\n"
+	output.text += "> " + command + "\n"
+	output.text += str(result) + "\n"
 
 func _output_error(error_text):
-	$VBoxContainer/output.text += "[Error] " + error_text + "\n"
+	output.text += "[Error] " + error_text + "\n"
 
 func _on_input_gui(event):
 	if event is InputEventKey:
@@ -87,10 +89,10 @@ func _navigate_history(direction):
 	history_index += direction
 	history_index = clamp(history_index, 0, len(command_history))
 	if history_index < len(command_history) and history_index >= 0:
-		$VBoxContainer/input.text = command_history[history_index]
-		$VBoxContainer/input.caret_column = $VBoxContainer/input.text.length()
+		input.text = command_history[history_index]
+		input.caret_column = input.text.length()
 	else:
-		$VBoxContainer/input.text = ""
+		input.text = ""
 
 # Custom function to be run by the command
 func quit_function() -> String:
@@ -162,9 +164,18 @@ func _handle_variable_assignment(command: String):
 		elif variable_name == "username":
 			Globals.username = str(value)
 			print(command, "Set username to %s" % Globals.username)
+			
+		if variable_name == "show_host_popup":
+			if typeof(value) == TYPE_STRING:
+				Globals.show_host_popup = (value.to_lower() == "true")
+			else:
+				Globals.show_host_popup = bool(value)
+
 
 		elif variable_name == "master_volume":
 			Globals.master_volume = float(value)
+			
+		
 			
 			# Map the value from 0-1 to -40 to +6 dB
 			var min_db = -40
@@ -196,3 +207,17 @@ func execute_config_file(file_path: String):
 		file.close()
 	else:
 		_output_error("Error: Unable to open config file: %s" % file_path)
+
+
+func _on_visibility_changed() -> void:
+		if self.visible:
+			# I disabled the mouse visible since the main menu has it visible at all times
+			#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			input.grab_focus()
+		else:
+			input.release_focus()
+			#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func _on_close_requested() -> void:
+	self.hide()

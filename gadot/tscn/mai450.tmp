@@ -1,0 +1,149 @@
+[gd_scene load_steps=9 format=3 uid="uid://dptgttk8gkprg"]
+
+[ext_resource type="Script" path="res://sys/ServerDataCollection.gd" id="1_7wr8n"]
+[ext_resource type="Script" path="res://tscn/main_menu.gd" id="1_jlapi"]
+[ext_resource type="Script" path="res://tscn/main_menu_canvas_layer.gd" id="2_5pqri"]
+[ext_resource type="AudioStream" uid="uid://ccs4au54nqqwx" path="res://music/main_menu_01.ogg" id="3_3mkf0"]
+[ext_resource type="Shader" path="res://tscn/main_menu_stars.gdshader" id="5_j8ubb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_86sxb"]
+shader = ExtResource("5_j8ubb")
+shader_parameter/vertical_sections = 21
+shader_parameter/star_size = 0.02
+shader_parameter/star_falloff = 4.0
+shader_parameter/margin = 0.05
+
+[sub_resource type="Sky" id="Sky_fd2ev"]
+sky_material = SubResource("ShaderMaterial_86sxb")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_dt0kg"]
+background_mode = 2
+background_color = Color(0.541176, 0, 0, 1)
+sky = SubResource("Sky_fd2ev")
+sky_rotation = Vector3(0, -0.139626, 0)
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.0962047, 0.0962048, 0.0962047, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.93779)
+omni_range = 14.4893
+
+[node name="ServerDataCollection" type="Node" parent="."]
+script = ExtResource("1_7wr8n")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="ServerDataCollection"]
+
+[node name="TBLoader" type="TBLoader" parent="."]
+map_resource = "res://tbmaps/main_menu.map"
+
+[node name="MenuNodes" type="Node2D" parent="."]
+visible = false
+script = ExtResource("1_jlapi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MenuNodes"]
+script = ExtResource("2_5pqri")
+
+[node name="MainMenu" type="PanelContainer" parent="MenuNodes/CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_top = 0.00833333
+anchor_right = 0.353125
+anchor_bottom = 0.991667
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuNodes/CanvasLayer/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuNodes/CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+
+[node name="HostButton" type="Button" parent="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="OfflineButton" type="Button" parent="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Offline"
+
+[node name="AddressEntry" type="LineEdit" parent="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "localhost"
+placeholder_text = "Enter Address to Join Here"
+alignment = 1
+
+[node name="UsernameEntry" type="LineEdit" parent="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "defaultvalue"
+placeholder_text = "Enter Username"
+alignment = 1
+
+[node name="MapEntry" type="ItemList" parent="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+auto_height = true
+
+[node name="ServerBrowser" type="VBoxContainer" parent="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Servers" type="ItemList" parent="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ServerBrowser"]
+layout_mode = 2
+auto_height = true
+
+[node name="Copyright" type="Label" parent="MenuNodes/CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = -23.0
+offset_right = 89.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "© Joseph Toscano 2024"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="MenuNodes/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -324.0
+offset_right = 324.0
+offset_bottom = 39.0
+grow_horizontal = 2
+theme_type_variation = &"HeaderLarge"
+text = "Wizards With Guns"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3mkf0")
+volume_db = -4.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dt0kg")
+
+[connection signal="request_completed" from="ServerDataCollection/HTTPRequest" to="ServerDataCollection" method="_on_http_request_request_completed"]
+[connection signal="pressed" from="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="MenuNodes" method="_on_host_button_pressed"]
+[connection signal="pressed" from="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="MenuNodes" method="_on_join_button_pressed"]
+[connection signal="pressed" from="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer/OfflineButton" to="MenuNodes" method="_on_offline_button_pressed"]
+[connection signal="item_selected" from="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MapEntry" to="MenuNodes" method="_on_map_entry_item_selected"]
+[connection signal="item_activated" from="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ServerBrowser/Servers" to="ServerDataCollection" method="_on_servers_item_activated"]

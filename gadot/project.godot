@@ -35,6 +35,7 @@ enabled=PackedStringArray("res://addons/tbloader/plugin.cfg")
 
 [filesystem]
 
+import/blender/enabled=false
 import/fbx/enabled=false
 
 [input]

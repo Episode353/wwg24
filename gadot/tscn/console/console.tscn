@@ -2,27 +2,28 @@
 
 [ext_resource type="Script" path="res://tscn/console/console.gd" id="1_6l1qw"]
 
-[node name="Console" type="CanvasLayer"]
+[node name="Window" type="Window"]
+title = "Wizards With Guns (Console)"
+position = Vector2i(60, 110)
+size = Vector2i(400, 200)
+always_on_top = true
 script = ExtResource("1_6l1qw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 46.0
-offset_top = -69.0
-offset_right = -834.0
-offset_bottom = 331.0
+offset_bottom = 235.0
 grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
 
 [node name="input" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 select_all_on_focus = true
 
 [node name="output" type="RichTextLabel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+text = "test"
 scroll_following = true
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

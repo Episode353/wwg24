@@ -1,6 +1,9 @@
 extends CanvasLayer
 const CONSOLE_SCENE_PATH = "res://tscn/console/console.tscn"
 var console_instance: Node = null
+@onready var popup_window: Window = $Popup_window
+@onready var popup_window_text: RichTextLabel = $Popup_window/Popup_window_text
+
 
 func _ready():
 	# Load the console scene
@@ -12,8 +15,27 @@ func _ready():
 		add_child(console_instance)
 		# Initially, set the console to be hidden
 		console_instance.visible = false
+	if Globals.show_host_popup == true:
+		popup_window.show()
+		popup_window_text.text = "Data about your comptuer is sent to" + '\n' + "'WizardsWithGuns.com'" + '\n' + "When you host a game"
+	if Globals.show_host_popup == false:
+		popup_window.hide()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
+func _process(_delta):
+	if Input.is_action_just_pressed("console"):
+		toggle_console()
+
+
+
+func toggle_console():
+	if console_instance:
+		console_instance.visible = not console_instance.visible
+		#pause_menu.visible = console_instance.visible
+		Globals.paused = console_instance.visible
+	
+
+
+func _on_popup_window_close_requested() -> void:
+	popup_window.hide()
