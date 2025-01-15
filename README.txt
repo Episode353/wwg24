@@ -16,8 +16,11 @@ the game compiles the map when loading it, so you dont need to restart the game 
 Make sure the texture folders trenchbroom uses and the texture folders godot uses are the same/
 	or there will be some missing textures
 
-How to edit your settings.
-Edit the config.txt
+How to edit your Keybinds.
+Edit the autoexec.json
+
+How to edit your Configs
+Edit the config.json
 
 Made with Godot_v4.3-stable_win64.exe
 
@@ -69,6 +72,9 @@ Features to add:
 
 
 Bugs to fix:
+	- If a decal is placed on a shootable object, the decal is floating because the object dissapeared
+	- Bullet decals interact with Area3d (health pickups) & appear to float in the air
+	- Have the world.gd send the ammount of players to the website
 	- The player name entered in the config.txt appears over enemy players, which is wrong. It should appear over the player who has it entered in the config.
 	- Sound
 	- Older computers have an error and require starting the game in opengl 3, which will cause issues
