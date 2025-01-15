@@ -159,18 +159,22 @@ func _ready():
 	
 	
 
+const CS_SENSITIVITY_SCALE = 0.022  # Counter-Strike scale factor for sensitivity
+
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
 	if Globals.paused:
 		return
 	if event is InputEventMouseMotion:
+		var sensitivity = Globals.mouse_sensitivity * CS_SENSITIVITY_SCALE
 		if free_looking:
-			neck.rotate_y(deg_to_rad(-event.relative.x * Globals.mouse_sensitivity))
-			neck.rotation.y = clamp(neck.rotation.y, deg_to_rad(-120), deg_to_rad(120)) #How far left and right you can look like freelooking
+			neck.rotate_y(deg_to_rad(-event.relative.x * sensitivity))
+			neck.rotation.y = clamp(neck.rotation.y, deg_to_rad(-120), deg_to_rad(120))  # Freelook left/right
 		else:
-			rotate_y(deg_to_rad(-event.relative.x * Globals.mouse_sensitivity))
-			head.rotate_x(deg_to_rad(-event.relative.y * Globals.mouse_sensitivity))
+			rotate_y(deg_to_rad(-event.relative.x * sensitivity))
+			head.rotate_x(deg_to_rad(-event.relative.y * sensitivity))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-98), deg_to_rad(89))
+
 	
 
 

@@ -1,8 +1,8 @@
 {
-	"camera_fov": 185,
+	"camera_fov": 85,
 	"master_volume": 0.8,
-	"max_fps": 60,
-	"mouse_sensitivity": 0.15,
+	"max_fps": 144,
+	"mouse_sensitivity": 1.25,
 	"show_host_popup": true,
 	"username": "ProfessorJewSwampi"
 }
