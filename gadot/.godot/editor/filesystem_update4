@@ -1,5 +1,4 @@
 res://world.tscn
-res://sys/weapon_resource.gd
 res://Player.gd
 res://models/grenade/grenade_proj.gd
 res://manadrop.gd
@@ -15,3 +14,9 @@ res://tscn/playerview.gdshader
 res://tscn/main_menu.tscn
 res://tscn/console/console.tscn
 res://player.tscn
+res://tscn/main_menu_canvas_layer.gd
+res://tscn/console/console.gd
+res://sys/globals.gd
+res://tscn/autoexec.gd
+res://tscn/main_menu.gd
+res://world.gd

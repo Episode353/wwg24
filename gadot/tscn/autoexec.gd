@@ -37,7 +37,7 @@ func execute_autoexec():
 			if result != "Success":
 				push_error("[Error] Binding action '%s' to key '%s' failed: %s" % [action, key, result])
 			else:
-				print("[Info] Successfully bound action '%s' to key '%s'." % [action, key])
+				print("[Info] Bound action '%s' to key '%s'." % [action, key])
 
 func bind_key(action: String, key: String) -> String:
 	var all_actions = InputMap.get_actions()

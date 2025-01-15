@@ -17,7 +17,7 @@ func _ready():
 		console_instance.visible = false
 	if Globals.show_host_popup == true:
 		popup_window.show()
-		popup_window_text.text = "Data about your comptuer is sent to" + '\n' + "'WizardsWithGuns.com'" + '\n' + "When you host a game"
+		popup_window_text.text = "FYI," + '\n' + "Hosting a server with the 'Host' Button will share your IP address with other clients, and 'WizardsWithGuns.com'" + '\n' + "If you are not okay with this you can select 'Offline'"
 	if Globals.show_host_popup == false:
 		popup_window.hide()
 
@@ -39,3 +39,7 @@ func toggle_console():
 
 func _on_popup_window_close_requested() -> void:
 	popup_window.hide()
+
+
+func _on_button_pressed():
+	Globals.exec("show_host_popup = false")

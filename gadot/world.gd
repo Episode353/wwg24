@@ -16,10 +16,6 @@ var num_players = 0
 func _unhandled_input(_event):
 	if Globals.paused:
 		return
-	if Input.is_action_just_pressed("quit"):
-		close_game()
-	if Input.is_action_just_pressed("fullscreen"):
-		swap_fullscreen_mode()
 	if Input.is_action_just_pressed("respawn"):
 		var player_node = get_node_or_null(str(multiplayer.get_unique_id()))
 		if player_node:
@@ -28,9 +24,6 @@ func _unhandled_input(_event):
 			print("Player node not found for respawn.")
 
 		
-func close_game():
-	get_tree().quit()
-
 
 
 @rpc("any_peer")
@@ -66,11 +59,7 @@ func send_to_main_menu():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
-func swap_fullscreen_mode():
-	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_MAXIMIZED:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+
 
 func start_offline(map: String):
 	map_name = map

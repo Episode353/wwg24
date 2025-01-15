@@ -142,7 +142,6 @@ vertical_alignment = 1
 title = "Disclaimer"
 initial_position = 2
 size = Vector2i(300, 200)
-visible = false
 
 [node name="Popup_window_text" type="RichTextLabel" parent="MenuNodes/CanvasLayer/Popup_window"]
 anchors_preset = 15
@@ -151,6 +150,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 fit_content = true
+
+[node name="Button" type="Button" parent="MenuNodes/CanvasLayer/Popup_window"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -73.5
+offset_top = -31.0
+offset_right = 73.5
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+text = "Don't Show again."
 
 [node name="Menu_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_3mkf0")
@@ -166,3 +179,4 @@ environment = SubResource("Environment_dt0kg")
 [connection signal="item_selected" from="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MapEntry" to="MenuNodes" method="_on_map_entry_item_selected"]
 [connection signal="item_activated" from="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ServerBrowser/Servers" to="ServerDataCollection" method="_on_servers_item_activated"]
 [connection signal="close_requested" from="MenuNodes/CanvasLayer/Popup_window" to="MenuNodes/CanvasLayer" method="_on_popup_window_close_requested"]
+[connection signal="pressed" from="MenuNodes/CanvasLayer/Popup_window/Button" to="MenuNodes/CanvasLayer" method="_on_button_pressed"]

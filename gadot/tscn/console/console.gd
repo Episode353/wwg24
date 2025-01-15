@@ -25,8 +25,8 @@ var commands = {
 	"quit": {"func": func() -> String:
 		return quit_function(),
 		"args": 0},
-	# "bind" command is removed as per requirements
 }
+
 
 var config_path = "res://config.json"
 var config_data = {}
@@ -72,102 +72,30 @@ func save_config():
 func apply_config():
 	if "max_fps" in config_data:
 		Engine.max_fps = int(config_data["max_fps"])
-		print("Set Engine.max_fps to %d" % Engine.max_fps)
 	
 	if "camera_fov" in config_data:
 		Globals.camera_fov = float(config_data["camera_fov"])
-		print("Set camera_fov to %f" % Globals.camera_fov)
 	
 	if "mouse_sensitivity" in config_data:
 		Globals.mouse_sensitivity = float(config_data["mouse_sensitivity"])
-		print("Set mouse_sensitivity to %f" % Globals.mouse_sensitivity)
 	
 	if "username" in config_data:
 		Globals.username = str(config_data["username"])
-		print("Set username to %s" % Globals.username)
 	
 	if "show_host_popup" in config_data:
 		Globals.show_host_popup = bool(config_data["show_host_popup"])
-		print("Set show_host_popup to %s" % Globals.show_host_popup)
-	
+		
 	if "master_volume" in config_data:
 		Globals.master_volume = float(config_data["master_volume"])
 		set_master_volume(Globals.master_volume)
 
-func set_master_volume(volume: float):
-	var min_db = -40
-	var max_db = 6
-	var db_value = min_db + (volume * (max_db - min_db))
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), db_value)
-	print("Set master_volume to %f dB (%f scaled)" % [db_value, volume])
-
-func _on_text_submitted(command):
-	command = command.strip_edges()
-	if command == "":
-		return
-	
-	command_history.append(command)
-	history_index = len(command_history)
-	
-	var tokens = command.split(" ")
-	var cmd = tokens[0].to_lower()
-	var args = tokens.slice(1, tokens.size())
-	
-	if commands.has(cmd):
-		var command_info = commands[cmd]
-		var func_ref = command_info["func"]
-		var expected_arg_count = command_info["args"]
-
-		if args.size() == expected_arg_count:
-			var result = func_ref.callv(args)
-			_output_command(command, result)
+	if "fullscreen" in config_data:
+		Globals.fullscreen = bool(config_data["fullscreen"])
+		if Globals.fullscreen:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		else:
-			_output_error("Error: '%s' command requires %d arguments." % [cmd, expected_arg_count])
-	elif "=" in command:  # Detecting variable assignment
-		_handle_variable_assignment(command)
-	else:
-		_output_error("Unknown command: %s" % cmd)
-	
-	# Clear the input field
-	input.text = ""
-
-func _output_command(command, result):
-	output.text += "> " + command + "\n"
-	output.text += str(result) + "\n"
-
-func _output_error(error_text):
-	output.text += "[Error] " + error_text + "\n"
-
-func _on_input_gui(event):
-	if event is InputEventKey:
-		if event.pressed:
-			if event.keycode == KEY_UP:
-				_navigate_history(-1)
-			elif event.keycode == KEY_DOWN:
-				_navigate_history(1)
-
-func _navigate_history(direction):
-	history_index += direction
-	history_index = clamp(history_index, 0, len(command_history))
-	if history_index < len(command_history) and history_index >= 0:
-		input.text = command_history[history_index]
-		input.caret_column = input.text.length()
-	else:
-		input.text = ""
-
-# Custom function to be run by the command
-func quit_function() -> String:
-	get_tree().quit()
-	return "Quitting"
-
-# Function to dynamically return all available commands
-func get_available_commands() -> String:
-	var command_list = ""
-	for cmd in commands.keys():
-		command_list += "- " + cmd + ", "
-	command_list += "\n"
-	return command_list
-
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		
 # Function to handle variable assignment and update config.json
 func _handle_variable_assignment(command: String):
 	var tokens = command.split("=")
@@ -215,6 +143,15 @@ func _handle_variable_assignment(command: String):
 					return
 				Globals.master_volume = value
 				set_master_volume(value)
+			"fullscreen":
+				if value_str.to_lower() not in ["true", "false"]:
+					_output_error("Invalid value for fullscreen. It must be 'true' or 'false'.")
+					return
+				value = value_str.to_lower() == "true"
+				if value:
+					DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+				else:
+					DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			_:
 				_output_error("Invalid variable assignment: %s" % variable_name)
 				return
@@ -226,6 +163,86 @@ func _handle_variable_assignment(command: String):
 		_output_command(command, "set %s to %s." % [variable_name, str(value)])
 	else:
 		_output_error("Invalid assignment format. Use 'variable = value'.")
+
+
+func set_master_volume(volume: float):
+	var min_db = -40
+	var max_db = 6
+	var db_value = min_db + (volume * (max_db - min_db))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), db_value)
+
+func _on_text_submitted(command):
+	command = command.strip_edges()
+	if command == "":
+		return
+	
+	command_history.append(command)
+	history_index = len(command_history)
+	
+	var tokens = command.split(" ")
+	var cmd = tokens[0].to_lower()
+	var args = tokens.slice(1, tokens.size())
+	
+	if commands.has(cmd):
+		var command_info = commands[cmd]
+		var func_ref = command_info["func"]
+		var expected_arg_count = command_info["args"]
+
+		if args.size() == expected_arg_count:
+			var result = func_ref.callv(args)
+			_output_command(command, result)
+		else:
+			_output_error("Error: '%s' command requires %d arguments." % [cmd, expected_arg_count])
+	elif "=" in command:  # Detecting variable assignment
+		_handle_variable_assignment(command)
+	elif config_data.has(command):  # If it's a variable name, return its value
+		var value = config_data[command]
+		_output_command(command, "%s = %s" % [command, str(value)])
+	else:
+		_output_error("Unknown command or variable: %s" % cmd)
+	
+	# Clear the input field
+	input.text = ""
+
+
+func _output_command(command, result):
+	output.text += "> " + command + "\n"
+	output.text += str(result) + "\n"
+
+func _output_error(error_text):
+	output.text += "[Error] " + error_text + "\n"
+
+func _on_input_gui(event):
+	if event is InputEventKey:
+		if event.pressed:
+			if event.keycode == KEY_UP:
+				_navigate_history(-1)
+			elif event.keycode == KEY_DOWN:
+				_navigate_history(1)
+
+func _navigate_history(direction):
+	history_index += direction
+	history_index = clamp(history_index, 0, len(command_history))
+	if history_index < len(command_history) and history_index >= 0:
+		input.text = command_history[history_index]
+		input.caret_column = input.text.length()
+	else:
+		input.text = ""
+
+# Custom function to be run by the command
+func quit_function() -> String:
+	get_tree().quit()
+	return "Quitting"
+
+# Function to dynamically return all available commands
+func get_available_commands() -> String:
+	var command_list = ""
+	for cmd in commands.keys():
+		command_list += "- " + cmd + ", "
+	command_list += "\n"
+	return command_list
+
+
 
 func is_valid_int(value: String) -> bool:
 	return value.is_valid_int()

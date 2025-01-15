@@ -59,7 +59,6 @@ func switch_scene_and_run_func(scene_path: String, func_name: String, param: Str
 
 func _on_map_entry_item_selected(index):
 	selected_map_name = map_entry.get_item_text(index)
-	print("Selected map: ", selected_map_name)
 
 func load_map():
 	tb_loader.build_meshes()
