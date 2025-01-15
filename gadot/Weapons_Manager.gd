@@ -215,12 +215,17 @@ func raycast_shoot_procc():
 func create_bullet_decal(col_point: Vector3, col_nor: Vector3):
 	var b = bullet_decal.instantiate()
 	world.add_child(b)  # Ensure it's added to the global scene tree
-	b.global_transform.origin = col_point
 
+	# Offset the position along the collision normal
+	var offset_amount = 0.01  # Adjust this value for your needs
+	b.global_transform.origin = col_point + col_nor.normalized() * offset_amount
+
+	# Adjust rotation based on collision normal
 	if col_nor == Vector3.DOWN or col_nor == Vector3.UP:
 		b.rotation_degrees.x = 90
 	else:
 		b.look_at(col_point - col_nor, Vector3(0, 1, 0))
+
 
 
 

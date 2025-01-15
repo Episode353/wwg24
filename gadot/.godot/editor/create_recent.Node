@@ -1,3 +1,6 @@
+CSGCylinder3D
+Sprite3D
+CSGBox3D
 Button
 Node
 Window
@@ -9,7 +12,3 @@ VBoxContainer
 HTTPRequest
 CollisionShape3D
 Area3D
-Node3D
-Label3D
-CSGBox3D
-GPUParticles3D

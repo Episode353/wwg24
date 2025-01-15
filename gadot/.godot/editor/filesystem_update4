@@ -14,9 +14,6 @@ res://tscn/playerview.gdshader
 res://tscn/main_menu.tscn
 res://tscn/console/console.tscn
 res://player.tscn
-res://tscn/main_menu_canvas_layer.gd
-res://tscn/console/console.gd
-res://sys/globals.gd
-res://tscn/autoexec.gd
-res://tscn/main_menu.gd
-res://world.gd
+res://tscn/bullet_decal.tscn
+res://Weapons_Manager.gd
+res://tscn/bullet_decal.gdshader
