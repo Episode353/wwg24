@@ -28,7 +28,7 @@ var commands = {
 }
 
 
-var config_path = "res://config.json"
+var config_path = "config.json"
 var config_data = {}
 
 func _ready():

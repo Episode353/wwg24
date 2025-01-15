@@ -15,5 +15,5 @@ res://tscn/main_menu.tscn
 res://tscn/console/console.tscn
 res://player.tscn
 res://tscn/bullet_decal.tscn
-res://Weapons_Manager.gd
-res://tscn/bullet_decal.gdshader
+res://tscn/console/console.gd
+res://tscn/autoexec.gd

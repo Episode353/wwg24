@@ -1,8 +1,8 @@
 extends Node
 
 # Path to the autoexec.json file
-const AUTOEXEC_PATH := "res://autoexec.json"
-const AUTOEXEC_BACKUP_PATH := "res://autoexec_backup.json"
+const AUTOEXEC_PATH := "autoexec.json"
+const AUTOEXEC_BACKUP_PATH := "autoexec_backup.json"
 
 func _ready():
 	backup_autoexec()
