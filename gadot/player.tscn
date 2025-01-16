@@ -4200,7 +4200,7 @@ collision_layer = 48
 collision_mask = 17
 script = ExtResource("1_2v3wm")
 
-[node name="standing_collision_shape" type="CollisionShape3D" parent="." groups=["players"]]
+[node name="standing_collision_shape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_67y6s")
 

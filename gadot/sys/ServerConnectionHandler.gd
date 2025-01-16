@@ -18,7 +18,8 @@ func send_server_info(ip_adress):
 		var request_url: String = "http://%s/register_server" % [Globals.IP_SERVER_BROWSER]
 
 		var map_name = world.map_name if is_instance_valid(world) else "Unknown"
-		var num_players = str(world.num_players) if is_instance_valid(world) else "0"
+		var num_players = str(get_tree().get_nodes_in_group("players").size())
+		print(get_tree().get_nodes_in_group("players"))
 		# Optionally, specify your external server port if it's different from the default
 		var body = {
 			"ip_address": ip_adress,

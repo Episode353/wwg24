@@ -8,7 +8,7 @@
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3qfhx"]
-radius = 3.0
+radius = 1.0
 
 [node name="HealthDrop" type="Node3D"]
 
@@ -18,8 +18,8 @@ mesh = SubResource("CapsuleMesh_u2ygk")
 material = SubResource("StandardMaterial3D_vo4gs")
 
 [node name="Area3D" type="Area3D" parent="CSGMesh3D"]
-collision_layer = 49
-collision_mask = 49
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_gwm2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CSGMesh3D/Area3D"]

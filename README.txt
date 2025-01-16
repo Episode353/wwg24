@@ -72,9 +72,6 @@ Features to add:
 
 
 Bugs to fix:
-	- If a decal is placed on a shootable object, the decal is floating because the object dissapeared
-	- Bullet decals interact with Area3d (health pickups) & appear to float in the air
-	- Have the world.gd send the ammount of players to the website
 	- The player name entered in the config.txt appears over enemy players, which is wrong. It should appear over the player who has it entered in the config.
 	- Sound
 	- Older computers have an error and require starting the game in opengl 3, which will cause issues

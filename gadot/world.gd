@@ -12,7 +12,6 @@ var external_ip : String = "NULL"
 const PORT : int = 7777
 var enet_peer = ENetMultiplayerPeer.new()
 var map_name = ""
-var num_players = 0
 func _unhandled_input(_event):
 	if Globals.paused:
 		return

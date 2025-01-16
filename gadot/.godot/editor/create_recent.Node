@@ -1,6 +1,6 @@
-CSGCylinder3D
-Sprite3D
 CSGBox3D
+Sprite3D
+CSGCylinder3D
 Button
 Node
 Window
