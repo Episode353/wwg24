@@ -22,18 +22,6 @@ func _ready():
 		popup_window.hide()
 
 
-
-func _process(_delta):
-	if Input.is_action_just_pressed("console"):
-		toggle_console()
-
-
-
-func toggle_console():
-	if console_instance:
-		console_instance.visible = not console_instance.visible
-		#pause_menu.visible = console_instance.visible
-		Globals.paused = console_instance.visible
 	
 
 

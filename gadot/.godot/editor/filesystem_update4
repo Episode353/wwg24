@@ -1,4 +1,5 @@
-res://entities/health_drop.tscn
+res://world.tscn
+res://sys/weapon_resource.gd
 res://Player.gd
 res://models/grenade/grenade_proj.gd
 res://manadrop.gd
@@ -11,11 +12,12 @@ res://CollisionScript.gd
 res://tscn/main_menu_stars.gdshader
 res://player.gdshader
 res://tscn/playerview.gdshader
-res://world.tscn
 res://tscn/main_menu.tscn
 res://tscn/console/console.tscn
 res://player.tscn
 res://tscn/bullet_decal.tscn
-res://Weapons_Manager.gd
-res://world.gd
-res://sys/ServerConnectionHandler.gd
+res://entities/health_drop.tscn
+res://CanvasLayer.gd
+res://tscn/console/console.gd
+res://tscn/main_menu_canvas_layer.gd
+res://sys/globals.gd

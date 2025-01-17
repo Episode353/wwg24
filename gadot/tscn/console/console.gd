@@ -1,6 +1,7 @@
 extends Window
 
 signal console_loaded
+@onready var console_window = $"."
 
 @onready var output: RichTextLabel = $VBoxContainer/output
 @onready var input: LineEdit = $VBoxContainer/input
@@ -26,6 +27,32 @@ var commands = {
 		return quit_function(),
 		"args": 0},
 }
+
+
+func _process(delta):
+	if Input.is_action_just_pressed("console"):
+		toggle_console()
+
+func toggle_console():
+	visible = not visible
+	print("Console is now ", visible)
+
+	# Update the global paused state
+	Globals.paused = visible
+
+	# Manage mouse mode based on console visibility
+	if visible:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		# Optionally, grab focus to the input field
+		input.grab_focus()
+	else:
+		# Release focus from the input field
+		input.release_focus()
+		if get_tree().get_nodes_in_group("players").size() > 0:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+
 
 
 var config_path = "config.json"

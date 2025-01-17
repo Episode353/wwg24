@@ -17,11 +17,6 @@ func toggle_pause_menu():
 	# Toggle visibility of the pause menu
 	pause_menu.visible = pause_menu_visibility
 
-	# Toggle visibility of the console
-	if console_instance:
-		console_instance.visible = pause_menu_visibility
-		Globals.paused = pause_menu_visibility
-
 	# Set the mouse mode based on the visibility of the pause menu
 	if pause_menu.visible:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -38,22 +33,3 @@ func _ready():
 		add_child(console_instance)
 		# Initially, set the console to be hidden
 		console_instance.visible = false
-
-func _process(_delta):
-	if Input.is_action_just_pressed("console"):
-		toggle_console()
-
-
-
-func toggle_console():
-	if console_instance:
-		console_instance.visible = not console_instance.visible
-		pause_menu.visible = console_instance.visible
-		Globals.paused = console_instance.visible
-		
-		if console_instance.visible:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			console_instance.get_node("VBoxContainer/input").grab_focus()
-		else:
-			console_instance.get_node("VBoxContainer/input").release_focus()
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

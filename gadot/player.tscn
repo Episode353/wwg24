@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://cppb5j8hb7ryq" path="res://models/knife/Knife_Metalness-Roughness.png" id="17_qs5rc"]
 [ext_resource type="Texture2D" uid="uid://brcileg6pp4w6" path="res://models/knife/Knife_OpenGL_normal.png" id="18_bkynn"]
 [ext_resource type="Texture2D" uid="uid://wt4kifchk2pd" path="res://models/rocket_launcher/rocket_launcher_0.png" id="20_eosmy"]
-[ext_resource type="Texture2D" uid="uid://dtu65gjsb1q5" path="res://models/rocket_launcher/rocket_0.png" id="21_vqms1"]
+[ext_resource type="Texture2D" uid="uid://bcypyuvqq6th4" path="res://models/rocket_launcher/rocket_0.png" id="21_vqms1"]
 [ext_resource type="Texture2D" uid="uid://c328o8gs1t5x1" path="res://models/grenade/grenade_0.png" id="22_oynkj"]
 [ext_resource type="Texture2D" uid="uid://6c3oi65oxila" path="res://models/salsa/salsa_0.png" id="23_krb4n"]
 [ext_resource type="Script" path="res://CollisionScript.gd" id="26_arl6k"]
