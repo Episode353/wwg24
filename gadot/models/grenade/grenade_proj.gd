@@ -12,7 +12,7 @@ var light_blink_timer = 0.0
 const EXPLOSION_TIME = 4.0
 
 func _ready():
-	self.angular_velocity.z = 40
+	self.angular_velocity.z = 4
 
 func _physics_process(delta):
 	# Gradually reduce angular velocity
