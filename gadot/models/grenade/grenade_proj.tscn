@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://1enr0jq80l1j"]
+[gd_scene load_steps=16 format=4 uid="uid://1enr0jq80l1j"]
 
 [ext_resource type="Script" path="res://models/grenade/grenade_proj.gd" id="1_tnb26"]
 [ext_resource type="Texture2D" uid="uid://c328o8gs1t5x1" path="res://models/grenade/grenade_0.png" id="1_xta8g"]
@@ -87,8 +87,17 @@ hue_variation_max = 0.35
 
 [sub_resource type="QuadMesh" id="QuadMesh_fogwc"]
 
-[node name="RigidBody3D" type="RigidBody3D" groups=["pushable"]]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ps5n5"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="RigidBody3D" type="RigidBody3D" groups=["moveable"]]
 collision_layer = 0
+collision_mask = 257
 mass = 0.05
 physics_material_override = SubResource("PhysicsMaterial_gho32")
 script = ExtResource("1_tnb26")
@@ -131,3 +140,6 @@ draw_pass_1 = SubResource("QuadMesh_fogwc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0780472, 0.270374, -0.0822838)
 light_color = Color(1, 0, 0, 1)
 omni_range = 10.2105
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ps5n5")

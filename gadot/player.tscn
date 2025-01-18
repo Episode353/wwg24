@@ -4198,7 +4198,7 @@ height = 0.1
 
 [node name="Player" type="CharacterBody3D" groups=["players"]]
 collision_layer = 48
-collision_mask = 17
+collision_mask = 273
 script = ExtResource("1_2v3wm")
 
 [node name="standing_collision_shape" type="CollisionShape3D" parent="."]
@@ -4539,7 +4539,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80978, 0)
 cull_mask = 2
 script = ExtResource("28_p4825")
 
-[node name="Node3D" type="Node3D" parent="neck/head"]
+[node name="holding_body" type="StaticBody3D" parent="neck/head/main_camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.88758e-06, -1.76314)
+collision_layer = 256
+collision_mask = 257
 
 [node name="username_label" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)

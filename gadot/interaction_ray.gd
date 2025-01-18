@@ -1,78 +1,65 @@
 extends RayCast3D
-@onready var main_camera = $".."
-@onready var interaction_ray = $"."
-var grabbed_object = null
+
+@onready var camera_3d: Camera3D = $".."
+@onready var interaction_ray: RayCast3D = $"."
+@onready var holding_body: StaticBody3D = $"../holding_body"
+
+var grabbed_object: RigidBody3D
+var grab_joint: Generic6DOFJoint3D
 var is_holding_object = false
-var old_pos: = Vector3()
-var new_pos: = Vector3()
-
-# The maximum ammount the grabbed_object can move per frame
-var move_speed: float = 20.0
-
-# This number will controll how "Heavy" the object feels when it is let go
-# Higher number means the object will move less, lower number means it will move more
-var grabbed_object_velocity_scale: float = 0.5
 
 func _process(delta):
-	process_input()
-	place_grabbable_objects(delta)
-
-func place_grabbable_objects(delta):
-	if is_holding_object and grabbed_object != null:
-		# 1) Store the old position 
-		old_pos = grabbed_object.global_transform.origin
-
-		# 2) Calculate desired new position in front of the camera
-		var forward_direction: Vector3 = -main_camera.global_transform.basis.z
-		var target_position: Vector3 = main_camera.global_transform.origin + forward_direction * 2
-
-		# 2a) Move the object smoothly (if you still want that smooth effect)
-		new_pos = old_pos.move_toward(target_position, move_speed * delta)
-
-		# 3) Update the object's transform
-		var temp_transform = grabbed_object.global_transform
-		temp_transform.origin = new_pos
-		grabbed_object.global_transform = temp_transform
-
-		# 4) Compute velocity from the movement this frame
-		var frame_velocity = ((new_pos - old_pos) / delta) * grabbed_object_velocity_scale
-		grabbed_object.linear_velocity = frame_velocity
-
-		# (Optional) Re-align the object, e.g., "look_at" etc.
-		grabbed_object.look_at(main_camera.global_transform.origin, Vector3.UP)
-		
-		# If the object is too far away, let go of the object
-		if (grabbed_object.global_transform.origin - global_transform.origin).length() > 4:
+	if Input.is_action_just_pressed("interact"):
+		if is_holding_object and grabbed_object:
+			# If we are already holding something, release it
 			release_grabbed_object()
+		else:
+			# Try to pick something up
+			attempt_pickup()
+			
+	if grabbed_object and (grabbed_object.global_transform.origin - global_transform.origin).length() > 3:
+			release_grabbed_object()
+
+func attempt_pickup():
+	var hit_object: PhysicsBody3D = interaction_ray.get_collider() as PhysicsBody3D
+	if !hit_object:
+		return
+	
+	# Optional distance check
+	var distance = (hit_object.global_transform.origin - global_transform.origin).length()
+	if distance > 5:
+		return  # too far
+	
+	# Check if it's a RigidBody3D in "grabbable" group
+	if hit_object.is_in_group("grabbable") and hit_object is RigidBody3D:
+		grabbed_object = hit_object
+		is_holding_object = true
+		create_6dof_joint(grabbed_object)
+
+func create_6dof_joint(body: RigidBody3D):
+	grab_joint = Generic6DOFJoint3D.new()
+	grab_joint.node_a = holding_body.get_path()
+	grab_joint.node_b = body.get_path()
+
+	# 1) Lock linear movement: The object cannot move away from the holding_body
+	#grab_joint.linear_limit_lower = Vector3.ZERO
+	#grab_joint.linear_limit_upper = Vector3.ZERO
+#
+	## 2) Lock angular movement: The object must rotate with the holding_body
+	#grab_joint.angular_limit_lower = Vector3.ZERO
+	#grab_joint.angular_limit_upper = Vector3.ZERO
+
+	# Add the joint to the scene so the physics engine can process it
+	add_child(grab_joint)
+
+	# Wake the body so it doesn't remain sleeping
+	body.sleeping = false
 
 func release_grabbed_object():
-	grabbed_object = null
 	is_holding_object = false
+	
+	if grab_joint:
+		grab_joint.queue_free()
+		grab_joint = null
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func process_input():
-# Interact with objects
-	if Input.is_action_just_pressed("interact"):
-		
-		# If the player is holding an object when they press the iteract key, let go of the object
-		if grabbed_object != null:
-			release_grabbed_object()
-			return
-		
-		# If the player isnt holding an object, read the raycast
-		var hit_object = interaction_ray.get_collider()
-		if !hit_object:
-			return # If the raycast doesnt hit anything return and do nothing
-			
-		# Calculate distance between this player (script presumably attached to the player) and hit_object
-		var distance = (hit_object.global_transform.origin - global_transform.origin).length()
-
-		# Check if it's farther than e.g., 5 units
-		if distance > 5:
-			return # Too far to interact
-		
-		# If the raycast hits something lets move the object!
-		if hit_object.get_parent().is_in_group("grabbable"):
-			is_holding_object = true
-			grabbed_object = hit_object
+	grabbed_object = null

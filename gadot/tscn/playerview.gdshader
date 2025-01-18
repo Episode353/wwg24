@@ -78,7 +78,7 @@ void fragment() {
 	mask = depth < 0.99999 ? smoothstep(transition_mask_a,1.0,mask) : 0.0;
 	vec3 snow_albedo = mix(screen,snow_color * smoothstep(0.0,1.0,lumin * 3.0)*1.1,mask);
 	snow_albedo = snow > 0.5 ? snow_color * snow_depth : snow_albedo;
-	
+
 	ALBEDO = snow_albedo;
 	DEPTH = depth_out;
 }
