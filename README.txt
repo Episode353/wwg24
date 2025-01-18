@@ -76,6 +76,7 @@ Features to add:
 
 
 Bugs to fix:
+	- If a player grabs a grabbable object that someone else is grabbing, weird stuff happens
 	- The player name entered in the config.txt appears over enemy players, which is wrong. It should appear over the player who has it entered in the config.
 	- Sound
 	- Older computers have an error and require starting the game in opengl 3, which will cause issues
