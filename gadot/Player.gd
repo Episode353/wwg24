@@ -7,6 +7,7 @@ signal mana_changed(mana_value)
 @onready var player = $"."
 
 # Player Nodes
+@onready var raycast_shoot = $neck/head/main_camera/raycast_shoot
 
 @onready var head = $neck/head
 @onready var neck = $neck
@@ -113,6 +114,8 @@ var kill_timeout = 3
 var kill_max_timeout = 3
 var can_die = true
 
+var grabbed_object = null
+var is_holding_object = false
 
 
 
@@ -232,6 +235,23 @@ func update_view_bobbing(delta):
 	# Apply the offsets to the FPS_RIG's position relative to the base position
 	fps_rig.position = base_fps_rig_position + Vector3(bob_offset_x, bob_offset_y, bob_offset_z)
 
+func place_grabbable_objects(delta):
+	var move_speed: float = 14
+	if is_holding_object and grabbed_object != null:
+		# Get the forward direction of the camera
+		var forward_direction: Vector3 = -main_camera.global_transform.basis.z
+		
+		# Calculate the target position relative to the camera's orientation
+		var target_position: Vector3 = main_camera.global_transform.origin + forward_direction * 2
+		
+		# Smoothly move the object towards the target position
+		var current_position: Vector3 = grabbed_object.global_transform.origin
+		var new_position: Vector3 = current_position.move_toward(target_position, move_speed * delta)
+		
+		# Update the object's position
+		grabbed_object.global_transform.origin = new_position
+		grabbed_object.look_at(main_camera.global_transform.origin, Vector3.UP)
+
 
 
 func process_input():
@@ -243,6 +263,26 @@ func process_input():
 		kill_timeout = kill_max_timeout
 		player_death()
 	
+	# Interact with objects
+	if Input.is_action_just_pressed("interact"):
+		
+		# If the player is holding an object when they press the iteract key, let go of the object
+		if grabbed_object != null:
+			grabbed_object = null
+			is_holding_object = false
+			return
+		
+		# If the player isnt holding an object, read the raycast
+		var hit_object = raycast_shoot.get_collider()
+		if !hit_object:
+			return # If the raycast doesnt hit anything return and do nothing
+		
+		# If the raycast hits something lets move the object!
+		if hit_object.get_parent().is_in_group("grabbable"):
+			is_holding_object = true
+			grabbed_object = hit_object
+		
+			
 	# Free-looking
 	if Input.is_action_just_pressed("free_look"):
 		free_looking = true
@@ -296,6 +336,7 @@ func process_movement(delta):
 
 func _process(delta):
 	viewmodel_camera.global_transform = main_camera.global_transform
+	place_grabbable_objects(delta)
 
 func accelerate(wish_dir: Vector3, max_speed: float, delta):
 	# Get our current speed as a projection of velocity onto the wish_dir

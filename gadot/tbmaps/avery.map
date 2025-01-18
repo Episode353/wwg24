@@ -1593,13 +1593,33 @@
 }
 // entity 28
 {
+"classname" "box_grabbable"
+"origin" "200 -104 24"
+}
+// entity 29
+{
+"classname" "box_grabbable"
+"origin" "-24 232 24"
+}
+// entity 30
+{
+"classname" "box_grabbable"
+"origin" "840 920 24"
+}
+// entity 31
+{
+"classname" "box_grabbable"
+"origin" "1048 584 24"
+}
+// entity 32
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "pad"
 "_tb_id" "6"
 "_tb_layer_sort_index" "0"
 }
-// entity 29
+// entity 33
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"

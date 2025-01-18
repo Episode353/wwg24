@@ -19,6 +19,7 @@
         "kill": "f3",
         "respawn": "f2",
         "main_menu": "escape",
+        "interact": "e",
         "fullscreen": "f11"
     },
     "weapon_buttons": {

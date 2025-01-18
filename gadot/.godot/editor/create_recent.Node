@@ -1,4 +1,8 @@
+Node3D
 CSGBox3D
+CollisionShape3D
+CSGPolygon3D
+RigidBody3D
 Sprite3D
 CSGCylinder3D
 Button
@@ -9,6 +13,3 @@ Popup
 Timer
 ItemList
 VBoxContainer
-HTTPRequest
-CollisionShape3D
-Area3D

@@ -1,4 +1,4 @@
-res://models/rocket_launcher/explosion.tscn
+res://player.tscn
 res://Player.gd
 res://models/grenade/grenade_proj.gd
 res://manadrop.gd
@@ -11,11 +11,13 @@ res://CollisionScript.gd
 res://tscn/main_menu_stars.gdshader
 res://player.gdshader
 res://tscn/playerview.gdshader
-res://models/rocket_launcher/explosion.gd
+res://entities/box_grabbable.tscn
 res://world.tscn
 res://tscn/main_menu.tscn
 res://tscn/console/console.tscn
-res://player.tscn
 res://tscn/bullet_decal.tscn
 res://entities/health_drop.tscn
+res://models/rocket_launcher/explosion.tscn
 res://models/grenade/grenade_proj.tscn
+res://Weapons_Manager.gd
+res://entities/box_shootable.tscn

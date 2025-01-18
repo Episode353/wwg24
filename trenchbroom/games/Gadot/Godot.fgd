@@ -37,3 +37,5 @@
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = ammo_small : "ammo_small" []
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = ammo_medium : "ammo_medium" []
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = ammo_large : "ammo_large" []
+
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = box_grabbable : "box_grabbable" []

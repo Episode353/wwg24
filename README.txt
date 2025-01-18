@@ -54,6 +54,10 @@ Features to add:
 		- "Tutorial Map" which is a on rails map where signs say "use this button to do this"
 			and then has a scenario which you need to do the thing to get past
 			- This would benefit if it had the shooting range enimies from the shooting range map
+
+	Objects:
+		- Grabbable objects
+			Objects in "Grabbable group" can be picked up with e and also placed down
 	Weapons:
 	- Magic wand weapon?
 	- A guitar that shoots musicv as bullet gun, reload the gun by cocking the frettboard from the neck to the bodty and when shooting the effeftrs come from the nck of the guitar
@@ -72,7 +76,6 @@ Features to add:
 
 
 Bugs to fix:
-	- rocket launcher explosion should exert velocity on the grenades as well
 	- The player name entered in the config.txt appears over enemy players, which is wrong. It should appear over the player who has it entered in the config.
 	- Sound
 	- Older computers have an error and require starting the game in opengl 3, which will cause issues
