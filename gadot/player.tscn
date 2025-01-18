@@ -1,8 +1,9 @@
-[gd_scene load_steps=191 format=4 uid="uid://xcjrjq5cbn7y"]
+[gd_scene load_steps=192 format=4 uid="uid://xcjrjq5cbn7y"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_2v3wm"]
 [ext_resource type="Script" path="res://main_camera.gd" id="2_38wgo"]
 [ext_resource type="Script" path="res://Weapons_Manager.gd" id="2_dh310"]
+[ext_resource type="Script" path="res://interaction_ray.gd" id="3_hxk1l"]
 [ext_resource type="Resource" uid="uid://bof3ewi4ljhjc" path="res://sys/weapon_resources/ak47.tres" id="3_vtnjn"]
 [ext_resource type="Script" path="res://sys/weapon_resource.gd" id="4_qoin8"]
 [ext_resource type="Resource" uid="uid://bqgyx232itglx" path="res://sys/weapon_resources/flame_spell.tres" id="6_er4xm"]
@@ -4243,6 +4244,13 @@ shape = SubResource("BoxShape3D_7xjel")
 
 [node name="Timer" type="Timer" parent="neck/head/main_camera/area_collision"]
 wait_time = 20.0
+
+[node name="interaction_ray" type="RayCast3D" parent="neck/head/main_camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0477791, -0.0020399)
+target_position = Vector3(0, 0, -50)
+collision_mask = 256
+collide_with_areas = true
+script = ExtResource("3_hxk1l")
 
 [node name="raycast_shoot" type="RayCast3D" parent="neck/head/main_camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0238895, -0.00101995)

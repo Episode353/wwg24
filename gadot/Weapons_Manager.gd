@@ -193,7 +193,8 @@ func raycast_shoot_procc():
 	var col_nor = raycast_shoot.get_collision_normal()
 	var col_point = raycast_shoot.get_collision_point()
 	if !hit_object.is_in_group("destructable"):
-		if !hit_object.get_parent().is_in_group("players"):
+		if !hit_object.get_parent().is_in_group("players,moveable"):
+			print(hit_object)
 			# Place the Bullet Decal
 			rpc("create_bullet_decal", col_point, col_nor)
 	
