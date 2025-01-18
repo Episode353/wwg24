@@ -186,14 +186,14 @@ func _on_animation_player_animation_finished(anim_name):
 	
 	idle()
 
-		
+
 		
 func raycast_shoot_procc():
 	var hit_object = raycast_shoot.get_collider()
 	var col_nor = raycast_shoot.get_collision_normal()
 	var col_point = raycast_shoot.get_collision_point()
 	if !hit_object.is_in_group("destructable"):
-		if !hit_object.get_parent().is_in_group("players,moveable"):
+		if !hit_object.get_parent().is_in_group("moveable") and !hit_object.get_parent().is_in_group("players") and !hit_object.get_parent().is_in_group("pushable"):
 			print(hit_object)
 			# Place the Bullet Decal
 			rpc("create_bullet_decal", col_point, col_nor)

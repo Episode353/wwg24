@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du2yeiomih8pj"
+uid="uid://b1nrxw47xeiea"
 path.s3tc="res://.godot/imported/the_power_0.png-491c46abcc7d064a998b72d4ab8f49d4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "39d2e447287efefc81d794ddc5194346"
 }
 
 [deps]

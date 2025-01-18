@@ -1,4 +1,5 @@
-res://player.tscn
+res://world.tscn
+res://sys/weapon_resource.gd
 res://Player.gd
 res://models/grenade/grenade_proj.gd
 res://manadrop.gd
@@ -12,15 +13,14 @@ res://tscn/main_menu_stars.gdshader
 res://mat/grey_grid_3.tres
 res://player.gdshader
 res://tscn/playerview.gdshader
-res://interaction_ray.gd
-res://world.tscn
 res://tscn/main_menu.tscn
 res://tscn/console/console.tscn
+res://player.tscn
 res://tscn/bullet_decal.tscn
 res://entities/health_drop.tscn
 res://models/rocket_launcher/explosion.tscn
 res://models/grenade/grenade_proj.tscn
 res://entities/box_grabbable.tscn
 res://entities/box_shootable.tscn
-res://models/rocket_launcher/explosion.gd
-res://entities/box_grabbable.gd
+res://interaction_ray.gd
+res://Weapons_Manager.gd

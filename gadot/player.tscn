@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://c328o8gs1t5x1" path="res://models/grenade/grenade_0.png" id="22_oynkj"]
 [ext_resource type="Texture2D" uid="uid://6c3oi65oxila" path="res://models/salsa/salsa_0.png" id="23_krb4n"]
 [ext_resource type="Script" path="res://CollisionScript.gd" id="26_arl6k"]
-[ext_resource type="Texture2D" uid="uid://du2yeiomih8pj" path="res://models/the_power/the_power_0.png" id="27_nxu68"]
+[ext_resource type="Texture2D" uid="uid://b1nrxw47xeiea" path="res://models/the_power/the_power_0.png" id="27_nxu68"]
 [ext_resource type="Script" path="res://keyboard.gd" id="27_uk5cr"]
 [ext_resource type="Script" path="res://sys/username_label.gd" id="28_ip48q"]
 [ext_resource type="Script" path="res://viewmodel_camera.gd" id="28_p4825"]

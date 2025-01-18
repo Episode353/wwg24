@@ -42,6 +42,9 @@ var wish_jump = false
 var sensitivity = 0.05
 var walking = false
 
+# Physcis interaction
+var grabbed_object: RigidBody3D
+var is_holding_object = false
 
 var health = 100 # Inital health
 var max_health = 100 # Health set to max health on respawn
