@@ -1,5 +1,4 @@
 res://world.tscn
-res://sys/weapon_resource.gd
 res://Player.gd
 res://models/grenade/grenade_proj.gd
 res://manadrop.gd
@@ -22,5 +21,8 @@ res://models/rocket_launcher/explosion.tscn
 res://models/grenade/grenade_proj.tscn
 res://entities/box_grabbable.tscn
 res://entities/box_shootable.tscn
-res://interaction_ray.gd
-res://Weapons_Manager.gd
+res://models/the_power/fireball.tscn
+res://models/the_power/fireball/fireball.tscn
+res://models/the_power/fireball/fireball.gd
+res://keyboard.gd
+res://models/rocket_launcher/rocket.tscn

@@ -30,7 +30,6 @@ Features to add:
 	Menus
 		- Settings Menu that will save and load data to/from the config.txt
 		- Should be openable from a settings icon on the main menu or pause menu
-		- Should console be open by default when opening pause menu?
 		- Custom Player Color
 		- Visual settings, such as anti aliasing, resolution, etc
 		- Edit Username
@@ -41,7 +40,6 @@ Features to add:
 		- Replace Sprite Charachter with Low Poly Wizard
 			- Model has Customizable Color, use shader from: http://y2u.be/sCZFttl8TZk
 	Console:
-		- Console cant be opened on main menu, it should be able to
 		- Add Disconnect Command
 		- Add Load Map Command
 
@@ -69,14 +67,9 @@ Features to add:
 
 	Website:
 		- Would be cool if there was a page to upload user created maps that could be added to the game
-		- Some sort of server list where when you make a server it pings the website and the website adds it to a list
-		- The game can then ping the website and request the list, which will sorta be a list of all available servers
-		- Whenever the list is pinged it would be useful if the website could ping the connection and see if there is a game on the port, so the server list isnt full of a buch of closed servers
-		(Will be based off of this project)
 
 
 Bugs to fix:
-	- If a player grabs a grabbable object that someone else is grabbing, weird stuff happens
 	- The player name entered in the config.txt appears over enemy players, which is wrong. It should appear over the player who has it entered in the config.
 	- Sound
 	- Older computers have an error and require starting the game in opengl 3, which will cause issues

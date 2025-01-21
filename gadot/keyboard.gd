@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var player_self = $"../../../../../.."
 @onready var keyboard_animation_player = $the_power/keyboard_animation_player
+@onready var main_camera: Camera3D = $"../../.."
 
 # Map spells to their respective key sequences
 var spell_sequences = {
@@ -163,7 +164,7 @@ func activate_spell(spell_name: String):
 		"fireball":
 			if player_self.mana >= 2:
 				player_self.rpc("receive_mana", -2)
-				print("Casting Fireball!")
+				player_self.rpc("launch_fireball")
 			else:
 				print("Not enough Mana to cast Fireball")
 		"heal":
@@ -178,3 +179,4 @@ func activate_spell(spell_name: String):
 				print("Not enough Mana to cast Heal")
 		"shield":
 			print("Casting Shield!")
+			

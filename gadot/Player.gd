@@ -394,6 +394,17 @@ func launch_salsa():
 	launch_salsa_to_world.add_child.call_deferred(proj_instance)
 
 
+@rpc("call_local")
+func launch_fireball():
+	const FIREBALL = preload("res://models/the_power/fireball/fireball.tscn")
+	var proj_instance = FIREBALL.instantiate()
+
+	proj_instance.global_transform = main_camera.global_transform
+	
+	# Set the owner of the projectile
+	proj_instance.owner_player = self
+	var launch_rocket_to_world = get_parent()
+	launch_rocket_to_world.add_child.call_deferred(proj_instance)
 
 
 # Define an RPC to spawn mana drop for all clients
