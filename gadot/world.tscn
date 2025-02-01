@@ -20,8 +20,9 @@ background_mode = 2
 background_energy_multiplier = 1.69
 sky = SubResource("Sky_o7fep")
 ambient_light_source = 3
-ambient_light_sky_contribution = 0.73
-ambient_light_energy = 9.1
+ambient_light_color = Color(0.721221, 1, 0.995472, 1)
+ambient_light_sky_contribution = 0.86
+ambient_light_energy = 1.5
 tonemap_white = 16.0
 ssr_depth_tolerance = 22.71
 glow_normalized = true
@@ -32,7 +33,8 @@ glow_blend_mode = 0
 glow_hdr_threshold = 0.74
 fog_light_energy = 0.06
 adjustment_enabled = true
-adjustment_saturation = 1.61
+adjustment_contrast = 1.09
+adjustment_saturation = 1.08
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkytg"]
 bg_color = Color(0.678431, 0.0980392, 0.772549, 1)
@@ -54,13 +56,6 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 light_color = Color(1, 0.777837, 0.558944, 1)
 light_energy = 2.051
 shadow_enabled = true
-
-[node name="DirectionalLight3D (Blue)" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.224159, -0.972535, -0.0626809, 0.00951521, -0.0621306, 0.998023, -0.974506, -0.224312, -0.00467339, -0.184752, -0.449714, 0.299186)
-light_color = Color(0.568765, 0.933846, 0.984555, 1)
-light_indirect_energy = 4.394
-shadow_enabled = true
-sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6knbf")
