@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wt4kifchk2pd"
+uid="uid://0x5b2up0kxx5"
 path.s3tc="res://.godot/imported/rocket_launcher_0.png-a5a4ad3ce40979394f75dc1cb881eb8d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "a13912163e956a732f4fb7e8a28d9049"
 }
 
 [deps]

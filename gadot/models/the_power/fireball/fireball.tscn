@@ -1,7 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbck53uiykrgl"]
+[gd_scene load_steps=10 format=3 uid="uid://cbck53uiykrgl"]
 
 [ext_resource type="Script" path="res://models/the_power/fireball/fireball.gd" id="1_vtjjc"]
 [ext_resource type="Texture2D" uid="uid://bvxusr4s0aia" path="res://models/rocket_launcher/Flare00.PNG" id="2_c2aji"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o852x"]
+albedo_color = Color(1, 0.415686, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hp10x"]
 
@@ -45,6 +48,7 @@ script = ExtResource("1_vtjjc")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Fireball"]
 radius = 0.249363
+material = SubResource("StandardMaterial3D_o852x")
 
 [node name="Area3D" type="Area3D" parent="Fireball/CSGSphere3D"]
 collision_layer = 119
@@ -68,6 +72,6 @@ fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_uo0ut")
 draw_pass_1 = SubResource("QuadMesh_bjkaf")
 
-[connection signal="body_entered" from="Fireball/CSGSphere3D/Area3D" to="Fireball" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Fireball/CSGSphere3D/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Fireball/CSGSphere3D/Area3D" to="Fireball" method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="Fireball/Timer" to="Fireball" method="_on_timer_timeout"]
