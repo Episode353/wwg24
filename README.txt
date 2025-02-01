@@ -25,7 +25,10 @@ Edit the config.json
 Made with Godot_v4.3-stable_win64.exe
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 Priority 1
