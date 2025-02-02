@@ -1,4 +1,5 @@
 AudioStreamPlayer3D
+AudioStreamPlayer
 Node3D
 Node
 RootMotionView
@@ -11,4 +12,3 @@ CSGBox3D
 MultiplayerSynchronizer
 PinJoint3D
 StaticBody3D
-CSGPolygon3D

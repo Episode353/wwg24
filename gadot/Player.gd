@@ -30,6 +30,7 @@ var last_tagged_by = "Unknown"
 # Source
 const MAX_VELOCITY_AIR = 0.6
 const MAX_VELOCITY_GROUND = 8.0
+const MAX_VELOCITY_GROUND_WALKING = 4.0
 const MAX_ACCELERATION = 10 * MAX_VELOCITY_GROUND
 const GRAVITY = 12
 # GRAVITY USED TO BE 15.34
@@ -75,6 +76,7 @@ var sprinting = false
 var crouching = false
 var free_looking = false
 var sliding = false
+var is_walking = false
 
 # Slide Vars
 var slide_timer = 0.0
@@ -118,9 +120,16 @@ var kill_timeout = 3
 var kill_max_timeout = 3
 var can_die = true
 
+# Footsteps
+@onready var footstep_player = $FootstepAudioPlayer
+var distance_accumulated: float = 0.0
+var step_distance_threshold: float = 4.0  # Adjust this to suit your game’s scale and speed
+var last_position: Vector3
+var left_step: bool = true  # Toggle to alternate footsteps
 
-
-
+# Preload your footstep sounds
+var footstep_left_sound = preload("res://sounds/footsteps/footstep_left.wav")
+var footstep_right_sound = preload("res://sounds/footsteps/footstep_right.wav")
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
@@ -161,6 +170,9 @@ func _ready():
 
 	# Store the original position of the FPS_RIG
 	base_fps_rig_position = fps_rig.position
+	
+	# For Footsteps
+	last_position = global_transform.origin
 
 	
 	
@@ -198,6 +210,9 @@ func _physics_process(delta):
 
 	# Update View Bobbing
 	update_view_bobbing(delta)
+	if !is_walking:
+		update_footsteps_vars()
+	
 
 	# Check and lerp neck rotation if not free looking
 	if not free_looking and neck != null:  # Ensure neck node is valid
@@ -256,6 +271,13 @@ func process_input():
 		free_looking = true
 	if Input.is_action_just_released("free_look"):
 		free_looking = false
+		
+	if Input.is_action_just_pressed("walk"):
+		is_walking = true
+		print(is_walking)
+	if Input.is_action_just_released("walk"):
+		is_walking = false
+		print(is_walking)
 	
 	# Movement directions
 	if Input.is_action_pressed("forward"):
@@ -314,6 +336,7 @@ func accelerate(wish_dir: Vector3, max_speed: float, delta):
 	var add_speed = clamp(max_speed - current_accelerte_speed, 0, MAX_ACCELERATION * delta)
 	
 	return velocity + add_speed * wish_dir
+
 	
 func update_velocity_ground(wish_dir: Vector3, delta):
 	# Apply friction when on the ground and then accelerate
@@ -325,8 +348,11 @@ func update_velocity_ground(wish_dir: Vector3, delta):
 		
 		# Scale the velocity based on friction
 		velocity *= max(speed - drop, 0) / speed
-	
-	return accelerate(wish_dir, MAX_VELOCITY_GROUND, delta)
+	var max_velocity_ground_current = MAX_VELOCITY_GROUND
+	if is_walking:
+		max_velocity_ground_current = MAX_VELOCITY_GROUND_WALKING
+		
+	return accelerate(wish_dir, max_velocity_ground_current, delta)
 	
 func update_velocity_air(wish_dir: Vector3, delta):
 	# Do not apply any friction
@@ -553,4 +579,37 @@ func _snap_up_stairs_check(delta) -> bool:
 			_snapped_to_stairs_last_frame = true
 			return true
 	return false
+	
+func update_footsteps_vars():
+	# Update footsteps only if the player is on the floor and moving sufficiently.
+	if is_on_floor() and velocity.length() > 1.0:
+		# Calculate how far the player moved since last frame.
+		var current_position = global_transform.origin
+		distance_accumulated += last_position.distance_to(current_position)
+		
+		# If the accumulated distance exceeds the threshold, play a footstep.
+		if distance_accumulated >= step_distance_threshold:
+			play_footstep_sound()
+			distance_accumulated = 0.0  # Reset the accumulator
+		
+		# Update last_position for the next frame.
+		last_position = current_position
+		
+
+func play_footstep_sound():
+	# Call the RPC so that all peers (including the local client) play the footstep sound.
+	rpc("rpc_play_footstep", left_step)
+	# Toggle the foot for the next step.
+	left_step = !left_step
+
+	
+@rpc("any_peer", "call_local")
+func rpc_play_footstep(is_left: bool) -> void:
+	# Choose the appropriate sound based on which foot was pressed.
+	if is_left:
+		footstep_player.stream = footstep_left_sound
+	else:
+		footstep_player.stream = footstep_right_sound
+	footstep_player.play()
+
 	

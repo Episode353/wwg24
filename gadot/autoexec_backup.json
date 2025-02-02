@@ -5,7 +5,8 @@
         "left": "a",
         "right": "d",
         "jump": "space",
-        "free_look": "c"
+        "free_look": "c",
+        "walk": "shift"
     },
     "weapon_keys": {
         "shoot": "mouse1",
