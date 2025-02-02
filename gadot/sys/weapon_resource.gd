@@ -42,3 +42,9 @@ class_name Weapon_Resource
 @export var area_damage_radius: int # Radius for area damage
 @export var skip_animation_on_fire: bool # If true, skips the shoot animation when firing
 @export var fire_rate: float # Rate of fire for the weapon
+
+# Sound files
+@export var reload_sound: AudioStream  # The audio stream to play when reloading
+@export var fire_sound: AudioStream    # The audio stream to play when firing
+@export var hit_wall: AudioStream    # The audio stream to play when firing
+@export var hit_player: AudioStream    # The audio stream to play when firing

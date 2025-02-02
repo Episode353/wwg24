@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://bof3ewi4ljhjc"]
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=4 format=3 uid="uid://bof3ewi4ljhjc"]
 
+[ext_resource type="AudioStream" uid="uid://dgcs6snwb6ju" path="res://sounds/ak47/ak47_shoot.ogg" id="1_ofg0p"]
 [ext_resource type="Script" path="res://sys/weapon_resource.gd" id="1_vylb0"]
+[ext_resource type="AudioStream" uid="uid://5umn7ponlbe8" path="res://sounds/ak47/ak47_reload.wav" id="2_yshhs"]
 
 [resource]
 script = ExtResource("1_vylb0")
@@ -33,3 +35,5 @@ use_area_damage_collision = false
 area_damage_radius = 0
 skip_animation_on_fire = false
 fire_rate = 0.0
+reload_sound = ExtResource("2_yshhs")
+fire_sound = ExtResource("1_ofg0p")

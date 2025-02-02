@@ -1,6 +1,9 @@
-[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://cea7mprhctago"]
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=5 format=3 uid="uid://cea7mprhctago"]
 
+[ext_resource type="AudioStream" uid="uid://byik2sv6bga8w" path="res://sounds/knife/knife_shoot_air.ogg" id="1_00jxw"]
 [ext_resource type="Script" path="res://sys/weapon_resource.gd" id="1_nsgrx"]
+[ext_resource type="AudioStream" uid="uid://c2e5rib83rimj" path="res://sounds/knife/knife_shoot_player.ogg" id="1_uws10"]
+[ext_resource type="AudioStream" uid="uid://qm1613ecceob" path="res://sounds/knife/knife_shoot_wall.wav" id="2_cutlk"]
 
 [resource]
 script = ExtResource("1_nsgrx")
@@ -33,3 +36,6 @@ use_area_damage_collision = false
 area_damage_radius = 0
 skip_animation_on_fire = false
 fire_rate = 0.0
+fire_sound = ExtResource("1_00jxw")
+hit_wall = ExtResource("2_cutlk")
+hit_player = ExtResource("1_uws10")

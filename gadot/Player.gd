@@ -15,11 +15,11 @@ signal mana_changed(mana_value)
 @onready var crouching_collision_shape = $crouching_collision_shape
 @onready var standing_collision_shape = $standing_collision_shape
 @onready var raycast_crouching = $raycast_crouching
-
 @onready var main_camera = $neck/head/main_camera
 @onready var viewmodel_camera = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport/viewmodel_camera
 @onready var viewmodel_viewport = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport
 @onready var weapons_manager = $neck/head/main_camera/Weapons_Manager
+@onready var player_hurt_noise = $player_hurt_noise
 
 @onready var raycast_wall = $raycast_wall
 
@@ -436,7 +436,11 @@ func update_last_tagged_by(tagged_name):
 	#position.y = 10
 	#mana_changed.emit(mana)
 	#health_changed.emit(health)
+
 		
+func play_hurt_sound():
+	player_hurt_noise.play()
+
 @rpc("any_peer", "call_local")
 func receive_damage(dmg):
 	health -= dmg
@@ -444,6 +448,8 @@ func receive_damage(dmg):
 	if health <= 0:
 		player_death()
 	print(health)
+	play_hurt_sound()
+	
 	
 @rpc("any_peer", "call_local")
 func receive_health(rcv_hp):

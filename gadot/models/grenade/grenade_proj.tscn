@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=4 uid="uid://1enr0jq80l1j"]
+[gd_scene load_steps=17 format=4 uid="uid://1enr0jq80l1j"]
 
 [ext_resource type="Script" path="res://models/grenade/grenade_proj.gd" id="1_tnb26"]
 [ext_resource type="Texture2D" uid="uid://c328o8gs1t5x1" path="res://models/grenade/grenade_0.png" id="1_xta8g"]
 [ext_resource type="Texture2D" uid="uid://bvxusr4s0aia" path="res://models/rocket_launcher/Flare00.PNG" id="3_frahr"]
+[ext_resource type="AudioStream" uid="uid://sjwjufgr8ir2" path="res://sounds/grenade/grenade_beep.wav" id="4_tyvl7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gho32"]
 
@@ -143,3 +144,6 @@ omni_range = 10.2105
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ps5n5")
+
+[node name="Grenade_Beep_Sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_tyvl7")

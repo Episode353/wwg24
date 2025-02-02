@@ -3,6 +3,7 @@ const EXPLOSION_PRELOAD = preload("res://models/grenade/grenade_explosion.tscn")
 @onready var world = get_tree().get_root().get_node("World")
 @onready var area = $grenade/Node/body/Area3D
 @onready var omni_light_3d = $OmniLight3D
+@onready var grenade_beep_sound = $Grenade_Beep_Sound
 
 var owner_player
 var grenade_timer = 0.0
@@ -29,15 +30,19 @@ func _physics_process(delta):
 	# Increase blinking frequency by adjusting the formula
 	var freq = max(0.05 + 0.8 * pow(f_complete, 2), 0.05)  # Exponential decrease for faster blinking
 
-	# Update light blinking
+	# Update light blinking and play beep sound when it flashes
 	light_blink_timer += delta
 	if light_blink_timer >= freq:
+		# Toggle light energy
 		omni_light_3d.light_energy = 2.0 if omni_light_3d.light_energy == 0.0 else 0.0
+		# Play the beep sound each time the light flashes
+		grenade_beep_sound.play()
 		light_blink_timer = 0.0
 
 	# Check for explosion
 	if grenade_timer > EXPLOSION_TIME:
 		explode()
+
 
 func _on_body_entered(body):
 	# Check if the body is the owner of the grenade

@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://bhrts7n8xjy7d"]
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=4 format=3 uid="uid://bhrts7n8xjy7d"]
 
 [ext_resource type="Script" path="res://sys/weapon_resource.gd" id="1_0s1cx"]
+[ext_resource type="AudioStream" uid="uid://ci1pcnjhn0bqn" path="res://sounds/shotgun/shotgun_shoot.ogg" id="1_2juvi"]
+[ext_resource type="AudioStream" uid="uid://mj8lfbegoqyy" path="res://sounds/shotgun/shotgun_reload.wav" id="2_kj742"]
 
 [resource]
 script = ExtResource("1_0s1cx")
@@ -33,3 +35,5 @@ use_area_damage_collision = false
 area_damage_radius = 0
 skip_animation_on_fire = false
 fire_rate = 0.0
+reload_sound = ExtResource("2_kj742")
+fire_sound = ExtResource("1_2juvi")

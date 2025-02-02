@@ -1,4 +1,4 @@
-[gd_scene load_steps=192 format=4 uid="uid://xcjrjq5cbn7y"]
+[gd_scene load_steps=193 format=4 uid="uid://xcjrjq5cbn7y"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_2v3wm"]
 [ext_resource type="Script" path="res://main_camera.gd" id="2_38wgo"]
@@ -33,6 +33,7 @@
 [ext_resource type="Script" path="res://sys/username_label.gd" id="28_ip48q"]
 [ext_resource type="Script" path="res://viewmodel_camera.gd" id="28_p4825"]
 [ext_resource type="Script" path="res://display_health.gd" id="30_jkaaj"]
+[ext_resource type="AudioStream" uid="uid://h6pkf0tevw2m" path="res://sounds/player/hurt.wav" id="34_jjjwd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_67y6s"]
 
@@ -4593,6 +4594,12 @@ target_position = Vector3(0, -0.55, 0)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0342386, 0)
 target_position = Vector3(0, -0.75, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+max_db = 0.0
+
+[node name="player_hurt_noise" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("34_jjjwd")
 
 [connection signal="timeout" from="neck/head/main_camera/area_collision/Timer" to="neck/head/main_camera/Weapons_Manager" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="neck/head/main_camera/Weapons_Manager/FPS_RIG/AnimationPlayer" to="neck/head/main_camera/Weapons_Manager" method="_on_animation_player_animation_finished"]

@@ -2,6 +2,7 @@ extends Area3D
 
 @export var health_amount: int = 25
 @export var health_respawn_delay: float = 5.0
+@onready var audio_stream_player_3d = $"../../AudioStreamPlayer3D"
 
 @onready var health_root = $".."          # Parent or the node you want to hide/show
 @onready var timer = $"../../Timer"
@@ -37,6 +38,7 @@ func _physics_process(delta: float) -> void:
 func _hide_health():
 	health_root.visible = false
 	timer.start(health_respawn_delay)
+	audio_stream_player_3d.play()
 	# Do not reset has_been_picked_up here—wait until next show
 
 func _show_health():

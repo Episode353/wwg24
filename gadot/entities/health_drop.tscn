@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhxok0f35pcck"]
+[gd_scene load_steps=6 format=3 uid="uid://dhxok0f35pcck"]
 
 [ext_resource type="Script" path="res://entities/health_drop.gd" id="1_gwm2n"]
+[ext_resource type="AudioStream" uid="uid://c1ead1mvxsjon" path="res://sounds/pickup/item_pickup_01.wav" id="2_btg5w"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u2ygk"]
 
@@ -19,10 +20,13 @@ material = SubResource("StandardMaterial3D_vo4gs")
 
 [node name="Area3D" type="Area3D" parent="CSGMesh3D"]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 255
 script = ExtResource("1_gwm2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CSGMesh3D/Area3D"]
 shape = SubResource("SphereShape3D_3qfhx")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_btg5w")

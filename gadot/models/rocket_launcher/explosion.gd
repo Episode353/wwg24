@@ -54,8 +54,11 @@ func _ready():
 		var distance = player.global_transform.origin.distance_to(global_transform.origin)
 		if distance <= explosion_radius:
 			apply_explosion_force_to_character(player)
-			if player != owner_player and player.has_method("receive_damage"):
-				player.rpc("receive_damage", calculate_damage(distance))
+			if player.has_method("receive_damage"):
+				if player != owner_player: #If you shoot someone else but you
+					player.rpc("receive_damage", calculate_damage(distance))
+				elif Globals.self_harm: # If you shoot yourself, and self harm is enabled
+					player.rpc("receive_damage", calculate_damage(distance) / 2) # Deal Half Damage as you would to a normal person
 
 	# Scan for destructible objects
 	var objects = get_tree().get_nodes_in_group("destructable")

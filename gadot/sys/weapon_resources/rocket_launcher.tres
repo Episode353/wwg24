@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=3 format=3 uid="uid://b1gcuee3knuwf"]
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=4 format=3 uid="uid://b1gcuee3knuwf"]
 
 [ext_resource type="Script" path="res://sys/weapon_resource.gd" id="1_7jqly"]
-[ext_resource type="PackedScene" uid="uid://d1lgwvy4u24q6" path="res://models/rocket_launcher/rocket.tscn" id="1_efht4"]
+[ext_resource type="AudioStream" uid="uid://b8fv474ipntxn" path="res://sounds/rocket_launcher/rocket_launcher_shoot.wav" id="1_eum3j"]
+[ext_resource type="AudioStream" uid="uid://b4n12af0mccb8" path="res://sounds/rocket_launcher/rocket_launcher_reload.wav" id="2_eun2x"]
 
 [resource]
 script = ExtResource("1_7jqly")
@@ -30,8 +31,9 @@ disable_ammo = false
 is_gun = true
 is_spell = false
 is_projectile_launcher = true
-projectile = ExtResource("1_efht4")
 use_area_damage_collision = false
 area_damage_radius = 0
 skip_animation_on_fire = false
 fire_rate = 0.0
+reload_sound = ExtResource("2_eun2x")
+fire_sound = ExtResource("1_eum3j")

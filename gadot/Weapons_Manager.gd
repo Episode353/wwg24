@@ -25,6 +25,9 @@ var weapon_list = {}
 @onready var raycast_wall = $"../../../../raycast_wall"
 @onready var area_collision = $"../area_collision"
 
+@onready var audio_stream_player_3d = $"../../../../AudioStreamPlayer3D"
+
+
 @export var start_weapons: Array[String]
 
 func _ready():
@@ -197,12 +200,16 @@ func raycast_shoot_procc():
 			print(hit_object)
 			# Place the Bullet Decal
 			rpc("create_bullet_decal", col_point, col_nor)
+			play_hit_wall_sound()
+			
 	
 	# Handle hitting a player
 	if hit_object.get_parent().is_in_group("players"):
 		hit_object.get_parent().rpc("receive_damage", current_weapon.damage)
 		hit_object.get_parent().rpc("update_last_tagged_by", player.player_username)
 		print("Hit Object is player")
+		play_hit_player_sound()
+
 		
 	if hit_object.is_in_group("destructable"):
 		print("Hit Destructable Object")
@@ -211,6 +218,7 @@ func raycast_shoot_procc():
 		
 	if !hit_object.get_parent().is_in_group("players"):
 		print("Hit object is not a player.")
+		
 		
 
 @rpc("any_peer", "call_local")
@@ -255,6 +263,7 @@ func shoot():
 	if current_weapon.current_ammo != 0:
 		if !animation_player.is_playing() or animation_player.current_animation == current_weapon.idle_anim:
 			animation_player.play(current_weapon.shoot_anim)
+			play_fire_sound()
 		else:
 			return
 		if current_weapon.disable_ammo == false:
@@ -264,25 +273,49 @@ func shoot():
 		if raycast_shoot.is_colliding():
 			raycast_shoot_procc()
 			
-		if current_weapon.is_projectile_launcher:
 			
+		if current_weapon.is_projectile_launcher:
 			if current_weapon.weapon_name == "rocket_launcher":
 				player.rpc("launch_rocket")
+				play_fire_sound()
+				
 			if current_weapon.weapon_name == "he_grenade":
 				await get_tree().create_timer(0.5).timeout
 				player.rpc("launch_he_grenade")
 				animation_player.play(current_weapon.activate_anim)
+				play_fire_sound()
 				
 			if current_weapon.weapon_name == "salsa":
 				await get_tree().create_timer(0.5).timeout
 				player.rpc("launch_salsa")
 				animation_player.play(current_weapon.activate_anim)
+				#play_fire_sound()
 			
 		if current_weapon.use_area_damage_collision == true:
 			area_collision_procc(multiplayer.get_unique_id())
+		
 	else:
 		reload()
 
+func play_hit_wall_sound():
+	if current_weapon.hit_wall:
+		audio_stream_player_3d.stream = current_weapon.hit_wall
+		audio_stream_player_3d.play()
+
+func play_hit_player_sound():
+	if current_weapon.hit_player:
+		audio_stream_player_3d.stream = current_weapon.hit_player
+		audio_stream_player_3d.play()
+
+func play_fire_sound():
+	if current_weapon.fire_sound:
+		audio_stream_player_3d.stream = current_weapon.fire_sound
+		audio_stream_player_3d.play()
+		
+func play_reload_sound():
+	if current_weapon.reload_sound:
+		audio_stream_player_3d.stream = current_weapon.reload_sound
+		audio_stream_player_3d.play()
 
 func reload():
 	print("reload")
@@ -299,6 +332,7 @@ func reload():
 				current_weapon.current_ammo = current_weapon.current_ammo + reload_ammount
 				current_weapon.reserve_ammo = current_weapon.reserve_ammo - reload_ammount
 				emit_signal("update_ammo", [current_weapon.current_ammo, current_weapon.reserve_ammo])
+				play_reload_sound()
 				
 			else:
 				animation_player.play(current_weapon.out_of_ammo_anim)

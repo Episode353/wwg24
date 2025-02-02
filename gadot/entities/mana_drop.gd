@@ -2,6 +2,7 @@ extends Area3D
 
 @export var mana_amount: int = 25
 @export var mana_respawn_delay: float = 5.0
+@onready var audio_stream_player_3d = $"../../AudioStreamPlayer3D"
 
 @onready var mana_root = $".."
 @onready var timer = $"../../Timer"
@@ -38,6 +39,7 @@ func _hide_mana():
 	mana_root.visible = false
 	omni_light_3d.visible = false
 	timer.start(mana_respawn_delay)
+	audio_stream_player_3d.play()
 
 func _show_mana():
 	mana_root.visible = true
