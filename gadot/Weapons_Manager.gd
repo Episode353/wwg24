@@ -129,6 +129,7 @@ func add_ammo_to_all(amount: int):
 			  " | Reserve Ammo:", weapon.reserve_ammo)
 
 	emit_signal("update_ammo", [current_weapon.current_ammo, current_weapon.reserve_ammo])
+	play_ammo_pickup_sound()
 
 
 
@@ -316,6 +317,10 @@ func play_reload_sound():
 	if current_weapon.reload_sound:
 		audio_stream_player_3d.stream = current_weapon.reload_sound
 		audio_stream_player_3d.play()
+
+func play_ammo_pickup_sound():
+	audio_stream_player_3d.stream = preload('res://sounds/pickup/item_pickup_01.wav')
+	audio_stream_player_3d.play()
 
 func reload():
 	print("reload")
