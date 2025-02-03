@@ -131,6 +131,11 @@ var left_step: bool = true  # Toggle to alternate footsteps
 var footstep_left_sound = preload("res://sounds/footsteps/footstep_left.wav")
 var footstep_right_sound = preload("res://sounds/footsteps/footstep_right.wav")
 
+# Nocli
+var cam_aligned_wish_dir := Vector3.ZERO
+var noclip_speed_mult := 8
+var noclip := false
+
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 	
@@ -210,7 +215,7 @@ func _physics_process(delta):
 
 	# Update View Bobbing
 	update_view_bobbing(delta)
-	if !is_walking:
+	if !is_walking and !noclip:
 		update_footsteps_vars()
 	
 
@@ -263,6 +268,7 @@ func process_input():
 		can_die = false
 		kill_timeout = kill_max_timeout
 		player_death()
+	
 
 		
 			
@@ -293,6 +299,38 @@ func process_input():
 	# Walking
 	#walking = Input.is_action_pressed("walk")
 
+func _handle_noclip(delta) -> bool:
+	if Input.is_action_just_pressed("noclip") and OS.has_feature("debug"):
+		noclip = !noclip
+
+	crouching_collision_shape.disabled = noclip
+	standing_collision_shape.disabled = noclip
+
+	if not noclip:
+		return false
+
+	var speed
+	if !is_walking:
+		speed = noclip_speed_mult * MAX_VELOCITY_GROUND
+	else:
+		speed = noclip_speed_mult * MAX_VELOCITY_GROUND_WALKING
+
+	# Get horizontal movement based on camera direction.
+	self.velocity = cam_aligned_wish_dir * speed
+
+	# If the player presses spacebar (mapped to "jump"), add upward movement.
+	if Input.is_action_pressed("jump"):
+		self.velocity += Vector3.UP * speed
+		
+		# If the player presses Control (mapped to "ctrl"), add downward movement.
+	if Input.is_action_pressed("crouch"):
+		self.velocity += Vector3.DOWN * speed
+
+	global_position += self.velocity * delta
+
+	return true
+
+
 func process_movement(delta):
 	if self.position.y < -100:
 		print("Player has fallen off of map, Respawning...")
@@ -300,27 +338,31 @@ func process_movement(delta):
 	if is_on_floor(): _last_time_was_on_floor = Engine.get_physics_frames()
 	# Get the normalized input direction so that we don't move faster on diagonals
 	var wish_dir = direction.normalized()
+	var input_dir = Input.get_vector("left", "right", "forward", "backward")
+	cam_aligned_wish_dir = main_camera.global_transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)
 
-	if is_on_floor():
-		if wish_jump:
-			velocity.y = JUMP_IMPULSE
-			velocity = update_velocity_air(wish_dir, delta)
-			# Reset bobbing when jumping
-			bob_amplitude = 0.0
-			bob_phase = 0.0
+
+	if not _handle_noclip(delta):
+		if is_on_floor():
+			if wish_jump:
+				velocity.y = JUMP_IMPULSE
+				velocity = update_velocity_air(wish_dir, delta)
+				# Reset bobbing when jumping
+				bob_amplitude = 0.0
+				bob_phase = 0.0
+			else:
+				if walking:
+					velocity.x *= PLAYER_WALKING_MULTIPLIER
+					velocity.z *= PLAYER_WALKING_MULTIPLIER
+				
+				velocity = update_velocity_ground(wish_dir, delta)
 		else:
-			if walking:
-				velocity.x *= PLAYER_WALKING_MULTIPLIER
-				velocity.z *= PLAYER_WALKING_MULTIPLIER
-			
-			velocity = update_velocity_ground(wish_dir, delta)
-	else:
-		velocity.y -= GRAVITY * delta
-		velocity = update_velocity_air(wish_dir, delta)
+			velocity.y -= GRAVITY * delta
+			velocity = update_velocity_air(wish_dir, delta)
 
-	if not _snap_up_stairs_check(delta):
-		move_and_slide()
-		_snap_down_to_stairs_check()
+		if not _snap_up_stairs_check(delta):
+			move_and_slide()
+			_snap_down_to_stairs_check()
 
 func _process(delta):
 	viewmodel_camera.global_transform = main_camera.global_transform

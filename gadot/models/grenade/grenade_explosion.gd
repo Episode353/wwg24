@@ -7,6 +7,8 @@ extends Node3D
 # Additional upward force to ensure vertical movement
 @export var upward_force: float = 5.0
 
+@export var rigid_body_force_multiplier: float = 100.0
+
 # Maximum damage for a direct hit
 @export var max_damage: float = 10.0
 # Minimum damage at the edge of explosion radius
@@ -52,7 +54,19 @@ func _ready():
 		if distance <= explosion_radius:
 				object.rpc("destruct")
 
+	# Scan for pushable RigidBody3D objects
+	var bodies = get_tree().get_nodes_in_group("moveable")
+	for body in bodies:
+		var distance = body.global_transform.origin.distance_to(global_transform.origin)
+		if distance <= explosion_radius:
+			apply_explosion_force_to_rigidbody(body)
 
+func apply_explosion_force_to_rigidbody(body):
+	if body is RigidBody3D:
+		var direction = (body.global_transform.origin - global_transform.origin).normalized()
+		var force = direction * explosion_force * rigid_body_force_multiplier
+		# Using add_force at the body's origin to mimic add_central_force
+		body.apply_force(force, body.global_transform.origin)
 
 func _on_timer_timeout():
 	queue_free()

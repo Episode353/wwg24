@@ -209,6 +209,10 @@ walk={
 "deadzone": 0.5,
 "events": []
 }
+noclip={
+"deadzone": 0.5,
+"events": []
+}
 
 [physics]
 

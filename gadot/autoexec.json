@@ -6,7 +6,9 @@
         "right": "d",
         "jump": "space",
         "free_look": "c",
-        "walk": "shift"
+        "walk": "shift",
+        "crouch": "ctrl",
+        "noclip": "v"
     },
     "weapon_keys": {
         "shoot": "mouse1",
@@ -22,6 +24,7 @@
         "main_menu": "escape",
         "interact": "e",
         "fullscreen": "f11"
+
     },
     "weapon_buttons": {
         "w1": "1",

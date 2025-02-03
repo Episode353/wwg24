@@ -59,11 +59,13 @@ Features to add:
 		- "Tutorial Map" which is a on rails map where signs say "use this button to do this"
 			and then has a scenario which you need to do the thing to get past
 			- This would benefit if it had the shooting range enimies from the shooting range map
-
+		make a map that is a wizard tower (aiden drawing)
 	Objects:
+		Grenade should move objects
 		- Grabbable objects
 			Objects in "Grabbable group" can be picked up with e and also placed down
 	Weapons:
+	The rocketr launcher's speed is relative to the framerate
 	- Magic wand weapon?
 	- A guitar that shoots musicv as bullet gun, reload the gun by cocking the frettboard from the neck to the bodty and when shooting the effeftrs come from the nck of the guitar
 	- Another movement based weapon like the rocket launcher would be really cool
@@ -71,6 +73,8 @@ Features to add:
 	- The Power
 		- has a number of different effects such as low gravity or resistance
 		- only one effect can be active at a time
+	make the shotgun shoot slower and be more powerful
+
 
 	Website:
 		- Would be cool if there was a page to upload user created maps that could be added to the game
