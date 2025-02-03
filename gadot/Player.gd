@@ -12,14 +12,14 @@ signal mana_changed(mana_value)
 
 @onready var head = $neck/head
 @onready var neck = $neck
-@onready var crouching_collision_shape = $crouching_collision_shape
 @onready var standing_collision_shape = $standing_collision_shape
-@onready var raycast_crouching = $raycast_crouching
+@onready var crouching_collision_shape = $crouching_collision_shape
 @onready var main_camera = $neck/head/main_camera
 @onready var viewmodel_camera = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport/viewmodel_camera
 @onready var viewmodel_viewport = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport
 @onready var weapons_manager = $neck/head/main_camera/Weapons_Manager
 @onready var player_hurt_noise = $player_hurt_noise
+@onready var raycast_crouching = $raycast_crouching
 
 @onready var raycast_wall = $raycast_wall
 
@@ -60,9 +60,12 @@ const crouching_speed = 3.0
 var current_speed = 10.0
 const JUMP_VELOCITY = 10.0
 var lerp_speed = 20.0
-var crouching_depth = -0.5
-var standing_depth = 1.8
+var crouching_depth = -1.0
+var standing_depth = 0.0
+
 var free_look_tilt_ammount = 8
+const CROUCH_JUMP_BOOST = 1.0  # Adjust this value as needed for the boost amount
+var has_crouch_boosted = false
 
 
 # Staris
@@ -205,26 +208,46 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
-
 	calculate_fire_damage()
 	process_input()
+	
+	# Toggle collision shapes
+	if crouching:
+		standing_collision_shape.disabled = true
+		crouching_collision_shape.disabled = false
+		
+	else:
+		standing_collision_shape.disabled = false
+		crouching_collision_shape.disabled = true
+
+	# Reset the boost flag when on the floor
+	if is_on_floor():
+		has_crouch_boosted = false
+	else:
+		# If in midair and the crouch action was just pressed, add a boost.
+		if Input.is_action_just_pressed("crouch") and not has_crouch_boosted:
+			self.position.y += CROUCH_JUMP_BOOST
+			has_crouch_boosted = true
+			
+	# Optionally adjust head height for a visual crouch effect
+	var target_head_height = crouching_depth if crouching else standing_depth
+	head.position.y = lerp(head.position.y, target_head_height, delta * lerp_speed)
+
 	process_movement(delta)
 	kill_timeout -= delta
 	if kill_timeout <= 0:
 		can_die = true
 
-	# Update View Bobbing
 	update_view_bobbing(delta)
-	if !is_walking and !noclip:
+	if not is_walking and not noclip:
 		update_footsteps_vars()
-	
 
-	# Check and lerp neck rotation if not free looking
-	if not free_looking and neck != null:  # Ensure neck node is valid
-		# Lerp neck rotation back to default (Vector3.ZERO)
+	if not free_looking and neck != null:
 		neck.rotation.x = lerp(neck.rotation.x, 0.0, delta * 5)
 		neck.rotation.y = lerp(neck.rotation.y, 0.0, delta * 5)
 		neck.rotation.z = lerp(neck.rotation.z, 0.0, delta * 5)
+
+
 
 func update_view_bobbing(delta):
 	# Calculate the horizontal velocity (ignore Y component)
@@ -264,25 +287,22 @@ func process_input():
 	direction = Vector3()
 	if Globals.paused:
 		return
-	if Input.is_action_pressed("kill") && can_die:
+	if Input.is_action_pressed("kill") and can_die:
 		can_die = false
 		kill_timeout = kill_max_timeout
 		player_death()
-	
 
-		
-			
 	# Free-looking
 	if Input.is_action_just_pressed("free_look"):
 		free_looking = true
 	if Input.is_action_just_released("free_look"):
 		free_looking = false
-		
+
 	if Input.is_action_just_pressed("walk"):
 		is_walking = true
 	if Input.is_action_just_released("walk"):
 		is_walking = false
-	
+
 	# Movement directions
 	if Input.is_action_pressed("forward"):
 		direction -= transform.basis.z
@@ -292,19 +312,23 @@ func process_input():
 		direction -= transform.basis.x
 	elif Input.is_action_pressed("right"):
 		direction += transform.basis.x
-		
+
 	# Jumping
 	wish_jump = Input.is_action_pressed("jump")  # Change to is_action_pressed
-	
-	# Walking
-	#walking = Input.is_action_pressed("walk")
+
+	# Crouching: Set crouching true only when the player is on the floor.
+	if Input.is_action_pressed("crouch"):
+		crouching = true
+	elif !raycast_crouching.is_colliding():
+		crouching = false
+		
+
+
 
 func _handle_noclip(delta) -> bool:
 	if Input.is_action_just_pressed("noclip") and OS.has_feature("debug"):
 		noclip = !noclip
-
-	crouching_collision_shape.disabled = noclip
-	standing_collision_shape.disabled = noclip
+	#standing_collision_shape.disabled = noclip
 
 	if not noclip:
 		return false
@@ -381,18 +405,20 @@ func accelerate(wish_dir: Vector3, max_speed: float, delta):
 func update_velocity_ground(wish_dir: Vector3, delta):
 	# Apply friction when on the ground and then accelerate
 	var speed = velocity.length()
-	
 	if speed != 0:
 		var control = max(STOP_SPEED, speed)
 		var drop = control * friction * delta
-		
 		# Scale the velocity based on friction
 		velocity *= max(speed - drop, 0) / speed
+
 	var max_velocity_ground_current = MAX_VELOCITY_GROUND
 	if is_walking:
 		max_velocity_ground_current = MAX_VELOCITY_GROUND_WALKING
-		
+	if crouching:
+		max_velocity_ground_current = crouching_speed
+
 	return accelerate(wish_dir, max_velocity_ground_current, delta)
+
 	
 func update_velocity_air(wish_dir: Vector3, delta):
 	# Do not apply any friction

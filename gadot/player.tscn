@@ -1,4 +1,4 @@
-[gd_scene load_steps=193 format=4 uid="uid://xcjrjq5cbn7y"]
+[gd_scene load_steps=185 format=4 uid="uid://xcjrjq5cbn7y"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_2v3wm"]
 [ext_resource type="Script" path="res://main_camera.gd" id="2_38wgo"]
@@ -37,8 +37,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_67y6s"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_up37e"]
-height = 1.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_stbbh"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hn37q"]
 properties/0/path = NodePath(".:position")
@@ -719,7 +718,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_em0k2"]
 resource_name = "ak47_shoot"
-length = 0.1
+length = 0.101
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -2127,7 +2126,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_fck6w"]
 resource_name = "shotgun_shoot"
-length = 0.2
 step = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -2136,10 +2134,10 @@ tracks/0/path = NodePath("shotgun:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.038, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.079, 0.116, 0.154, 0.986),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.49601, -0.69542, -0.857336), Vector3(0.49601, -0.632993, -0.778131), Vector3(0.49601, -0.69542, -0.857336)]
+"values": [Vector3(0.49601, -0.69542, -0.857336), Vector3(0.49601, -0.69542, -0.857336), Vector3(0.49601, -0.632993, -0.778131), Vector3(0.49601, -0.69542, -0.857336)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -2148,10 +2146,10 @@ tracks/1/path = NodePath("shotgun:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.012, 0.113, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.084, 0.116, 0.495, 0.986),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.151652, 0, 0), Vector3(0.224083, 0, 0), Vector3(-0.210576, 0, 0), Vector3(-0.151652, 0, 0)]
+"values": [Vector3(-0.151652, 0, 0), Vector3(-0.138696, 0, 0), Vector3(0.224083, 0, 0), Vector3(-0.210576, 0, 0), Vector3(-0.151652, 0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -2164,6 +2162,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("shotgun/grip:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.053, 0.129, 0.532, 0.587),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 4.76837e-09, 0.280369), Vector3(0, 0, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_fx4a2"]
@@ -2657,35 +2667,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8woqd")
 
-[sub_resource type="Animation" id="Animation_sjvp8"]
-resource_name = "box01|Take 001|BaseLayer"
-length = 0.0333333
-
-[sub_resource type="Animation" id="Animation_kauxp"]
-resource_name = "cover|Take 001|BaseLayer"
-length = 0.0333333
-
-[sub_resource type="Animation" id="Animation_cr2l3"]
-resource_name = "grip|Take 001|BaseLayer"
-length = 0.0333333
-
-[sub_resource type="Animation" id="Animation_jr6ci"]
-resource_name = "gun|Take 001|BaseLayer"
-length = 0.0333333
-
-[sub_resource type="Animation" id="Animation_1dafj"]
-resource_name = "sight|Take 001|BaseLayer"
-length = 0.0333333
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_w7q0l"]
-_data = {
-"box01|Take 001|BaseLayer": SubResource("Animation_sjvp8"),
-"cover|Take 001|BaseLayer": SubResource("Animation_kauxp"),
-"grip|Take 001|BaseLayer": SubResource("Animation_cr2l3"),
-"gun|Take 001|BaseLayer": SubResource("Animation_jr6ci"),
-"sight|Take 001|BaseLayer": SubResource("Animation_1dafj")
-}
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wi3b"]
 resource_name = "Material"
 cull_mode = 2
@@ -2780,15 +2761,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ksppp")
-
-[sub_resource type="Animation" id="Animation_1gor1"]
-resource_name = "AK47|Take 001|BaseLayer"
-length = 0.0333333
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fu07o"]
-_data = {
-"AK47|Take 001|BaseLayer": SubResource("Animation_1gor1")
-}
 
 [sub_resource type="BoxMesh" id="BoxMesh_834po"]
 
@@ -4203,14 +4175,12 @@ collision_mask = 273
 script = ExtResource("1_2v3wm")
 
 [node name="standing_collision_shape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_67y6s")
 
 [node name="crouching_collision_shape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.49902, 0)
-visible = false
-shape = SubResource("CapsuleShape3D_up37e")
-disabled = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_stbbh")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_hn37q")
@@ -4256,7 +4226,8 @@ script = ExtResource("3_hxk1l")
 [node name="raycast_shoot" type="RayCast3D" parent="neck/head/main_camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0238895, -0.00101995)
 target_position = Vector3(0, 0, -50)
-collision_mask = 257
+collision_mask = 289
+hit_back_faces = false
 collide_with_areas = true
 
 [node name="Weapons_Manager" type="Node3D" parent="neck/head/main_camera"]
@@ -4267,7 +4238,6 @@ start_weapons = Array[String](["ak47", "knife", "rocket_launcher", "shotgun", "h
 [node name="FPS_RIG" type="Node3D" parent="neck/head/main_camera/Weapons_Manager"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
-deterministic = true
 libraries = {
 "": SubResource("AnimationLibrary_hucl6")
 }
@@ -4307,11 +4277,6 @@ layers = 2
 mesh = SubResource("ArrayMesh_dsgr1")
 skeleton = NodePath("")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/shotgun"]
-libraries = {
-"": SubResource("AnimationLibrary_w7q0l")
-}
-
 [node name="knife" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
 transform = Transform3D(0.0987963, -0.015446, -0.000841274, -0.000539298, 0.00199591, -0.0999785, 0.0154595, 0.0987797, 0.00188858, 0.183503, -0.105145, -0.144348)
 visible = false
@@ -4330,11 +4295,6 @@ transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.137627, 0.144305,
 layers = 2
 mesh = SubResource("ArrayMesh_l6o1d")
 skeleton = NodePath("")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/ak47"]
-libraries = {
-"": SubResource("AnimationLibrary_fu07o")
-}
 
 [node name="flame_spell" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
 
@@ -4576,6 +4536,7 @@ collision_mask = 32768
 [node name="CollisionScript" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24581, 0)
 shape = SubResource("CapsuleShape3D_m5ipm")
+disabled = true
 script = ExtResource("26_arl6k")
 
 [node name="PlayerFlamesFx" type="GPUParticles3D" parent="Area3D"]
@@ -4613,8 +4574,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20213, 0)
 attenuation_model = 2
 volume_db = -10.0
 max_db = 0.0
-
-[node name="JoltGeneric6DOFJoint3D" type="JoltGeneric6DOFJoint3D" parent="."]
 
 [connection signal="timeout" from="neck/head/main_camera/area_collision/Timer" to="neck/head/main_camera/Weapons_Manager" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="neck/head/main_camera/Weapons_Manager/FPS_RIG/AnimationPlayer" to="neck/head/main_camera/Weapons_Manager" method="_on_animation_player_animation_finished"]

@@ -198,24 +198,23 @@ func raycast_shoot_procc():
 	var col_point = raycast_shoot.get_collision_point()
 	if !hit_object.is_in_group("destructable"):
 		if !hit_object.is_in_group("moveable"):
-			if !hit_object.get_parent().is_in_group("players"):
-				if !hit_object.get_parent().is_in_group("pushable"):
+			if !hit_object.is_in_group("players"):
+				if !hit_object.is_in_group("pushable"):
 					print(hit_object)
 					# Place the Bullet Decal
 					rpc("create_bullet_decal", col_point, col_nor)
 					play_hit_wall_sound()
-
+					
 	if hit_object.is_in_group("moveable"):
 		var direction = (hit_object.global_transform.origin - global_transform.origin).normalized()
 		var force = direction * 100 * current_weapon.damage
 		# Using add_force at the body's origin to mimic add_central_force
 		hit_object.apply_force(force, hit_object.global_transform.origin)
-			
 	
 	# Handle hitting a player
-	if hit_object.get_parent().is_in_group("players"):
-		hit_object.get_parent().rpc("receive_damage", current_weapon.damage)
-		hit_object.get_parent().rpc("update_last_tagged_by", player.player_username)
+	if hit_object.is_in_group("players"):
+		hit_object.rpc("receive_damage", current_weapon.damage)
+		hit_object.rpc("update_last_tagged_by", player.player_username)
 		print("Hit Object is player")
 		play_hit_player_sound()
 
@@ -225,8 +224,10 @@ func raycast_shoot_procc():
 		print(hit_object)
 		hit_object.rpc("destruct")
 		
-	if !hit_object.get_parent().is_in_group("players"):
+	if !hit_object.is_in_group("players"):
 		print("Hit object is not a player.")
+		print(hit_object)
+		print(hit_object.get_parent())
 		
 		
 

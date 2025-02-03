@@ -22,6 +22,7 @@ properties/1/replication_mode = 1
 [node name="RigidBody3D" type="RigidBody3D" groups=["grabbable", "moveable"]]
 collision_layer = 256
 collision_mask = 257
+mass = 0.1
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_toi8a")
