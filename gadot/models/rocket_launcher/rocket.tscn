@@ -4,9 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dhpoafi2om3a8" path="res://models/rocket_launcher/rocket.gltf" id="1_8j38g"]
 [ext_resource type="Script" path="res://models/rocket_launcher/Area3D.gd" id="3_kkh6h"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_31wx4"]
-radius = 6.0
-height = 25.7
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tit45"]
 
 [node name="Rocket" type="Node3D"]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
@@ -15,14 +13,13 @@ script = ExtResource("1_5cmco")
 [node name="rocket_proj" parent="." instance=ExtResource("1_8j38g")]
 transform = Transform3D(1.91069e-16, 4.37114e-09, -0.1, 0.1, -4.37114e-09, -3.97047e-23, -4.37114e-09, -0.1, -4.37114e-09, 0, -0.075, -0.025)
 
-[node name="Area3D" type="Area3D" parent="rocket_proj" groups=["destructable"]]
-transform = Transform3D(1, 0, -2.5411e-21, 0, 1, 4.26326e-14, 0, -4.26326e-14, 1, 4.76837e-07, 10, 1.94707e-06)
-collision_layer = 119
-collision_mask = 4294967295
+[node name="Area3D" type="Area3D" parent="rocket_proj"]
+transform = Transform3D(1, 0, -2.5411e-21, 0, 1, 4.26326e-14, 0, -4.26326e-14, 1, 5.36442e-07, 10, 1.94707e-06)
+collision_mask = 4607
 script = ExtResource("3_kkh6h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rocket_proj/Area3D"]
-transform = Transform3D(1, -2.84217e-14, -8.47033e-22, 2.84217e-14, 1, 4.26326e-14, -1.60936e-20, -4.26326e-14, 1, 2, -10, -2.39209e-06)
-shape = SubResource("CapsuleShape3D_31wx4")
+transform = Transform3D(1.91068e-14, -8.74228e-07, -10, 4.37114e-07, -10, 8.74228e-07, -10, -4.37114e-07, 1.91068e-14, 0.75, -5.25, -9.84461e-07)
+shape = SubResource("CapsuleShape3D_tit45")
 
 [connection signal="body_entered" from="rocket_proj/Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyg74n3jt0euu"]
+
+[ext_resource type="Material" uid="uid://bumufg27objth" path="res://mat/grey_grid_3.tres" id="1_pplhk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8dve4"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_igj5p"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="RigidBody3D" type="RigidBody3D" groups=["grabbable", "moveable"]]
+collision_layer = 256
+collision_mask = 257
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_8dve4")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material = ExtResource("1_pplhk")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_igj5p")
+visibility_update_mode = 1

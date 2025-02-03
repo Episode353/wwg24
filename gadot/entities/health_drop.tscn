@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhxok0f35pcck"]
+[gd_scene load_steps=6 format=3 uid="uid://irs04y27alxo"]
 
-[ext_resource type="Script" path="res://entities/health_drop.gd" id="1_gwm2n"]
+[ext_resource type="Script" path="res://entities/pickup/health/health_drop.gd" id="1_gwm2n"]
 [ext_resource type="AudioStream" uid="uid://c1ead1mvxsjon" path="res://sounds/pickup/item_pickup_01.wav" id="2_btg5w"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u2ygk"]

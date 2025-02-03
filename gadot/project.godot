@@ -212,6 +212,8 @@ walk={
 
 [physics]
 
-common/physics_ticks_per_second=128
-common/max_physics_steps_per_frame=64
-common/enable_object_picking=false
+common/physics_ticks_per_second=144
+common/max_physics_steps_per_frame=100
+3d/physics_engine="JoltPhysics3D"
+jolt_3d/collisions/areas_detect_static_bodies=true
+jolt_3d/collisions/report_all_kinematic_contacts=true

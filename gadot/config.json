@@ -1,8 +1,8 @@
 {
 	"camera_fov": 85,
-	"fullscreen": false,
-	"master_volume": 0.6,
-	"max_fps": 144,
+	"fullscreen": true,
+	"master_volume": 1,
+	"max_fps": 9999,
 	"mouse_sensitivity": 1.5,
 	"show_host_popup": true,
 	"username": "join"

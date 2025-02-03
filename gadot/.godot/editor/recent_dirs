@@ -1,3 +1,10 @@
+C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.2.2
+res://entities/props/model
+res://entities/player
+res://entities/pickup/mana
+res://entities/pickup/health
+res://entities/pickup/ammo
+res://entities/props/shootable
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.2.1
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.2
 res://sounds/rocket_launcher
@@ -13,12 +20,3 @@ res://fonts
 res://tscn/console
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.1.12
 res://entities
-C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.1.11
-res://sys
-res://
-res://textures
-res://textures/skyboxes
-res://tscn
-res://music
-res://tbmaps
-res://tscn/killfeed_object

@@ -6,7 +6,7 @@ extends RayCast3D
 @onready var player = $"../../../.."
 
 
-var grab_joint: Generic6DOFJoint3D
+var grab_joint: JoltGeneric6DOFJoint3D
 
 
 func _process(delta):
@@ -53,20 +53,22 @@ func request_pickup_object(requester_global_pos: Vector3):
 @rpc("any_peer", "call_local")
 func on_object_picked_up(object_path: NodePath):
 	var body = get_node_or_null(object_path) as RigidBody3D
+	body.can_sleep = false
 	if body:
 		player.grabbed_object = body
 		player.is_holding_object = true
 
 func create_6dof_joint(body: RigidBody3D):
-	grab_joint = Generic6DOFJoint3D.new()
+	grab_joint = JoltGeneric6DOFJoint3D.new()
 	grab_joint.node_a = holding_body.get_path()
 	grab_joint.node_b = body.get_path()
+	grab_joint.solver_velocity_iterations = 120
+	grab_joint.solver_position_iterations = 120
 	add_child(grab_joint)
-	body.sleeping = false
 	
 @rpc("any_peer", "call_local")
 func request_release_object():
-	# Again, let the server do the actual release
+	# Let the server do the actual release
 	release_grabbed_object()
 
 func release_grabbed_object():
@@ -74,4 +76,8 @@ func release_grabbed_object():
 	if grab_joint:
 		grab_joint.queue_free()
 		grab_joint = null
-	player.grabbed_object = null
+
+	if player.grabbed_object:
+		# Allow the object to go back to sleep
+		player.grabbed_object.can_sleep = true
+		player.grabbed_object = null

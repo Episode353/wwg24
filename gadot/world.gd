@@ -129,8 +129,7 @@ func add_player(peer_id):
 	if spawnplayer.is_multiplayer_authority():
 		spawnplayer.health_changed.connect(update_health_bar)
 		spawnplayer.mana_changed.connect(update_mana_bar)
-		print("Connected health and mana signals for player ", peer_id)
-	print("Player ", peer_id, " successfully added and initialized.")
+
 
 func spawn_player(player):
 	print("Spawning player: ", player.name)

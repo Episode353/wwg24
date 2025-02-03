@@ -704,7 +704,7 @@
 ( 784 384 -128 ) ( 785 384 -128 ) ( 784 385 -128 ) 01Brick_02 0 0 0 1 1
 ( 1072 592 0 ) ( 1072 593 0 ) ( 1073 592 0 ) 01Brick_02 0 0 0 1 1
 ( 1072 592 0 ) ( 1073 592 0 ) ( 1072 592 1 ) 01Brick_02 0 0 0 1 1
-( 1024 592 0 ) ( 1024 592 1 ) ( 1024 593 0 ) 01Brick_02 0 0 0 1 1
+( 1056 592 0 ) ( 1056 592 1 ) ( 1056 593 0 ) 01Brick_02 0 0 0 1 1
 }
 // brush 78
 {
@@ -721,7 +721,7 @@
 ( 1040 -352 144 ) ( 1040 -352 145 ) ( 1041 -352 144 ) 461223115 0 0 0 1 1
 ( 1024 992 -144 ) ( 1024 991 -144 ) ( 1025 992 -144 ) 461223115 0 0 0 1 1
 ( 1040 608 144 ) ( 1041 608 144 ) ( 1040 607 144 ) 461223115 0 0 0 1 1
-( 1024 576 0 ) ( 1025 576 0 ) ( 1024 576 1 ) 461223115 0 0 0 1 1
+( 1024 384 0 ) ( 1025 384 0 ) ( 1024 384 1 ) 461223115 0 0 0 1 1
 ( 1040 608 144 ) ( 1040 607 144 ) ( 1040 608 145 ) 461223115 0 0 0 1 1
 }
 // brush 80
@@ -1108,9 +1108,9 @@
 }
 // brush 122
 {
-( 1040 560 144 ) ( 1040 560 145 ) ( 1040 559 144 ) 461223115 0 0 0 1 1
+( 1024 560 144 ) ( 1024 560 145 ) ( 1024 559 144 ) 461223115 0 0 0 1 1
 ( 2000 560 144 ) ( 1999 560 144 ) ( 2000 560 145 ) 461223115 0 0 0 1 1
-( 2384 576 16 ) ( 2383 576 16 ) ( 2384 575 16 ) 461223115 0 0 0 1 1
+( 2384 576 -464 ) ( 2383 576 -464 ) ( 2384 575 -464 ) 461223115 0 0 0 1 1
 ( 2000 560 144 ) ( 2000 559 144 ) ( 1999 560 144 ) 461223115 0 0 0 1 1
 ( 2384 576 0 ) ( 2384 576 1 ) ( 2383 576 0 ) 461223115 0 0 0 1 1
 ( 1392 576 0 ) ( 1392 575 0 ) ( 1392 576 1 ) 461223115 0 0 0 1 1
@@ -1455,557 +1455,240 @@
 ( 48 -96 112 ) ( -80 -96 112 ) ( -80 -48 64 ) dev_textures/purple/texture_01 -288 -336 0 1 1
 ( 48 -96 112 ) ( 48 -48 64 ) ( 48 -96 64 ) dev_textures/purple/texture_01 0 0 0 1 1
 }
+// brush 160
+{
+( 1024 384 144 ) ( 1024 384 145 ) ( 1024 383 144 ) 461223115 -76 0 180 1 -1
+( 1984 384 144 ) ( 1983 384 144 ) ( 1984 384 145 ) 461223115 -626 0 0 1 1
+( 2368 400 -464 ) ( 2367 400 -464 ) ( 2368 399 -464 ) 461223115 -76 626 270 1 1
+( 1984 384 144 ) ( 1984 383 144 ) ( 1983 384 144 ) 461223115 -76 626 270 1 1
+( 2368 400 0 ) ( 2368 400 1 ) ( 2367 400 0 ) 461223115 -626 0 0 1 1
+( 1408 400 0 ) ( 1408 399 0 ) ( 1408 400 1 ) 461223115 -76 0 180 1 -1
+}
+// brush 161
+{
+( 1392 -384 144 ) ( 1392 -383 144 ) ( 1392 -384 145 ) 461223115 224 0 180 1 -1
+( 1408 400 0 ) ( 1407 400 0 ) ( 1408 400 1 ) 461223115 182 0 180 1 -1
+( 1408 -768 -464 ) ( 1408 -767 -464 ) ( 1407 -768 -464 ) 461223115 182 -224 180 1 1
+( 1392 -384 144 ) ( 1391 -384 144 ) ( 1392 -383 144 ) 461223115 182 -224 180 1 1
+( 1392 576 144 ) ( 1392 576 145 ) ( 1391 576 144 ) 461223115 182 0 180 1 -1
+( 1408 -768 0 ) ( 1408 -768 1 ) ( 1408 -767 0 ) 461223115 224 0 180 1 -1
+}
+// brush 162
+{
+( 1024 560 -128 ) ( 1024 400 -128 ) ( 1024 400 -144 ) __TB_empty 0 16 0 1 1
+( 1392 400 -464 ) ( 1392 560 -464 ) ( 1024 560 -144 ) __TB_empty 16 0 0 1 1
+( 1024 400 -128 ) ( 1392 400 -448 ) ( 1392 400 -464 ) __TB_empty 16 16 0 1 1
+( 1392 560 -464 ) ( 1392 560 -448 ) ( 1024 560 -128 ) __TB_empty 16 16 0 1 1
+( 1024 560 -128 ) ( 1392 560 -448 ) ( 1392 400 -448 ) __TB_empty 16 0 0 1 1
+( 1392 400 -448 ) ( 1392 560 -448 ) ( 1392 560 -464 ) __TB_empty 0 16 0 1 1
+}
 }
 // entity 1
-{
-"classname" "info_player_start"
-"origin" "8 8 8"
-}
-// entity 2
 {
 "classname" "light"
 "origin" "292 316 -44"
 }
-// entity 3
+// entity 2
 {
 "classname" "light"
 "origin" "164 316 -52"
 }
+// entity 3
+{
+"classname" "player_spawn"
+"origin" "1208 712 24"
+}
 // entity 4
 {
-"classname" "info_player_start"
-"origin" "1208 712 24"
+"classname" "player_spawn"
+"origin" "1208 616 24"
 }
 // entity 5
 {
-"classname" "info_player_start"
-"origin" "1208 616 24"
+"classname" "player_spawn"
+"origin" "1160 728 24"
 }
 // entity 6
 {
-"classname" "info_player_start"
-"origin" "1160 728 24"
+"classname" "player_spawn"
+"origin" "1144 632 24"
 }
 // entity 7
 {
-"classname" "info_player_start"
-"origin" "1144 632 24"
+"classname" "pickup_health_medium"
+"origin" "840 -296 8"
 }
 // entity 8
 {
-"classname" "info_player_start"
-"origin" "72 24 8"
+"classname" "pickup_health_medium"
+"origin" "200 648 24"
 }
 // entity 9
 {
-"classname" "info_player_start"
-"origin" "88 -72 8"
+"classname" "pickup_mana_medium"
+"origin" "136 648 24"
 }
 // entity 10
 {
-"classname" "info_player_start"
-"origin" "136 -56 8"
+"classname" "pickup_health_medium"
+"origin" "296 152 24"
 }
 // entity 11
 {
-"classname" "health_drop"
-"origin" "840 -296 8"
+"classname" "pickup_health_medium"
+"origin" "24 -296 120"
 }
 // entity 12
 {
-"classname" "health_drop"
-"origin" "200 648 24"
+"classname" "pickup_mana_medium"
+"origin" "904 520 -120"
 }
 // entity 13
 {
-"classname" "mana_drop"
-"origin" "136 648 24"
+"classname" "pickup_mana_medium"
+"origin" "120 1064 24"
 }
 // entity 14
 {
-"classname" "health_drop"
-"origin" "296 152 24"
+"classname" "props_shootable_box"
+"origin" "840 888 24"
 }
 // entity 15
 {
-"classname" "health_drop"
-"origin" "24 -296 120"
+"classname" "props_shootable_box"
+"origin" "1080 584 24"
 }
 // entity 16
 {
-"classname" "mana_drop"
-"origin" "904 520 -120"
+"classname" "pickup_ammo_small"
+"origin" "728 -264 -120"
 }
 // entity 17
 {
-"classname" "mana_drop"
-"origin" "120 1064 24"
+"classname" "pickup_ammo_small"
+"origin" "1048 856 24"
 }
 // entity 18
 {
-"classname" "box_shootable"
-"origin" "168 -104 24"
+"classname" "pickup_ammo_small"
+"origin" "312 1016 24"
 }
 // entity 19
 {
-"classname" "box_shootable"
-"origin" "-56 232 24"
+"classname" "props_grabbable_box"
+"origin" "840 920 24"
 }
 // entity 20
 {
-"classname" "box_shootable"
-"origin" "840 888 24"
+"classname" "props_grabbable_box"
+"origin" "1048 584 24"
 }
 // entity 21
 {
-"classname" "box_shootable"
-"origin" "1080 584 24"
+"classname" "pickup_ammo_large"
+"origin" "312 -200 8"
 }
 // entity 22
 {
-"classname" "ammo_small"
-"origin" "728 -264 -120"
+"classname" "pickup_ammo_medium"
+"origin" "360 -200 8"
 }
 // entity 23
 {
-"classname" "ammo_small"
-"origin" "1048 856 24"
+"classname" "pickup_ammo_small"
+"origin" "408 -200 8"
 }
 // entity 24
 {
-"classname" "ammo_small"
-"origin" "312 1016 24"
+"classname" "props_shootable_box"
+"origin" "-56 232 24"
 }
 // entity 25
 {
-"classname" "ammo_small"
-"origin" "408 -200 8"
+"classname" "props_grabbable_box"
+"origin" "-24 232 24"
 }
 // entity 26
 {
-"classname" "ammo_medium"
-"origin" "360 -200 8"
+"classname" "props_grabbable_box"
+"origin" "200 -104 24"
 }
 // entity 27
 {
-"classname" "ammo_large"
-"origin" "312 -200 8"
+"classname" "player_spawn"
+"origin" "8 8 8"
 }
 // entity 28
 {
-"classname" "box_grabbable"
-"origin" "200 -104 24"
+"classname" "props_grabbable_box"
+"origin" "200 -232 216"
 }
 // entity 29
 {
-"classname" "box_grabbable"
-"origin" "-24 232 24"
+"classname" "props_grabbable_box"
+"origin" "200 -232 200"
 }
 // entity 30
 {
-"classname" "box_grabbable"
-"origin" "840 920 24"
+"classname" "props_grabbable_box"
+"origin" "200 -232 184"
 }
 // entity 31
 {
-"classname" "box_grabbable"
-"origin" "1048 584 24"
+"classname" "props_grabbable_box"
+"origin" "200 -232 168"
 }
 // entity 32
 {
-"classname" "box_grabbable"
-"origin" "200 -104 24"
+"classname" "props_grabbable_box"
+"origin" "200 -232 152"
 }
 // entity 33
 {
-"classname" "box_grabbable"
-"origin" "200 -104 24"
+"classname" "props_grabbable_box"
+"origin" "200 -232 136"
 }
 // entity 34
 {
-"classname" "box_grabbable"
-"origin" "296 -312 8"
+"classname" "props_grabbable_box"
+"origin" "200 -232 120"
 }
 // entity 35
 {
-"classname" "box_grabbable"
-"origin" "280 -312 8"
+"classname" "props_grabbable_box"
+"origin" "200 -232 104"
 }
 // entity 36
 {
-"classname" "box_grabbable"
-"origin" "264 -312 8"
+"classname" "props_grabbable_box"
+"origin" "200 -232 88"
 }
 // entity 37
 {
-"classname" "box_grabbable"
-"origin" "248 -312 8"
+"classname" "props_grabbable_box"
+"origin" "200 -232 72"
 }
 // entity 38
 {
-"classname" "box_grabbable"
-"origin" "232 -312 8"
+"classname" "props_grabbable_box"
+"origin" "200 -232 56"
 }
 // entity 39
 {
-"classname" "box_grabbable"
-"origin" "216 -312 8"
+"classname" "props_grabbable_box"
+"origin" "200 -232 40"
 }
 // entity 40
 {
-"classname" "box_grabbable"
-"origin" "216 -296 8"
+"classname" "props_grabbable_box"
+"origin" "200 -232 24"
 }
 // entity 41
 {
-"classname" "box_grabbable"
-"origin" "216 -280 8"
+"classname" "props_grabbable_box"
+"origin" "200 -232 8"
 }
 // entity 42
-{
-"classname" "box_grabbable"
-"origin" "232 -296 8"
-}
-// entity 43
-{
-"classname" "box_grabbable"
-"origin" "248 -296 8"
-}
-// entity 44
-{
-"classname" "box_grabbable"
-"origin" "264 -296 8"
-}
-// entity 45
-{
-"classname" "box_grabbable"
-"origin" "296 -296 8"
-}
-// entity 46
-{
-"classname" "box_grabbable"
-"origin" "280 -296 8"
-}
-// entity 47
-{
-"classname" "box_grabbable"
-"origin" "296 -280 8"
-}
-// entity 48
-{
-"classname" "box_grabbable"
-"origin" "296 -264 8"
-}
-// entity 49
-{
-"classname" "box_grabbable"
-"origin" "280 -264 8"
-}
-// entity 50
-{
-"classname" "box_grabbable"
-"origin" "248 -264 8"
-}
-// entity 51
-{
-"classname" "box_grabbable"
-"origin" "280 -280 8"
-}
-// entity 52
-{
-"classname" "box_grabbable"
-"origin" "264 -280 8"
-}
-// entity 53
-{
-"classname" "box_grabbable"
-"origin" "264 -264 8"
-}
-// entity 54
-{
-"classname" "box_grabbable"
-"origin" "248 -280 8"
-}
-// entity 55
-{
-"classname" "box_grabbable"
-"origin" "232 -280 8"
-}
-// entity 56
-{
-"classname" "box_grabbable"
-"origin" "232 -264 8"
-}
-// entity 57
-{
-"classname" "box_grabbable"
-"origin" "216 -264 8"
-}
-// entity 58
-{
-"classname" "box_grabbable"
-"origin" "216 -264 40"
-}
-// entity 59
-{
-"classname" "box_grabbable"
-"origin" "232 -264 40"
-}
-// entity 60
-{
-"classname" "box_grabbable"
-"origin" "216 -280 40"
-}
-// entity 61
-{
-"classname" "box_grabbable"
-"origin" "232 -280 40"
-}
-// entity 62
-{
-"classname" "box_grabbable"
-"origin" "216 -296 40"
-}
-// entity 63
-{
-"classname" "box_grabbable"
-"origin" "232 -296 40"
-}
-// entity 64
-{
-"classname" "box_grabbable"
-"origin" "232 -312 40"
-}
-// entity 65
-{
-"classname" "box_grabbable"
-"origin" "216 -312 40"
-}
-// entity 66
-{
-"classname" "box_grabbable"
-"origin" "248 -312 40"
-}
-// entity 67
-{
-"classname" "box_grabbable"
-"origin" "248 -296 40"
-}
-// entity 68
-{
-"classname" "box_grabbable"
-"origin" "248 -264 40"
-}
-// entity 69
-{
-"classname" "box_grabbable"
-"origin" "248 -280 40"
-}
-// entity 70
-{
-"classname" "box_grabbable"
-"origin" "264 -280 40"
-}
-// entity 71
-{
-"classname" "box_grabbable"
-"origin" "264 -264 40"
-}
-// entity 72
-{
-"classname" "box_grabbable"
-"origin" "280 -264 40"
-}
-// entity 73
-{
-"classname" "box_grabbable"
-"origin" "280 -280 40"
-}
-// entity 74
-{
-"classname" "box_grabbable"
-"origin" "296 -280 40"
-}
-// entity 75
-{
-"classname" "box_grabbable"
-"origin" "296 -264 40"
-}
-// entity 76
-{
-"classname" "box_grabbable"
-"origin" "296 -296 40"
-}
-// entity 77
-{
-"classname" "box_grabbable"
-"origin" "280 -296 40"
-}
-// entity 78
-{
-"classname" "box_grabbable"
-"origin" "264 -296 40"
-}
-// entity 79
-{
-"classname" "box_grabbable"
-"origin" "264 -312 40"
-}
-// entity 80
-{
-"classname" "box_grabbable"
-"origin" "280 -312 40"
-}
-// entity 81
-{
-"classname" "box_grabbable"
-"origin" "296 -312 40"
-}
-// entity 82
-{
-"classname" "box_grabbable"
-"origin" "242.929 -264 73.3593"
-"angle" "0"
-}
-// entity 83
-{
-"classname" "box_grabbable"
-"origin" "250.928 -264 87.2151"
-"angle" "0"
-}
-// entity 84
-{
-"classname" "box_grabbable"
-"origin" "242.929 -280 73.3593"
-"angle" "0"
-}
-// entity 85
-{
-"classname" "box_grabbable"
-"origin" "250.928 -280 87.2151"
-"angle" "0"
-}
-// entity 86
-{
-"classname" "box_grabbable"
-"origin" "242.929 -296 73.3593"
-"angle" "0"
-}
-// entity 87
-{
-"classname" "box_grabbable"
-"origin" "250.928 -296 87.2151"
-"angle" "0"
-}
-// entity 88
-{
-"classname" "box_grabbable"
-"origin" "250.928 -312 87.2151"
-"angle" "0"
-}
-// entity 89
-{
-"classname" "box_grabbable"
-"origin" "242.929 -312 73.3593"
-"angle" "0"
-}
-// entity 90
-{
-"classname" "box_grabbable"
-"origin" "258.928 -312 101.072"
-"angle" "0"
-}
-// entity 91
-{
-"classname" "box_grabbable"
-"origin" "258.928 -296 101.072"
-"angle" "0"
-}
-// entity 92
-{
-"classname" "box_grabbable"
-"origin" "258.928 -264 101.072"
-"angle" "0"
-}
-// entity 93
-{
-"classname" "box_grabbable"
-"origin" "258.928 -280 101.072"
-"angle" "0"
-}
-// entity 94
-{
-"classname" "box_grabbable"
-"origin" "266.928 -280 114.928"
-"angle" "0"
-}
-// entity 95
-{
-"classname" "box_grabbable"
-"origin" "266.928 -264 114.928"
-"angle" "0"
-}
-// entity 96
-{
-"classname" "box_grabbable"
-"origin" "274.929 -264 128.785"
-"angle" "0"
-}
-// entity 97
-{
-"classname" "box_grabbable"
-"origin" "274.929 -280 128.785"
-"angle" "0"
-}
-// entity 98
-{
-"classname" "box_grabbable"
-"origin" "282.929 -280 142.641"
-"angle" "0"
-}
-// entity 99
-{
-"classname" "box_grabbable"
-"origin" "282.929 -264 142.641"
-"angle" "0"
-}
-// entity 100
-{
-"classname" "box_grabbable"
-"origin" "282.929 -296 142.641"
-"angle" "0"
-}
-// entity 101
-{
-"classname" "box_grabbable"
-"origin" "274.929 -296 128.785"
-"angle" "0"
-}
-// entity 102
-{
-"classname" "box_grabbable"
-"origin" "266.928 -296 114.928"
-"angle" "0"
-}
-// entity 103
-{
-"classname" "box_grabbable"
-"origin" "266.928 -312 114.928"
-"angle" "0"
-}
-// entity 104
-{
-"classname" "box_grabbable"
-"origin" "274.929 -312 128.785"
-"angle" "0"
-}
-// entity 105
-{
-"classname" "box_grabbable"
-"origin" "282.929 -312 142.641"
-"angle" "0"
-}
-// entity 106
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -2013,11 +1696,1981 @@
 "_tb_id" "6"
 "_tb_layer_sort_index" "0"
 }
-// entity 107
+// entity 43
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "stairs"
 "_tb_id" "10"
 "_tb_layer_sort_index" "1"
+}
+// entity 44
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "The lots of blocks"
+"_tb_id" "11"
+"_tb_layer_sort_index" "2"
+}
+// entity 45
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 488 -40"
+"_tb_layer" "11"
+}
+// entity 46
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 488 -40"
+"_tb_layer" "11"
+}
+// entity 47
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 488 -40"
+"_tb_layer" "11"
+}
+// entity 48
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 488 -40"
+"_tb_layer" "11"
+}
+// entity 49
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 488 -40"
+"_tb_layer" "11"
+}
+// entity 50
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 488 -40"
+"_tb_layer" "11"
+}
+// entity 51
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 488 -40"
+"_tb_layer" "11"
+}
+// entity 52
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -40"
+"_tb_layer" "11"
+}
+// entity 53
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -40"
+"_tb_layer" "11"
+}
+// entity 54
+{
+"classname" "props_grabbable_ball"
+"origin" "1368 488 -40"
+"_tb_layer" "11"
+}
+// entity 55
+{
+"classname" "props_grabbable_ball"
+"origin" "1368 488 -56"
+"_tb_layer" "11"
+}
+// entity 56
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -56"
+"_tb_layer" "11"
+}
+// entity 57
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -56"
+"_tb_layer" "11"
+}
+// entity 58
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 488 -56"
+"_tb_layer" "11"
+}
+// entity 59
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 488 -56"
+"_tb_layer" "11"
+}
+// entity 60
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 488 -56"
+"_tb_layer" "11"
+}
+// entity 61
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 488 -56"
+"_tb_layer" "11"
+}
+// entity 62
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 488 -56"
+"_tb_layer" "11"
+}
+// entity 63
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 488 -56"
+"_tb_layer" "11"
+}
+// entity 64
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 488 -56"
+"_tb_layer" "11"
+}
+// entity 65
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 488 -72"
+"_tb_layer" "11"
+}
+// entity 66
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 488 -72"
+"_tb_layer" "11"
+}
+// entity 67
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 488 -72"
+"_tb_layer" "11"
+}
+// entity 68
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 488 -72"
+"_tb_layer" "11"
+}
+// entity 69
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 488 -72"
+"_tb_layer" "11"
+}
+// entity 70
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 488 -72"
+"_tb_layer" "11"
+}
+// entity 71
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 488 -72"
+"_tb_layer" "11"
+}
+// entity 72
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -72"
+"_tb_layer" "11"
+}
+// entity 73
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -72"
+"_tb_layer" "11"
+}
+// entity 74
+{
+"classname" "props_grabbable_ball"
+"origin" "1368 488 -72"
+"_tb_layer" "11"
+}
+// entity 75
+{
+"classname" "props_grabbable_ball"
+"origin" "1368 488 -88"
+"_tb_layer" "11"
+}
+// entity 76
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -88"
+"_tb_layer" "11"
+}
+// entity 77
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -88"
+"_tb_layer" "11"
+}
+// entity 78
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 488 -88"
+"_tb_layer" "11"
+}
+// entity 79
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 488 -88"
+"_tb_layer" "11"
+}
+// entity 80
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 488 -88"
+"_tb_layer" "11"
+}
+// entity 81
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 488 -88"
+"_tb_layer" "11"
+}
+// entity 82
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 488 -88"
+"_tb_layer" "11"
+}
+// entity 83
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 488 -88"
+"_tb_layer" "11"
+}
+// entity 84
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 488 -88"
+"_tb_layer" "11"
+}
+// entity 85
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 488 -88"
+"_tb_layer" "11"
+}
+// entity 86
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 488 -104"
+"_tb_layer" "11"
+}
+// entity 87
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 488 -104"
+"_tb_layer" "11"
+}
+// entity 88
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 488 -104"
+"_tb_layer" "11"
+}
+// entity 89
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 488 -104"
+"_tb_layer" "11"
+}
+// entity 90
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 488 -104"
+"_tb_layer" "11"
+}
+// entity 91
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 488 -104"
+"_tb_layer" "11"
+}
+// entity 92
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 488 -104"
+"_tb_layer" "11"
+}
+// entity 93
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 488 -104"
+"_tb_layer" "11"
+}
+// entity 94
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -104"
+"_tb_layer" "11"
+}
+// entity 95
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -104"
+"_tb_layer" "11"
+}
+// entity 96
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -120"
+"_tb_layer" "11"
+}
+// entity 97
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -120"
+"_tb_layer" "11"
+}
+// entity 98
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 488 -120"
+"_tb_layer" "11"
+}
+// entity 99
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 488 -120"
+"_tb_layer" "11"
+}
+// entity 100
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 488 -120"
+"_tb_layer" "11"
+}
+// entity 101
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 488 -120"
+"_tb_layer" "11"
+}
+// entity 102
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 488 -120"
+"_tb_layer" "11"
+}
+// entity 103
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 488 -120"
+"_tb_layer" "11"
+}
+// entity 104
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 488 -120"
+"_tb_layer" "11"
+}
+// entity 105
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 488 -120"
+"_tb_layer" "11"
+}
+// entity 106
+{
+"classname" "props_grabbable_ball"
+"origin" "1192 488 -120"
+"_tb_layer" "11"
+}
+// entity 107
+{
+"classname" "props_grabbable_ball"
+"origin" "1192 488 -136"
+"_tb_layer" "11"
+}
+// entity 108
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 488 -136"
+"_tb_layer" "11"
+}
+// entity 109
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 488 -136"
+"_tb_layer" "11"
+}
+// entity 110
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 488 -136"
+"_tb_layer" "11"
+}
+// entity 111
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 488 -136"
+"_tb_layer" "11"
+}
+// entity 112
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 488 -136"
+"_tb_layer" "11"
+}
+// entity 113
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 488 -136"
+"_tb_layer" "11"
+}
+// entity 114
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 488 -136"
+"_tb_layer" "11"
+}
+// entity 115
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 488 -136"
+"_tb_layer" "11"
+}
+// entity 116
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -136"
+"_tb_layer" "11"
+}
+// entity 117
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -152"
+"_tb_layer" "11"
+}
+// entity 118
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 488 -152"
+"_tb_layer" "11"
+}
+// entity 119
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 488 -152"
+"_tb_layer" "11"
+}
+// entity 120
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 488 -152"
+"_tb_layer" "11"
+}
+// entity 121
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 488 -152"
+"_tb_layer" "11"
+}
+// entity 122
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 488 -152"
+"_tb_layer" "11"
+}
+// entity 123
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 488 -152"
+"_tb_layer" "11"
+}
+// entity 124
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 488 -152"
+"_tb_layer" "11"
+}
+// entity 125
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 488 -152"
+"_tb_layer" "11"
+}
+// entity 126
+{
+"classname" "props_grabbable_ball"
+"origin" "1192 488 -152"
+"_tb_layer" "11"
+}
+// entity 127
+{
+"classname" "props_grabbable_ball"
+"origin" "1176 488 -152"
+"_tb_layer" "11"
+}
+// entity 128
+{
+"classname" "props_grabbable_ball"
+"origin" "1160 488 -152"
+"_tb_layer" "11"
+}
+// entity 129
+{
+"classname" "props_grabbable_ball"
+"origin" "1096 472 -152"
+"_tb_layer" "11"
+}
+// entity 130
+{
+"classname" "props_grabbable_ball"
+"origin" "1144 488 -168"
+"_tb_layer" "11"
+}
+// entity 131
+{
+"classname" "props_grabbable_ball"
+"origin" "1160 488 -168"
+"_tb_layer" "11"
+}
+// entity 132
+{
+"classname" "props_grabbable_ball"
+"origin" "1176 488 -168"
+"_tb_layer" "11"
+}
+// entity 133
+{
+"classname" "props_grabbable_ball"
+"origin" "1192 488 -168"
+"_tb_layer" "11"
+}
+// entity 134
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 488 -168"
+"_tb_layer" "11"
+}
+// entity 135
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 488 -168"
+"_tb_layer" "11"
+}
+// entity 136
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 488 -168"
+"_tb_layer" "11"
+}
+// entity 137
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 488 -168"
+"_tb_layer" "11"
+}
+// entity 138
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 488 -168"
+"_tb_layer" "11"
+}
+// entity 139
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 488 -168"
+"_tb_layer" "11"
+}
+// entity 140
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 488 -168"
+"_tb_layer" "11"
+}
+// entity 141
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 488 -168"
+"_tb_layer" "11"
+}
+// entity 142
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -168"
+"_tb_layer" "11"
+}
+// entity 143
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -184"
+"_tb_layer" "11"
+}
+// entity 144
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -200"
+"_tb_layer" "11"
+}
+// entity 145
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -216"
+"_tb_layer" "11"
+}
+// entity 146
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -232"
+"_tb_layer" "11"
+}
+// entity 147
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -248"
+"_tb_layer" "11"
+}
+// entity 148
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -264"
+"_tb_layer" "11"
+}
+// entity 149
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -280"
+"_tb_layer" "11"
+}
+// entity 150
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -296"
+"_tb_layer" "11"
+}
+// entity 151
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -312"
+"_tb_layer" "11"
+}
+// entity 152
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -328"
+"_tb_layer" "11"
+}
+// entity 153
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -328"
+"_tb_layer" "11"
+}
+// entity 154
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -312"
+"_tb_layer" "11"
+}
+// entity 155
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -296"
+"_tb_layer" "11"
+}
+// entity 156
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -280"
+"_tb_layer" "11"
+}
+// entity 157
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -264"
+"_tb_layer" "11"
+}
+// entity 158
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -248"
+"_tb_layer" "11"
+}
+// entity 159
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -232"
+"_tb_layer" "11"
+}
+// entity 160
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -216"
+"_tb_layer" "11"
+}
+// entity 161
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -200"
+"_tb_layer" "11"
+}
+// entity 162
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -184"
+"_tb_layer" "11"
+}
+// entity 163
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -168"
+"_tb_layer" "11"
+}
+// entity 164
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -152"
+"_tb_layer" "11"
+}
+// entity 165
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -136"
+"_tb_layer" "11"
+}
+// entity 166
+{
+"classname" "props_grabbable_ball"
+"origin" "1368 488 -136"
+"_tb_layer" "11"
+}
+// entity 167
+{
+"classname" "props_grabbable_ball"
+"origin" "1368 488 -120"
+"_tb_layer" "11"
+}
+// entity 168
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 488 -120"
+"_tb_layer" "11"
+}
+// entity 169
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 488 -104"
+"_tb_layer" "11"
+}
+// entity 170
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 488 -88"
+"_tb_layer" "11"
+}
+// entity 171
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 488 -72"
+"_tb_layer" "11"
+}
+// entity 172
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 488 -56"
+"_tb_layer" "11"
+}
+// entity 173
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 488 -40"
+"_tb_layer" "11"
+}
+// entity 174
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 488 -24"
+"_tb_layer" "11"
+}
+// entity 175
+{
+"classname" "props_grabbable_ball"
+"origin" "1368 488 -24"
+"_tb_layer" "11"
+}
+// entity 176
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 488 -24"
+"_tb_layer" "11"
+}
+// entity 177
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 488 -24"
+"_tb_layer" "11"
+}
+// entity 178
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 488 -24"
+"_tb_layer" "11"
+}
+// entity 179
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 488 -24"
+"_tb_layer" "11"
+}
+// entity 180
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 488 -24"
+"_tb_layer" "11"
+}
+// entity 181
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 488 -24"
+"_tb_layer" "11"
+}
+// entity 182
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 488 -24"
+"_tb_layer" "11"
+}
+// entity 183
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 488 -24"
+"_tb_layer" "11"
+}
+// entity 184
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 488 -24"
+"_tb_layer" "11"
+}
+// entity 185
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 488 -24"
+"_tb_layer" "11"
+}
+// entity 186
+{
+"classname" "props_grabbable_ball"
+"origin" "1192 488 -24"
+"_tb_layer" "11"
+}
+// entity 187
+{
+"classname" "props_grabbable_ball"
+"origin" "1176 488 -24"
+"_tb_layer" "11"
+}
+// entity 188
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 -24"
+"_tb_layer" "11"
+}
+// entity 189
+{
+"classname" "props_grabbable_ball"
+"origin" "1144 488 -24"
+"_tb_layer" "11"
+}
+// entity 190
+{
+"classname" "props_grabbable_ball"
+"origin" "1128 488 -24"
+"_tb_layer" "11"
+}
+// entity 191
+{
+"classname" "props_grabbable_ball"
+"origin" "1112 488 -24"
+"_tb_layer" "11"
+}
+// entity 192
+{
+"classname" "props_grabbable_ball"
+"origin" "1096 488 -24"
+"_tb_layer" "11"
+}
+// entity 193
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 600 24"
+"_tb_layer" "11"
+}
+// entity 194
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 584 40"
+"_tb_layer" "11"
+}
+// entity 195
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 584 40"
+"_tb_layer" "11"
+}
+// entity 196
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 600 40"
+"_tb_layer" "11"
+}
+// entity 197
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 600 40"
+"_tb_layer" "11"
+}
+// entity 198
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 600 56"
+"_tb_layer" "11"
+}
+// entity 199
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 584 72"
+"_tb_layer" "11"
+}
+// entity 200
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 584 72"
+"_tb_layer" "11"
+}
+// entity 201
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 584 88"
+"_tb_layer" "11"
+}
+// entity 202
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 600 88"
+"_tb_layer" "11"
+}
+// entity 203
+{
+"classname" "props_grabbable_ball"
+"origin" "1384 600 88"
+"_tb_layer" "11"
+}
+// entity 204
+{
+"classname" "props_grabbable_ball"
+"origin" "-56 -152 120"
+"_tb_layer" "11"
+}
+// entity 205
+{
+"classname" "props_grabbable_ball"
+"origin" "-40 -136 120"
+"_tb_layer" "11"
+}
+// entity 206
+{
+"classname" "props_grabbable_ball"
+"origin" "-24 -136 120"
+"_tb_layer" "11"
+}
+// entity 207
+{
+"classname" "props_grabbable_ball"
+"origin" "-8 -152 120"
+"_tb_layer" "11"
+}
+// entity 208
+{
+"classname" "props_grabbable_ball"
+"origin" "8 -152 120"
+"_tb_layer" "11"
+}
+// entity 209
+{
+"classname" "props_grabbable_ball"
+"origin" "8 -152 120"
+"_tb_layer" "11"
+}
+// entity 210
+{
+"classname" "props_grabbable_ball"
+"origin" "24 -152 120"
+"_tb_layer" "11"
+}
+// entity 211
+{
+"classname" "props_grabbable_ball"
+"origin" "24 -152 120"
+"_tb_layer" "11"
+}
+// entity 212
+{
+"classname" "props_grabbable_ball"
+"origin" "88 -344 8"
+"_tb_layer" "11"
+}
+// entity 213
+{
+"classname" "props_grabbable_ball"
+"origin" "88 -328 8"
+"_tb_layer" "11"
+}
+// entity 214
+{
+"classname" "props_grabbable_ball"
+"origin" "72 -280 8"
+"_tb_layer" "11"
+}
+// entity 215
+{
+"classname" "props_grabbable_ball"
+"origin" "72 -232 8"
+"_tb_layer" "11"
+}
+// entity 216
+{
+"classname" "props_grabbable_ball"
+"origin" "72 -200 8"
+"_tb_layer" "11"
+}
+// entity 217
+{
+"classname" "props_grabbable_ball"
+"origin" "72 -168 8"
+"_tb_layer" "11"
+}
+// entity 218
+{
+"classname" "props_grabbable_ball"
+"origin" "88 -136 8"
+"_tb_layer" "11"
+}
+// entity 219
+{
+"classname" "props_grabbable_ball"
+"origin" "-88 120 24"
+"_tb_layer" "11"
+}
+// entity 220
+{
+"classname" "props_grabbable_ball"
+"origin" "-88 72 8"
+"_tb_layer" "11"
+}
+// entity 221
+{
+"classname" "props_grabbable_ball"
+"origin" "-88 40 8"
+"_tb_layer" "11"
+}
+// entity 222
+{
+"classname" "props_grabbable_ball"
+"origin" "1112 472 -152"
+"_tb_layer" "11"
+}
+// entity 223
+{
+"classname" "props_grabbable_ball"
+"origin" "1128 472 -152"
+"_tb_layer" "11"
+}
+// entity 224
+{
+"classname" "props_grabbable_ball"
+"origin" "1144 472 -152"
+"_tb_layer" "11"
+}
+// entity 225
+{
+"classname" "props_grabbable_ball"
+"origin" "1160 472 -152"
+"_tb_layer" "11"
+}
+// entity 226
+{
+"classname" "props_grabbable_ball"
+"origin" "1176 472 -152"
+"_tb_layer" "11"
+}
+// entity 227
+{
+"classname" "props_grabbable_ball"
+"origin" "1192 472 -152"
+"_tb_layer" "11"
+}
+// entity 228
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 472 -152"
+"_tb_layer" "11"
+}
+// entity 229
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 472 -152"
+"_tb_layer" "11"
+}
+// entity 230
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 472 -152"
+"_tb_layer" "11"
+}
+// entity 231
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 472 -152"
+"_tb_layer" "11"
+}
+// entity 232
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 472 -152"
+"_tb_layer" "11"
+}
+// entity 233
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 472 -152"
+"_tb_layer" "11"
+}
+// entity 234
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 472 -152"
+"_tb_layer" "11"
+}
+// entity 235
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 472 -152"
+"_tb_layer" "11"
+}
+// entity 236
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 472 -152"
+"_tb_layer" "11"
+}
+// entity 237
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 472 -152"
+"_tb_layer" "11"
+}
+// entity 238
+{
+"classname" "props_grabbable_ball"
+"origin" "1368 472 -152"
+"_tb_layer" "11"
+}
+// entity 239
+{
+"classname" "props_grabbable_ball"
+"origin" "1368 472 -136"
+"_tb_layer" "11"
+}
+// entity 240
+{
+"classname" "props_grabbable_ball"
+"origin" "1352 472 -136"
+"_tb_layer" "11"
+}
+// entity 241
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 472 -136"
+"_tb_layer" "11"
+}
+// entity 242
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 472 -136"
+"_tb_layer" "11"
+}
+// entity 243
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 472 -136"
+"_tb_layer" "11"
+}
+// entity 244
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 472 -136"
+"_tb_layer" "11"
+}
+// entity 245
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 472 -136"
+"_tb_layer" "11"
+}
+// entity 246
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 472 -136"
+"_tb_layer" "11"
+}
+// entity 247
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 472 -136"
+"_tb_layer" "11"
+}
+// entity 248
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 472 -136"
+"_tb_layer" "11"
+}
+// entity 249
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 472 -136"
+"_tb_layer" "11"
+}
+// entity 250
+{
+"classname" "props_grabbable_ball"
+"origin" "1192 472 -136"
+"_tb_layer" "11"
+}
+// entity 251
+{
+"classname" "props_grabbable_ball"
+"origin" "1176 472 -136"
+"_tb_layer" "11"
+}
+// entity 252
+{
+"classname" "props_grabbable_ball"
+"origin" "1160 472 -136"
+"_tb_layer" "11"
+}
+// entity 253
+{
+"classname" "props_grabbable_ball"
+"origin" "1144 472 -136"
+"_tb_layer" "11"
+}
+// entity 254
+{
+"classname" "props_grabbable_ball"
+"origin" "1128 472 -136"
+"_tb_layer" "11"
+}
+// entity 255
+{
+"classname" "props_grabbable_ball"
+"origin" "1112 472 -136"
+"_tb_layer" "11"
+}
+// entity 256
+{
+"classname" "props_grabbable_ball"
+"origin" "1096 472 -136"
+"_tb_layer" "11"
+}
+// entity 257
+{
+"classname" "props_grabbable_ball"
+"origin" "1096 472 -120"
+"_tb_layer" "11"
+}
+// entity 258
+{
+"classname" "props_grabbable_ball"
+"origin" "1112 472 -120"
+"_tb_layer" "11"
+}
+// entity 259
+{
+"classname" "props_grabbable_ball"
+"origin" "1128 472 -120"
+"_tb_layer" "11"
+}
+// entity 260
+{
+"classname" "props_grabbable_ball"
+"origin" "1144 472 -120"
+"_tb_layer" "11"
+}
+// entity 261
+{
+"classname" "props_grabbable_ball"
+"origin" "1160 472 -120"
+"_tb_layer" "11"
+}
+// entity 262
+{
+"classname" "props_grabbable_ball"
+"origin" "1176 472 -120"
+"_tb_layer" "11"
+}
+// entity 263
+{
+"classname" "props_grabbable_ball"
+"origin" "1192 472 -120"
+"_tb_layer" "11"
+}
+// entity 264
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 472 -120"
+"_tb_layer" "11"
+}
+// entity 265
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 472 -120"
+"_tb_layer" "11"
+}
+// entity 266
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 472 -120"
+"_tb_layer" "11"
+}
+// entity 267
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 472 -120"
+"_tb_layer" "11"
+}
+// entity 268
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 472 -120"
+"_tb_layer" "11"
+}
+// entity 269
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 472 -120"
+"_tb_layer" "11"
+}
+// entity 270
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 472 -120"
+"_tb_layer" "11"
+}
+// entity 271
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 472 -120"
+"_tb_layer" "11"
+}
+// entity 272
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 472 -120"
+"_tb_layer" "11"
+}
+// entity 273
+{
+"classname" "props_grabbable_ball"
+"origin" "1336 472 -104"
+"_tb_layer" "11"
+}
+// entity 274
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 472 -104"
+"_tb_layer" "11"
+}
+// entity 275
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 472 -104"
+"_tb_layer" "11"
+}
+// entity 276
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 472 -104"
+"_tb_layer" "11"
+}
+// entity 277
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 472 -104"
+"_tb_layer" "11"
+}
+// entity 278
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 472 -104"
+"_tb_layer" "11"
+}
+// entity 279
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 472 -104"
+"_tb_layer" "11"
+}
+// entity 280
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 472 -104"
+"_tb_layer" "11"
+}
+// entity 281
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 472 -104"
+"_tb_layer" "11"
+}
+// entity 282
+{
+"classname" "props_grabbable_ball"
+"origin" "1192 472 -104"
+"_tb_layer" "11"
+}
+// entity 283
+{
+"classname" "props_grabbable_ball"
+"origin" "1176 472 -104"
+"_tb_layer" "11"
+}
+// entity 284
+{
+"classname" "props_grabbable_ball"
+"origin" "1160 472 -104"
+"_tb_layer" "11"
+}
+// entity 285
+{
+"classname" "props_grabbable_ball"
+"origin" "1144 472 -104"
+"_tb_layer" "11"
+}
+// entity 286
+{
+"classname" "props_grabbable_ball"
+"origin" "1128 472 -104"
+"_tb_layer" "11"
+}
+// entity 287
+{
+"classname" "props_grabbable_ball"
+"origin" "1112 472 -104"
+"_tb_layer" "11"
+}
+// entity 288
+{
+"classname" "props_grabbable_ball"
+"origin" "1096 472 -104"
+"_tb_layer" "11"
+}
+// entity 289
+{
+"classname" "props_grabbable_ball"
+"origin" "1080 472 -104"
+"_tb_layer" "11"
+}
+// entity 290
+{
+"classname" "props_grabbable_ball"
+"origin" "1080 472 -88"
+"_tb_layer" "11"
+}
+// entity 291
+{
+"classname" "props_grabbable_ball"
+"origin" "1096 472 -88"
+"_tb_layer" "11"
+}
+// entity 292
+{
+"classname" "props_grabbable_ball"
+"origin" "1112 472 -88"
+"_tb_layer" "11"
+}
+// entity 293
+{
+"classname" "props_grabbable_ball"
+"origin" "1128 472 -88"
+"_tb_layer" "11"
+}
+// entity 294
+{
+"classname" "props_grabbable_ball"
+"origin" "1144 472 -88"
+"_tb_layer" "11"
+}
+// entity 295
+{
+"classname" "props_grabbable_ball"
+"origin" "1160 472 -88"
+"_tb_layer" "11"
+}
+// entity 296
+{
+"classname" "props_grabbable_ball"
+"origin" "1176 472 -88"
+"_tb_layer" "11"
+}
+// entity 297
+{
+"classname" "props_grabbable_ball"
+"origin" "1192 472 -88"
+"_tb_layer" "11"
+}
+// entity 298
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 472 -88"
+"_tb_layer" "11"
+}
+// entity 299
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 472 -88"
+"_tb_layer" "11"
+}
+// entity 300
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 472 -88"
+"_tb_layer" "11"
+}
+// entity 301
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 472 -88"
+"_tb_layer" "11"
+}
+// entity 302
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 472 -88"
+"_tb_layer" "11"
+}
+// entity 303
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 472 -88"
+"_tb_layer" "11"
+}
+// entity 304
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 472 -88"
+"_tb_layer" "11"
+}
+// entity 305
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 472 -88"
+"_tb_layer" "11"
+}
+// entity 306
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 472 -72"
+"_tb_layer" "11"
+}
+// entity 307
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 472 -72"
+"_tb_layer" "11"
+}
+// entity 308
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 472 -72"
+"_tb_layer" "11"
+}
+// entity 309
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 472 -72"
+"_tb_layer" "11"
+}
+// entity 310
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 472 -72"
+"_tb_layer" "11"
+}
+// entity 311
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 472 -72"
+"_tb_layer" "11"
+}
+// entity 312
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 472 -72"
+"_tb_layer" "11"
+}
+// entity 313
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 472 -72"
+"_tb_layer" "11"
+}
+// entity 314
+{
+"classname" "props_grabbable_ball"
+"origin" "1192 472 -72"
+"_tb_layer" "11"
+}
+// entity 315
+{
+"classname" "props_grabbable_ball"
+"origin" "1176 472 -72"
+"_tb_layer" "11"
+}
+// entity 316
+{
+"classname" "props_grabbable_ball"
+"origin" "1160 472 -72"
+"_tb_layer" "11"
+}
+// entity 317
+{
+"classname" "props_grabbable_ball"
+"origin" "1144 472 -72"
+"_tb_layer" "11"
+}
+// entity 318
+{
+"classname" "props_grabbable_ball"
+"origin" "1128 472 -72"
+"_tb_layer" "11"
+}
+// entity 319
+{
+"classname" "props_grabbable_ball"
+"origin" "1112 472 -72"
+"_tb_layer" "11"
+}
+// entity 320
+{
+"classname" "props_grabbable_ball"
+"origin" "1096 472 -72"
+"_tb_layer" "11"
+}
+// entity 321
+{
+"classname" "props_grabbable_ball"
+"origin" "1080 472 -72"
+"_tb_layer" "11"
+}
+// entity 322
+{
+"classname" "props_grabbable_ball"
+"origin" "1064 472 -72"
+"_tb_layer" "11"
+}
+// entity 323
+{
+"classname" "props_grabbable_ball"
+"origin" "1048 472 -72"
+"_tb_layer" "11"
+}
+// entity 324
+{
+"classname" "props_grabbable_ball"
+"origin" "1032 472 -72"
+"_tb_layer" "11"
+}
+// entity 325
+{
+"classname" "props_grabbable_ball"
+"origin" "1032 472 -56"
+"_tb_layer" "11"
+}
+// entity 326
+{
+"classname" "props_grabbable_ball"
+"origin" "1048 472 -56"
+"_tb_layer" "11"
+}
+// entity 327
+{
+"classname" "props_grabbable_ball"
+"origin" "1064 472 -56"
+"_tb_layer" "11"
+}
+// entity 328
+{
+"classname" "props_grabbable_ball"
+"origin" "1080 472 -56"
+"_tb_layer" "11"
+}
+// entity 329
+{
+"classname" "props_grabbable_ball"
+"origin" "1096 472 -56"
+"_tb_layer" "11"
+}
+// entity 330
+{
+"classname" "props_grabbable_ball"
+"origin" "1112 472 -56"
+"_tb_layer" "11"
+}
+// entity 331
+{
+"classname" "props_grabbable_ball"
+"origin" "1128 472 -56"
+"_tb_layer" "11"
+}
+// entity 332
+{
+"classname" "props_grabbable_ball"
+"origin" "1144 472 -56"
+"_tb_layer" "11"
+}
+// entity 333
+{
+"classname" "props_grabbable_ball"
+"origin" "1160 472 -56"
+"_tb_layer" "11"
+}
+// entity 334
+{
+"classname" "props_grabbable_ball"
+"origin" "1176 472 -56"
+"_tb_layer" "11"
+}
+// entity 335
+{
+"classname" "props_grabbable_ball"
+"origin" "1192 472 -56"
+"_tb_layer" "11"
+}
+// entity 336
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 472 -56"
+"_tb_layer" "11"
+}
+// entity 337
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 472 -56"
+"_tb_layer" "11"
+}
+// entity 338
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 472 -56"
+"_tb_layer" "11"
+}
+// entity 339
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 472 -56"
+"_tb_layer" "11"
+}
+// entity 340
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 472 -56"
+"_tb_layer" "11"
+}
+// entity 341
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 472 -56"
+"_tb_layer" "11"
+}
+// entity 342
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 472 -56"
+"_tb_layer" "11"
+}
+// entity 343
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 472 -56"
+"_tb_layer" "11"
+}
+// entity 344
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 472 -40"
+"_tb_layer" "11"
+}
+// entity 345
+{
+"classname" "props_grabbable_ball"
+"origin" "1304 472 -40"
+"_tb_layer" "11"
+}
+// entity 346
+{
+"classname" "props_grabbable_ball"
+"origin" "1288 472 -40"
+"_tb_layer" "11"
+}
+// entity 347
+{
+"classname" "props_grabbable_ball"
+"origin" "1272 472 -40"
+"_tb_layer" "11"
+}
+// entity 348
+{
+"classname" "props_grabbable_ball"
+"origin" "1256 472 -40"
+"_tb_layer" "11"
+}
+// entity 349
+{
+"classname" "props_grabbable_ball"
+"origin" "1240 472 -40"
+"_tb_layer" "11"
+}
+// entity 350
+{
+"classname" "props_grabbable_ball"
+"origin" "1224 472 -40"
+"_tb_layer" "11"
+}
+// entity 351
+{
+"classname" "props_grabbable_ball"
+"origin" "1208 472 -40"
+"_tb_layer" "11"
+}
+// entity 352
+{
+"classname" "props_grabbable_ball"
+"origin" "1192 472 -40"
+"_tb_layer" "11"
+}
+// entity 353
+{
+"classname" "props_grabbable_ball"
+"origin" "1176 472 -40"
+"_tb_layer" "11"
+}
+// entity 354
+{
+"classname" "props_grabbable_ball"
+"origin" "1160 472 -40"
+"_tb_layer" "11"
+}
+// entity 355
+{
+"classname" "props_grabbable_ball"
+"origin" "1144 472 -40"
+"_tb_layer" "11"
+}
+// entity 356
+{
+"classname" "props_grabbable_ball"
+"origin" "1128 472 -40"
+"_tb_layer" "11"
+}
+// entity 357
+{
+"classname" "props_grabbable_ball"
+"origin" "1112 472 -40"
+"_tb_layer" "11"
+}
+// entity 358
+{
+"classname" "props_grabbable_ball"
+"origin" "1096 472 -40"
+"_tb_layer" "11"
+}
+// entity 359
+{
+"classname" "props_grabbable_ball"
+"origin" "1080 472 -40"
+"_tb_layer" "11"
+}
+// entity 360
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 -8"
+"_tb_layer" "11"
+}
+// entity 361
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 8"
+"_tb_layer" "11"
+}
+// entity 362
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 24"
+"_tb_layer" "11"
+}
+// entity 363
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 40"
+"_tb_layer" "11"
+}
+// entity 364
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 56"
+"_tb_layer" "11"
+}
+// entity 365
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 72"
+"_tb_layer" "11"
+}
+// entity 366
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 88"
+"_tb_layer" "11"
+}
+// entity 367
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 104"
+"_tb_layer" "11"
+}
+// entity 368
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 120"
+"_tb_layer" "11"
+}
+// entity 369
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 136"
+"_tb_layer" "11"
+}
+// entity 370
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 152"
+"_tb_layer" "11"
+}
+// entity 371
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 168"
+"_tb_layer" "11"
 }

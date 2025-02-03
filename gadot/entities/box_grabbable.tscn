@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyg74n3jt0euu"]
+[gd_scene load_steps=4 format=3 uid="uid://8fk08x7gccbl"]
 
 [ext_resource type="Material" uid="uid://bumufg27objth" path="res://mat/grey_grid_3.tres" id="1_pplhk"]
 
@@ -15,6 +15,8 @@ properties/1/replication_mode = 1
 [node name="RigidBody3D" type="RigidBody3D" groups=["grabbable", "moveable"]]
 collision_layer = 256
 collision_mask = 305
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_8dve4")

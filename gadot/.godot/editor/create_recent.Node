@@ -1,3 +1,9 @@
+CollisionShape3D
+CollisionPolygon3D
+JoltGeneric6DOFJoint3D
+CSGBox3D
+PinJoint3D
+CSGSphere3D
 AudioStreamPlayer3D
 AudioStreamPlayer
 Node3D
@@ -5,10 +11,4 @@ Node
 RootMotionView
 CPUParticles3D
 Timer
-CollisionShape3D
 Area3D
-CSGSphere3D
-CSGBox3D
-MultiplayerSynchronizer
-PinJoint3D
-StaticBody3D

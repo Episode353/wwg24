@@ -22,20 +22,21 @@
 	light_color(color255) : "Color" : "255 255 255"
 ]
 
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = mana_drop : "Mana Drop" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_mana_medium : "Mana Drop" []
 
-@PointClass size(-8 -8 -8, 8 8 8) color(255 0 0) = health_drop : "Health Drop" []
+@PointClass size(-8 -8 -8, 8 8 8) color(255 0 0) = pickup_health_medium : "Health Drop" []
 
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = info_player_start : "info_player_start" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = player_spawn : "Player Spawnpoint" []
 
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = main_menu_camera : "main_menu_camera" [angles(string) : "Pitch Yaw Roll" : "0 0 0"]
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = world_menu_camera : "Main Menu Camera" [angles(string) : "Pitch Yaw Roll" : "0 0 0"]
 
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = planet_model : "planet_model" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = props_model_planet : "Planet Model" []
 
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = box_shootable : "box_shootable" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = props_shootable_box : "Shootable Box" []
 
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = ammo_small : "ammo_small" []
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = ammo_medium : "ammo_medium" []
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = ammo_large : "ammo_large" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_ammo_small : "ammo_small" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_ammo_medium : "Medium Ammo" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_ammo_large : "Large Ammo" []
 
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = box_grabbable : "box_grabbable" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = props_grabbable_box : "Grabbable Box" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = props_grabbable_ball : "Grabbable Ball" []

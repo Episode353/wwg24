@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdavpb6grnlnh"]
+
+[ext_resource type="Script" path="res://entities/props/grabbable/ball.gd" id="1_toi8a"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5xyul"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_un0rb"]
+albedo_color = Color(0.541176, 0.160784, 0.380392, 1)
+roughness = 0.0
+emission = Color(1, 0, 1, 1)
+emission_energy_multiplier = 16.0
+clearcoat_roughness = 0.84
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_igj5p"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="RigidBody3D" type="RigidBody3D" groups=["grabbable", "moveable"]]
+collision_layer = 256
+collision_mask = 257
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_toi8a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_5xyul")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radial_segments = 48
+rings = 24
+material = SubResource("StandardMaterial3D_un0rb")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_igj5p")
+visibility_update_mode = 1

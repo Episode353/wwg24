@@ -274,10 +274,8 @@ func process_input():
 		
 	if Input.is_action_just_pressed("walk"):
 		is_walking = true
-		print(is_walking)
 	if Input.is_action_just_released("walk"):
 		is_walking = false
-		print(is_walking)
 	
 	# Movement directions
 	if Input.is_action_pressed("forward"):

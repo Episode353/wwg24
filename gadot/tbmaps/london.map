@@ -813,7 +813,7 @@
 }
 // entity 1
 {
-"classname" "info_player_start"
+"classname" "player_spawn"
 "origin" "-72 -520 24"
 }
 // entity 2
@@ -1638,29 +1638,29 @@
 }
 // entity 6
 {
-"classname" "ammo_small"
+"classname" "pickup_ammo_small"
 "origin" "-344 -448 40"
 "angle" "180"
 }
 // entity 7
 {
-"classname" "mana_drop"
+"classname" "pickup_mana_medium"
 "origin" "-320 -448 40"
 "angle" "180"
 }
 // entity 8
 {
-"classname" "ammo_medium"
+"classname" "pickup_ammo_medium"
 "origin" "-296 -448 40"
 "angle" "180"
 }
 // entity 9
 {
-"classname" "health_drop"
+"classname" "pickup_health_medium"
 "origin" "-328 -544 16"
 }
 // entity 10
 {
-"classname" "health_drop"
+"classname" "pickup"
 "origin" "-360 -544 16"
 }

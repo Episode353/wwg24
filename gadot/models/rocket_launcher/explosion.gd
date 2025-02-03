@@ -13,7 +13,7 @@ extends Node3D
 @export var min_damage: float = 0.0
 var owner_player
 
-@export var rigid_body_force_multiplier: float = 10.0
+@export var rigid_body_force_multiplier: float = 100.0
 
 @onready var smoke = $Smoke
 
