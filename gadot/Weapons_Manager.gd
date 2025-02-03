@@ -205,7 +205,7 @@ func raycast_shoot_procc():
 					rpc("create_bullet_decal", col_point, col_nor)
 					play_hit_wall_sound()
 					
-	if hit_object.is_in_group("moveable"):
+	if hit_object.is_in_group("grabbable"):
 		var direction = (hit_object.global_transform.origin - global_transform.origin).normalized()
 		var force = direction * 100 * current_weapon.damage
 		# Using add_force at the body's origin to mimic add_central_force

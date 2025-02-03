@@ -1,4 +1,25 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://burm48w72nc4a"]
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://burm48w72nc4a"]
+
+[sub_resource type="AudioEffectCapture" id="AudioEffectCapture_glnly"]
+resource_name = "Capture"
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_8w40c"]
+resource_name = "Limiter"
+
+[sub_resource type="AudioEffectStereoEnhance" id="AudioEffectStereoEnhance_2fh2v"]
+resource_name = "StereoEnhance"
 
 [resource]
 bus/0/volume_db = -80.0
+bus/1/name = &"Record"
+bus/1/solo = false
+bus/1/mute = true
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectCapture_glnly")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectLimiter_8w40c")
+bus/1/effect/1/enabled = true
+bus/1/effect/2/effect = SubResource("AudioEffectStereoEnhance_2fh2v")
+bus/1/effect/2/enabled = true

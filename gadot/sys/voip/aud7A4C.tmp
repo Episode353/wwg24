@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8nc5oi74ny11"]
+
+[ext_resource type="Script" path="res://sys/voip/audio_controller.gd" id="1_27m7q"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_hue7o"]
+buffer_length = 2.5
+
+[node name="audio_controller" type="Node"]
+script = ExtResource("1_27m7q")
+
+[node name="Input" type="AudioStreamPlayer" parent="."]
+bus = &"Record"
+
+[node name="Output" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamGenerator_hue7o")

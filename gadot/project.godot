@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/image="res://mat/splash.png"
 config/icon="res://mat/ico.png"
 
+[audio]
+
+driver/enable_input=true
+
 [autoload]
 
 Globals="*res://sys/globals.gd"
