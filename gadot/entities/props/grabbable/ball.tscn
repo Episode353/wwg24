@@ -37,4 +37,3 @@ material = SubResource("StandardMaterial3D_un0rb")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_igj5p")
-visibility_update_mode = 1

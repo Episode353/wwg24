@@ -1,9 +1,11 @@
+
+
 extends Node
 
 @onready var hud = $CanvasLayer/HUD
 @onready var health_bar = $CanvasLayer/HUD/HealthBar
 @onready var mana_bar = $CanvasLayer/HUD/ManaBar
-@onready var tb_loader = $TBLoader
+@onready var tb_loader = $NavigationRegion3D/TBLoader
 @onready var server_connection_handler = $ServerConnectionHandler
 var server_info_timer: Timer
 var server_info_resend_duration : int = 5
@@ -117,6 +119,34 @@ func load_map(load_map_name: String):
 	tb_loader.map_resource = "tbmaps/" + load_map_name
 	tb_loader.build_meshes()
 	print(tb_loader.map_resource)
+	$NavigationRegion3D.bake_navigation_mesh()
+
+@rpc("any_peer", "reliable")
+func add_bot():
+	# Only let the server spawn the bot.
+	if not is_multiplayer_authority():
+		return
+
+	var Player = preload("res://player.tscn")
+	var bot_instance = Player.instantiate()
+	
+	# Give the bot a unique name (avoid using multiplayer.get_unique_id() directly)
+	bot_instance.name = "bot_" + str(multiplayer.get_unique_id())
+	bot_instance.is_bot = true
+
+	spawn_player(bot_instance)
+	add_child(bot_instance)
+	print("Bot added to the scene at position: ", bot_instance.global_transform.origin)
+	
+	# Set the server as the authority for this bot node.
+	bot_instance.set_multiplayer_authority(multiplayer.get_unique_id())
+
+	if bot_instance.is_multiplayer_authority():
+		bot_instance.health_changed.connect(update_health_bar)
+		bot_instance.mana_changed.connect(update_mana_bar)
+
+
+
 
 func add_player(peer_id):
 	var Player = preload("res://player.tscn")
@@ -129,6 +159,7 @@ func add_player(peer_id):
 	if spawnplayer.is_multiplayer_authority():
 		spawnplayer.health_changed.connect(update_health_bar)
 		spawnplayer.mana_changed.connect(update_mana_bar)
+
 
 
 func spawn_player(player):

@@ -1,4 +1,4 @@
-res://Player.gd
+res://player.tscn
 res://models/grenade/grenade_proj.gd
 res://manadrop.gd
 res://shaders/manadrop.gdshader
@@ -9,11 +9,4 @@ res://sys/weapon_resources/shotgun.tres
 res://sys/weapon_resources/keyboard.tres
 res://CollisionScript.gd
 res://mat/grey_grid_3.tres
-res://default_bus_layout.tres
-res://sys/voip/audio_controller.tscn
-res://sys/voip/audio_controller.gd
-res://world.tscn
-res://CanvasLayer.gd
-res://player.tscn
 res://entities/props/grabbable/ball.tscn
-res://entities/props/grabbable/box.tscn

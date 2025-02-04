@@ -2,7 +2,8 @@ extends Node3D
 
 var target_body_position: Vector3
 var speed: float = 50.0
-@onready var despawn = $RigidBody3D/despawnasd
+@onready var despawn = $RigidBody3D/despawn
+#@onready var despawn = $RigidBody3D/despawnasd
 var mana_drop_owner
 var mana_drop_ammount
 # This Controls the Height of the Target position the 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c8oqxmm2w2wvv"]
+[gd_scene load_steps=16 format=3 uid="uid://c8oqxmm2w2wvv"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_6tkge"]
 [ext_resource type="Script" path="res://sys/ServerConnectionHandler.gd" id="2_hna3u"]
@@ -48,6 +48,8 @@ bg_color = Color(1, 0.117647, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcby2"]
 bg_color = Color(0.00392157, 1, 0, 1)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_p4c1t"]
+
 [node name="World" type="Node" groups=["world_root"]]
 script = ExtResource("1_6tkge")
 
@@ -68,8 +70,6 @@ spawn_path = NodePath("..")
 script = ExtResource("2_hna3u")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="ServerConnectionHandler"]
-
-[node name="TBLoader" type="TBLoader" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("2_sgno6")
@@ -207,6 +207,11 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Disconnect"
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_p4c1t")
+
+[node name="TBLoader" type="TBLoader" parent="NavigationRegion3D"]
 
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
 [connection signal="pressed" from="CanvasLayer/Pause Menu/Button" to="." method="_on_button_pressed"]

@@ -214,7 +214,7 @@ func raycast_shoot_procc():
 	# Handle hitting a player
 	if hit_object.is_in_group("players"):
 		hit_object.rpc("receive_damage", current_weapon.damage)
-		hit_object.rpc("update_last_tagged_by", player.player_username)
+		hit_object.rpc("update_last_tagged_by", player.name)
 		print("Hit Object is player")
 		play_hit_player_sound()
 
@@ -390,8 +390,9 @@ func _physics_process(_delta):
 
 @rpc("reliable")
 func rpc_update_weapon_info():
-	# RPC to send weapon info to the world script for the local player
-	world.rpc_id(multiplayer.get_unique_id(), "update_weapon_info", current_weapon.weapon_name, current_weapon.current_ammo, current_weapon.reserve_ammo, weapon_stack)
+	if is_multiplayer_authority():
+		# RPC to send weapon info to the world script for the local player
+		world.rpc_id(multiplayer.get_unique_id(), "update_weapon_info", current_weapon.weapon_name, current_weapon.current_ammo, current_weapon.reserve_ammo, weapon_stack)
 
 
 

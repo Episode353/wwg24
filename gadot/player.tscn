@@ -1,6 +1,6 @@
-[gd_scene load_steps=185 format=4 uid="uid://xcjrjq5cbn7y"]
+[gd_scene load_steps=186 format=4 uid="uid://xcjrjq5cbn7y"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_2v3wm"]
+[ext_resource type="Script" path="res://player.gd" id="1_ebgxs"]
 [ext_resource type="Script" path="res://main_camera.gd" id="2_38wgo"]
 [ext_resource type="Script" path="res://Weapons_Manager.gd" id="2_dh310"]
 [ext_resource type="Script" path="res://interaction_ray.gd" id="3_hxk1l"]
@@ -34,6 +34,7 @@
 [ext_resource type="Script" path="res://viewmodel_camera.gd" id="28_p4825"]
 [ext_resource type="Script" path="res://display_health.gd" id="30_jkaaj"]
 [ext_resource type="AudioStream" uid="uid://h6pkf0tevw2m" path="res://sounds/player/hurt.wav" id="34_jjjwd"]
+[ext_resource type="Texture2D" uid="uid://d1f34xtia0kof" path="res://addons/kenney_particle_pack/rotated/flame_05_rotated.png" id="35_23i2k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_67y6s"]
 
@@ -4172,7 +4173,7 @@ height = 0.1
 [node name="Player" type="CharacterBody3D" groups=["players"]]
 collision_layer = 48
 collision_mask = 273
-script = ExtResource("1_2v3wm")
+script = ExtResource("1_ebgxs")
 
 [node name="standing_collision_shape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -4574,6 +4575,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20213, 0)
 attenuation_model = 2
 volume_db = -10.0
 max_db = 0.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5896, 0)
+texture = ExtResource("35_23i2k")
 
 [connection signal="timeout" from="neck/head/main_camera/area_collision/Timer" to="neck/head/main_camera/Weapons_Manager" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="neck/head/main_camera/Weapons_Manager/FPS_RIG/AnimationPlayer" to="neck/head/main_camera/Weapons_Manager" method="_on_animation_player_animation_finished"]

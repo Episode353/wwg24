@@ -8,7 +8,7 @@ signal mana_changed(mana_value)
 
 # Player Nodes
 
-
+var is_bot = false
 
 @onready var head = $neck/head
 @onready var neck = $neck
@@ -105,7 +105,6 @@ const VELOCITY_THRESHOLD = 6  # Adjust as needed
 @onready var fps_rig = $neck/head/main_camera/Weapons_Manager/FPS_RIG
 var base_fps_rig_position = Vector3.ZERO  # To store the original position
 
-var player_username = Globals.username
 
 # Moved Direction to Source
 
@@ -201,15 +200,18 @@ func _unhandled_input(event):
 			head.rotate_x(deg_to_rad(-event.relative.y * sensitivity))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-98), deg_to_rad(89))
 
-	
 
 
 
 func _physics_process(delta):
+	if is_bot:
+		bot_physics_process(delta)
 	if not is_multiplayer_authority():
 		return
 	calculate_fire_damage()
 	process_input()
+
+
 	
 	# Toggle collision shapes
 	if crouching:
@@ -435,7 +437,7 @@ func player_death():
 	# Spawn mana drop only for the local player who died
 	if is_multiplayer_authority():
 		rpc("spawn_mana_for_all", world_pos)
-		world.rpc("display_to_killfeed", last_tagged_by, self.player_username)
+		world.rpc("display_to_killfeed", last_tagged_by, self.name)
 
 	# Call the world's respawn player function
 	var world_to_respawn = get_parent()
@@ -678,4 +680,41 @@ func rpc_play_footstep(is_left: bool) -> void:
 		footstep_player.stream = footstep_right_sound
 	footstep_player.play()
 
-	
+@onready var nav_agent = $NavigationAgent3D
+var BOT_SPEED = MAX_VELOCITY_GROUND
+
+func bot_physics_process(delta):
+	if !is_multiplayer_authority():
+		find_objects()
+		var current_location = global_transform.origin
+		var next_location = nav_agent.get_next_path_position()
+		var new_velocity = (next_location - current_location).normalized() * BOT_SPEED
+		velocity = velocity.move_toward(new_velocity, .25)
+		move_and_slide()
+
+func update_target_location(target_location):
+	nav_agent.set_target_position(target_location)
+
+func find_objects():
+	var players = get_tree().get_nodes_in_group("players")
+		
+	var closest_player = null
+	var min_distance = INF  # Start with a very high value.
+	var my_position = global_transform.origin
+
+	# Iterate over all players to find the closest one.
+	for player in players:
+		# Skip self to avoid counting the current player.
+		if player.is_bot:
+			continue
+
+		var player_position = player.global_transform.origin
+		var distance = my_position.distance_to(player_position)
+		
+		if distance < min_distance:
+			min_distance = distance
+			closest_player = player
+
+	# If a closest player was found, update the navigation target.
+	if closest_player:
+		update_target_location(closest_player.global_transform.origin)

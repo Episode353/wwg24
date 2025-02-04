@@ -26,7 +26,50 @@ var commands = {
 	"quit": {"func": func() -> String:
 		return quit_function(),
 		"args": 0},
+	# Existing command to add a bot
+	"add_bot": {"func": func() -> String:
+		var world = get_tree().get_root().get_node("World")
+		if world:
+			world.rpc("add_bot")
+			return "Bot added successfully."
+		else:
+			return "Error: 'World' node not found."
+		, "args": 0},
+
+	# New command to add an enemy at the player's location
+	"add_enemy": {"func": func() -> String:
+		# Look for a player in the "players" group
+		var players = get_tree().get_nodes_in_group("players")
+		if players.size() == 0:
+			return "Error: No player found."
+			
+		# Use the first player found
+		var player = players[0]
+		
+		# Load the enemy scene
+		var enemy_scene = load("res://sys/enemies/enemy.tscn")
+		if enemy_scene == null:
+			return "Error: Could not load enemy scene."
+			
+		# Instance the enemy
+		var enemy = enemy_scene.instantiate()
+		
+		# Set enemy position to player's position.
+		# If your enemy is a Node2D, you can use position/global_position accordingly.
+		enemy.global_position = player.global_position
+		
+		# Get the "World" node and add the enemy as a child
+		var world = get_tree().get_root().get_node("World")
+		if world:
+			world.add_child(enemy)
+			return "Enemy added successfully."
+		else:
+			return "Error: 'World' node not found."
+		,
+		"args": 0},
 }
+
+
 
 
 func _process(delta):
