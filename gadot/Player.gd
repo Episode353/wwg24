@@ -684,7 +684,7 @@ func rpc_play_footstep(is_left: bool) -> void:
 var BOT_SPEED = MAX_VELOCITY_GROUND
 
 func bot_physics_process(delta):
-	if !is_multiplayer_authority():
+	if not is_inside_tree() or not multiplayer.has_multiplayer_peer() or not is_multiplayer_authority():
 		find_objects()
 		var current_location = global_transform.origin
 		var next_location = nav_agent.get_next_path_position()

@@ -1,4 +1,4 @@
-res://player.tscn
+res://entities/props/grabbable/ball.tscn
 res://models/grenade/grenade_proj.gd
 res://manadrop.gd
 res://shaders/manadrop.gdshader
@@ -9,4 +9,12 @@ res://sys/weapon_resources/shotgun.tres
 res://sys/weapon_resources/keyboard.tres
 res://CollisionScript.gd
 res://mat/grey_grid_3.tres
-res://entities/props/grabbable/ball.tscn
+res://entities/props/grabbable/ball_scene.gd
+res://player.tscn
+res://world.tscn
+res://entities/props/grabbable/box.tscn
+res://world.gd
+res://multiplayer_spawner.gd
+res://Weapons_Manager.gd
+res://tscn/console/console.gd
+res://player.gd

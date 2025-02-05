@@ -67,6 +67,26 @@ var commands = {
 			return "Error: 'World' node not found."
 		,
 		"args": 0},
+		"spawn_ball": {"func": func() -> String:
+		var world = get_tree().get_root().get_node("World")
+		var players = get_tree().get_nodes_in_group("players")
+		var player = players[0]
+		if world:
+			world.rpc("spawn_ball", player.global_transform)
+			return "Bot added successfully."
+		else:
+			return "Error: 'World' node not found."
+		, "args": 0},
+		"spawn_box": {"func": func() -> String:
+		var world = get_tree().get_root().get_node("World")
+		var players = get_tree().get_nodes_in_group("players")
+		var player = players[0]
+		if world:
+			world.rpc("spawn_box", player.global_transform)
+			return "Bot added successfully."
+		else:
+			return "Error: 'World' node not found."
+		, "args": 0},
 }
 
 

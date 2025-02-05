@@ -1,22 +1,16 @@
-extends RigidBody3D
+extends Node3D
 
+
+# Called when the node enters the scene tree for the first time.
 func _ready():
-	randomize()  # Initialize the random number generator
-	var random_color = Color(randf(), randf(), randf())
+	pass
 
-	# Get a reference to your CSG sphere node
-	var sphere = $CSGSphere3D
 
-	# Check if the sphere already has a material assigned.
-	# If not, create a new one.
-	var mat: StandardMaterial3D = sphere.material
-	if mat == null:
-		mat = StandardMaterial3D.new()
-		sphere.material = mat
-	else:
-		# If the material is already in use by others, duplicate it
-		mat = mat.duplicate() 
-		sphere.material = mat
-
-	# Now assign the random color to the material's albedo_color
-	mat.albedo_color = random_color
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	print(global_position)
+	print(global_transform)
+	var world = get_tree().get_root().get_node("World")
+	if world:
+		world.rpc("spawn_ball", global_transform)
+	queue_free()

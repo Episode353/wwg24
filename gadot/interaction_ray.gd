@@ -53,7 +53,7 @@ func request_pickup_object(requester_global_pos: Vector3):
 @rpc("any_peer", "call_local")
 func on_object_picked_up(object_path: NodePath):
 	var body = get_node_or_null(object_path) as RigidBody3D
-	body.can_sleep = false
+		#body.can_sleep = false
 	if body:
 		player.grabbed_object = body
 		player.is_holding_object = true

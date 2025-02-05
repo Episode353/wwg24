@@ -121,29 +121,32 @@ func load_map(load_map_name: String):
 	print(tb_loader.map_resource)
 	$NavigationRegion3D.bake_navigation_mesh()
 
-@rpc("any_peer", "reliable")
+@rpc("any_peer", "call_local")
 func add_bot():
-	# Only let the server spawn the bot.
-	if not is_multiplayer_authority():
-		return
-
+	# Preload and instantiate the player scene
 	var Player = preload("res://player.tscn")
 	var bot_instance = Player.instantiate()
 	
-	# Give the bot a unique name (avoid using multiplayer.get_unique_id() directly)
-	bot_instance.name = "bot_" + str(multiplayer.get_unique_id())
+	# Give the bot a unique name (for example, using a timestamp)
+	bot_instance.name = "bot_" + str(462464626)
+	
+	# Set the is_bot variable to true
 	bot_instance.is_bot = true
-
+	
+	# Spawn the bot at a spawn point
 	spawn_player(bot_instance)
+	
+	# Add the bot to the scene tree
 	add_child(bot_instance)
 	print("Bot added to the scene at position: ", bot_instance.global_transform.origin)
 	
-	# Set the server as the authority for this bot node.
-	bot_instance.set_multiplayer_authority(multiplayer.get_unique_id())
-
+	# If the bot is the authority (e.g. in offline mode or if running in a trusted environment),
+	# connect its signals for HUD updates (health and mana)
 	if bot_instance.is_multiplayer_authority():
 		bot_instance.health_changed.connect(update_health_bar)
 		bot_instance.mana_changed.connect(update_mana_bar)
+
+
 
 
 
@@ -354,3 +357,41 @@ func display_to_killfeed(last_tagged_by, display_name):
 
 	# Add the label to the killfeed container
 	killfeed_container.add_child(killfeed_label)
+	
+@rpc("any_peer", "call_local")
+func spawn_ball(desired_transform):
+	# Load the ball scene.
+	var ball_scene = preload("res://entities/props/grabbable/ball.tscn")
+	var ball_instance = ball_scene.instantiate()
+	
+	# Set the spawn transform.
+	ball_instance.global_transform = desired_transform
+	
+	# Set the server as the authority (or whichever peer should own it).
+	ball_instance.set_multiplayer_authority(1)
+	
+	# Optionally, if your ball has a script that manages its synchronization,
+	# ensure it’s properly configured here.
+	
+	# Add the ball to the scene so that all peers will have it.
+	add_child(ball_instance)
+	print("Ball spawned at: ", ball_instance.global_transform.origin)
+	
+@rpc("any_peer", "call_local")
+func spawn_box(desired_transform):
+	# Load the ball scene.
+	var ball_scene = preload("res://entities/props/grabbable/box.tscn")
+	var ball_instance = ball_scene.instantiate()
+	
+	# Set the spawn transform.
+	ball_instance.global_transform = desired_transform
+	
+	# Set the server as the authority (or whichever peer should own it).
+	ball_instance.set_multiplayer_authority(1)
+	
+	# Optionally, if your ball has a script that manages its synchronization,
+	# ensure it’s properly configured here.
+	
+	# Add the ball to the scene so that all peers will have it.
+	add_child(ball_instance)
+	print("Ball spawned at: ", ball_instance.global_transform.origin)

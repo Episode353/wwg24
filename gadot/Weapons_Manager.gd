@@ -148,10 +148,13 @@ func Initalize(_start_weapons: Array):
 	enter()
 
 func enter():
-	
+	if current_weapon == null:
+		print("Error: current_weapon is null!")
+		return
 	animation_player.queue(current_weapon.activate_anim)
 	emit_signal("weapon_changed", current_weapon.weapon_name)
 	emit_signal("update_ammo", [current_weapon.current_ammo, current_weapon.reserve_ammo])
+
 
 func exit(_next_weapon: String):
 	#In order to change weapons first call exit
@@ -369,7 +372,8 @@ func _physics_process(_delta):
 	
 	if not is_multiplayer_authority():
 		return
-	
+	if player.is_bot:
+		return
 	# in the future i don't want to update this every frame :(
 	rpc_update_weapon_info()
 
@@ -390,7 +394,6 @@ func _physics_process(_delta):
 
 @rpc("reliable")
 func rpc_update_weapon_info():
-	if is_multiplayer_authority():
 		# RPC to send weapon info to the world script for the local player
 		world.rpc_id(multiplayer.get_unique_id(), "update_weapon_info", current_weapon.weapon_name, current_weapon.current_ammo, current_weapon.reserve_ammo, weapon_stack)
 

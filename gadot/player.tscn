@@ -1,4 +1,4 @@
-[gd_scene load_steps=186 format=4 uid="uid://xcjrjq5cbn7y"]
+[gd_scene load_steps=185 format=4 uid="uid://xcjrjq5cbn7y"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_ebgxs"]
 [ext_resource type="Script" path="res://main_camera.gd" id="2_38wgo"]
@@ -34,7 +34,6 @@
 [ext_resource type="Script" path="res://viewmodel_camera.gd" id="28_p4825"]
 [ext_resource type="Script" path="res://display_health.gd" id="30_jkaaj"]
 [ext_resource type="AudioStream" uid="uid://h6pkf0tevw2m" path="res://sounds/player/hurt.wav" id="34_jjjwd"]
-[ext_resource type="Texture2D" uid="uid://d1f34xtia0kof" path="res://addons/kenney_particle_pack/rotated/flame_05_rotated.png" id="35_23i2k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_67y6s"]
 
@@ -74,36 +73,6 @@ properties/9/replication_mode = 1
 properties/10/path = NodePath("neck/head/main_camera/Weapons_Manager/FPS_RIG/AnimationPlayer:deterministic")
 properties/10/spawn = true
 properties/10/replication_mode = 1
-properties/11/path = NodePath("neck/head/main_camera/Weapons_Manager/FPS_RIG/shotgun:position")
-properties/11/spawn = true
-properties/11/replication_mode = 1
-properties/12/path = NodePath("neck/head/main_camera/Weapons_Manager/FPS_RIG/shotgun:rotation")
-properties/12/spawn = true
-properties/12/replication_mode = 1
-properties/13/path = NodePath("neck/head/main_camera/Weapons_Manager/FPS_RIG/ak47:position")
-properties/13/spawn = true
-properties/13/replication_mode = 1
-properties/14/path = NodePath("neck/head/main_camera/Weapons_Manager/FPS_RIG/ak47:rotation")
-properties/14/spawn = true
-properties/14/replication_mode = 1
-properties/15/path = NodePath("neck/head/main_camera/Weapons_Manager/FPS_RIG/knife:position")
-properties/15/spawn = true
-properties/15/replication_mode = 1
-properties/16/path = NodePath("neck/head/main_camera/Weapons_Manager/FPS_RIG/knife:rotation")
-properties/16/spawn = true
-properties/16/replication_mode = 1
-properties/17/path = NodePath("neck/head/main_camera/Weapons_Manager/FPS_RIG/flame_spell:position")
-properties/17/spawn = true
-properties/17/replication_mode = 1
-properties/18/path = NodePath("neck/head/main_camera/Weapons_Manager/FPS_RIG/flame_spell:rotation")
-properties/18/spawn = true
-properties/18/replication_mode = 1
-properties/19/path = NodePath("neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher:position")
-properties/19/spawn = true
-properties/19/replication_mode = 1
-properties/20/path = NodePath("neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher:rotation")
-properties/20/spawn = true
-properties/20/replication_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xjel"]
 size = Vector3(1.72325, 1.55173, 3.13662)
@@ -4577,10 +4546,6 @@ volume_db = -10.0
 max_db = 0.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5896, 0)
-texture = ExtResource("35_23i2k")
 
 [connection signal="timeout" from="neck/head/main_camera/area_collision/Timer" to="neck/head/main_camera/Weapons_Manager" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="neck/head/main_camera/Weapons_Manager/FPS_RIG/AnimationPlayer" to="neck/head/main_camera/Weapons_Manager" method="_on_animation_player_animation_finished"]

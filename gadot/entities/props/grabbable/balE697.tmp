@@ -1,30 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4rgid30xqmhp"]
+[gd_scene load_steps=5 format=3 uid="uid://cdavpb6grnlnh"]
 
-[sub_resource type="GDScript" id="GDScript_srjy1"]
-script/source = "extends RigidBody3D
-
-func _ready():
-	set_multiplayer_authority(multiplayer.get_unique_id())
-	randomize()  # Initialize the random number generator
-	var random_color = Color(randf(), randf(), randf())
-
-	# Get a reference to your CSG sphere node
-	var sphere = $CSGSphere3D
-
-	# Check if the sphere already has a material assigned.
-	# If not, create a new one.
-	var mat: StandardMaterial3D = sphere.material
-	if mat == null:
-		mat = StandardMaterial3D.new()
-		sphere.material = mat
-	else:
-		# If the material is already in use by others, duplicate it
-		mat = mat.duplicate() 
-		sphere.material = mat
-
-	# Now assign the random color to the material's albedo_color
-	mat.albedo_color = random_color
-"
+[ext_resource type="Script" path="res://entities/props/grabbable/ball.gd" id="1_toi8a"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5xyul"]
 
@@ -49,7 +25,7 @@ collision_mask = 257
 mass = 0.1
 contact_monitor = true
 max_contacts_reported = 1
-script = SubResource("GDScript_srjy1")
+script = ExtResource("1_toi8a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_5xyul")
