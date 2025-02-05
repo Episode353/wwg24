@@ -9,6 +9,7 @@ extends RayCast3D
 var grab_joint: JoltGeneric6DOFJoint3D
 
 
+
 func _process(delta):
 	if is_multiplayer_authority():
 		if Input.is_action_just_pressed("interact"):

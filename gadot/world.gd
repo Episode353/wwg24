@@ -377,6 +377,7 @@ func spawn_ball(desired_transform):
 	add_child(ball_instance)
 	print("Ball spawned at: ", ball_instance.global_transform.origin)
 	
+
 @rpc("any_peer", "call_local")
 func spawn_box(desired_transform):
 	# Load the ball scene.
@@ -395,3 +396,4 @@ func spawn_box(desired_transform):
 	# Add the ball to the scene so that all peers will have it.
 	add_child(ball_instance)
 	print("Ball spawned at: ", ball_instance.global_transform.origin)
+	

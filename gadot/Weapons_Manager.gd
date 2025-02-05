@@ -194,8 +194,18 @@ func _on_animation_player_animation_finished(anim_name):
 	idle()
 
 
+@rpc("any_peer", "call_local")
+func apply_force_to_body(body_path: NodePath, force: Vector3, position: Vector3) -> void:
+	var body = get_node(body_path)
+	if body:
+		body.apply_force(force, position)
+		print(body)
+	else:
+		print("apply_force_to_body: Could not find node at", body_path)
 		
 func raycast_shoot_procc():
+	if !is_multiplayer_authority():
+		return
 	var hit_object = raycast_shoot.get_collider()
 	var col_nor = raycast_shoot.get_collision_normal()
 	var col_point = raycast_shoot.get_collision_point()
@@ -211,8 +221,9 @@ func raycast_shoot_procc():
 	if hit_object.is_in_group("grabbable"):
 		var direction = (hit_object.global_transform.origin - global_transform.origin).normalized()
 		var force = direction * 100 * current_weapon.damage
-		# Using add_force at the body's origin to mimic add_central_force
-		hit_object.apply_force(force, hit_object.global_transform.origin)
+		# Instead of applying force locally, ask the world (server) to apply it.
+		rpc("apply_force_to_body", hit_object.get_path(), force, hit_object.global_transform.origin)
+
 	
 	# Handle hitting a player
 	if hit_object.is_in_group("players"):
@@ -370,7 +381,7 @@ func idle():
 
 func _physics_process(_delta):
 	
-	if not is_multiplayer_authority():
+	if !is_multiplayer_authority():
 		return
 	if player.is_bot:
 		return

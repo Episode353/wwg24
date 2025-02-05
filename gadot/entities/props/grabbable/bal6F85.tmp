@@ -5,8 +5,8 @@ script/source = "extends RigidBody3D
 
 func _ready():
 	if not is_multiplayer_authority():
-		# Disable physics processing on non-authoritative peers
-		set_physics_process(false)
+		# Switch to a mode that doesn’t simulate physics (or simply stop processing physics)
+		$RigidBody3D.mode = RigidBody.MODE_STATIC
 	set_multiplayer_authority(multiplayer.get_unique_id())
 	randomize()  # Initialize the random number generator
 	var random_color = Color(randf(), randf(), randf())
