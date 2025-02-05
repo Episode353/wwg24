@@ -14,6 +14,7 @@ var username = null
 var show_host_popup = true
 var fullscreen = false
 var self_harm = true # If True, players can harm themselves
+var map_loaded = false
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("fullscreen"):

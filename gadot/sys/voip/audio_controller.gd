@@ -21,6 +21,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if (not is_multiplayer_authority()): return
+	if (not Globals.map_loaded): return
 	if (effect.can_get_buffer(512) && playback.can_push_buffer(512)):
 		send_data.rpc(effect.get_buffer(512))
 	effect.clear_buffer()

@@ -10,6 +10,8 @@ extends Node
 var server_info_timer: Timer
 var server_info_resend_duration : int = 5
 var external_ip : String = "NULL"
+signal map_loaded
+var waiting_players = []
 
 const PORT : int = 7777
 var enet_peer = ENetMultiplayerPeer.new()
@@ -120,6 +122,9 @@ func load_map(load_map_name: String):
 	tb_loader.build_meshes()
 	print(tb_loader.map_resource)
 	$NavigationRegion3D.bake_navigation_mesh()
+	Globals.map_loaded = true
+	emit_signal("map_loaded")
+
 
 @rpc("any_peer", "call_local")
 func add_bot():
@@ -156,12 +161,26 @@ func add_player(peer_id):
 	var spawnplayer = Player.instantiate()
 	spawnplayer.name = str(peer_id)
 	print("Adding player with peer ID: ", peer_id)
-	spawn_player(spawnplayer)
-	add_child(spawnplayer)
-	print("Player ", peer_id, " added to the scene at position: ", spawnplayer.global_transform.origin)
-	if spawnplayer.is_multiplayer_authority():
-		spawnplayer.health_changed.connect(update_health_bar)
-		spawnplayer.mana_changed.connect(update_mana_bar)
+	
+	if Globals.map_loaded:
+		spawn_player(spawnplayer)
+		add_child(spawnplayer)
+		if spawnplayer.is_multiplayer_authority():
+			spawnplayer.health_changed.connect(update_health_bar)
+			spawnplayer.mana_changed.connect(update_mana_bar)
+	else:
+		waiting_players.append(spawnplayer)
+		print("Map not loaded yet. Delaying spawn for player: ", peer_id)
+
+func _on_map_loaded():
+	for spawnplayer in waiting_players:
+		spawn_player(spawnplayer)
+		add_child(spawnplayer)
+		print("Delayed player ", spawnplayer.name, " spawned at position: ", spawnplayer.global_transform.origin)
+		if spawnplayer.is_multiplayer_authority():
+			spawnplayer.health_changed.connect(update_health_bar)
+			spawnplayer.mana_changed.connect(update_mana_bar)
+	waiting_players.clear()
 
 
 
@@ -260,6 +279,7 @@ func _on_server_info_timer_timeout():
 			server_info_timer.stop()
 
 func _ready():
+	connect("map_loaded", Callable (self, "_on_map_loaded"))
 	if map_name != "":
 		load_map(map_name)
 	var all_children = get_all_children(tb_loader)

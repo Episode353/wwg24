@@ -182,7 +182,6 @@ offset_bottom = 40.0
 grow_horizontal = 0
 
 [node name="menufadein" parent="CanvasLayer" instance=ExtResource("7_bypg1")]
-visible = false
 
 [node name="Pause Menu" type="Control" parent="CanvasLayer"]
 visible = false
