@@ -12,6 +12,7 @@ config_version=5
 
 config/name="Wizards With Guns"
 run/main_scene="res://tscn/main_menu.tscn"
+run/enable_alt_space_menu=true
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/image="res://mat/splash.png"
 config/icon="res://mat/ico.png"
@@ -220,8 +221,7 @@ noclip={
 
 [physics]
 
-common/physics_ticks_per_second=144
-common/max_physics_steps_per_frame=100
+common/max_physics_steps_per_frame=60
 3d/physics_engine="JoltPhysics3D"
 jolt_3d/collisions/areas_detect_static_bodies=true
 jolt_3d/collisions/report_all_kinematic_contacts=true

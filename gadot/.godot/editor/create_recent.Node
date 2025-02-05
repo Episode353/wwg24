@@ -1,8 +1,8 @@
+MultiplayerSynchronizer
 TextEdit
 Panel
 Control
 Container
-MultiplayerSynchronizer
 CSGSphere3D
 CollisionShape3D
 CSGTorus3D
@@ -12,4 +12,3 @@ Node3D
 Sprite3D
 NavigationRegion3D
 CharacterBody3D
-NavigationAgent3D

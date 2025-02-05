@@ -11,19 +11,18 @@ var grab_joint: JoltGeneric6DOFJoint3D
 
 
 func _process(delta):
-	if is_multiplayer_authority():
-		if Input.is_action_just_pressed("interact"):
-			if player.is_holding_object and player.grabbed_object:
-				# If we are already holding something, release it
-				rpc_id(player.peer_id, "request_release_object")
-			else:
-				# Ask server to attempt a pickup
-				# We can pass the raycast’s hit info or simply do the raycast on the server side again.
-				rpc_id(1, "request_pickup_object", global_transform.origin)
-		
-		# Safety check: if the object is too far, request release
-		if player.grabbed_object and (player.grabbed_object.global_transform.origin - global_transform.origin).length() > 3:
+	if Input.is_action_just_pressed("interact"):
+		if player.is_holding_object and player.grabbed_object:
+			# If we are already holding something, release it
 			rpc_id(player.peer_id, "request_release_object")
+		else:
+			# Ask server to attempt a pickup
+			# We can pass the raycast’s hit info or simply do the raycast on the server side again.
+			rpc_id(1, "request_pickup_object", global_transform.origin)
+	
+	# Safety check: if the object is too far, request release
+	if player.grabbed_object and (player.grabbed_object.global_transform.origin - global_transform.origin).length() > 3:
+		rpc_id(player.peer_id, "request_release_object")
 
 
 @rpc("any_peer", "call_local")
