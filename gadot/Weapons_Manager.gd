@@ -303,7 +303,7 @@ func shoot():
 				player.rpc("launch_rocket")
 				play_fire_sound()
 				
-			if current_weapon.weapon_name == "he_grenade":
+			if current_weapon.weapon_name == "hegrenade":
 				await get_tree().create_timer(0.5).timeout
 				player.rpc("launch_he_grenade")
 				animation_player.play(current_weapon.activate_anim)

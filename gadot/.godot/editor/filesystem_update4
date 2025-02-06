@@ -1,5 +1,4 @@
 res://player.tscn
-res://Player.gd
 res://models/grenade/grenade_proj.gd
 res://manadrop.gd
 res://shaders/manadrop.gdshader
@@ -13,3 +12,9 @@ res://mat/grey_grid_3.tres
 res://world.tscn
 res://entities/props/grabbable/box.tscn
 res://entities/props/grabbable/ball.tscn
+res://entities/pickup/weapon/weapon_pickup.gd
+res://entities/pickup/weapon/ak47.tscn
+res://entities/pickup/ammo/large.tscn
+res://sys/weapon_resources/flame_spell.tres
+res://sys/weapon_resources/he_grenade.tres
+res://Weapons_Manager.gd

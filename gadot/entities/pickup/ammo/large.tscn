@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://entities/pickup/ammo/ammo_pickup.gd" id="1_qgv2c"]
 
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_ykyn0"]
 size = Vector3(2, 1.5, 2)
 

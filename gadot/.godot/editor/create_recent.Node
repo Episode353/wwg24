@@ -1,3 +1,4 @@
+Node3D
 MultiplayerSynchronizer
 TextEdit
 Panel
@@ -8,7 +9,6 @@ CollisionShape3D
 CSGTorus3D
 CSGPolygon3D
 RigidBody3D
-Node3D
 Sprite3D
 NavigationRegion3D
 CharacterBody3D

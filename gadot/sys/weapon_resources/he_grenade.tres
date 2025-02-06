@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_sxw7q")
-weapon_name = "he_grenade"
+weapon_name = "hegrenade"
 activate_anim = "grenade_active"
 shoot_anim = "grenade_shoot"
 reload_anim = ""

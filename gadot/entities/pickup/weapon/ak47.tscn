@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cve7repibm1du"]
+
+[ext_resource type="Script" path="res://entities/pickup/weapon/weapon_pickup.gd" id="1_fn7rp"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_fn7rp")

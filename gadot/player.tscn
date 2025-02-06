@@ -4203,7 +4203,7 @@ collide_with_areas = true
 [node name="Weapons_Manager" type="Node3D" parent="neck/head/main_camera"]
 script = ExtResource("2_dh310")
 _weapon_resources = Array[ExtResource("4_qoin8")]([ExtResource("3_vtnjn"), ExtResource("6_vxs5u"), ExtResource("6_er4xm"), ExtResource("7_207gd"), ExtResource("8_85x0p"), ExtResource("9_022uy"), ExtResource("10_ccirh"), ExtResource("12_2sgvr")])
-start_weapons = Array[String](["ak47", "knife", "rocket_launcher", "shotgun", "he_grenade", "flame_spell", "salsa", "keyboard"])
+start_weapons = Array[String](["knife"])
 
 [node name="FPS_RIG" type="Node3D" parent="neck/head/main_camera/Weapons_Manager"]
 
