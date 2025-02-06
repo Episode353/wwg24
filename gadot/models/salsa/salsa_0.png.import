@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6c3oi65oxila"
+uid="uid://c0brsr8sn2h7f"
 path.s3tc="res://.godot/imported/salsa_0.png-be3c0bbbcbd72d8f2b24e4da365b5acb.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "b6bad49713704165cbd3329ca9f3983d"
 }
 
 [deps]

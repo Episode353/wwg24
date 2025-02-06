@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c328o8gs1t5x1"
+uid="uid://blgft76cq80c7"
 path.s3tc="res://.godot/imported/grenade_0.png-0bc271810f6327858d473e7afb528cdb.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "1aa8d94f45f00d5a6cf3a83d41b74386"
 }
 
 [deps]
