@@ -85,6 +85,8 @@ Features to add:
 
 
 Bugs to fix:
+	- Re imagine the main menu
+	- Keyboard Attacks and Fire Effects
 	- If a player grabs a grabbable object that someone else is grabbing, weird stuff happens
 	- The player name entered in the config.txt appears over enemy players, which is wrong. It should appear over the player who has it entered in the config.
 	- Sound

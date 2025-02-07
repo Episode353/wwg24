@@ -131,13 +131,14 @@ func add_bot():
 	# Preload and instantiate the player scene
 	var Player = preload("res://player.tscn")
 	var bot_instance = Player.instantiate()
-	
+	var bot_peer_id = multiplayer.get_unique_id()
 	# Give the bot a unique name (for example, using a timestamp)
-	bot_instance.name = "bot_" + str(462464626)
+	bot_instance.name = str(bot_peer_id)
 	
 	# Set the is_bot variable to true
 	bot_instance.is_bot = true
-	bot_instance.set_multiplayer_authority(1)
+	bot_instance.set_multiplayer_authority(bot_peer_id)
+	bot_instance.peer_id = bot_peer_id
 	# Spawn the bot at a spawn point
 	spawn_player(bot_instance)
 	
@@ -161,8 +162,9 @@ func add_player(peer_id):
 	var spawnplayer = Player.instantiate()
 	spawnplayer.name = str(peer_id)
 	print("Adding player with peer ID: ", peer_id)
-		# Set the server as the authority (or whichever peer should own it).
+	# Always assign the server (local) as the authority:
 	spawnplayer.set_multiplayer_authority(peer_id)
+	spawnplayer.peer_id = peer_id
 	if Globals.map_loaded:
 		spawn_player(spawnplayer)
 		add_child(spawnplayer)
@@ -172,6 +174,7 @@ func add_player(peer_id):
 	else:
 		waiting_players.append(spawnplayer)
 		print("Map not loaded yet. Delaying spawn for player: ", peer_id)
+
 
 func _on_map_loaded():
 	for spawnplayer in waiting_players:
@@ -407,7 +410,7 @@ func spawn_box(desired_transform):
 	ball_instance.global_transform = desired_transform
 	
 	# Set the server as the authority (or whichever peer should own it).
-	ball_instance.set_multiplayer_authority(1)
+	#ball_instance.set_multiplayer_authority(1)
 	
 	# Optionally, if your ball has a script that manages its synchronization,
 	# ensure it’s properly configured here.

@@ -139,10 +139,10 @@ var cam_aligned_wish_dir := Vector3.ZERO
 var noclip_speed_mult := 8
 var noclip := false
 
-func _enter_tree():
-	set_multiplayer_authority(str(name).to_int())
-	
-	
+#func _enter_tree():
+	#set_multiplayer_authority(str(name).to_int())
+	#
+	#
 # Peer id.
 @export var peer_id : int : 
 	set(value):
