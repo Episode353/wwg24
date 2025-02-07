@@ -183,7 +183,6 @@ func add_ammo_to_all(amount: int):
 
 
 func Initalize(_start_weapons: Array):
-	if not is_multiplayer_authority(): return
 	# Create a Dictionary to refer to our weapons
 	for weapon in _weapon_resources:
 		weapon_list[weapon.weapon_name] = weapon
@@ -211,14 +210,21 @@ func exit(_next_weapon: String):
 		if animation_player.get_current_animation() != current_weapon.deactivate_anim:
 			animation_player.play(current_weapon.deactivate_anim)
 			next_weapon = _next_weapon
-	
+			
 func change_weapon(change_weapon_name: String):
 	# Prevent switching back to "hands" if a real weapon is already equipped.
 	if change_weapon_name == "hands" and current_weapon and current_weapon.weapon_name != "hands":
 		print("Switch back to 'hands' is not allowed!")
 		return
-	
+
+	# Check if the weapon exists in the dictionary.
+	if not weapon_list.has(change_weapon_name):
+		print("Weapon not found in weapon_list: " + change_weapon_name)
+		return
+
 	current_weapon = weapon_list[change_weapon_name]
+	
+	# Now access the weapon properties
 	var weapon_range = current_weapon.weapon_range
 	raycast_shoot.target_position.z = weapon_range
 	print("Switched to Weapon: ", current_weapon.weapon_name)
@@ -228,9 +234,8 @@ func change_weapon(change_weapon_name: String):
 		ac_timer.wait_time = 0.1  # Set a default valid value
 	else:
 		ac_timer.wait_time = current_weapon.fire_rate
-	
+
 	next_weapon = ""
-	enter()
 
 
 

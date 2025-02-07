@@ -9,7 +9,6 @@ func _get_weapon_name(weapon_value: int) -> String:
 	return WeaponNames[weapon_value]
 
 
-@export var ammo: int = 30
 @export var respawn_delay: float = 5.0
 @onready var weapon_root = $"."
 @onready var weapon_model = $weapon_model
@@ -28,9 +27,9 @@ func _ready():
 	timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 
 func _on_timer_timeout():
-	# Respawn ammo locally and notify all peers
+	# Respawn Weapon locally and notify all peers
 	_show_weapon()
-	rpc("show_ammo_global")
+	rpc("show_weapon_global")
 
 # Local hide function
 func _hide_weapon():
@@ -41,12 +40,12 @@ func _hide_weapon():
 func _show_weapon():
 	weapon_root.visible = true
 
-# RPC to hide ammo globally
+# RPC to hide Weapon globally
 @rpc("any_peer")
 func hide_weapon_global():
 	_hide_weapon()
 
-# RPC to show ammo globally
+# RPC to show Weapon globally
 @rpc("any_peer")
 func show_weapon_global():
 	_show_weapon()
@@ -85,4 +84,4 @@ func _on_area_3d_body_entered(body):
 	
 	# Hide the weapon locally and notify all peers
 	_hide_weapon()
-	rpc("hide_ammo_global")
+	rpc("hide_weapon_global")
