@@ -393,8 +393,9 @@ func process_movement(delta):
 			_snap_down_to_stairs_check()
 
 func _process(delta):
-	
 	viewmodel_camera.global_transform = main_camera.global_transform
+	
+
 
 
 func accelerate(wish_dir: Vector3, max_speed: float, delta):

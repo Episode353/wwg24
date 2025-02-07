@@ -1,4 +1,4 @@
-res://entities/pickup/weapon/rocketlauncher.tscn
+res://entities/pickup/weapon/shotgun.tscn
 res://models/grenade/grenade_proj.gd
 res://manadrop.gd
 res://shaders/manadrop.gdshader
@@ -10,12 +10,12 @@ res://sys/weapon_resources/keyboard.tres
 res://sys/weapon_resources/hands.tres
 res://CollisionScript.gd
 res://mat/grey_grid_3.tres
-res://entities/pickup/weapon/shotgun.tscn
-res://player.tscn
 res://player.gd
+res://player.tscn
 res://entities/pickup/weapon/ak47.tscn
 res://entities/pickup/weapon/hegrenade.tscn
 res://entities/pickup/weapon/keyboard.tscn
 res://entities/pickup/weapon/knife.tscn
 res://entities/pickup/weapon/random.tscn
 res://entities/pickup/weapon/salsa.tscn
+res://entities/pickup/weapon/rocketlauncher.tscn
