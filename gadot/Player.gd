@@ -1,3 +1,4 @@
+
 extends CharacterBody3D
 
 signal health_changed(health_value)
@@ -571,6 +572,14 @@ func receive_ammo(received_ammo):
 
 func is_ammo_full() -> bool:
 	return weapons_manager.is_all_ammo_full()
+	
+	
+@rpc("any_peer", "call_local")
+func receive_weapon(received_weapon):
+	weapons_manager.add_weapon(received_weapon)
+
+func does_have_weapon(weapon):
+	return weapons_manager.does_have_weapon(weapon)
 
 	
 

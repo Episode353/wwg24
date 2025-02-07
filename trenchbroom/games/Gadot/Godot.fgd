@@ -43,7 +43,7 @@
 
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_weapon_ak47 : "ak47" []
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_weapon_shotgun : "shotgun" []
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_weapon_grenade : "grenade" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_weapon_hegrenade : "hegrenade" []
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_weapon_rocketlauncher : "rocketlauncher" []
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_weapon_salsa : "salsa" []
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_weapon_keyboard : "keyboard" []

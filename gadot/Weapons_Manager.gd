@@ -97,6 +97,18 @@ func is_all_ammo_full() -> bool:
 			return false
 	return true
 
+func does_have_weapon(does_weapon: String) -> bool:
+	for weapon_name in weapon_stack:
+		var weapon_item = weapon_list[weapon_name]
+		if weapon_item.weapon_name == does_weapon:
+			return true  # Returns true if the player has the weapon
+	return false  # Returns false if the weapon is not found
+
+
+@rpc("any_peer", "call_local")
+func add_weapon(received_weapon):
+	weapon_stack.push_back(received_weapon)
+	emit_signal("update_weapon_stack", weapon_stack)
 
 func add_ammo_to_all(amount: int):
 	if weapon_list.size() == 0:

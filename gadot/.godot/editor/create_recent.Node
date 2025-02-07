@@ -1,4 +1,6 @@
+SpotLight3D
 Node3D
+Timer
 MultiplayerSynchronizer
 TextEdit
 Panel
@@ -11,4 +13,3 @@ CSGPolygon3D
 RigidBody3D
 Sprite3D
 NavigationRegion3D
-CharacterBody3D

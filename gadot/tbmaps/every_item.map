@@ -173,6 +173,15 @@
 "_tb_name" "Entities"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
+// brush 0
+{
+( 384 0 -80 ) ( 384 1 -80 ) ( 384 0 -79 ) __TB_empty 0 0 0 1 1
+( 0 -256 -80 ) ( 0 -256 -79 ) ( 1 -256 -80 ) __TB_empty 0 0 0 1 1
+( 0 0 -80 ) ( 1 0 -80 ) ( 0 1 -80 ) __TB_empty 0 0 0 1 1
+( 128 128 -48 ) ( 128 129 -48 ) ( 129 128 -48 ) __TB_empty 0 0 0 1 1
+( 128 -128 -48 ) ( 129 -128 -48 ) ( 128 -128 -47 ) __TB_empty 0 0 0 1 1
+( 512 128 -48 ) ( 512 128 -47 ) ( 512 129 -48 ) __TB_empty 0 0 0 1 1
+}
 }
 // entity 2
 {
@@ -244,5 +253,41 @@
 {
 "classname" "world_menu_camera"
 "origin" "-56 200 -40"
+"_tb_layer" "1"
+}
+// entity 14
+{
+"classname" "pickup_weapon_ak47"
+"origin" "72 -56 -32"
+"_tb_layer" "1"
+}
+// entity 15
+{
+"classname" "pickup_weapon_keyboard"
+"origin" "72 -184 -16"
+"_tb_layer" "1"
+}
+// entity 16
+{
+"classname" "pickup_weapon_rocketlauncher"
+"origin" "200 -184 -16"
+"_tb_layer" "1"
+}
+// entity 17
+{
+"classname" "pickup_weapon_shotgun"
+"origin" "456 -184 -24"
+"_tb_layer" "1"
+}
+// entity 18
+{
+"classname" "pickup_weapon_hegrenade"
+"origin" "-56 -184 -16"
+"_tb_layer" "1"
+}
+// entity 19
+{
+"classname" "pickup_weapon_salsa"
+"origin" "320 -184 -24"
 "_tb_layer" "1"
 }
