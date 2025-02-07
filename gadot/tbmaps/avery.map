@@ -1785,13 +1785,48 @@
 }
 // entity 43
 {
+"classname" "pickup_weapon_hegrenade"
+"origin" "216 264 -120"
+}
+// entity 44
+{
+"classname" "pickup_weapon_keyboard"
+"origin" "-24 -232 232"
+}
+// entity 45
+{
+"classname" "pickup_weapon_knife"
+"origin" "456 1048 24"
+}
+// entity 46
+{
+"classname" "pickup_weapon_random"
+"origin" "760 216 -56"
+}
+// entity 47
+{
+"classname" "pickup_weapon_rocketlauncher"
+"origin" "488 -120 8"
+}
+// entity 48
+{
+"classname" "pickup_weapon_salsa"
+"origin" "152 552 24"
+}
+// entity 49
+{
+"classname" "pickup_weapon_shotgun"
+"origin" "984 -312 -120"
+}
+// entity 50
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "pad"
 "_tb_id" "6"
 "_tb_layer_sort_index" "0"
 }
-// entity 44
+// entity 51
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -1799,7 +1834,7 @@
 "_tb_id" "10"
 "_tb_layer_sort_index" "1"
 }
-// entity 45
+// entity 52
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -1807,1963 +1842,1963 @@
 "_tb_id" "11"
 "_tb_layer_sort_index" "2"
 }
-// entity 46
+// entity 53
 {
 "classname" "props_grabbable_ball"
 "origin" "1224 488 -40"
 "_tb_layer" "11"
 }
-// entity 47
+// entity 54
 {
 "classname" "props_grabbable_ball"
 "origin" "1240 488 -40"
 "_tb_layer" "11"
 }
-// entity 48
+// entity 55
 {
 "classname" "props_grabbable_ball"
 "origin" "1256 488 -40"
 "_tb_layer" "11"
 }
-// entity 49
+// entity 56
 {
 "classname" "props_grabbable_ball"
 "origin" "1272 488 -40"
 "_tb_layer" "11"
 }
-// entity 50
+// entity 57
 {
 "classname" "props_grabbable_ball"
 "origin" "1288 488 -40"
 "_tb_layer" "11"
 }
-// entity 51
+// entity 58
 {
 "classname" "props_grabbable_ball"
 "origin" "1304 488 -40"
 "_tb_layer" "11"
 }
-// entity 52
+// entity 59
 {
 "classname" "props_grabbable_ball"
 "origin" "1320 488 -40"
 "_tb_layer" "11"
 }
-// entity 53
+// entity 60
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -40"
 "_tb_layer" "11"
 }
-// entity 54
+// entity 61
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -40"
 "_tb_layer" "11"
 }
-// entity 55
+// entity 62
 {
 "classname" "props_grabbable_ball"
 "origin" "1368 488 -40"
 "_tb_layer" "11"
 }
-// entity 56
+// entity 63
 {
 "classname" "props_grabbable_ball"
 "origin" "1368 488 -56"
 "_tb_layer" "11"
 }
-// entity 57
+// entity 64
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -56"
 "_tb_layer" "11"
 }
-// entity 58
+// entity 65
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -56"
 "_tb_layer" "11"
 }
-// entity 59
+// entity 66
 {
 "classname" "props_grabbable_ball"
 "origin" "1320 488 -56"
 "_tb_layer" "11"
 }
-// entity 60
+// entity 67
 {
 "classname" "props_grabbable_ball"
 "origin" "1304 488 -56"
 "_tb_layer" "11"
 }
-// entity 61
+// entity 68
 {
 "classname" "props_grabbable_ball"
 "origin" "1288 488 -56"
 "_tb_layer" "11"
 }
-// entity 62
+// entity 69
 {
 "classname" "props_grabbable_ball"
 "origin" "1272 488 -56"
 "_tb_layer" "11"
 }
-// entity 63
+// entity 70
 {
 "classname" "props_grabbable_ball"
 "origin" "1256 488 -56"
 "_tb_layer" "11"
 }
-// entity 64
+// entity 71
 {
 "classname" "props_grabbable_ball"
 "origin" "1240 488 -56"
 "_tb_layer" "11"
 }
-// entity 65
+// entity 72
 {
 "classname" "props_grabbable_ball"
 "origin" "1224 488 -56"
 "_tb_layer" "11"
 }
-// entity 66
+// entity 73
 {
 "classname" "props_grabbable_ball"
 "origin" "1224 488 -72"
 "_tb_layer" "11"
 }
-// entity 67
+// entity 74
 {
 "classname" "props_grabbable_ball"
 "origin" "1240 488 -72"
 "_tb_layer" "11"
 }
-// entity 68
+// entity 75
 {
 "classname" "props_grabbable_ball"
 "origin" "1256 488 -72"
 "_tb_layer" "11"
 }
-// entity 69
+// entity 76
 {
 "classname" "props_grabbable_ball"
 "origin" "1272 488 -72"
 "_tb_layer" "11"
 }
-// entity 70
+// entity 77
 {
 "classname" "props_grabbable_ball"
 "origin" "1288 488 -72"
 "_tb_layer" "11"
 }
-// entity 71
+// entity 78
 {
 "classname" "props_grabbable_ball"
 "origin" "1304 488 -72"
 "_tb_layer" "11"
 }
-// entity 72
+// entity 79
 {
 "classname" "props_grabbable_ball"
 "origin" "1320 488 -72"
 "_tb_layer" "11"
 }
-// entity 73
+// entity 80
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -72"
 "_tb_layer" "11"
 }
-// entity 74
+// entity 81
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -72"
 "_tb_layer" "11"
 }
-// entity 75
+// entity 82
 {
 "classname" "props_grabbable_ball"
 "origin" "1368 488 -72"
 "_tb_layer" "11"
 }
-// entity 76
+// entity 83
 {
 "classname" "props_grabbable_ball"
 "origin" "1368 488 -88"
 "_tb_layer" "11"
 }
-// entity 77
+// entity 84
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -88"
 "_tb_layer" "11"
 }
-// entity 78
+// entity 85
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -88"
 "_tb_layer" "11"
 }
-// entity 79
+// entity 86
 {
 "classname" "props_grabbable_ball"
 "origin" "1320 488 -88"
 "_tb_layer" "11"
 }
-// entity 80
+// entity 87
 {
 "classname" "props_grabbable_ball"
 "origin" "1304 488 -88"
 "_tb_layer" "11"
 }
-// entity 81
+// entity 88
 {
 "classname" "props_grabbable_ball"
 "origin" "1288 488 -88"
 "_tb_layer" "11"
 }
-// entity 82
+// entity 89
 {
 "classname" "props_grabbable_ball"
 "origin" "1272 488 -88"
 "_tb_layer" "11"
 }
-// entity 83
+// entity 90
 {
 "classname" "props_grabbable_ball"
 "origin" "1256 488 -88"
 "_tb_layer" "11"
 }
-// entity 84
+// entity 91
 {
 "classname" "props_grabbable_ball"
 "origin" "1240 488 -88"
 "_tb_layer" "11"
 }
-// entity 85
+// entity 92
 {
 "classname" "props_grabbable_ball"
 "origin" "1224 488 -88"
 "_tb_layer" "11"
 }
-// entity 86
+// entity 93
 {
 "classname" "props_grabbable_ball"
 "origin" "1208 488 -88"
 "_tb_layer" "11"
 }
-// entity 87
+// entity 94
 {
 "classname" "props_grabbable_ball"
 "origin" "1208 488 -104"
 "_tb_layer" "11"
 }
-// entity 88
+// entity 95
 {
 "classname" "props_grabbable_ball"
 "origin" "1224 488 -104"
 "_tb_layer" "11"
 }
-// entity 89
+// entity 96
 {
 "classname" "props_grabbable_ball"
 "origin" "1240 488 -104"
 "_tb_layer" "11"
 }
-// entity 90
+// entity 97
 {
 "classname" "props_grabbable_ball"
 "origin" "1256 488 -104"
 "_tb_layer" "11"
 }
-// entity 91
+// entity 98
 {
 "classname" "props_grabbable_ball"
 "origin" "1272 488 -104"
 "_tb_layer" "11"
 }
-// entity 92
+// entity 99
 {
 "classname" "props_grabbable_ball"
 "origin" "1288 488 -104"
 "_tb_layer" "11"
 }
-// entity 93
+// entity 100
 {
 "classname" "props_grabbable_ball"
 "origin" "1304 488 -104"
 "_tb_layer" "11"
 }
-// entity 94
+// entity 101
 {
 "classname" "props_grabbable_ball"
 "origin" "1320 488 -104"
 "_tb_layer" "11"
 }
-// entity 95
+// entity 102
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -104"
 "_tb_layer" "11"
 }
-// entity 96
+// entity 103
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -104"
 "_tb_layer" "11"
 }
-// entity 97
+// entity 104
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -120"
 "_tb_layer" "11"
 }
-// entity 98
+// entity 105
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -120"
 "_tb_layer" "11"
 }
-// entity 99
+// entity 106
 {
 "classname" "props_grabbable_ball"
 "origin" "1320 488 -120"
 "_tb_layer" "11"
 }
-// entity 100
+// entity 107
 {
 "classname" "props_grabbable_ball"
 "origin" "1304 488 -120"
 "_tb_layer" "11"
 }
-// entity 101
+// entity 108
 {
 "classname" "props_grabbable_ball"
 "origin" "1288 488 -120"
 "_tb_layer" "11"
 }
-// entity 102
+// entity 109
 {
 "classname" "props_grabbable_ball"
 "origin" "1272 488 -120"
 "_tb_layer" "11"
 }
-// entity 103
+// entity 110
 {
 "classname" "props_grabbable_ball"
 "origin" "1256 488 -120"
 "_tb_layer" "11"
 }
-// entity 104
+// entity 111
 {
 "classname" "props_grabbable_ball"
 "origin" "1240 488 -120"
 "_tb_layer" "11"
 }
-// entity 105
+// entity 112
 {
 "classname" "props_grabbable_ball"
 "origin" "1224 488 -120"
 "_tb_layer" "11"
 }
-// entity 106
+// entity 113
 {
 "classname" "props_grabbable_ball"
 "origin" "1208 488 -120"
 "_tb_layer" "11"
 }
-// entity 107
+// entity 114
 {
 "classname" "props_grabbable_ball"
 "origin" "1192 488 -120"
 "_tb_layer" "11"
 }
-// entity 108
+// entity 115
 {
 "classname" "props_grabbable_ball"
 "origin" "1192 488 -136"
 "_tb_layer" "11"
 }
-// entity 109
+// entity 116
 {
 "classname" "props_grabbable_ball"
 "origin" "1208 488 -136"
 "_tb_layer" "11"
 }
-// entity 110
+// entity 117
 {
 "classname" "props_grabbable_ball"
 "origin" "1224 488 -136"
 "_tb_layer" "11"
 }
-// entity 111
+// entity 118
 {
 "classname" "props_grabbable_ball"
 "origin" "1240 488 -136"
 "_tb_layer" "11"
 }
-// entity 112
+// entity 119
 {
 "classname" "props_grabbable_ball"
 "origin" "1256 488 -136"
 "_tb_layer" "11"
 }
-// entity 113
+// entity 120
 {
 "classname" "props_grabbable_ball"
 "origin" "1272 488 -136"
 "_tb_layer" "11"
 }
-// entity 114
+// entity 121
 {
 "classname" "props_grabbable_ball"
 "origin" "1288 488 -136"
 "_tb_layer" "11"
 }
-// entity 115
+// entity 122
 {
 "classname" "props_grabbable_ball"
 "origin" "1304 488 -136"
 "_tb_layer" "11"
 }
-// entity 116
+// entity 123
 {
 "classname" "props_grabbable_ball"
 "origin" "1320 488 -136"
 "_tb_layer" "11"
 }
-// entity 117
+// entity 124
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -136"
 "_tb_layer" "11"
 }
-// entity 118
+// entity 125
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -152"
 "_tb_layer" "11"
 }
-// entity 119
+// entity 126
 {
 "classname" "props_grabbable_ball"
 "origin" "1320 488 -152"
 "_tb_layer" "11"
 }
-// entity 120
+// entity 127
 {
 "classname" "props_grabbable_ball"
 "origin" "1304 488 -152"
 "_tb_layer" "11"
 }
-// entity 121
+// entity 128
 {
 "classname" "props_grabbable_ball"
 "origin" "1288 488 -152"
 "_tb_layer" "11"
 }
-// entity 122
+// entity 129
 {
 "classname" "props_grabbable_ball"
 "origin" "1272 488 -152"
 "_tb_layer" "11"
 }
-// entity 123
+// entity 130
 {
 "classname" "props_grabbable_ball"
 "origin" "1256 488 -152"
 "_tb_layer" "11"
 }
-// entity 124
+// entity 131
 {
 "classname" "props_grabbable_ball"
 "origin" "1240 488 -152"
 "_tb_layer" "11"
 }
-// entity 125
+// entity 132
 {
 "classname" "props_grabbable_ball"
 "origin" "1224 488 -152"
 "_tb_layer" "11"
 }
-// entity 126
+// entity 133
 {
 "classname" "props_grabbable_ball"
 "origin" "1208 488 -152"
 "_tb_layer" "11"
 }
-// entity 127
+// entity 134
 {
 "classname" "props_grabbable_ball"
 "origin" "1192 488 -152"
 "_tb_layer" "11"
 }
-// entity 128
+// entity 135
 {
 "classname" "props_grabbable_ball"
 "origin" "1176 488 -152"
 "_tb_layer" "11"
 }
-// entity 129
+// entity 136
 {
 "classname" "props_grabbable_ball"
 "origin" "1160 488 -152"
 "_tb_layer" "11"
 }
-// entity 130
+// entity 137
 {
 "classname" "props_grabbable_ball"
 "origin" "1096 472 -152"
 "_tb_layer" "11"
 }
-// entity 131
+// entity 138
 {
 "classname" "props_grabbable_ball"
 "origin" "1144 488 -168"
 "_tb_layer" "11"
 }
-// entity 132
+// entity 139
 {
 "classname" "props_grabbable_ball"
 "origin" "1160 488 -168"
 "_tb_layer" "11"
 }
-// entity 133
+// entity 140
 {
 "classname" "props_grabbable_ball"
 "origin" "1176 488 -168"
 "_tb_layer" "11"
 }
-// entity 134
+// entity 141
 {
 "classname" "props_grabbable_ball"
 "origin" "1192 488 -168"
 "_tb_layer" "11"
 }
-// entity 135
+// entity 142
 {
 "classname" "props_grabbable_ball"
 "origin" "1208 488 -168"
 "_tb_layer" "11"
 }
-// entity 136
+// entity 143
 {
 "classname" "props_grabbable_ball"
 "origin" "1224 488 -168"
 "_tb_layer" "11"
 }
-// entity 137
+// entity 144
 {
 "classname" "props_grabbable_ball"
 "origin" "1240 488 -168"
 "_tb_layer" "11"
 }
-// entity 138
+// entity 145
 {
 "classname" "props_grabbable_ball"
 "origin" "1256 488 -168"
 "_tb_layer" "11"
 }
-// entity 139
+// entity 146
 {
 "classname" "props_grabbable_ball"
 "origin" "1272 488 -168"
 "_tb_layer" "11"
 }
-// entity 140
+// entity 147
 {
 "classname" "props_grabbable_ball"
 "origin" "1288 488 -168"
 "_tb_layer" "11"
 }
-// entity 141
+// entity 148
 {
 "classname" "props_grabbable_ball"
 "origin" "1304 488 -168"
 "_tb_layer" "11"
 }
-// entity 142
+// entity 149
 {
 "classname" "props_grabbable_ball"
 "origin" "1320 488 -168"
 "_tb_layer" "11"
 }
-// entity 143
+// entity 150
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -168"
 "_tb_layer" "11"
 }
-// entity 144
+// entity 151
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -184"
 "_tb_layer" "11"
 }
-// entity 145
+// entity 152
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -200"
 "_tb_layer" "11"
 }
-// entity 146
+// entity 153
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -216"
 "_tb_layer" "11"
 }
-// entity 147
+// entity 154
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -232"
 "_tb_layer" "11"
 }
-// entity 148
+// entity 155
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -248"
 "_tb_layer" "11"
 }
-// entity 149
+// entity 156
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -264"
 "_tb_layer" "11"
 }
-// entity 150
+// entity 157
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -280"
 "_tb_layer" "11"
 }
-// entity 151
+// entity 158
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -296"
 "_tb_layer" "11"
 }
-// entity 152
+// entity 159
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -312"
 "_tb_layer" "11"
 }
-// entity 153
+// entity 160
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -328"
 "_tb_layer" "11"
 }
-// entity 154
+// entity 161
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -328"
 "_tb_layer" "11"
 }
-// entity 155
+// entity 162
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -312"
 "_tb_layer" "11"
 }
-// entity 156
+// entity 163
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -296"
 "_tb_layer" "11"
 }
-// entity 157
+// entity 164
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -280"
 "_tb_layer" "11"
 }
-// entity 158
+// entity 165
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -264"
 "_tb_layer" "11"
 }
-// entity 159
+// entity 166
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -248"
 "_tb_layer" "11"
 }
-// entity 160
+// entity 167
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -232"
 "_tb_layer" "11"
 }
-// entity 161
+// entity 168
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -216"
 "_tb_layer" "11"
 }
-// entity 162
+// entity 169
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -200"
 "_tb_layer" "11"
 }
-// entity 163
+// entity 170
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -184"
 "_tb_layer" "11"
 }
-// entity 164
+// entity 171
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -168"
 "_tb_layer" "11"
 }
-// entity 165
+// entity 172
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -152"
 "_tb_layer" "11"
 }
-// entity 166
+// entity 173
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -136"
 "_tb_layer" "11"
 }
-// entity 167
+// entity 174
 {
 "classname" "props_grabbable_ball"
 "origin" "1368 488 -136"
 "_tb_layer" "11"
 }
-// entity 168
+// entity 175
 {
 "classname" "props_grabbable_ball"
 "origin" "1368 488 -120"
 "_tb_layer" "11"
 }
-// entity 169
+// entity 176
 {
 "classname" "props_grabbable_ball"
 "origin" "1384 488 -120"
 "_tb_layer" "11"
 }
-// entity 170
+// entity 177
 {
 "classname" "props_grabbable_ball"
 "origin" "1384 488 -104"
 "_tb_layer" "11"
 }
-// entity 171
+// entity 178
 {
 "classname" "props_grabbable_ball"
 "origin" "1384 488 -88"
 "_tb_layer" "11"
 }
-// entity 172
+// entity 179
 {
 "classname" "props_grabbable_ball"
 "origin" "1384 488 -72"
 "_tb_layer" "11"
 }
-// entity 173
+// entity 180
 {
 "classname" "props_grabbable_ball"
 "origin" "1384 488 -56"
 "_tb_layer" "11"
 }
-// entity 174
+// entity 181
 {
 "classname" "props_grabbable_ball"
 "origin" "1384 488 -40"
 "_tb_layer" "11"
 }
-// entity 175
+// entity 182
 {
 "classname" "props_grabbable_ball"
 "origin" "1384 488 -24"
 "_tb_layer" "11"
 }
-// entity 176
+// entity 183
 {
 "classname" "props_grabbable_ball"
 "origin" "1368 488 -24"
 "_tb_layer" "11"
 }
-// entity 177
+// entity 184
 {
 "classname" "props_grabbable_ball"
 "origin" "1352 488 -24"
 "_tb_layer" "11"
 }
-// entity 178
+// entity 185
 {
 "classname" "props_grabbable_ball"
 "origin" "1336 488 -24"
 "_tb_layer" "11"
 }
-// entity 179
+// entity 186
 {
 "classname" "props_grabbable_ball"
 "origin" "1320 488 -24"
 "_tb_layer" "11"
 }
-// entity 180
+// entity 187
 {
 "classname" "props_grabbable_ball"
 "origin" "1304 488 -24"
 "_tb_layer" "11"
 }
-// entity 181
+// entity 188
 {
 "classname" "props_grabbable_ball"
 "origin" "1288 488 -24"
 "_tb_layer" "11"
 }
-// entity 182
+// entity 189
 {
 "classname" "props_grabbable_ball"
 "origin" "1272 488 -24"
 "_tb_layer" "11"
 }
-// entity 183
+// entity 190
 {
 "classname" "props_grabbable_ball"
 "origin" "1256 488 -24"
 "_tb_layer" "11"
 }
-// entity 184
+// entity 191
 {
 "classname" "props_grabbable_ball"
 "origin" "1240 488 -24"
 "_tb_layer" "11"
 }
-// entity 185
+// entity 192
 {
 "classname" "props_grabbable_ball"
 "origin" "1224 488 -24"
 "_tb_layer" "11"
 }
-// entity 186
+// entity 193
 {
 "classname" "props_grabbable_ball"
 "origin" "1208 488 -24"
 "_tb_layer" "11"
 }
-// entity 187
+// entity 194
 {
 "classname" "props_grabbable_ball"
 "origin" "1192 488 -24"
 "_tb_layer" "11"
 }
-// entity 188
+// entity 195
 {
 "classname" "props_grabbable_ball"
 "origin" "1176 488 -24"
 "_tb_layer" "11"
 }
-// entity 189
+// entity 196
 {
 "classname" "props_grabbable_ball"
 "origin" "1320 536 -24"
 "_tb_layer" "11"
 }
-// entity 190
+// entity 197
 {
 "classname" "props_grabbable_ball"
 "origin" "1144 488 -24"
 "_tb_layer" "11"
 }
-// entity 191
+// entity 198
 {
 "classname" "props_grabbable_ball"
 "origin" "1128 488 -24"
 "_tb_layer" "11"
 }
-// entity 192
+// entity 199
 {
 "classname" "props_grabbable_ball"
 "origin" "1112 488 -24"
 "_tb_layer" "11"
 }
-// entity 193
+// entity 200
 {
 "classname" "props_grabbable_ball"
 "origin" "1096 488 -24"
 "_tb_layer" "11"
 }
-// entity 194
+// entity 201
 {
 "classname" "props_grabbable_ball"
 "origin" "1384 600 24"
 "_tb_layer" "11"
 }
-// entity 195
-{
-"classname" "props_grabbable_ball"
-"origin" "1384 584 40"
-"_tb_layer" "11"
-}
-// entity 196
-{
-"classname" "props_grabbable_ball"
-"origin" "1384 584 40"
-"_tb_layer" "11"
-}
-// entity 197
-{
-"classname" "props_grabbable_ball"
-"origin" "1384 600 40"
-"_tb_layer" "11"
-}
-// entity 198
-{
-"classname" "props_grabbable_ball"
-"origin" "1384 600 40"
-"_tb_layer" "11"
-}
-// entity 199
-{
-"classname" "props_grabbable_ball"
-"origin" "1384 600 56"
-"_tb_layer" "11"
-}
-// entity 200
-{
-"classname" "props_grabbable_ball"
-"origin" "1384 584 72"
-"_tb_layer" "11"
-}
-// entity 201
-{
-"classname" "props_grabbable_ball"
-"origin" "1384 584 72"
-"_tb_layer" "11"
-}
 // entity 202
 {
 "classname" "props_grabbable_ball"
-"origin" "1384 584 88"
+"origin" "1384 584 40"
 "_tb_layer" "11"
 }
 // entity 203
 {
 "classname" "props_grabbable_ball"
-"origin" "1384 600 88"
+"origin" "1384 584 40"
 "_tb_layer" "11"
 }
 // entity 204
 {
 "classname" "props_grabbable_ball"
-"origin" "1384 600 88"
+"origin" "1384 600 40"
 "_tb_layer" "11"
 }
 // entity 205
 {
 "classname" "props_grabbable_ball"
-"origin" "-56 -152 120"
+"origin" "1384 600 40"
 "_tb_layer" "11"
 }
 // entity 206
 {
 "classname" "props_grabbable_ball"
-"origin" "-40 -136 120"
+"origin" "1384 600 56"
 "_tb_layer" "11"
 }
 // entity 207
 {
 "classname" "props_grabbable_ball"
-"origin" "-24 -136 120"
+"origin" "1384 584 72"
 "_tb_layer" "11"
 }
 // entity 208
 {
 "classname" "props_grabbable_ball"
-"origin" "-8 -152 120"
+"origin" "1384 584 72"
 "_tb_layer" "11"
 }
 // entity 209
 {
 "classname" "props_grabbable_ball"
-"origin" "8 -152 120"
+"origin" "1384 584 88"
 "_tb_layer" "11"
 }
 // entity 210
 {
 "classname" "props_grabbable_ball"
-"origin" "8 -152 120"
+"origin" "1384 600 88"
 "_tb_layer" "11"
 }
 // entity 211
 {
 "classname" "props_grabbable_ball"
-"origin" "24 -152 120"
+"origin" "1384 600 88"
 "_tb_layer" "11"
 }
 // entity 212
 {
 "classname" "props_grabbable_ball"
-"origin" "24 -152 120"
+"origin" "-56 -152 120"
 "_tb_layer" "11"
 }
 // entity 213
 {
 "classname" "props_grabbable_ball"
-"origin" "88 -344 8"
+"origin" "-40 -136 120"
 "_tb_layer" "11"
 }
 // entity 214
 {
 "classname" "props_grabbable_ball"
-"origin" "88 -328 8"
+"origin" "-24 -136 120"
 "_tb_layer" "11"
 }
 // entity 215
 {
 "classname" "props_grabbable_ball"
-"origin" "72 -280 8"
+"origin" "-8 -152 120"
 "_tb_layer" "11"
 }
 // entity 216
 {
 "classname" "props_grabbable_ball"
-"origin" "72 -232 8"
+"origin" "8 -152 120"
 "_tb_layer" "11"
 }
 // entity 217
 {
 "classname" "props_grabbable_ball"
-"origin" "72 -200 8"
+"origin" "8 -152 120"
 "_tb_layer" "11"
 }
 // entity 218
 {
 "classname" "props_grabbable_ball"
-"origin" "72 -168 8"
+"origin" "24 -152 120"
 "_tb_layer" "11"
 }
 // entity 219
 {
 "classname" "props_grabbable_ball"
-"origin" "88 -136 8"
+"origin" "24 -152 120"
 "_tb_layer" "11"
 }
 // entity 220
 {
 "classname" "props_grabbable_ball"
-"origin" "-88 120 24"
+"origin" "88 -344 8"
 "_tb_layer" "11"
 }
 // entity 221
 {
 "classname" "props_grabbable_ball"
-"origin" "-88 72 8"
+"origin" "88 -328 8"
 "_tb_layer" "11"
 }
 // entity 222
 {
 "classname" "props_grabbable_ball"
-"origin" "-88 40 8"
+"origin" "72 -280 8"
 "_tb_layer" "11"
 }
 // entity 223
 {
 "classname" "props_grabbable_ball"
-"origin" "1112 472 -152"
+"origin" "72 -232 8"
 "_tb_layer" "11"
 }
 // entity 224
 {
 "classname" "props_grabbable_ball"
-"origin" "1128 472 -152"
+"origin" "72 -200 8"
 "_tb_layer" "11"
 }
 // entity 225
 {
 "classname" "props_grabbable_ball"
-"origin" "1144 472 -152"
+"origin" "72 -168 8"
 "_tb_layer" "11"
 }
 // entity 226
 {
 "classname" "props_grabbable_ball"
-"origin" "1160 472 -152"
+"origin" "88 -136 8"
 "_tb_layer" "11"
 }
 // entity 227
 {
 "classname" "props_grabbable_ball"
-"origin" "1176 472 -152"
+"origin" "-88 120 24"
 "_tb_layer" "11"
 }
 // entity 228
 {
 "classname" "props_grabbable_ball"
-"origin" "1192 472 -152"
+"origin" "-88 72 8"
 "_tb_layer" "11"
 }
 // entity 229
 {
 "classname" "props_grabbable_ball"
-"origin" "1208 472 -152"
+"origin" "-88 40 8"
 "_tb_layer" "11"
 }
 // entity 230
 {
 "classname" "props_grabbable_ball"
-"origin" "1224 472 -152"
+"origin" "1112 472 -152"
 "_tb_layer" "11"
 }
 // entity 231
 {
 "classname" "props_grabbable_ball"
-"origin" "1240 472 -152"
+"origin" "1128 472 -152"
 "_tb_layer" "11"
 }
 // entity 232
 {
 "classname" "props_grabbable_ball"
-"origin" "1256 472 -152"
+"origin" "1144 472 -152"
 "_tb_layer" "11"
 }
 // entity 233
 {
 "classname" "props_grabbable_ball"
-"origin" "1272 472 -152"
+"origin" "1160 472 -152"
 "_tb_layer" "11"
 }
 // entity 234
 {
 "classname" "props_grabbable_ball"
-"origin" "1288 472 -152"
+"origin" "1176 472 -152"
 "_tb_layer" "11"
 }
 // entity 235
 {
 "classname" "props_grabbable_ball"
-"origin" "1304 472 -152"
+"origin" "1192 472 -152"
 "_tb_layer" "11"
 }
 // entity 236
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 472 -152"
+"origin" "1208 472 -152"
 "_tb_layer" "11"
 }
 // entity 237
 {
 "classname" "props_grabbable_ball"
-"origin" "1336 472 -152"
+"origin" "1224 472 -152"
 "_tb_layer" "11"
 }
 // entity 238
 {
 "classname" "props_grabbable_ball"
-"origin" "1352 472 -152"
+"origin" "1240 472 -152"
 "_tb_layer" "11"
 }
 // entity 239
 {
 "classname" "props_grabbable_ball"
-"origin" "1368 472 -152"
+"origin" "1256 472 -152"
 "_tb_layer" "11"
 }
 // entity 240
 {
 "classname" "props_grabbable_ball"
-"origin" "1368 472 -136"
+"origin" "1272 472 -152"
 "_tb_layer" "11"
 }
 // entity 241
 {
 "classname" "props_grabbable_ball"
-"origin" "1352 472 -136"
+"origin" "1288 472 -152"
 "_tb_layer" "11"
 }
 // entity 242
 {
 "classname" "props_grabbable_ball"
-"origin" "1336 472 -136"
+"origin" "1304 472 -152"
 "_tb_layer" "11"
 }
 // entity 243
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 472 -136"
+"origin" "1320 472 -152"
 "_tb_layer" "11"
 }
 // entity 244
 {
 "classname" "props_grabbable_ball"
-"origin" "1304 472 -136"
+"origin" "1336 472 -152"
 "_tb_layer" "11"
 }
 // entity 245
 {
 "classname" "props_grabbable_ball"
-"origin" "1288 472 -136"
+"origin" "1352 472 -152"
 "_tb_layer" "11"
 }
 // entity 246
 {
 "classname" "props_grabbable_ball"
-"origin" "1272 472 -136"
+"origin" "1368 472 -152"
 "_tb_layer" "11"
 }
 // entity 247
 {
 "classname" "props_grabbable_ball"
-"origin" "1256 472 -136"
+"origin" "1368 472 -136"
 "_tb_layer" "11"
 }
 // entity 248
 {
 "classname" "props_grabbable_ball"
-"origin" "1240 472 -136"
+"origin" "1352 472 -136"
 "_tb_layer" "11"
 }
 // entity 249
 {
 "classname" "props_grabbable_ball"
-"origin" "1224 472 -136"
+"origin" "1336 472 -136"
 "_tb_layer" "11"
 }
 // entity 250
 {
 "classname" "props_grabbable_ball"
-"origin" "1208 472 -136"
+"origin" "1320 472 -136"
 "_tb_layer" "11"
 }
 // entity 251
 {
 "classname" "props_grabbable_ball"
-"origin" "1192 472 -136"
+"origin" "1304 472 -136"
 "_tb_layer" "11"
 }
 // entity 252
 {
 "classname" "props_grabbable_ball"
-"origin" "1176 472 -136"
+"origin" "1288 472 -136"
 "_tb_layer" "11"
 }
 // entity 253
 {
 "classname" "props_grabbable_ball"
-"origin" "1160 472 -136"
+"origin" "1272 472 -136"
 "_tb_layer" "11"
 }
 // entity 254
 {
 "classname" "props_grabbable_ball"
-"origin" "1144 472 -136"
+"origin" "1256 472 -136"
 "_tb_layer" "11"
 }
 // entity 255
 {
 "classname" "props_grabbable_ball"
-"origin" "1128 472 -136"
+"origin" "1240 472 -136"
 "_tb_layer" "11"
 }
 // entity 256
 {
 "classname" "props_grabbable_ball"
-"origin" "1112 472 -136"
+"origin" "1224 472 -136"
 "_tb_layer" "11"
 }
 // entity 257
 {
 "classname" "props_grabbable_ball"
-"origin" "1096 472 -136"
+"origin" "1208 472 -136"
 "_tb_layer" "11"
 }
 // entity 258
 {
 "classname" "props_grabbable_ball"
-"origin" "1096 472 -120"
+"origin" "1192 472 -136"
 "_tb_layer" "11"
 }
 // entity 259
 {
 "classname" "props_grabbable_ball"
-"origin" "1112 472 -120"
+"origin" "1176 472 -136"
 "_tb_layer" "11"
 }
 // entity 260
 {
 "classname" "props_grabbable_ball"
-"origin" "1128 472 -120"
+"origin" "1160 472 -136"
 "_tb_layer" "11"
 }
 // entity 261
 {
 "classname" "props_grabbable_ball"
-"origin" "1144 472 -120"
+"origin" "1144 472 -136"
 "_tb_layer" "11"
 }
 // entity 262
 {
 "classname" "props_grabbable_ball"
-"origin" "1160 472 -120"
+"origin" "1128 472 -136"
 "_tb_layer" "11"
 }
 // entity 263
 {
 "classname" "props_grabbable_ball"
-"origin" "1176 472 -120"
+"origin" "1112 472 -136"
 "_tb_layer" "11"
 }
 // entity 264
 {
 "classname" "props_grabbable_ball"
-"origin" "1192 472 -120"
+"origin" "1096 472 -136"
 "_tb_layer" "11"
 }
 // entity 265
 {
 "classname" "props_grabbable_ball"
-"origin" "1208 472 -120"
+"origin" "1096 472 -120"
 "_tb_layer" "11"
 }
 // entity 266
 {
 "classname" "props_grabbable_ball"
-"origin" "1224 472 -120"
+"origin" "1112 472 -120"
 "_tb_layer" "11"
 }
 // entity 267
 {
 "classname" "props_grabbable_ball"
-"origin" "1240 472 -120"
+"origin" "1128 472 -120"
 "_tb_layer" "11"
 }
 // entity 268
 {
 "classname" "props_grabbable_ball"
-"origin" "1256 472 -120"
+"origin" "1144 472 -120"
 "_tb_layer" "11"
 }
 // entity 269
 {
 "classname" "props_grabbable_ball"
-"origin" "1272 472 -120"
+"origin" "1160 472 -120"
 "_tb_layer" "11"
 }
 // entity 270
 {
 "classname" "props_grabbable_ball"
-"origin" "1288 472 -120"
+"origin" "1176 472 -120"
 "_tb_layer" "11"
 }
 // entity 271
 {
 "classname" "props_grabbable_ball"
-"origin" "1304 472 -120"
+"origin" "1192 472 -120"
 "_tb_layer" "11"
 }
 // entity 272
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 472 -120"
+"origin" "1208 472 -120"
 "_tb_layer" "11"
 }
 // entity 273
 {
 "classname" "props_grabbable_ball"
-"origin" "1336 472 -120"
+"origin" "1224 472 -120"
 "_tb_layer" "11"
 }
 // entity 274
 {
 "classname" "props_grabbable_ball"
-"origin" "1336 472 -104"
+"origin" "1240 472 -120"
 "_tb_layer" "11"
 }
 // entity 275
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 472 -104"
+"origin" "1256 472 -120"
 "_tb_layer" "11"
 }
 // entity 276
 {
 "classname" "props_grabbable_ball"
-"origin" "1304 472 -104"
+"origin" "1272 472 -120"
 "_tb_layer" "11"
 }
 // entity 277
 {
 "classname" "props_grabbable_ball"
-"origin" "1288 472 -104"
+"origin" "1288 472 -120"
 "_tb_layer" "11"
 }
 // entity 278
 {
 "classname" "props_grabbable_ball"
-"origin" "1272 472 -104"
+"origin" "1304 472 -120"
 "_tb_layer" "11"
 }
 // entity 279
 {
 "classname" "props_grabbable_ball"
-"origin" "1256 472 -104"
+"origin" "1320 472 -120"
 "_tb_layer" "11"
 }
 // entity 280
 {
 "classname" "props_grabbable_ball"
-"origin" "1240 472 -104"
+"origin" "1336 472 -120"
 "_tb_layer" "11"
 }
 // entity 281
 {
 "classname" "props_grabbable_ball"
-"origin" "1224 472 -104"
+"origin" "1336 472 -104"
 "_tb_layer" "11"
 }
 // entity 282
 {
 "classname" "props_grabbable_ball"
-"origin" "1208 472 -104"
+"origin" "1320 472 -104"
 "_tb_layer" "11"
 }
 // entity 283
 {
 "classname" "props_grabbable_ball"
-"origin" "1192 472 -104"
+"origin" "1304 472 -104"
 "_tb_layer" "11"
 }
 // entity 284
 {
 "classname" "props_grabbable_ball"
-"origin" "1176 472 -104"
+"origin" "1288 472 -104"
 "_tb_layer" "11"
 }
 // entity 285
 {
 "classname" "props_grabbable_ball"
-"origin" "1160 472 -104"
+"origin" "1272 472 -104"
 "_tb_layer" "11"
 }
 // entity 286
 {
 "classname" "props_grabbable_ball"
-"origin" "1144 472 -104"
+"origin" "1256 472 -104"
 "_tb_layer" "11"
 }
 // entity 287
 {
 "classname" "props_grabbable_ball"
-"origin" "1128 472 -104"
+"origin" "1240 472 -104"
 "_tb_layer" "11"
 }
 // entity 288
 {
 "classname" "props_grabbable_ball"
-"origin" "1112 472 -104"
+"origin" "1224 472 -104"
 "_tb_layer" "11"
 }
 // entity 289
 {
 "classname" "props_grabbable_ball"
-"origin" "1096 472 -104"
+"origin" "1208 472 -104"
 "_tb_layer" "11"
 }
 // entity 290
 {
 "classname" "props_grabbable_ball"
-"origin" "1080 472 -104"
+"origin" "1192 472 -104"
 "_tb_layer" "11"
 }
 // entity 291
 {
 "classname" "props_grabbable_ball"
-"origin" "1080 472 -88"
+"origin" "1176 472 -104"
 "_tb_layer" "11"
 }
 // entity 292
 {
 "classname" "props_grabbable_ball"
-"origin" "1096 472 -88"
+"origin" "1160 472 -104"
 "_tb_layer" "11"
 }
 // entity 293
 {
 "classname" "props_grabbable_ball"
-"origin" "1112 472 -88"
+"origin" "1144 472 -104"
 "_tb_layer" "11"
 }
 // entity 294
 {
 "classname" "props_grabbable_ball"
-"origin" "1128 472 -88"
+"origin" "1128 472 -104"
 "_tb_layer" "11"
 }
 // entity 295
 {
 "classname" "props_grabbable_ball"
-"origin" "1144 472 -88"
+"origin" "1112 472 -104"
 "_tb_layer" "11"
 }
 // entity 296
 {
 "classname" "props_grabbable_ball"
-"origin" "1160 472 -88"
+"origin" "1096 472 -104"
 "_tb_layer" "11"
 }
 // entity 297
 {
 "classname" "props_grabbable_ball"
-"origin" "1176 472 -88"
+"origin" "1080 472 -104"
 "_tb_layer" "11"
 }
 // entity 298
 {
 "classname" "props_grabbable_ball"
-"origin" "1192 472 -88"
+"origin" "1080 472 -88"
 "_tb_layer" "11"
 }
 // entity 299
 {
 "classname" "props_grabbable_ball"
-"origin" "1208 472 -88"
+"origin" "1096 472 -88"
 "_tb_layer" "11"
 }
 // entity 300
 {
 "classname" "props_grabbable_ball"
-"origin" "1224 472 -88"
+"origin" "1112 472 -88"
 "_tb_layer" "11"
 }
 // entity 301
 {
 "classname" "props_grabbable_ball"
-"origin" "1240 472 -88"
+"origin" "1128 472 -88"
 "_tb_layer" "11"
 }
 // entity 302
 {
 "classname" "props_grabbable_ball"
-"origin" "1256 472 -88"
+"origin" "1144 472 -88"
 "_tb_layer" "11"
 }
 // entity 303
 {
 "classname" "props_grabbable_ball"
-"origin" "1272 472 -88"
+"origin" "1160 472 -88"
 "_tb_layer" "11"
 }
 // entity 304
 {
 "classname" "props_grabbable_ball"
-"origin" "1288 472 -88"
+"origin" "1176 472 -88"
 "_tb_layer" "11"
 }
 // entity 305
 {
 "classname" "props_grabbable_ball"
-"origin" "1304 472 -88"
+"origin" "1192 472 -88"
 "_tb_layer" "11"
 }
 // entity 306
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 472 -88"
+"origin" "1208 472 -88"
 "_tb_layer" "11"
 }
 // entity 307
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 472 -72"
+"origin" "1224 472 -88"
 "_tb_layer" "11"
 }
 // entity 308
 {
 "classname" "props_grabbable_ball"
-"origin" "1304 472 -72"
+"origin" "1240 472 -88"
 "_tb_layer" "11"
 }
 // entity 309
 {
 "classname" "props_grabbable_ball"
-"origin" "1288 472 -72"
+"origin" "1256 472 -88"
 "_tb_layer" "11"
 }
 // entity 310
 {
 "classname" "props_grabbable_ball"
-"origin" "1272 472 -72"
+"origin" "1272 472 -88"
 "_tb_layer" "11"
 }
 // entity 311
 {
 "classname" "props_grabbable_ball"
-"origin" "1256 472 -72"
+"origin" "1288 472 -88"
 "_tb_layer" "11"
 }
 // entity 312
 {
 "classname" "props_grabbable_ball"
-"origin" "1240 472 -72"
+"origin" "1304 472 -88"
 "_tb_layer" "11"
 }
 // entity 313
 {
 "classname" "props_grabbable_ball"
-"origin" "1224 472 -72"
+"origin" "1320 472 -88"
 "_tb_layer" "11"
 }
 // entity 314
 {
 "classname" "props_grabbable_ball"
-"origin" "1208 472 -72"
+"origin" "1320 472 -72"
 "_tb_layer" "11"
 }
 // entity 315
 {
 "classname" "props_grabbable_ball"
-"origin" "1192 472 -72"
+"origin" "1304 472 -72"
 "_tb_layer" "11"
 }
 // entity 316
 {
 "classname" "props_grabbable_ball"
-"origin" "1176 472 -72"
+"origin" "1288 472 -72"
 "_tb_layer" "11"
 }
 // entity 317
 {
 "classname" "props_grabbable_ball"
-"origin" "1160 472 -72"
+"origin" "1272 472 -72"
 "_tb_layer" "11"
 }
 // entity 318
 {
 "classname" "props_grabbable_ball"
-"origin" "1144 472 -72"
+"origin" "1256 472 -72"
 "_tb_layer" "11"
 }
 // entity 319
 {
 "classname" "props_grabbable_ball"
-"origin" "1128 472 -72"
+"origin" "1240 472 -72"
 "_tb_layer" "11"
 }
 // entity 320
 {
 "classname" "props_grabbable_ball"
-"origin" "1112 472 -72"
+"origin" "1224 472 -72"
 "_tb_layer" "11"
 }
 // entity 321
 {
 "classname" "props_grabbable_ball"
-"origin" "1096 472 -72"
+"origin" "1208 472 -72"
 "_tb_layer" "11"
 }
 // entity 322
 {
 "classname" "props_grabbable_ball"
-"origin" "1080 472 -72"
+"origin" "1192 472 -72"
 "_tb_layer" "11"
 }
 // entity 323
 {
 "classname" "props_grabbable_ball"
-"origin" "1064 472 -72"
+"origin" "1176 472 -72"
 "_tb_layer" "11"
 }
 // entity 324
 {
 "classname" "props_grabbable_ball"
-"origin" "1048 472 -72"
+"origin" "1160 472 -72"
 "_tb_layer" "11"
 }
 // entity 325
 {
 "classname" "props_grabbable_ball"
-"origin" "1032 472 -72"
+"origin" "1144 472 -72"
 "_tb_layer" "11"
 }
 // entity 326
 {
 "classname" "props_grabbable_ball"
-"origin" "1032 472 -56"
+"origin" "1128 472 -72"
 "_tb_layer" "11"
 }
 // entity 327
 {
 "classname" "props_grabbable_ball"
-"origin" "1048 472 -56"
+"origin" "1112 472 -72"
 "_tb_layer" "11"
 }
 // entity 328
 {
 "classname" "props_grabbable_ball"
-"origin" "1064 472 -56"
+"origin" "1096 472 -72"
 "_tb_layer" "11"
 }
 // entity 329
 {
 "classname" "props_grabbable_ball"
-"origin" "1080 472 -56"
+"origin" "1080 472 -72"
 "_tb_layer" "11"
 }
 // entity 330
 {
 "classname" "props_grabbable_ball"
-"origin" "1096 472 -56"
+"origin" "1064 472 -72"
 "_tb_layer" "11"
 }
 // entity 331
 {
 "classname" "props_grabbable_ball"
-"origin" "1112 472 -56"
+"origin" "1048 472 -72"
 "_tb_layer" "11"
 }
 // entity 332
 {
 "classname" "props_grabbable_ball"
-"origin" "1128 472 -56"
+"origin" "1032 472 -72"
 "_tb_layer" "11"
 }
 // entity 333
 {
 "classname" "props_grabbable_ball"
-"origin" "1144 472 -56"
+"origin" "1032 472 -56"
 "_tb_layer" "11"
 }
 // entity 334
 {
 "classname" "props_grabbable_ball"
-"origin" "1160 472 -56"
+"origin" "1048 472 -56"
 "_tb_layer" "11"
 }
 // entity 335
 {
 "classname" "props_grabbable_ball"
-"origin" "1176 472 -56"
+"origin" "1064 472 -56"
 "_tb_layer" "11"
 }
 // entity 336
 {
 "classname" "props_grabbable_ball"
-"origin" "1192 472 -56"
+"origin" "1080 472 -56"
 "_tb_layer" "11"
 }
 // entity 337
 {
 "classname" "props_grabbable_ball"
-"origin" "1208 472 -56"
+"origin" "1096 472 -56"
 "_tb_layer" "11"
 }
 // entity 338
 {
 "classname" "props_grabbable_ball"
-"origin" "1224 472 -56"
+"origin" "1112 472 -56"
 "_tb_layer" "11"
 }
 // entity 339
 {
 "classname" "props_grabbable_ball"
-"origin" "1240 472 -56"
+"origin" "1128 472 -56"
 "_tb_layer" "11"
 }
 // entity 340
 {
 "classname" "props_grabbable_ball"
-"origin" "1256 472 -56"
+"origin" "1144 472 -56"
 "_tb_layer" "11"
 }
 // entity 341
 {
 "classname" "props_grabbable_ball"
-"origin" "1272 472 -56"
+"origin" "1160 472 -56"
 "_tb_layer" "11"
 }
 // entity 342
 {
 "classname" "props_grabbable_ball"
-"origin" "1288 472 -56"
+"origin" "1176 472 -56"
 "_tb_layer" "11"
 }
 // entity 343
 {
 "classname" "props_grabbable_ball"
-"origin" "1304 472 -56"
+"origin" "1192 472 -56"
 "_tb_layer" "11"
 }
 // entity 344
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 472 -56"
+"origin" "1208 472 -56"
 "_tb_layer" "11"
 }
 // entity 345
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 472 -40"
+"origin" "1224 472 -56"
 "_tb_layer" "11"
 }
 // entity 346
 {
 "classname" "props_grabbable_ball"
-"origin" "1304 472 -40"
+"origin" "1240 472 -56"
 "_tb_layer" "11"
 }
 // entity 347
 {
 "classname" "props_grabbable_ball"
-"origin" "1288 472 -40"
+"origin" "1256 472 -56"
 "_tb_layer" "11"
 }
 // entity 348
 {
 "classname" "props_grabbable_ball"
-"origin" "1272 472 -40"
+"origin" "1272 472 -56"
 "_tb_layer" "11"
 }
 // entity 349
 {
 "classname" "props_grabbable_ball"
-"origin" "1256 472 -40"
+"origin" "1288 472 -56"
 "_tb_layer" "11"
 }
 // entity 350
 {
 "classname" "props_grabbable_ball"
-"origin" "1240 472 -40"
+"origin" "1304 472 -56"
 "_tb_layer" "11"
 }
 // entity 351
 {
 "classname" "props_grabbable_ball"
-"origin" "1224 472 -40"
+"origin" "1320 472 -56"
 "_tb_layer" "11"
 }
 // entity 352
 {
 "classname" "props_grabbable_ball"
-"origin" "1208 472 -40"
+"origin" "1320 472 -40"
 "_tb_layer" "11"
 }
 // entity 353
 {
 "classname" "props_grabbable_ball"
-"origin" "1192 472 -40"
+"origin" "1304 472 -40"
 "_tb_layer" "11"
 }
 // entity 354
 {
 "classname" "props_grabbable_ball"
-"origin" "1176 472 -40"
+"origin" "1288 472 -40"
 "_tb_layer" "11"
 }
 // entity 355
 {
 "classname" "props_grabbable_ball"
-"origin" "1160 472 -40"
+"origin" "1272 472 -40"
 "_tb_layer" "11"
 }
 // entity 356
 {
 "classname" "props_grabbable_ball"
-"origin" "1144 472 -40"
+"origin" "1256 472 -40"
 "_tb_layer" "11"
 }
 // entity 357
 {
 "classname" "props_grabbable_ball"
-"origin" "1128 472 -40"
+"origin" "1240 472 -40"
 "_tb_layer" "11"
 }
 // entity 358
 {
 "classname" "props_grabbable_ball"
-"origin" "1112 472 -40"
+"origin" "1224 472 -40"
 "_tb_layer" "11"
 }
 // entity 359
 {
 "classname" "props_grabbable_ball"
-"origin" "1096 472 -40"
+"origin" "1208 472 -40"
 "_tb_layer" "11"
 }
 // entity 360
 {
 "classname" "props_grabbable_ball"
-"origin" "1080 472 -40"
+"origin" "1192 472 -40"
 "_tb_layer" "11"
 }
 // entity 361
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 536 -8"
+"origin" "1176 472 -40"
 "_tb_layer" "11"
 }
 // entity 362
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 536 8"
+"origin" "1160 472 -40"
 "_tb_layer" "11"
 }
 // entity 363
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 536 24"
+"origin" "1144 472 -40"
 "_tb_layer" "11"
 }
 // entity 364
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 536 40"
+"origin" "1128 472 -40"
 "_tb_layer" "11"
 }
 // entity 365
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 536 56"
+"origin" "1112 472 -40"
 "_tb_layer" "11"
 }
 // entity 366
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 536 72"
+"origin" "1096 472 -40"
 "_tb_layer" "11"
 }
 // entity 367
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 536 88"
+"origin" "1080 472 -40"
 "_tb_layer" "11"
 }
 // entity 368
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 536 104"
+"origin" "1320 536 -8"
 "_tb_layer" "11"
 }
 // entity 369
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 536 120"
+"origin" "1320 536 8"
 "_tb_layer" "11"
 }
 // entity 370
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 536 136"
+"origin" "1320 536 24"
 "_tb_layer" "11"
 }
 // entity 371
 {
 "classname" "props_grabbable_ball"
-"origin" "1320 536 152"
+"origin" "1320 536 40"
 "_tb_layer" "11"
 }
 // entity 372
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 56"
+"_tb_layer" "11"
+}
+// entity 373
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 72"
+"_tb_layer" "11"
+}
+// entity 374
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 88"
+"_tb_layer" "11"
+}
+// entity 375
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 104"
+"_tb_layer" "11"
+}
+// entity 376
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 120"
+"_tb_layer" "11"
+}
+// entity 377
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 136"
+"_tb_layer" "11"
+}
+// entity 378
+{
+"classname" "props_grabbable_ball"
+"origin" "1320 536 152"
+"_tb_layer" "11"
+}
+// entity 379
 {
 "classname" "props_grabbable_ball"
 "origin" "1320 536 168"

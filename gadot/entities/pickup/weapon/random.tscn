@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtw13yvod0tjr"]
+
+[ext_resource type="Script" path="res://entities/pickup/weapon/weapon_pickup.gd" id="1_ffgrr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bnk6n"]
+size = Vector3(2, 1.5, 2)
+
+[node name="weapon_root" type="Node3D"]
+script = ExtResource("1_ffgrr")
+weapon = 8
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 17
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("BoxShape3D_bnk6n")
+
+[node name="weapon_model" type="Node3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="Label3D" type="Label3D" parent="weapon_model"]
+text = "??????"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.4514, -1.88056e-09)
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

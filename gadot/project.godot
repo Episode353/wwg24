@@ -222,6 +222,14 @@ noclip={
 [physics]
 
 common/max_physics_steps_per_frame=60
+common/physics_jitter_fix=0.0
 3d/physics_engine="JoltPhysics3D"
+common/physics_interpolation=true
 jolt_3d/collisions/areas_detect_static_bodies=true
 jolt_3d/collisions/report_all_kinematic_contacts=true
+
+[rendering]
+
+environment/ssao/half_size=false
+anti_aliasing/screen_space_roughness_limiter/enabled=false
+anti_aliasing/quality/screen_space_aa=1

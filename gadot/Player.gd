@@ -209,6 +209,7 @@ func _physics_process(delta):
 		bot_physics_process(delta)
 	if not is_multiplayer_authority():
 		return
+	
 	calculate_fire_damage()
 	process_input()
 
@@ -392,6 +393,7 @@ func process_movement(delta):
 			_snap_down_to_stairs_check()
 
 func _process(delta):
+	
 	viewmodel_camera.global_transform = main_camera.global_transform
 
 

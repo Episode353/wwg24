@@ -3,7 +3,7 @@ extends Node3D
 @export var weapon: Weapons
 
 # Create an array that maps the enum values to the corresponding string names.
-const WeaponNames = ["ak47", "knife", "rocket_launcher", "shotgun", "hegrenade", "flamespell", "salsa", "keyboard"]
+const WeaponNames = ["ak47", "knife", "rocket_launcher", "shotgun", "hegrenade", "flamespell", "salsa", "keyboard", "random"]
 
 func _get_weapon_name(weapon_value: int) -> String:
 	return WeaponNames[weapon_value]
@@ -61,7 +61,8 @@ enum Weapons {
 	hegrenade,
 	flamespell,
 	salsa,
-	keyboard
+	keyboard,
+	random
 }
 
 
@@ -76,7 +77,7 @@ func _on_area_3d_body_entered(body):
 	
 	# Now pass the string to does_have_weapon
 	if body.has_method("receive_weapon") and body.does_have_weapon(weapon_name):
-		print("Player ", body, " already has", weapon_name)
+		print("Player ", body, " already has ", weapon_name)
 		return
 
 	print("Giving ", weapon_name, " To ", body)

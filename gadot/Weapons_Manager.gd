@@ -39,11 +39,12 @@ func _input(event):
 		return
 	if event.is_action_pressed("w_up"):
 		weapon_indicator = (weapon_indicator + 1) % weapon_stack.size()
-		exit(weapon_stack[weapon_indicator])
+		switch_weapon(weapon_indicator)
 
 	if event.is_action_pressed("w_down"):
 		weapon_indicator = (weapon_indicator - 1 + weapon_stack.size()) % weapon_stack.size()
-		exit(weapon_stack[weapon_indicator])
+		switch_weapon(weapon_indicator)
+
 
 	if event.is_action_pressed("shoot") && weapon_raise == false:
 		if !Globals.paused:
@@ -53,31 +54,36 @@ func _input(event):
 		reload()
 		
 	if event.is_action_pressed("w1"):
-		switch_weapon(0)
-	elif event.is_action_pressed("w2"):
 		switch_weapon(1)
-	elif event.is_action_pressed("w3"):
+	elif event.is_action_pressed("w2"):
 		switch_weapon(2)
-	elif event.is_action_pressed("w4"):
+	elif event.is_action_pressed("w3"):
 		switch_weapon(3)
-	elif event.is_action_pressed("w5"):
+	elif event.is_action_pressed("w4"):
 		switch_weapon(4)
-	elif event.is_action_pressed("w6"):
+	elif event.is_action_pressed("w5"):
 		switch_weapon(5)
-	elif event.is_action_pressed("w7"):
+	elif event.is_action_pressed("w6"):
 		switch_weapon(6)
-	elif event.is_action_pressed("w8"):
+	elif event.is_action_pressed("w7"):
 		switch_weapon(7)
-	elif event.is_action_pressed("w9"):
+	elif event.is_action_pressed("w8"):
 		switch_weapon(8)
+	elif event.is_action_pressed("w9"):
+		switch_weapon(9)
 	
 func switch_weapon(slot_index: int):
 	if slot_index < weapon_stack.size():
 		var selected_weapon = weapon_stack[slot_index]
+		# Prevent switching to "hands" if the current weapon is a real weapon.
+		if selected_weapon == "hands" and current_weapon.weapon_name != "hands":
+			print("Switching back to 'hands' is not allowed!")
+			return
 		if selected_weapon != current_weapon.weapon_name:
-			exit(selected_weapon)  # Play deactivate animation first
+			exit(selected_weapon)  # This will play the deactivate animation.
 	else:
-		print("Debug: No weapon in slot", slot_index + 1)  # No weapon in this slot
+		print("Debug: No weapon in slot", slot_index + 1)  # No weapon in this slot.
+
 
 func reset_all_ammo():
 	print("weapons_manager reset all ammo")
@@ -98,17 +104,47 @@ func is_all_ammo_full() -> bool:
 	return true
 
 func does_have_weapon(does_weapon: String) -> bool:
+	# For a "random" check, return true only if the player already has every weapon.
+	if does_weapon == "random":
+		return weapon_stack.size() == weapon_list.size()
+	
+	# For a specific weapon, check if the player already has it.
 	for weapon_name in weapon_stack:
 		var weapon_item = weapon_list[weapon_name]
 		if weapon_item.weapon_name == does_weapon:
-			return true  # Returns true if the player has the weapon
-	return false  # Returns false if the weapon is not found
+			return true  # Player already has this weapon.
+	return false  # Player does not have this weapon.
+
+
 
 
 @rpc("any_peer", "call_local")
-func add_weapon(received_weapon):
+func add_weapon(received_weapon: String):
+	# If "random" is passed in, choose a random weapon that the player doesn't have.
+	if received_weapon == "random":
+		var missing_weapons = []
+		# Loop over all available weapons.
+		for weapon_name in weapon_list.keys():
+			# Check if the player is missing this weapon.
+			if not does_have_weapon(weapon_name):
+				missing_weapons.append(weapon_name)
+		
+		# If there are missing weapons, pick one at random.
+		if missing_weapons.size() > 0:
+			received_weapon = missing_weapons[randi() % missing_weapons.size()]
+		else:
+			# The player already has every weapon; do nothing.
+			return
+
+	# Add the new weapon to the player's weapon stack.
 	weapon_stack.push_back(received_weapon)
 	emit_signal("update_weapon_stack", weapon_stack)
+	
+	# If the current weapon is "hands", immediately switch to the new weapon.
+	if current_weapon and current_weapon.weapon_name == "hands":
+		change_weapon(received_weapon)
+
+
 
 func add_ammo_to_all(amount: int):
 	if weapon_list.size() == 0:
@@ -155,9 +191,10 @@ func Initalize(_start_weapons: Array):
 	for i in _start_weapons:
 		weapon_stack.push_back(i) # Add our start weapons
 
-	current_weapon = weapon_list[weapon_stack[0]]
+	# Instead of directly setting current_weapon, call change_weapon()
+	change_weapon(weapon_stack[0])
 	emit_signal("update_weapon_stack", weapon_stack)
-	enter()
+
 
 func enter():
 	if current_weapon == null:
@@ -175,19 +212,26 @@ func exit(_next_weapon: String):
 			animation_player.play(current_weapon.deactivate_anim)
 			next_weapon = _next_weapon
 	
-func change_weapon(weapon_name: String):
+func change_weapon(change_weapon_name: String):
+	# Prevent switching back to "hands" if a real weapon is already equipped.
+	if change_weapon_name == "hands" and current_weapon and current_weapon.weapon_name != "hands":
+		print("Switch back to 'hands' is not allowed!")
+		return
 	
-	current_weapon = weapon_list[weapon_name]
+	current_weapon = weapon_list[change_weapon_name]
 	var weapon_range = current_weapon.weapon_range
 	raycast_shoot.target_position.z = weapon_range
 	print("Switched to Weapon: ", current_weapon.weapon_name)
+	
 	if current_weapon.fire_rate <= 0:
 		print("Error: Fire rate for weapon ", current_weapon.weapon_name, " is zero. Defaulting to 0.1.")
 		ac_timer.wait_time = 0.1  # Set a default valid value
 	else:
 		ac_timer.wait_time = current_weapon.fire_rate
+	
 	next_weapon = ""
 	enter()
+
 
 
 
@@ -228,14 +272,13 @@ func raycast_shoot_procc():
 					print(hit_object)
 					# Place the Bullet Decal
 					rpc("create_bullet_decal", col_point, col_nor)
-					play_hit_wall_sound()
+					
 					
 	if hit_object.is_in_group("grabbable"):
 		var direction = (hit_object.global_transform.origin - global_transform.origin).normalized()
 		var force = direction * 100 * current_weapon.damage
 		# Instead of applying force locally, ask the world (server) to apply it.
 		rpc("apply_force_to_body", hit_object.get_path(), force, hit_object.global_transform.origin)
-
 	
 	# Handle hitting a player
 	if hit_object.is_in_group("players"):
