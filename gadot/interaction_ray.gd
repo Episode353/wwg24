@@ -5,58 +5,61 @@ extends RayCast3D
 @onready var holding_body: StaticBody3D = $"../holding_body"
 @onready var player = $"../../../.."
 
-
 var grab_joint: JoltGeneric6DOFJoint3D
 
-
+# A constant to control how strong the shot is
+const SHOOT_FORCE: float = 20.0
 
 func _process(delta):
+	# Handle pickup/release with "interact"
 	if Input.is_action_just_pressed("interact"):
 		if player.is_holding_object and player.grabbed_object:
-			# If we are already holding something, release it
+			# If we are already holding something, request its release
 			rpc_id(player.peer_id, "request_release_object")
 		else:
-			# Ask server to attempt a pickup
-			# We can pass the raycast’s hit info or simply do the raycast on the server side again.
+			# Request pickup – you could pass additional info (like the raycast hit)
 			rpc_id(1, "request_pickup_object", global_transform.origin)
 	
-	# Safety check: if the object is too far, request release
+	# Handle shooting the held object.
+	if Input.is_action_just_pressed("shoot") and player.is_holding_object and player.grabbed_object:
+		# Determine the forward direction.
+		# (Godot’s camera forward is typically the -Z direction.)
+		var shoot_dir: Vector3 = -camera_3d.global_transform.basis.z.normalized()
+		# Tell the server to shoot the object in that direction.
+		rpc_id(1, "request_shoot_object", shoot_dir)
+	
+	# Safety check: if the object is too far away, request release
 	if player.grabbed_object and (player.grabbed_object.global_transform.origin - global_transform.origin).length() > 3:
 		rpc_id(player.peer_id, "request_release_object")
 
 
 @rpc("any_peer", "call_local")
 func request_pickup_object(requester_global_pos: Vector3):
-	# This function runs on the server (assuming ID=1 is the server).
-	# Perform the same logic you used to pick up the object, but do it on the server side.
-	
+	# Do a raycast to see if an object was hit
 	var hit_object: PhysicsBody3D = interaction_ray.get_collider() as PhysicsBody3D
 	if !hit_object:
 		return
-	
-	# Distance check
+
+	# Check the distance between the requester and the object
 	var distance = (hit_object.global_transform.origin - requester_global_pos).length()
 	if distance > 5:
-		return  # too far
+		return  # object is too far away
 
-	# Check if it's a RigidBody3D in "grabbable" group
+	# Verify that the object is grabbable and is a RigidBody3D
 	if hit_object.is_in_group("grabbable") and hit_object is RigidBody3D:
-		# Actually create the joint on the server
+		# Create the joint (on the server)
 		create_6dof_joint(hit_object)
-		
-		# Inform all clients (or just the requesting client) that we succeeded
-		# So they can set local flags. You can also rely on the replicated node
-		# tree if your joint is in a synchronized scene.
+		# Notify clients that the object has been picked up
 		rpc("on_object_picked_up", hit_object.get_path())
 
 
 @rpc("any_peer", "call_local")
 func on_object_picked_up(object_path: NodePath):
 	var body = get_node_or_null(object_path) as RigidBody3D
-		#body.can_sleep = false
 	if body:
 		player.grabbed_object = body
 		player.is_holding_object = true
+
 
 func create_6dof_joint(body: RigidBody3D):
 	grab_joint = JoltGeneric6DOFJoint3D.new()
@@ -65,11 +68,12 @@ func create_6dof_joint(body: RigidBody3D):
 	grab_joint.solver_velocity_iterations = 120
 	grab_joint.solver_position_iterations = 120
 	add_child(grab_joint)
-	
+
+
 @rpc("any_peer", "call_local")
 func request_release_object():
-	# Let the server do the actual release
 	release_grabbed_object()
+
 
 func release_grabbed_object():
 	player.is_holding_object = false
@@ -78,6 +82,24 @@ func release_grabbed_object():
 		grab_joint = null
 
 	if player.grabbed_object:
-		# Allow the object to go back to sleep
+		# Optionally allow the object to sleep again
 		player.grabbed_object.can_sleep = true
 		player.grabbed_object = null
+
+
+@rpc("any_peer", "call_local")
+func request_shoot_object(shoot_direction: Vector3):
+	# This function is executed on the server.
+	# Make sure the player is indeed holding an object.
+	if not player.is_holding_object or not player.grabbed_object:
+		return
+
+	# Store the object reference before releasing it
+	var shot_object: RigidBody3D = player.grabbed_object
+
+	# Release the held object (this will remove the joint and clear the player’s reference)
+	release_grabbed_object()
+
+	# Apply an impulse to launch the object.
+	# In Godot 4, use apply_central_impulse. (If you’re in Godot 3, use apply_impulse(offset, impulse).)
+	shot_object.apply_central_impulse(shoot_direction * SHOOT_FORCE)

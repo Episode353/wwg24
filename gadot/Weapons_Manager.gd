@@ -140,9 +140,10 @@ func add_weapon(received_weapon: String):
 	weapon_stack.push_back(received_weapon)
 	emit_signal("update_weapon_stack", weapon_stack)
 	
-	# If the current weapon is "hands", immediately switch to the new weapon.
-	if current_weapon and current_weapon.weapon_name == "hands":
+	# Auto-switch to the new weapon if the current weapon is either not set or is "hands".
+	if current_weapon == null or current_weapon.weapon_name == "hands":
 		change_weapon(received_weapon)
+
 
 
 
@@ -224,7 +225,7 @@ func change_weapon(change_weapon_name: String):
 
 	current_weapon = weapon_list[change_weapon_name]
 	
-	# Now access the weapon properties
+	# Set up weapon properties.
 	var weapon_range = current_weapon.weapon_range
 	raycast_shoot.target_position.z = weapon_range
 	print("Switched to Weapon: ", current_weapon.weapon_name)
@@ -236,6 +237,12 @@ func change_weapon(change_weapon_name: String):
 		ac_timer.wait_time = current_weapon.fire_rate
 
 	next_weapon = ""
+	
+	# Trigger the equip (activation) animation and update signals.
+	animation_player.play(current_weapon.activate_anim)
+	emit_signal("weapon_changed", current_weapon.weapon_name)
+	emit_signal("update_ammo", [current_weapon.current_ammo, current_weapon.reserve_ammo])
+
 
 
 
@@ -342,6 +349,7 @@ func area_collision_procc(self_id):
 
 
 func shoot():
+	if player.is_holding_object: return
 	if !current_weapon.is_gun and !current_weapon.is_projectile_launcher:
 		return
 	if current_weapon.current_ammo != 0:
@@ -467,7 +475,6 @@ func _physics_process(_delta):
 func rpc_update_weapon_info():
 		# RPC to send weapon info to the world script for the local player
 		world.rpc_id(multiplayer.get_unique_id(), "update_weapon_info", current_weapon.weapon_name, current_weapon.current_ammo, current_weapon.reserve_ammo, weapon_stack)
-
 
 
 func _on_timer_timeout():

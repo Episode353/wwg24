@@ -55,7 +55,6 @@ var commands = {
 		var enemy = enemy_scene.instantiate()
 		
 		# Set enemy position to player's position.
-		# If your enemy is a Node2D, you can use position/global_position accordingly.
 		enemy.global_position = player.global_position
 		
 		# Get the "World" node and add the enemy as a child
@@ -67,7 +66,8 @@ var commands = {
 			return "Error: 'World' node not found."
 		,
 		"args": 0},
-		"spawn_ball": {"func": func() -> String:
+
+	"spawn_ball": {"func": func() -> String:
 		var world = get_tree().get_root().get_node("World")
 		var players = get_tree().get_nodes_in_group("players")
 		var player = players[0]
@@ -77,7 +77,7 @@ var commands = {
 		else:
 			return "Error: 'World' node not found."
 		, "args": 0},
-		"spawn_box": {"func": func() -> String:
+	"spawn_box": {"func": func() -> String:
 		var world = get_tree().get_root().get_node("World")
 		var players = get_tree().get_nodes_in_group("players")
 		var player = players[0]
@@ -87,7 +87,25 @@ var commands = {
 		else:
 			return "Error: 'World' node not found."
 		, "args": 0},
+	"all_weapons": {"func": func() -> String:
+	# Get the list of players (assuming the local player is in the "players" group)
+	var players = get_tree().get_nodes_in_group("players")
+	if players.size() == 0:
+		return "Error: No player found."
+	# Use the first player found
+	var player = players[0]
+	# Attempt to get the WeaponsManager node from the player.
+	# (Update the node path as necessary to match your scene tree.)
+	if player.has_node("Weapons_Manager"):
+		var wm = player.get_node_or_null("Weapons_Manager")
+		wm.rpc("add_all_weapons")
+		return "All weapons granted."
+	else:
+		return "Error: Weapons Manager not found on the player."
+	, "args": 0},
+
 }
+
 
 
 

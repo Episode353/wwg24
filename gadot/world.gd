@@ -137,7 +137,7 @@ func add_bot():
 	
 	# Set the is_bot variable to true
 	bot_instance.is_bot = true
-	
+	bot_instance.set_multiplayer_authority(1)
 	# Spawn the bot at a spawn point
 	spawn_player(bot_instance)
 	
@@ -161,7 +161,8 @@ func add_player(peer_id):
 	var spawnplayer = Player.instantiate()
 	spawnplayer.name = str(peer_id)
 	print("Adding player with peer ID: ", peer_id)
-	
+		# Set the server as the authority (or whichever peer should own it).
+	spawnplayer.set_multiplayer_authority(peer_id)
 	if Globals.map_loaded:
 		spawn_player(spawnplayer)
 		add_child(spawnplayer)
@@ -386,9 +387,7 @@ func spawn_ball(desired_transform):
 	
 	# Set the spawn transform.
 	ball_instance.global_transform = desired_transform
-	
-	# Set the server as the authority (or whichever peer should own it).
-	ball_instance.set_multiplayer_authority(1)
+
 	
 	# Optionally, if your ball has a script that manages its synchronization,
 	# ensure it’s properly configured here.
