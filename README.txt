@@ -83,8 +83,17 @@ Features to add:
 		- Whenever the list is pinged it would be useful if the website could ping the connection and see if there is a game on the port, so the server list isnt full of a buch of closed servers
 		(Will be based off of this project)
 
+	Gamemodes:
+		Grtiff Ball
+		Singleplayer campaign where its the same campaign but you can play on the wizard or human side
+
 
 Bugs to fix:
+	- Charachter exclusive stuff, like if you're a human or a wizard
+	- add gamemodes
+	- work on "london" more and add more little rooms
+	- make rockets move slower
+	- sometimes the knife doesnt work? (according to mike)
 	- Re imagine the main menu
 	- Keyboard Attacks and Fire Effects
 	- If a player grabs a grabbable object that someone else is grabbing, weird stuff happens

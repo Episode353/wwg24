@@ -418,4 +418,3 @@ func spawn_box(desired_transform):
 	# Add the ball to the scene so that all peers will have it.
 	add_child(ball_instance)
 	print("Ball spawned at: ", ball_instance.global_transform.origin)
-	
