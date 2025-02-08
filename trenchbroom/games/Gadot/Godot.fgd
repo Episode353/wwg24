@@ -51,3 +51,8 @@
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_weapon_knife : "Knife" []
 
 @PointClass ... = world_load_map : "Load Map Entity" [load_map(string) : "Map To Load" : "default.map"]
+
+@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = player_teleport : "Player Teleport" [
+    target_position(string) : "Target Position" : "0 0 0"
+]
+

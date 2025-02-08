@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://mmott6n5nbpl"]
+
+[ext_resource type="Script" path="res://entities/player/teleport.gd" id="1_yb8cy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4hxgj"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.231373)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q01sa"]
+
+[node name="player_teleport" type="Node3D"]
+script = ExtResource("1_yb8cy")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+collision_layer = 0
+collision_mask = 255
+material = SubResource("StandardMaterial3D_4hxgj")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 16777215
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_q01sa")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.854559, 0)
+billboard = 1
+text = "Player Teleport"
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

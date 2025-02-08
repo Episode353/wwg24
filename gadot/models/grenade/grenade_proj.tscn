@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=4 uid="uid://1enr0jq80l1j"]
 
 [ext_resource type="Script" path="res://models/grenade/grenade_proj.gd" id="1_tnb26"]
-[ext_resource type="Texture2D" uid="uid://c328o8gs1t5x1" path="res://models/grenade/grenade_0.png" id="1_xta8g"]
+[ext_resource type="Texture2D" uid="uid://cxs7hm06biaee" path="res://models/grenade/grenade_0.png" id="1_xta8g"]
 [ext_resource type="Texture2D" uid="uid://bvxusr4s0aia" path="res://models/rocket_launcher/Flare00.PNG" id="3_frahr"]
 [ext_resource type="AudioStream" uid="uid://sjwjufgr8ir2" path="res://sounds/grenade/grenade_beep.wav" id="4_tyvl7"]
 

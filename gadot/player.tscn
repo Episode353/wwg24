@@ -4169,7 +4169,7 @@ material = SubResource("StandardMaterial3D_seme2")
 radius = 0.05
 height = 0.1
 
-[node name="Player" type="CharacterBody3D" groups=["players"]]
+[node name="Player" type="CharacterBody3D" groups=["moveable", "players"]]
 collision_layer = 48
 collision_mask = 273
 script = ExtResource("1_ebgxs")

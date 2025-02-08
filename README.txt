@@ -89,6 +89,7 @@ Features to add:
 
 
 Bugs to fix:
+	- Players don't spawn at spawnpoints on level switch
 	- The rocketr launcher's speed is relative to the framerate
 	- Make the player collision the same size of the player
 	- Make the cool map

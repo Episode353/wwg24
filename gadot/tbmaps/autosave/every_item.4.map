@@ -3,6 +3,7 @@
 // entity 0
 {
 "classname" "worldspawn"
+"property 1" "pl"
 // brush 0
 {
 ( -128 256 -80 ) ( -128 257 -80 ) ( -128 256 -79 ) __TB_empty 0 0 0 1 1
@@ -236,6 +237,7 @@
 "_tb_name" "Entities"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
+"_tb_layer_omit_from_export" "1"
 }
 // entity 2
 {
