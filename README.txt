@@ -65,7 +65,7 @@ Features to add:
 		- Grabbable objects
 			Objects in "Grabbable group" can be picked up with e and also placed down
 	Weapons:
-	The rocketr launcher's speed is relative to the framerate
+	- AWP
 	- Magic wand weapon?
 	- A guitar that shoots musicv as bullet gun, reload the gun by cocking the frettboard from the neck to the bodty and when shooting the effeftrs come from the nck of the guitar
 	- Another movement based weapon like the rocket launcher would be really cool
@@ -89,7 +89,7 @@ Features to add:
 
 
 Bugs to fix:
-	- Sniper Rifle
+	- The rocketr launcher's speed is relative to the framerate
 	- Make the player collision the same size of the player
 	- Make the cool map
 	- Different Combos on the power, add notes
