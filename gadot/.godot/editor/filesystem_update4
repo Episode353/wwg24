@@ -22,3 +22,5 @@ res://entities/player/teleport.tscn
 res://entities/player/teleport.gd
 res://models/grenade/grenade_proj.tscn
 res://models/rocket_launcher/rocket.tscn
+res://player.gd
+res://menufadein.gd

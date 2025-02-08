@@ -22,24 +22,24 @@
 	light_color(color255) : "Color" : "255 255 255"
 ]
 
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_mana_medium : "Mana Drop" []
+@PointClass size(-8 -8 -8, 8 8 8) color(255 0 0) = pickup_mana_medium : "Mana Drop" []
 
 @PointClass size(-8 -8 -8, 8 8 8) color(255 0 0) = pickup_health_medium : "Health Drop" []
 
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = player_spawn : "Player Spawnpoint" []
+@PointClass size(-8 -8 -8, 8 8 8) color(255 0 255) = player_spawn : "Player Spawnpoint" []
 
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = world_menu_camera : "Main Menu Camera" [angles(string) : "Pitch Yaw Roll" : "0 0 0"]
 
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = props_model_planet : "Planet Model" []
 
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = props_shootable_box : "Shootable Box" []
+@PointClass size(-8 -8 -8, 8 8 8) color(255 255 0) = props_shootable_box : "Shootable Box" []
 
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_ammo_small : "ammo_small" []
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_ammo_medium : "Medium Ammo" []
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_ammo_large : "Large Ammo" []
+@PointClass size(-8 -8 -8, 8 8 8) color(255 0 0) = pickup_ammo_small : "ammo_small" []
+@PointClass size(-8 -8 -8, 8 8 8) color(255 0 0) = pickup_ammo_medium : "Medium Ammo" []
+@PointClass size(-8 -8 -8, 8 8 8) color(255 0 0) = pickup_ammo_large : "Large Ammo" []
 
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = props_grabbable_box : "Grabbable Box" []
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = props_grabbable_ball : "Grabbable Ball" []
+@PointClass size(-8 -8 -8, 8 8 8) color(255 255 0) = props_grabbable_box : "Grabbable Box" []
+@PointClass size(-8 -8 -8, 8 8 8) color(255 255 0) = props_grabbable_ball : "Grabbable Ball" []
 
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_weapon_random : "random" []
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_weapon_ak47 : "ak47" []
@@ -50,9 +50,15 @@
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_weapon_keyboard : "keyboard" []
 @PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = pickup_weapon_knife : "Knife" []
 
-@PointClass ... = world_load_map : "Load Map Entity" [load_map(string) : "Map To Load" : "default.map"]
+@PointClass size(-8 -8 -8, 8 8 8) color(0 255 0) = world_load_map : "Load Map Entity" [
+	load_map(string) : "Map To Load" : "default.map"
+	size(string) : "Size" : "5 5 5"
+]
 
-@PointClass size(-8 -8 -8, 8 8 8) color(0 0 255) = player_teleport : "Player Teleport" [
+@PointClass size(-8 -8 -8, 8 8 8) color(0 255 0) = player_teleport : "Player Teleport" [
+    teleport_size(string) : "Teleport Size" : "5 5 5"
     target_position(string) : "Target Position" : "0 0 0"
 ]
+
+
 

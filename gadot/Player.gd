@@ -684,7 +684,7 @@ func play_footstep_sound():
 	# Toggle the foot for the next step.
 	left_step = !left_step
 
-	
+
 @rpc("any_peer", "call_local")
 func rpc_play_footstep(is_left: bool) -> void:
 	# Choose the appropriate sound based on which foot was pressed.

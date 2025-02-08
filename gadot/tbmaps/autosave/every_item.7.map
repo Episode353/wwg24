@@ -231,151 +231,156 @@
 }
 // entity 1
 {
+"classname" "player_teleport"
+"origin" "-472 88 -40"
+"teleport_size" "1 1 1"
+}
+// entity 2
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Entities"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 2
+// entity 3
 {
 "classname" "pickup_ammo_large"
 "origin" "72 72 -40"
 "_tb_layer" "1"
 }
-// entity 3
+// entity 4
 {
 "classname" "light"
 "origin" "-60 68 -44"
 "_tb_layer" "1"
 }
-// entity 4
+// entity 5
 {
 "classname" "pickup_ammo_medium"
 "origin" "200 72 -40"
 "_tb_layer" "1"
 }
-// entity 5
+// entity 6
 {
 "classname" "pickup_ammo_small"
 "origin" "328 72 -40"
 "_tb_layer" "1"
 }
-// entity 6
+// entity 7
 {
 "classname" "pickup_health_medium"
 "origin" "328 200 -40"
 "_tb_layer" "1"
 }
-// entity 7
+// entity 8
 {
 "classname" "pickup_mana_medium"
 "origin" "200 200 -40"
 "_tb_layer" "1"
 }
-// entity 8
+// entity 9
 {
 "classname" "player_spawn"
 "origin" "72 200 -8"
 "_tb_layer" "1"
 }
-// entity 9
+// entity 10
 {
 "classname" "props_grabbable_ball"
 "origin" "328 -56 -40"
 "_tb_layer" "1"
 }
-// entity 10
+// entity 11
 {
 "classname" "props_grabbable_box"
 "origin" "200 -56 -40"
 "_tb_layer" "1"
 }
-// entity 11
+// entity 12
 {
 "classname" "props_model_planet"
 "origin" "-312 456 -40"
 "_tb_layer" "1"
 }
-// entity 12
+// entity 13
 {
 "classname" "props_shootable_box"
 "origin" "-56 -56 -40"
 "_tb_layer" "1"
 }
-// entity 13
+// entity 14
 {
 "classname" "world_menu_camera"
 "origin" "-56 200 -40"
 "_tb_layer" "1"
 }
-// entity 14
+// entity 15
 {
 "classname" "pickup_weapon_shotgun"
 "origin" "456 -184 -40"
 "_tb_layer" "1"
 }
-// entity 15
+// entity 16
 {
 "classname" "pickup_weapon_salsa"
 "origin" "320 -200 -40"
 "_tb_layer" "1"
 }
-// entity 16
+// entity 17
 {
 "classname" "pickup_weapon_rocketlauncher"
 "origin" "88 -216 -40"
 "_tb_layer" "1"
 }
-// entity 17
+// entity 18
 {
 "classname" "pickup_weapon_keyboard"
 "origin" "-72 -200 -40"
 "_tb_layer" "1"
 }
-// entity 18
+// entity 19
 {
 "classname" "pickup_weapon_ak47"
 "origin" "200 -200 -40"
 "_tb_layer" "1"
 }
-// entity 19
+// entity 20
 {
 "classname" "pickup_weapon_hegrenade"
 "origin" "56 -72 -40"
 "_tb_layer" "1"
 }
-// entity 20
+// entity 21
 {
 "classname" "pickup_weapon_knife"
 "origin" "456 -56 -40"
 "_tb_layer" "1"
 }
-// entity 21
+// entity 22
 {
 "classname" "pickup_weapon_random"
 "origin" "-200 -200 -40"
 "_tb_layer" "1"
 }
-// entity 22
+// entity 23
 {
 "classname" "world_load_map"
 "origin" "-184 -72 -40"
 "load_map" "avery.map"
-"size" "5 5 5"
 "_tb_layer" "1"
 }
-// entity 23
+// entity 24
 {
 "classname" "light"
 "origin" "-444 68 -12"
 "_tb_layer" "1"
 }
-// entity 24
+// entity 25
 {
 "classname" "player_teleport"
 "origin" "-184 56 -40"
 "target_position" "-444 68 -12"
-"teleport_size" "3 3 3"
+"teleport_size" "1 10 1"
 "_tb_layer" "1"
 }

@@ -118,6 +118,8 @@ func start_join(address: String):
 
 
 func load_map(load_map_name: String):
+	for child in tb_loader.get_children():
+		child.queue_free()
 	tb_loader.map_resource = "tbmaps/" + load_map_name
 	tb_loader.build_meshes()
 	print(tb_loader.map_resource)
@@ -436,13 +438,15 @@ func change_level_rpc(new_map_name: String) -> void:
 		return
 	_do_change_level(new_map_name)
 
-# This helper does the actual work: load the new map and reposition every player.
-func _do_change_level(new_map_name: String) -> void:
-	# Update the map name.
+func _do_change_level(new_map_name: String) -> void:		
+	# Update the map name and load the new map
 	map_name = new_map_name
-	# Load the new map (this rebuilds meshes, bakes the navigation, etc.)
 	load_map(map_name)
-	# Respawn (reposition) all players.
-	# (Note: for this to work nicely, it helps if each player node is added to a group.)
-	for player in get_tree().get_nodes_in_group("players"):
-		waiting_players.append(player)
+	
+	# Respawn (reposition) all players
+	# (Assuming your players are added to the "players" group)
+	for node in get_tree().get_nodes_in_group("players"):
+		var player = node as CharacterBody3D
+		if player:
+			print("DOING THE MAP CHANGE WITH YOUR HOMIE", player)
+			spawn_player(player)
