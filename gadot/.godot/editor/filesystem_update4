@@ -1,4 +1,4 @@
-res://player.tscn
+res://entities/world/load/map.tscn
 res://models/grenade/grenade_proj.gd
 res://manadrop.gd
 res://shaders/manadrop.gdshader
@@ -10,3 +10,11 @@ res://sys/weapon_resources/shotgun.tres
 res://sys/weapon_resources/keyboard.tres
 res://CollisionScript.gd
 res://mat/grey_grid_3.tres
+res://entities/world/load/map.gd
+res://player.tscn
+res://world.gd
+res://world.tscn
+res://tscn/main_menu.tscn
+res://models/salsa/salsa_explosion.tscn
+res://entities/props/grabbable/box.tscn
+res://tscn/console/console.gd

@@ -1,6 +1,9 @@
 Label3D
-SpotLight3D
+CollisionShape3D
+Area3D
+CSGBox3D
 Node3D
+SpotLight3D
 Timer
 MultiplayerSynchronizer
 TextEdit
@@ -8,8 +11,4 @@ Panel
 Control
 Container
 CSGSphere3D
-CollisionShape3D
 CSGTorus3D
-CSGPolygon3D
-RigidBody3D
-Sprite3D

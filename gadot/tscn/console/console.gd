@@ -26,7 +26,6 @@ var commands = {
 	"quit": {"func": func() -> String:
 		return quit_function(),
 		"args": 0},
-	# Existing command to add a bot
 	"add_bot": {"func": func() -> String:
 		var world = get_tree().get_root().get_node("World")
 		if world:
@@ -35,45 +34,30 @@ var commands = {
 		else:
 			return "Error: 'World' node not found."
 		, "args": 0},
-
-	# New command to add an enemy at the player's location
 	"add_enemy": {"func": func() -> String:
-		# Look for a player in the "players" group
 		var players = get_tree().get_nodes_in_group("players")
 		if players.size() == 0:
 			return "Error: No player found."
-			
-		# Use the first player found
 		var player = players[0]
-		
-		# Load the enemy scene
 		var enemy_scene = load("res://sys/enemies/enemy.tscn")
 		if enemy_scene == null:
 			return "Error: Could not load enemy scene."
-			
-		# Instance the enemy
 		var enemy = enemy_scene.instantiate()
-		
-		# Set enemy position to player's position.
 		enemy.global_position = player.global_position
-		
-		# Get the "World" node and add the enemy as a child
 		var world = get_tree().get_root().get_node("World")
 		if world:
 			world.add_child(enemy)
 			return "Enemy added successfully."
 		else:
 			return "Error: 'World' node not found."
-		,
-		"args": 0},
-
+		, "args": 0},
 	"spawn_ball": {"func": func() -> String:
 		var world = get_tree().get_root().get_node("World")
 		var players = get_tree().get_nodes_in_group("players")
 		var player = players[0]
 		if world:
 			world.rpc("spawn_ball", player.global_transform)
-			return "Bot added successfully."
+			return "Ball spawned successfully."
 		else:
 			return "Error: 'World' node not found."
 		, "args": 0},
@@ -83,28 +67,24 @@ var commands = {
 		var player = players[0]
 		if world:
 			world.rpc("spawn_box", player.global_transform)
-			return "Bot added successfully."
+			return "Box spawned successfully."
 		else:
 			return "Error: 'World' node not found."
 		, "args": 0},
 	"all_weapons": {"func": func() -> String:
-	# Get the list of players (assuming the local player is in the "players" group)
-	var players = get_tree().get_nodes_in_group("players")
-	if players.size() == 0:
-		return "Error: No player found."
-	# Use the first player found
-	var player = players[0]
-	# Attempt to get the WeaponsManager node from the player.
-	# (Update the node path as necessary to match your scene tree.)
-	if player.has_node("Weapons_Manager"):
-		var wm = player.get_node_or_null("Weapons_Manager")
-		wm.rpc("add_all_weapons")
-		return "All weapons granted."
-	else:
-		return "Error: Weapons Manager not found on the player."
-	, "args": 0},
-
+		var players = get_tree().get_nodes_in_group("players")
+		if players.size() == 0:
+			return "Error: No player found."
+		var player = players[0]
+		if player.has_node("Weapons_Manager"):
+			var wm = player.get_node_or_null("Weapons_Manager")
+			wm.rpc("add_all_weapons")
+			return "All weapons granted."
+		else:
+			return "Error: Weapons Manager not found on the player."
+		, "args": 0},
 }
+
 
 
 

@@ -418,3 +418,31 @@ func spawn_box(desired_transform):
 	# Add the ball to the scene so that all peers will have it.
 	add_child(ball_instance)
 	print("Ball spawned at: ", ball_instance.global_transform.origin)
+	
+# Only the server should call change_level().
+func change_level(new_map_name: String) -> void:
+	# Make sure only the server initiates the level change.
+	if not is_multiplayer_authority():
+		return
+	# Tell all connected peers (including ourself if needed) to change level.
+	rpc("change_level_rpc", new_map_name)
+	# Change the level on the server.
+	_do_change_level(new_map_name)
+
+@rpc("any_peer", "call_local")
+func change_level_rpc(new_map_name: String) -> void:
+	# On clients, only execute if not the server (so the server doesn’t run it twice).
+	if is_multiplayer_authority():
+		return
+	_do_change_level(new_map_name)
+
+# This helper does the actual work: load the new map and reposition every player.
+func _do_change_level(new_map_name: String) -> void:
+	# Update the map name.
+	map_name = new_map_name
+	# Load the new map (this rebuilds meshes, bakes the navigation, etc.)
+	load_map(map_name)
+	# Respawn (reposition) all players.
+	# (Note: for this to work nicely, it helps if each player node is added to a group.)
+	for player in get_tree().get_nodes_in_group("players"):
+		waiting_players.append(player)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctgi048gwap1t"]
+
+[ext_resource type="Script" path="res://entities/world/load/map.gd" id="1_insou"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sda83"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.231373)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lr0eq"]
+
+[node name="world_load_map" type="Node3D"]
+script = ExtResource("1_insou")
+load_map = null
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material = SubResource("StandardMaterial3D_sda83")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_lr0eq")
