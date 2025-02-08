@@ -4218,7 +4218,7 @@ wait_time = 20.0
 
 [node name="interaction_ray" type="RayCast3D" parent="neck/head/main_camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0477791, -0.0020399)
-target_position = Vector3(0, 0, -50)
+target_position = Vector3(0, 0, -5)
 collision_mask = 256
 collide_with_areas = true
 script = ExtResource("3_hxk1l")

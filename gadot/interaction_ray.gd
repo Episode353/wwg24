@@ -8,14 +8,17 @@ extends RayCast3D
 var grab_joint: JoltGeneric6DOFJoint3D
 
 # A constant to control how strong the shot is
-const SHOOT_FORCE: float = 20.0
+const SHOOT_FORCE: float = 10.0
 
 func _process(delta):
+	if !is_multiplayer_authority(): 
+		return
+
 	# Handle pickup/release with "interact"
 	if Input.is_action_just_pressed("interact"):
 		if player.is_holding_object and player.grabbed_object:
 			# If we are already holding something, request its release
-			rpc_id(player.peer_id, "request_release_object")
+			rpc_id(1, "request_release_object")
 		else:
 			# Request pickup – you could pass additional info (like the raycast hit)
 			rpc_id(1, "request_pickup_object", global_transform.origin)
@@ -45,6 +48,10 @@ func request_pickup_object(requester_global_pos: Vector3):
 	if distance > 5:
 		return  # object is too far away
 
+	# *** Check if the object is already grabbed. ***
+	if hit_object.is_in_group("is_grabbed"):
+		return
+
 	# Verify that the object is grabbable and is a RigidBody3D
 	if hit_object.is_in_group("grabbable") and hit_object is RigidBody3D:
 		# Create the joint (on the server)
@@ -57,6 +64,9 @@ func request_pickup_object(requester_global_pos: Vector3):
 func on_object_picked_up(object_path: NodePath):
 	var body = get_node_or_null(object_path) as RigidBody3D
 	if body:
+		body.can_sleep = false
+		# *** Add the object to the "is_grabbed" group when it is picked up. ***
+		body.add_to_group("is_grabbed")
 		player.grabbed_object = body
 		player.is_holding_object = true
 
@@ -84,6 +94,8 @@ func release_grabbed_object():
 	if player.grabbed_object:
 		# Optionally allow the object to sleep again
 		player.grabbed_object.can_sleep = true
+		# *** Remove the object from the "is_grabbed" group when it is released. ***
+		player.grabbed_object.remove_from_group("is_grabbed")
 		player.grabbed_object = null
 
 
@@ -101,5 +113,4 @@ func request_shoot_object(shoot_direction: Vector3):
 	release_grabbed_object()
 
 	# Apply an impulse to launch the object.
-	# In Godot 4, use apply_central_impulse. (If you’re in Godot 3, use apply_impulse(offset, impulse).)
 	shot_object.apply_central_impulse(shoot_direction * SHOOT_FORCE)

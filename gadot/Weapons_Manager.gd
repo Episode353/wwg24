@@ -279,7 +279,7 @@ func raycast_shoot_procc():
 	var col_point = raycast_shoot.get_collision_point()
 	if !hit_object.is_in_group("destructable"):
 		if !hit_object.is_in_group("moveable"):
-			if !hit_object.is_in_group("players"):
+			if !hit_object.is_in_group("players") and !hit_object.get_parent().is_in_group("players"):
 				if !hit_object.is_in_group("pushable"):
 					print(hit_object)
 					# Place the Bullet Decal
@@ -475,6 +475,29 @@ func _physics_process(_delta):
 func rpc_update_weapon_info():
 		# RPC to send weapon info to the world script for the local player
 		world.rpc_id(multiplayer.get_unique_id(), "update_weapon_info", current_weapon.weapon_name, current_weapon.current_ammo, current_weapon.reserve_ammo, weapon_stack)
+
+func drop_all_weapons():
+	# Clear out all the weapons the player currently holds.
+	weapon_stack.clear()
+	
+	# Ensure the player will always have "hands" so that we can play the proper animations.
+	if not weapon_list.has("hands"):
+		push_error("Weapon 'hands' not found in weapon_list!")
+		return
+
+	# Force the player's current weapon to "hands"
+	current_weapon = weapon_list["hands"]
+	
+	# Add "hands" back into the weapon stack.
+	weapon_stack.append("hands")
+	
+	# Emit signals to update any UI or state.
+	emit_signal("weapon_changed", current_weapon.weapon_name)
+	emit_signal("update_weapon_stack", weapon_stack)
+	
+	# Play the activation animation for "hands"
+	animation_player.play("RESET")
+
 
 
 func _on_timer_timeout():

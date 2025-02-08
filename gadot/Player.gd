@@ -21,6 +21,7 @@ var is_bot = false
 @onready var weapons_manager = $neck/head/main_camera/Weapons_Manager
 @onready var player_hurt_noise = $player_hurt_noise
 @onready var raycast_crouching = $raycast_crouching
+@onready var interaction_ray = $neck/head/main_camera/interaction_ray
 
 @onready var raycast_wall = $raycast_wall
 
@@ -175,14 +176,13 @@ func _ready():
 	get_viewport().connect("size_changed", Callable(self, "_on_size_changed"))
 	# Initial adjustment of the viewport size
 	_adjust_viewport_size()
-
 	# Store the original position of the FPS_RIG
 	base_fps_rig_position = fps_rig.position
-	
 	# For Footsteps
 	last_position = global_transform.origin
-
-	
+	# Add collision shapes to the Players Group
+	$standing_collision_shape.add_to_group("players")
+	$crouching_collision_shape.add_to_group("players")
 	
 
 const CS_SENSITIVITY_SCALE = 0.022  # Counter-Strike scale factor for sensitivity
@@ -432,12 +432,14 @@ func update_velocity_air(wish_dir: Vector3, delta):
 	
 
 func player_death():
+	interaction_ray.release_grabbed_object()
 	var world_pos = global_transform.origin
 	# Reset momentum
 	velocity = Vector3.ZERO
 	# Reset ammo for all weapons
 
 	$neck/head/main_camera/Weapons_Manager.reset_all_ammo()
+	$neck/head/main_camera/Weapons_Manager.drop_all_weapons()
 	# Spawn mana drop only for the local player who died
 	if is_multiplayer_authority():
 		rpc("spawn_mana_for_all", world_pos)
