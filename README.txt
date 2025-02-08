@@ -89,6 +89,10 @@ Features to add:
 
 
 Bugs to fix:
+	- Sniper Rifle
+	- Make the player collision the same size of the player
+	- Make the cool map
+	- Different Combos on the power, add notes
 	- Charachter exclusive stuff, like if you're a human or a wizard
 	- add gamemodes
 	- work on "london" more and add more little rooms
