@@ -35,7 +35,8 @@
 [ext_resource type="Script" path="res://display_health.gd" id="30_jkaaj"]
 [ext_resource type="AudioStream" uid="uid://h6pkf0tevw2m" path="res://sounds/player/hurt.wav" id="34_jjjwd"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_67y6s"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5mehu"]
+radius = 0.519
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_stbbh"]
 
@@ -4176,7 +4177,7 @@ script = ExtResource("1_ebgxs")
 
 [node name="standing_collision_shape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_67y6s")
+shape = SubResource("CylinderShape3D_5mehu")
 
 [node name="crouching_collision_shape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

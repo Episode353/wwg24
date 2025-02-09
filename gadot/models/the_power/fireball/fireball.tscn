@@ -1,45 +1,25 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbck53uiykrgl"]
+[gd_scene load_steps=5 format=3 uid="uid://cbck53uiykrgl"]
 
 [ext_resource type="Script" path="res://models/the_power/fireball/fireball.gd" id="1_vtjjc"]
-[ext_resource type="Texture2D" uid="uid://bvxusr4s0aia" path="res://models/rocket_launcher/Flare00.PNG" id="2_c2aji"]
+[ext_resource type="Shader" path="res://models/the_power/fireball/fireball.gdshader" id="2_q5j6b"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o852x"]
-albedo_color = Color(1, 0.415686, 0, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g5fss"]
+render_priority = 0
+shader = ExtResource("2_q5j6b")
+shader_parameter/time_speed = 1.0
+shader_parameter/spin = 0.0
+shader_parameter/flame_brightness = 0.6
+shader_parameter/color_intensity = 0.0
+shader_parameter/horizontal_frequency = 1.0
+shader_parameter/vertical_frequency = 1.0
+shader_parameter/size = -0.3
+shader_parameter/core_size = 1.0
+shader_parameter/color1 = Color(0.286, 0.22, 0.733, 1)
+shader_parameter/color2 = Color(0.98, 0.38, 0.34, 1)
+shader_parameter/color3 = Color(0.98, 0.95, 0.53, 1)
+shader_parameter/color4 = Color(1, 1, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hp10x"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjv1x"]
-transparency = 1
-albedo_texture = ExtResource("2_c2aji")
-albedo_texture_force_srgb = true
-albedo_texture_msdf = true
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_h70j5"]
-_data = [Vector2(0, 0.981928), 0.0, 0.082925, 0, 0, Vector2(1, 0.0180724), -1.00374, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_2rssp"]
-curve = SubResource("Curve_h70j5")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uo0ut"]
-lifetime_randomness = 0.5
-emission_shape = 1
-emission_sphere_radius = 1.0
-spread = 180.0
-initial_velocity_min = 0.5
-initial_velocity_max = 2.0
-scale_min = 3.0
-scale_max = 4.0
-scale_curve = SubResource("CurveTexture_2rssp")
-scale_over_velocity_min = 3.0
-scale_over_velocity_max = 4.0
-color = Color(0, 0, 0, 1)
-
-[sub_resource type="QuadMesh" id="QuadMesh_bjkaf"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_vtjjc")
@@ -47,8 +27,8 @@ script = ExtResource("1_vtjjc")
 [node name="Fireball" type="Node3D" parent="."]
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Fireball"]
-radius = 0.249363
-material = SubResource("StandardMaterial3D_o852x")
+radius = 1.0
+material = SubResource("ShaderMaterial_g5fss")
 
 [node name="Area3D" type="Area3D" parent="Fireball/CSGSphere3D"]
 collision_layer = 119
@@ -60,17 +40,6 @@ shape = SubResource("BoxShape3D_hp10x")
 [node name="Timer" type="Timer" parent="Fireball"]
 wait_time = 10.0
 autostart = true
-
-[node name="Smoke" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_rjv1x")
-amount = 300
-lifetime = 9.97
-explosiveness = 0.06
-fixed_fps = 60
-interpolate = false
-fract_delta = false
-process_material = SubResource("ParticleProcessMaterial_uo0ut")
-draw_pass_1 = SubResource("QuadMesh_bjkaf")
 
 [connection signal="body_entered" from="Fireball/CSGSphere3D/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Fireball/CSGSphere3D/Area3D" to="Fireball" method="_on_area_3d_body_entered"]

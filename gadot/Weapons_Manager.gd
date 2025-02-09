@@ -490,7 +490,7 @@ func drop_all_weapons():
 	
 	# Add "hands" back into the weapon stack.
 	weapon_stack.append("hands")
-	
+		
 	# Emit signals to update any UI or state.
 	emit_signal("weapon_changed", current_weapon.weapon_name)
 	emit_signal("update_weapon_stack", weapon_stack)

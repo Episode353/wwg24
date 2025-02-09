@@ -89,18 +89,15 @@ Features to add:
 
 
 Bugs to fix:
+	- Add an item or weapon that shoots the player forward with a lot of speed
 	- Players don't spawn at spawnpoints on level switch
-	- The rocketr launcher's speed is relative to the framerate
-	- Make the player collision the same size of the player
 	- Make the cool map
 	- Different Combos on the power, add notes
 	- Charachter exclusive stuff, like if you're a human or a wizard
 	- add gamemodes
 	- work on "london" more and add more little rooms
-	- make rockets move slower
 	- sometimes the knife doesnt work? (according to mike)
 	- Re imagine the main menu
-	- Keyboard Attacks and Fire Effects
 	- If a player grabs a grabbable object that someone else is grabbing, weird stuff happens
 	- The player name entered in the config.txt appears over enemy players, which is wrong. It should appear over the player who has it entered in the config.
 	- Sound

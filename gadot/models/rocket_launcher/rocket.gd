@@ -7,9 +7,9 @@ const EXPLOSION_PRELOAD = preload("res://models/rocket_launcher/explosion.tscn")
 var owner_player
 var rocket_timer = 0
 
-func _process(_delta):
+func _physics_process(delta):
 	# Move the rocket forward
-	rocket_proj.position.z -= 0.4
+	rocket_proj.position.z -= 1.5
 	# Delete the rocket if it does not collide after a time
 	rocket_timer += 1
 	if rocket_timer >= 1000:

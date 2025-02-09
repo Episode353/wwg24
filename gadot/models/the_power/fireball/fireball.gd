@@ -2,7 +2,6 @@ extends Node3D
 
 @onready var timer: Timer = $Fireball/Timer
 @onready var fireball: Node3D = $Fireball
-@onready var smoke: GPUParticles3D = $Smoke
 var objects_removed = false
 var owner_player
 var queue_timer = 0
@@ -11,7 +10,7 @@ var queue_timer = 0
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _process(_delta):
+func _physics_process(delta):
 	if objects_removed:
 		queue_timer += 1
 	if queue_timer >= 80:
@@ -21,14 +20,12 @@ func _process(_delta):
 		return  # Exit if fireball has been freed
 	# Move the rocket forward
 	fireball.translate(Vector3(0, 0, -0.5))
-	smoke.transform = fireball.transform
 	
 
 
 func remove_objects():
 	objects_removed = true
 	fireball.queue_free()
-	smoke.emitting = false
 
 func _on_timer_timeout() -> void:
 	remove_objects()

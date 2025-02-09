@@ -1,3 +1,4 @@
+CSGSphere3D
 Node3D
 Label3D
 CollisionShape3D
@@ -10,5 +11,4 @@ TextEdit
 Panel
 Control
 Container
-CSGSphere3D
 CSGTorus3D

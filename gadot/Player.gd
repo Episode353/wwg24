@@ -36,8 +36,8 @@ const MAX_VELOCITY_GROUND_WALKING = 4.0
 const MAX_ACCELERATION = 10 * MAX_VELOCITY_GROUND
 const GRAVITY = 12
 # GRAVITY USED TO BE 15.34
-const STOP_SPEED = 1.5
-const JUMP_IMPULSE = sqrt(2 * GRAVITY * 1.85)
+const STOP_SPEED = 2 # Was 1.5
+const JUMP_IMPULSE = sqrt(2 * GRAVITY * 3) #Orig was sqrt(2 * GRAVITY * 1.85)
 const PLAYER_WALKING_MULTIPLIER = 0.666
 var direction = Vector3.ZERO
 var friction = 4
@@ -82,6 +82,13 @@ var crouching = false
 var free_looking = false
 var sliding = false
 var is_walking = false
+
+# Jumping
+const COYOTE_TIME = 0.1  # seconds you allow the jump after leaving the ground
+var coyote_time_remaining = 0.0
+var CUT_JUMP_HEIGHT: float = 0.5
+
+
 
 # Slide Vars
 var slide_timer = 0.0
@@ -209,6 +216,12 @@ func _physics_process(delta):
 		bot_physics_process(delta)
 	if not is_multiplayer_authority():
 		return
+		
+	 # Update coyote time: reset if on floor, otherwise count down
+	if is_on_floor():
+		coyote_time_remaining = COYOTE_TIME
+	else:
+		coyote_time_remaining = max(coyote_time_remaining - delta, 0)
 	
 	calculate_fire_damage()
 	process_input()
@@ -295,6 +308,8 @@ func process_input():
 		can_die = false
 		kill_timeout = kill_max_timeout
 		player_death()
+	if Input.is_action_just_pressed("rebuild_map"):
+		world.rpc("rebuild_map")
 
 	# Free-looking
 	if Input.is_action_just_pressed("free_look"):
@@ -319,6 +334,11 @@ func process_input():
 
 	# Jumping
 	wish_jump = Input.is_action_pressed("jump")  # Change to is_action_pressed
+
+	# Later in your physics process, if the player releases the jump button early:
+	if Input.is_action_just_released("jump"):
+		if velocity.y > 0.0:
+			velocity.y *= CUT_JUMP_HEIGHT
 
 	# Crouching: Set crouching true only when the player is on the floor.
 	if Input.is_action_pressed("crouch"):
@@ -367,30 +387,34 @@ func process_movement(delta):
 	# Get the normalized input direction so that we don't move faster on diagonals
 	var wish_dir = direction.normalized()
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
+	if is_walking and is_on_floor() and wish_dir != Vector3.ZERO and not can_move_in_direction(wish_dir):
+		velocity = Vector3.ZERO
+		return
+	
 	cam_aligned_wish_dir = main_camera.global_transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)
 
-
 	if not _handle_noclip(delta):
-		if is_on_floor():
-			if wish_jump:
+			# Instead of checking strictly for is_on_floor(), we also allow a jump if within coyote time.
+			if wish_jump and (is_on_floor() or coyote_time_remaining > 0):
 				velocity.y = JUMP_IMPULSE
+				coyote_time_remaining = 0  # Consume the coyote jump so it only triggers once.
 				velocity = update_velocity_air(wish_dir, delta)
-				# Reset bobbing when jumping
+				# Reset view bobbing when jumping
 				bob_amplitude = 0.0
 				bob_phase = 0.0
-			else:
+			elif is_on_floor():
 				if walking:
 					velocity.x *= PLAYER_WALKING_MULTIPLIER
 					velocity.z *= PLAYER_WALKING_MULTIPLIER
-				
-				velocity = update_velocity_ground(wish_dir, delta)
-		else:
-			velocity.y -= GRAVITY * delta
-			velocity = update_velocity_air(wish_dir, delta)
 
-		if not _snap_up_stairs_check(delta):
-			move_and_slide()
-			_snap_down_to_stairs_check()
+				velocity = update_velocity_ground(wish_dir, delta)
+			else:
+				velocity.y -= GRAVITY * delta
+				velocity = update_velocity_air(wish_dir, delta)
+
+			if not _snap_up_stairs_check(delta):
+				move_and_slide()
+				_snap_down_to_stairs_check()
 
 func _process(delta):
 	viewmodel_camera.global_transform = main_camera.global_transform
@@ -732,3 +756,25 @@ func find_objects():
 	# If a closest player was found, update the navigation target.
 	if closest_player:
 		update_target_location(closest_player.global_transform.origin)
+
+func can_move_in_direction(move_dir: Vector3) -> bool:
+	# Only do this check when on the floor and when moving.
+	if not is_on_floor() or move_dir == Vector3.ZERO:
+		return true
+
+	# Calculate an offset from the player's origin toward the direction of movement.
+	# Adjust 'edge_offset' to roughly the distance from your center to the edge of your collision shape.
+	var edge_offset = 0.2  # Example value; tweak as needed.
+	var ray_origin = global_transform.origin + move_dir.normalized() * edge_offset + Vector3(0, 0.1, 0)
+	# Cast the ray downward far enough to detect the floor.
+	var ray_length = 0.5  # Adjust depending on your scale.
+	var ray_end = ray_origin + Vector3.DOWN * ray_length
+
+	var params = PhysicsRayQueryParameters3D.new()
+	params.from = ray_origin
+	params.to = ray_end
+	# Optionally set collision_mask to only detect floor layers.
+	# params.collision_mask = FLOOR_LAYER_MASK
+
+	var result = get_world_3d().direct_space_state.intersect_ray(params)
+	return (result.size() > 0)  # Returns true if floor detected.

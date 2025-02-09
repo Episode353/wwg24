@@ -218,6 +218,10 @@ noclip={
 "deadzone": 0.5,
 "events": []
 }
+rebuild_map={
+"deadzone": 0.5,
+"events": []
+}
 
 [physics]
 

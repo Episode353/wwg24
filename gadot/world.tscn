@@ -211,6 +211,7 @@ text = "Disconnect"
 navigation_mesh = SubResource("NavigationMesh_p4c1t")
 
 [node name="TBLoader" type="TBLoader" parent="NavigationRegion3D"]
+option_skip_hidden_layers = false
 
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
 [connection signal="pressed" from="CanvasLayer/Pause Menu/Button" to="." method="_on_button_pressed"]

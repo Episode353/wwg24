@@ -126,8 +126,11 @@ func load_map(load_map_name: String):
 	$NavigationRegion3D.bake_navigation_mesh()
 	Globals.map_loaded = true
 	emit_signal("map_loaded")
-
-
+	
+@rpc("any_peer", "call_local")
+func rebuild_map():
+	tb_loader.build_meshes()
+	
 @rpc("any_peer", "call_local")
 func add_bot():
 	# Preload and instantiate the player scene

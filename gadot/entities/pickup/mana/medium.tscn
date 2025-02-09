@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://c1ead1mvxsjon" path="res://sounds/pickup/item_pickup_01.wav" id="3_x4n5h"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3qfhx"]
-radius = 0.4
+radius = 1.0
 
 [sub_resource type="Animation" id="Animation_5hbo0"]
 length = 0.001
