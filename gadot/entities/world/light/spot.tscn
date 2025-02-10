@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://v6rkybavd5pt"]
+
+[ext_resource type="Script" path="res://entities/world/light/spot.gd" id="1_2mcau"]
+
+[node name="SpotLight3D" type="SpotLight3D"]
+light_energy = 10.659
+light_bake_mode = 1
+shadow_enabled = true
+spot_angle_attenuation = 0.594605
+script = ExtResource("1_2mcau")
+
+[node name="Label3D" type="Label3D" parent="."]
+text = "spotlight
+"

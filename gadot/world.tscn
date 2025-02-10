@@ -57,6 +57,7 @@ script = ExtResource("1_6tkge")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 light_color = Color(1, 0.777837, 0.558944, 1)
 light_energy = 2.051
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -211,6 +212,7 @@ text = "Disconnect"
 navigation_mesh = SubResource("NavigationMesh_p4c1t")
 
 [node name="TBLoader" type="TBLoader" parent="NavigationRegion3D"]
+map_resource = "res://tbmaps/avery.map"
 option_skip_hidden_layers = false
 
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

@@ -20,6 +20,16 @@
 	attenuation(float) : "Attenuation" : 1 : "The drop-off curve (lower values emit more light far away)"
 	specular(float) : "Specular" : 0.5 : "Intensity of the specular blob on reflective surfaces"
 	light_color(color255) : "Color" : "255 255 255"
+	angles(string) : "Pitch Yaw Roll" : "0 0 0"
+]
+
+@PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = world_light_spot : "Spot Light" [
+	range(float) : "Range" : 10
+	energy(float) : "Energy" : 1 : "The light's strength multiplier"
+	attenuation(float) : "Attenuation" : 1 : "The drop-off curve (lower values emit more light far away)"
+	specular(float) : "Specular" : 0.5 : "Intensity of the specular blob on reflective surfaces"
+	light_color(color255) : "Color" : "255 255 255"
+	angles(string) : "Pitch Yaw Roll" : "0 0 0"
 ]
 
 @PointClass size(-8 -8 -8, 8 8 8) color(255 0 0) = pickup_mana_medium : "Mana Drop" []
@@ -59,6 +69,3 @@
     teleport_size(string) : "Teleport Size" : "5 5 5"
     target_position(string) : "Target Position" : "0 0 0"
 ]
-
-
-

@@ -3,6 +3,9 @@ Multiplayer Based off of: (https://youtu.be/n8D3vEx7NAE)
 Stair Stepping Based off of: (https://www.youtube.com/watch?v=Tb-R3l0SQdc)
 The Multiplayer Server pinging was based off of (https://github.com/Brandt-J/GodotServerBrowser)
 Voice Over Ip based off (https://www.reddit.com/r/godot/comments/186yn4o/voip_in_godot_basic_overview_not_full_tutorial/)
+Textures from craigsnedeker on itch.io (https://craigsnedeker.itch.io/classic64-asset-library)
+
+
 To host a server: 
 Open wizards-with-guns.console.exe, which should launch the game and a console window.
 Click host, in the console window the server IP adress should print out, you can share this with your friends.

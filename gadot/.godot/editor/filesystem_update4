@@ -10,10 +10,9 @@ res://sys/weapon_resources/hands.tres
 res://sys/weapon_resources/shotgun.tres
 res://sys/weapon_resources/keyboard.tres
 res://CollisionScript.gd
-res://entities/world/load/map.gd
 res://mat/grey_grid_3.tres
-res://player.gd
+res://entities/world/load/map.gd
 res://entities/pickup/mana/medium.tscn
 res://models/the_power/fireball/fireball.tscn
-res://world.gd
 res://world.tscn
+res://entities/world/light/spot.tscn
