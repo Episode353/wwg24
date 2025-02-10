@@ -144,7 +144,7 @@ var footstep_right_sound = preload("res://sounds/footsteps/footstep_right.wav")
 
 # Nocli
 var cam_aligned_wish_dir := Vector3.ZERO
-var noclip_speed_mult := 8
+var noclip_speed_mult := 8.0
 var noclip := false
 
 #func _enter_tree():

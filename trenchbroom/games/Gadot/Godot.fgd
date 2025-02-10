@@ -28,7 +28,7 @@
 	energy(float) : "Energy" : 1 : "The light's strength multiplier"
 	attenuation(float) : "Attenuation" : 1 : "The drop-off curve (lower values emit more light far away)"
 	specular(float) : "Specular" : 0.5 : "Intensity of the specular blob on reflective surfaces"
-	light_color(color255) : "Color" : "255 255 255"
+	light_color(color255) : "Color" : "255 231 179"
 	angles(string) : "Pitch Yaw Roll" : "0 0 0"
 ]
 
