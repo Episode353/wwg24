@@ -1,3 +1,4 @@
+res://sys/shaders
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.10
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.9
 res://entities/world/light
@@ -19,4 +20,3 @@ res://entities/player
 res://entities/pickup/mana
 res://entities/pickup/health
 res://entities/pickup/ammo
-res://entities/props/shootable

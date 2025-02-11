@@ -1,12 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8oqxmm2w2wvv"]
+[gd_scene load_steps=20 format=3 uid="uid://c8oqxmm2w2wvv"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_6tkge"]
 [ext_resource type="Script" path="res://sys/ServerConnectionHandler.gd" id="2_hna3u"]
 [ext_resource type="Script" path="res://CanvasLayer.gd" id="2_sgno6"]
-[ext_resource type="Texture2D" uid="uid://bmqgel0cu22ly" path="res://addons/kenney_particle_pack/magic_03.png" id="4_2t2bm"]
 [ext_resource type="Script" path="res://FPSCount.gd" id="4_04ai0"]
-[ext_resource type="Script" path="res://crosshair.gd" id="4_5hrlb"]
 [ext_resource type="PackedScene" uid="uid://c1lfio6su6m7o" path="res://menufadein.tscn" id="7_bypg1"]
+[ext_resource type="Shader" path="res://sys/shaders/player_vision.gdshader" id="8_44c0t"]
+
+[sub_resource type="Gradient" id="Gradient_q3jm3"]
+offsets = PackedFloat32Array(0.0955679, 0.142659, 0.265928, 0.33518, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0520674, 0.0520674, 0.0520674, 1, 0.188361, 0.188361, 0.188361, 1, 0.264931, 0.264931, 0.264931, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7yniy"]
+gradient = SubResource("Gradient_q3jm3")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_clnmc"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -20,7 +26,7 @@ background_mode = 2
 sky = SubResource("Sky_ayvap")
 tonemap_mode = 3
 tonemap_exposure = 0.55
-glow_enabled = true
+glow_map = SubResource("GradientTexture2D_7yniy")
 volumetric_fog_density = 0.005
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkytg"]
@@ -34,6 +40,16 @@ bg_color = Color(1, 0.117647, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcby2"]
 bg_color = Color(0.00392157, 1, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g2q5a"]
+shader = ExtResource("8_44c0t")
+shader_parameter/quantizeStrength = 32.0
+
+[sub_resource type="Gradient" id="Gradient_t8x7k"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ehpd1"]
+gradient = SubResource("Gradient_t8x7k")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_p4c1t"]
 
@@ -98,6 +114,20 @@ theme_override_styles/background = SubResource("StyleBoxFlat_3lhvk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vcby2")
 value = 100.0
 
+[node name="Color Quantize" type="TextureRect" parent="CanvasLayer/HUD"]
+light_mask = 1023
+visibility_layer = 1023
+z_as_relative = false
+material = SubResource("ShaderMaterial_g2q5a")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_ehpd1")
+
 [node name="FPSCount" type="Label" parent="CanvasLayer/HUD"]
 layout_mode = 0
 offset_right = 40.0
@@ -107,13 +137,6 @@ mouse_filter = 1
 text = "60"
 horizontal_alignment = 1
 script = ExtResource("4_04ai0")
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("4_2t2bm")
-script = ExtResource("4_5hrlb")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD"]
 layout_mode = 1

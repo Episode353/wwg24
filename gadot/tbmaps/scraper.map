@@ -42,6 +42,14 @@
 ( 240 1872 224 ) ( 241 1872 224 ) ( 240 1872 225 ) roof/roof_old 0 0 0 1 1
 ( 240 1872 224 ) ( 240 1872 225 ) ( 240 1873 224 ) roof/roof_old 0 0 0 1 1
 }
+// brush 4
+{
+( -144 2048 823 ) ( -256 2096 816 ) ( -256 2096 832 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -64 2176 816 ) ( -64 2176 832 ) ( -256 2096 832 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -256 2096 832 ) ( -64 2176 832 ) ( -144 2048 839 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -144 2048 823 ) ( -64 2176 816 ) ( -256 2096 816 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -144 2048 839 ) ( -64 2176 832 ) ( -64 2176 816 ) metal/metal_diamondplate_01 0 0 0 1 1
+}
 }
 // entity 1
 {
@@ -515,7 +523,7 @@
 ( -64 1280 32 ) ( -64 1280 33 ) ( -64 1279 32 ) roof/shingles_fancy_01 192 0 180 1 -1
 ( -64 1280 32 ) ( -65 1280 32 ) ( -64 1280 33 ) roof/shingles_fancy_01 0 0 180 1 -1
 ( 64 1296 0 ) ( 63 1296 0 ) ( 64 1295 0 ) roof/shingles_fancy_01 0 -192 180 1 1
-( -64 1280 824 ) ( -64 1279 824 ) ( -65 1280 824 ) roof/shingles_fancy_01 0 -192 180 1 1
+( -64 1280 832 ) ( -64 1279 832 ) ( -65 1280 832 ) roof/shingles_fancy_01 0 -64 180 1 1
 ( 64 1296 0 ) ( 64 1296 1 ) ( 63 1296 0 ) roof/shingles_fancy_01 0 0 180 1 -1
 ( 64 1296 0 ) ( 64 1295 0 ) ( 64 1296 1 ) roof/shingles_fancy_01 192 0 180 1 -1
 }
@@ -1486,48 +1494,51 @@
 }
 // brush 8
 {
-( -448 1792 640 ) ( 0 1728 672 ) ( -448 1728 640 ) metal/metal_diamondplate_04 21.33313 0 90 1 -1
-( -384 1984 640 ) ( 0 1728 672 ) ( -448 1792 640 ) metal/metal_diamondplate_04 0 0 270 1 1
-( -272 2112 640 ) ( 0 1728 672 ) ( -384 1984 640 ) metal/metal_diamondplate_04 0 0 270 1 1
-( -64 2176 640 ) ( 0 1728 672 ) ( -272 2112 640 ) metal/metal_diamondplate_04 0 0 270 1 1
-( -448 1728 640 ) ( 0 1728 672 ) ( 0 1728 640 ) metal/metal_diamondplate_04 0 -47.99994 0 1 1
-( 0 1728 640 ) ( 0 2176 640 ) ( -64 2176 640 ) metal/metal_diamondplate_04 0 0 270 1 1
-( -64 2176 640 ) ( 0 2176 640 ) ( 0 1728 672 ) metal/metal_diamondplate_04 0 0 90 1 -1
-( 0 1728 672 ) ( 0 2176 640 ) ( 0 1728 640 ) metal/metal_diamondplate_04 0 -47.99994 180 1 -1
+( -448 1728 832 ) ( 0 1728 864 ) ( -448 1664 832 ) metal/metal_diamondplate_04 0 3.0476074 0 1 1
+( -448 1664 832 ) ( 0 1728 864 ) ( -384 1456 832 ) metal/metal_diamondplate_04 0 0 0 1 1
+( -384 1456 832 ) ( 0 1728 864 ) ( -256 1344 832 ) metal/metal_diamondplate_04 0 0 0 1 1
+( -256 1344 832 ) ( 0 1728 864 ) ( -64 1280 832 ) metal/metal_diamondplate_04 0 0 0 1 1
+( -64 1280 832 ) ( 0 1728 864 ) ( 0 1280 832 ) metal/metal_diamondplate_04 0 45.73474 0 1 1
+( 0 1728 832 ) ( -448 1728 832 ) ( -448 1664 832 ) metal/metal_diamondplate_04 0 0 0 1 1
+( 0 1728 832 ) ( 0 1728 864 ) ( -448 1728 832 ) metal/metal_diamondplate_04 0 16 0 1 1
+( 0 1280 832 ) ( 0 1728 864 ) ( 0 1728 832 ) metal/metal_diamondplate_04 2.2857666 16 0 1 1
 }
 // brush 9
 {
-( 0 1728 672 ) ( 0 1728 640 ) ( 0 2176 640 ) metal/metal_diamondplate_04 0 -47.99994 180 1 -1
-( 0 1728 672 ) ( 448 1728 640 ) ( 0 1728 640 ) metal/metal_diamondplate_04 0 -47.99994 180 1 -1
-( 448 1728 640 ) ( 448 1792 640 ) ( 384 2000 640 ) metal/metal_diamondplate_04 0 0 180 1 1
-( 0 2176 640 ) ( 64 2176 640 ) ( 0 1728 672 ) metal/metal_diamondplate_04 0 0 180 1 -1
-( 64 2176 640 ) ( 256 2112 640 ) ( 0 1728 672 ) metal/metal_diamondplate_04 0 0 180 1 1
-( 256 2112 640 ) ( 384 2000 640 ) ( 0 1728 672 ) metal/metal_diamondplate_04 0 0 180 1 1
-( 384 2000 640 ) ( 448 1792 640 ) ( 0 1728 672 ) metal/metal_diamondplate_04 0 0 180 1 1
-( 0 1728 672 ) ( 448 1792 640 ) ( 448 1728 640 ) metal/metal_diamondplate_04 0 -21.33313 180 1 -1
+( 0 1728 864 ) ( 0 1728 832 ) ( 0 2160 832 ) metal/metal_diamondplate_04 0 16 180 1 -1
+( 0 1728 864 ) ( 448 1728 832 ) ( 0 1728 832 ) metal/metal_diamondplate_04 0 16 180 1 -1
+( 448 1728 832 ) ( 448 1792 832 ) ( 384 2000 832 ) metal/metal_diamondplate_04 0 0 180 1 1
+( 0 2160 832 ) ( 64 2160 832 ) ( 0 1728 864 ) metal/metal_diamondplate_04 0 0 180 1 -1
+( 64 2160 832 ) ( 256 2112 832 ) ( 0 1728 864 ) metal/metal_diamondplate_04 0 0 180 1 1
+( 256 2112 832 ) ( 384 2000 832 ) ( 0 1728 864 ) metal/metal_diamondplate_04 0 0 180 1 1
+( 384 2000 832 ) ( 448 1792 832 ) ( 0 1728 864 ) metal/metal_diamondplate_04 0 0 180 1 1
+( 0 1728 864 ) ( 448 1792 832 ) ( 448 1728 832 ) metal/metal_diamondplate_04 0 -21.33313 180 1 -1
 }
 // brush 10
 {
-( 0 1728 640 ) ( 0 1728 672 ) ( 0 1280 640 ) metal/metal_diamondplate_04 0 -47.99994 0 1 1
-( 0 1728 672 ) ( 64 1280 640 ) ( 0 1280 640 ) metal/metal_diamondplate_04 0 0 270 1 -1
-( 448 1664 640 ) ( 448 1728 640 ) ( 0 1728 640 ) metal/metal_diamondplate_04 0 0 90 1 1
-( 0 1728 640 ) ( 448 1728 640 ) ( 0 1728 672 ) metal/metal_diamondplate_04 0 -47.99994 180 1 -1
-( 0 1728 672 ) ( 256 1344 640 ) ( 64 1280 640 ) metal/metal_diamondplate_04 0 0 90 1 1
-( 0 1728 672 ) ( 384 1456 640 ) ( 256 1344 640 ) metal/metal_diamondplate_04 0 0 90 1 1
-( 0 1728 672 ) ( 448 1664 640 ) ( 384 1456 640 ) metal/metal_diamondplate_04 0 0 90 1 1
-( 0 1728 672 ) ( 448 1728 640 ) ( 448 1664 640 ) metal/metal_diamondplate_04 21.33313 0 270 1 -1
+( 0 1728 832 ) ( 0 1728 864 ) ( 0 1280 832 ) metal/metal_diamondplate_04 0 16 0 1 1
+( 0 1728 864 ) ( 64 1280 832 ) ( 0 1280 832 ) metal/metal_diamondplate_04 0 0 270 1 -1
+( 448 1664 832 ) ( 448 1728 832 ) ( 0 1728 832 ) metal/metal_diamondplate_04 0 0 90 1 1
+( 0 1728 832 ) ( 448 1728 832 ) ( 0 1728 864 ) metal/metal_diamondplate_04 0 16 180 1 -1
+( 0 1728 864 ) ( 256 1344 832 ) ( 64 1280 832 ) metal/metal_diamondplate_04 0 0 90 1 1
+( 0 1728 864 ) ( 384 1456 832 ) ( 256 1344 832 ) metal/metal_diamondplate_04 0 0 90 1 1
+( 0 1728 864 ) ( 448 1664 832 ) ( 384 1456 832 ) metal/metal_diamondplate_04 0 0 90 1 1
+( 0 1728 864 ) ( 448 1728 832 ) ( 448 1664 832 ) metal/metal_diamondplate_04 21.33313 0 270 1 -1
 }
 // brush 11
 {
-( -64 1280 640 ) ( 0 1728 672 ) ( 0 1280 640 ) metal/metal_diamondplate_04 -21.333374 21.333496 90 1 1
-( 0 1728 640 ) ( -448 1728 640 ) ( -448 1664 640 ) metal/metal_diamondplate_04 0 0 0 1 1
-( 0 1728 640 ) ( 0 1728 672 ) ( -448 1728 640 ) metal/metal_diamondplate_04 0 -47.99994 0 1 1
-( 0 1384 656 ) ( -448 1664 656 ) ( -448 1664 784 ) metal/metal_diamondplate_04 -21.333374 21.333496 90 1 1
-( -448 1728 640 ) ( 0 1728 672 ) ( -448 1664 640 ) metal/metal_diamondplate_04 21.333374 -42.666748 90 1 -1
-( -448 1664 640 ) ( 0 1728 672 ) ( -384 1456 640 ) metal/metal_diamondplate_04 0 0 0 1 1
-( -384 1456 640 ) ( 0 1728 672 ) ( -256 1344 640 ) metal/metal_diamondplate_04 0 0 0 1 1
-( -256 1344 640 ) ( 0 1728 672 ) ( -64 1280 640 ) metal/metal_diamondplate_04 0 0 0 1 1
-( 0 1280 640 ) ( 0 1728 672 ) ( 0 1728 640 ) metal/metal_diamondplate_04 0 -47.99994 0 1 1
+( -336 1728 840 ) ( -336 1728 832 ) ( -320 1760 840 ) metal/metal_diamondplate_04 -21.304443 -0.24487305 0 1 1
+( -336 1728 832 ) ( -64 2160 832 ) ( -320 1760 840 ) metal/metal_diamondplate_04 -13.995605 16 0 1 1
+( -320 1760 840 ) ( -64 2160 832 ) ( -184 1968 840 ) metal/metal_diamondplate_04 -13.995605 16 0 1 1
+( -320 1760 840 ) ( -184 1968 840 ) ( -240 1872 848 ) metal/metal_diamondplate_04 -1.5053711 -62.41681 0 1 1
+( -184 1968 840 ) ( -64 2160 832 ) ( -240 1872 848 ) metal/metal_diamondplate_04 38.34326 26.205322 0 1 1
+( -320 1760 840 ) ( -240 1872 848 ) ( -336 1728 840 ) metal/metal_diamondplate_04 0 63.921143 0 1 1
+( -240 1872 848 ) ( -8 1728 864 ) ( -336 1728 840 ) metal/metal_diamondplate_04 0 56.697754 0 1 1
+( -64 2160 832 ) ( -8 1728 864 ) ( -240 1872 848 ) metal/metal_diamondplate_04 0 56.697754 0 1 1
+( -8 1728 864 ) ( 0 1728 864 ) ( 0 1728 832 ) metal/metal_diamondplate_04 0 16 0 1 1
+( 0 1728 832 ) ( 0 2160 832 ) ( -64 2160 832 ) metal/metal_diamondplate_04 -16 0 270 1 1
+( 0 1728 864 ) ( -8 1728 864 ) ( -64 2160 832 ) metal/metal_diamondplate_04 21.333254 -26.666748 0 1 -1
+( 0 1728 864 ) ( 0 2160 832 ) ( 0 1728 832 ) metal/metal_diamondplate_04 -16 16 180 1 -1
 }
 }
 // entity 28
@@ -1571,218 +1582,219 @@
 "_tb_layer_sort_index" "7"
 // brush 0
 {
-( -384 1472 632 ) ( -448 1664 616 ) ( -448 1664 640 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -448 1664 640 ) ( -360 1480 656 ) ( -384 1472 656 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -384 1473.3542319749215 648.2507836990595 ) ( -296 1569.3542319749215 640.2507836990595 ) ( -448 1665.3542319749215 632.2507836990595 ) metal/metal_diamondplate_01 0 1.354248 0 1 1
-( -448 1664 640 ) ( -296 1568 648 ) ( -360 1480 656 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -384 1472 656 ) ( -360 1480 656 ) ( -360 1480 632 ) metal/metal_diamondplate_01 8 0 0 1 1
-( -296 1568 624 ) ( -296 1568 648 ) ( -448 1664 640 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -360 1480 656 ) ( -296 1568 648 ) ( -296 1568 624 ) metal/metal_diamondplate_01 -8 0 0 1 1
+( -368 1488 704 ) ( -256 1360 672 ) ( -256 1360 656 ) metal/metal_diamondplate_01 -32 16 0 1 1
+( -272 1568 672 ) ( -272 1568 688 ) ( -368 1488 704 ) metal/metal_diamondplate_01 16 16 0 1 1
+( -368 1488 704 ) ( -256 1360 656 ) ( -272 1568 672 ) metal/metal_diamondplate_01 16 48 0 1 1
+( -256 1360 656 ) ( -192 1504 640 ) ( -272 1568 672 ) metal/metal_diamondplate_01 16 48 0 1 1
+( -272 1568 688 ) ( -256 1360 672 ) ( -368 1488 704 ) metal/metal_diamondplate_01 16 48 0 1 1
+( -272 1568 688 ) ( -192 1504 656 ) ( -256 1360 672 ) metal/metal_diamondplate_01 16 48 0 1 1
+( -192 1504 640 ) ( -192 1504 656 ) ( -272 1568 688 ) metal/metal_diamondplate_01 24 16 0 1 1
+( -256 1360 672 ) ( -192 1504 656 ) ( -192 1504 640 ) metal/metal_diamondplate_01 -48 16 0 1 1
 }
 // brush 1
 {
-( -296 1568 648 ) ( -360 1480 656 ) ( -360 1480 648 ) metal/metal_diamondplate_01 -48 16 0 1 1
-( -360 1480 656 ) ( -256 1360 664 ) ( -256 1360 656 ) metal/metal_diamondplate_01 -32 16 0 1 1
-( -360 1480 648 ) ( -192 1504 640 ) ( -296 1568 640 ) metal/metal_diamondplate_01 16 48 0 1 1
-( -256 1360 656 ) ( -192 1504 640 ) ( -360 1480 648 ) metal/metal_diamondplate_01 16 48 0 1 1
-( -296 1568 648 ) ( -256 1360 664 ) ( -360 1480 656 ) metal/metal_diamondplate_01 16 48 0 1 1
-( -296 1568 648 ) ( -192 1504 648 ) ( -256 1360 664 ) metal/metal_diamondplate_01 16 48 0 1 1
-( -192 1504 640 ) ( -192 1504 648 ) ( -296 1568 648 ) metal/metal_diamondplate_01 88 16 0 1 1
-( -256 1360 664 ) ( -192 1504 648 ) ( -192 1504 640 ) metal/metal_diamondplate_01 -48 16 0 1 1
+( -192 1504 656 ) ( -256 1360 672 ) ( -256 1360 656 ) metal/metal_diamondplate_01 -80 104 0 1 1
+( -256 1360 656 ) ( -64 1424 576 ) ( -192 1504 640 ) metal/metal_diamondplate_01 64 80 0 1 1
+( -64 1296 576 ) ( -64 1424 576 ) ( -256 1360 656 ) metal/metal_diamondplate_01 64 80 0 1 1
+( -256 1360 672 ) ( -64 1296 592 ) ( -64 1296 576 ) metal/metal_diamondplate_01 64 104 0 1 1
+( -192 1504 656 ) ( -64 1296 592 ) ( -256 1360 672 ) metal/metal_diamondplate_01 64 80 0 1 1
+( -192 1504 656 ) ( -64 1424 592 ) ( -64 1296 592 ) metal/metal_diamondplate_01 64 80 0 1 1
+( -64 1424 576 ) ( -64 1424 592 ) ( -192 1504 656 ) metal/metal_diamondplate_01 64 104 0 1 1
+( -64 1296 592 ) ( -64 1424 592 ) ( -64 1424 576 ) metal/metal_diamondplate_01 -80 104 0 1 1
 }
 // brush 2
 {
-( -192 1504 648 ) ( -256 1360 664 ) ( -256 1360 656 ) metal/metal_diamondplate_01 -80 104 0 1 1
-( -256 1360 656 ) ( -64 1424 576 ) ( -192 1504 640 ) metal/metal_diamondplate_01 64 80 0 1 1
-( -64 1296 576 ) ( -64 1424 576 ) ( -256 1360 656 ) metal/metal_diamondplate_01 64 80 0 1 1
-( -256 1360 664 ) ( -64 1296 584 ) ( -64 1296 576 ) metal/metal_diamondplate_01 64 104 0 1 1
-( -192 1504 648 ) ( -64 1296 584 ) ( -256 1360 664 ) metal/metal_diamondplate_01 64 80 0 1 1
-( -192 1504 648 ) ( -64 1424 584 ) ( -64 1296 584 ) metal/metal_diamondplate_01 64 80 0 1 1
-( -64 1424 576 ) ( -64 1424 584 ) ( -192 1504 648 ) metal/metal_diamondplate_01 64 104 0 1 1
-( -64 1296 584 ) ( -64 1424 584 ) ( -64 1424 576 ) metal/metal_diamondplate_01 -80 104 0 1 1
+( -64 1424 592 ) ( -64 1296 592 ) ( -64 1296 576 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -64 1296 576 ) ( 48 1392 560 ) ( -64 1424 576 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -64 1296 576 ) ( 64 1296 560 ) ( 48 1392 560 ) metal/metal_diamondplate_01 62.603394 7.3588867 0 1 1
+( -64 1296 592 ) ( 64 1296 560 ) ( -64 1296 576 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -64 1424 592 ) ( 64 1296 560 ) ( -64 1296 592 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -64 1424 576 ) ( 48 1392 560 ) ( -64 1424 592 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 48 1392 560 ) ( 64 1296 560 ) ( -64 1424 592 ) metal/metal_diamondplate_01 47.456177 48.403503 0 1 1
 }
 // brush 3
 {
-( -64 1424 584 ) ( -64 1296 584 ) ( -64 1296 576 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -64 1296 576 ) ( 48 1384 552 ) ( -64 1424 576 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -64 1296 576 ) ( 64 1296 552 ) ( 48 1384 552 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -64 1296 584 ) ( 64 1296 560 ) ( 64 1296 552 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -64 1424 584 ) ( 64 1296 560 ) ( -64 1296 584 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 48 1384 560 ) ( 64 1296 560 ) ( -64 1424 584 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 48 1384 552 ) ( 48 1384 560 ) ( -64 1424 584 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 64 1296 552 ) ( 64 1296 560 ) ( 48 1384 560 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 64 1296 560 ) ( 224 1440 528 ) ( 48 1392 560 ) metal/metal_diamondplate_01 33.503296 36.782654 0 1 1
+( 64 1296 560 ) ( 256 1376 528 ) ( 224 1440 528 ) metal/metal_diamondplate_01 0 41.803528 0 1 1
+( 48 1392 560 ) ( 256 1376 528 ) ( 64 1296 560 ) metal/metal_diamondplate_01 0 9.217773 0 1 1
+( 224 1440 528 ) ( 256 1376 528 ) ( 48 1392 560 ) metal/metal_diamondplate_01 63.475952 5.78479 0 1 1
 }
 // brush 4
 {
-( 64 1296 552 ) ( 48 1384 552 ) ( 48 1384 560 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 216 1432 520 ) ( 216 1432 528 ) ( 48 1384 560 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 64 1296 552 ) ( 216 1432 520 ) ( 48 1384 552 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 64 1296 552 ) ( 256 1376 520 ) ( 216 1432 520 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 48 1384 560 ) ( 256 1376 528 ) ( 64 1296 560 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 216 1432 528 ) ( 256 1376 528 ) ( 48 1384 560 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 64 1296 560 ) ( 256 1376 528 ) ( 256 1376 520 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 256 1376 520 ) ( 256 1376 528 ) ( 216 1432 528 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 336 1664 464 ) ( 320 1504 496 ) ( 368 1472 496 ) metal/metal_diamondplate_01 24 44.846924 0 1 1
+( 368 1472 496 ) ( 432 1664 464 ) ( 336 1664 464 ) metal/metal_diamondplate_01 31.089478 26.406494 0 1 1
+( 336 1664 464 ) ( 432 1664 464 ) ( 320 1504 496 ) metal/metal_diamondplate_01 0 48 0 1 1
+( 320 1504 496 ) ( 432 1664 464 ) ( 368 1472 496 ) metal/metal_diamondplate_01 61.788696 32.130127 0 1 1
 }
 // brush 5
 {
-( 336 1664 464 ) ( 312 1504 496 ) ( 312 1504 488 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 312 1504 496 ) ( 368 1472 496 ) ( 368 1472 488 ) metal/metal_diamondplate_01 24 0 0 1 1
-( 312 1504 488 ) ( 368 1472 488 ) ( 336 1664 456 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 368 1472 488 ) ( 432 1664 456 ) ( 336 1664 456 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 336 1664 464 ) ( 432 1664 464 ) ( 312 1504 496 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 432 1664 456 ) ( 432 1664 464 ) ( 336 1664 464 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 312 1504 496 ) ( 432 1664 464 ) ( 368 1472 496 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 368 1472 496 ) ( 432 1664 464 ) ( 432 1664 456 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 256 1376 528 ) ( 320 1504 496 ) ( 224 1440 528 ) metal/metal_diamondplate_01 31.231201 50.908936 0 1 1
+( 256 1376 528 ) ( 368 1472 496 ) ( 320 1504 496 ) metal/metal_diamondplate_01 0 33.018677 0 1 1
+( 320 1504 496 ) ( 368 1472 496 ) ( 224 1440 528 ) metal/metal_diamondplate_01 24 42.513977 0 1 1
+( 224 1440 528 ) ( 368 1472 496 ) ( 256 1376 528 ) metal/metal_diamondplate_01 0 63.460632 0 1 1
 }
 // brush 6
 {
-( 256 1376 520 ) ( 216 1432 520 ) ( 216 1432 528 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 312 1504 488 ) ( 312 1504 496 ) ( 216 1432 528 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 256 1376 520 ) ( 312 1504 488 ) ( 216 1432 520 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 256 1376 520 ) ( 368 1472 488 ) ( 312 1504 488 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 312 1504 496 ) ( 368 1472 496 ) ( 216 1432 528 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 216 1432 528 ) ( 368 1472 496 ) ( 256 1376 528 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 368 1472 488 ) ( 368 1472 496 ) ( 312 1504 496 ) metal/metal_diamondplate_01 24 0 0 1 1
-( 256 1376 528 ) ( 368 1472 496 ) ( 368 1472 488 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 336 1776 416 ) ( 336 1776 432 ) ( 336 1664 464 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 432 1792 416 ) ( 432 1792 432 ) ( 336 1776 432 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 336 1776 432 ) ( 432 1792 432 ) ( 336 1664 464 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 336 1664 464 ) ( 432 1664 464 ) ( 336 1776 416 ) metal/metal_diamondplate_01 0 48 0 1 1
+( 336 1664 464 ) ( 432 1792 432 ) ( 432 1664 464 ) metal/metal_diamondplate_01 0 48 0 1 1
+( 432 1664 464 ) ( 432 1792 416 ) ( 336 1776 416 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 432 1664 464 ) ( 432 1792 432 ) ( 432 1792 416 ) metal/metal_diamondplate_01 0 0 0 1 1
 }
 // brush 7
 {
-( 336 1776 424 ) ( 336 1664 464 ) ( 336 1664 456 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 432 1792 416 ) ( 432 1792 424 ) ( 336 1776 424 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 336 1776 424 ) ( 432 1792 424 ) ( 336 1664 464 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 336 1664 464 ) ( 432 1664 464 ) ( 432 1664 456 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 336 1664 456 ) ( 432 1664 456 ) ( 336 1776 416 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 336 1664 464 ) ( 432 1792 424 ) ( 432 1664 464 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 432 1664 456 ) ( 432 1792 416 ) ( 336 1776 416 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 432 1664 464 ) ( 432 1792 424 ) ( 432 1792 416 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 336 1776 416 ) ( 304 1936 384 ) ( 336 1776 432 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 304 1936 384 ) ( 368 1984 384 ) ( 336 1776 432 ) metal/metal_diamondplate_01 24 24.903442 0 1 1
+( 368 1984 384 ) ( 432 1792 432 ) ( 336 1776 432 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 336 1776 416 ) ( 432 1792 416 ) ( 304 1936 384 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 304 1936 384 ) ( 432 1792 416 ) ( 368 1984 384 ) metal/metal_diamondplate_01 24 39.62671 0 1 1
+( 336 1776 432 ) ( 432 1792 432 ) ( 432 1792 416 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 432 1792 416 ) ( 432 1792 432 ) ( 368 1984 384 ) metal/metal_diamondplate_01 0 0 0 1 1
 }
 // brush 8
 {
-( 336 1776 416 ) ( 296 1936 376 ) ( 296 1936 384 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 296 1936 384 ) ( 296 1936 376 ) ( 360 1976 376 ) metal/metal_diamondplate_01 24 0 0 1 1
-( 296 1936 384 ) ( 360 1976 384 ) ( 336 1776 424 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 360 1976 384 ) ( 432 1792 424 ) ( 336 1776 424 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 336 1776 416 ) ( 432 1792 416 ) ( 296 1936 376 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 296 1936 376 ) ( 432 1792 416 ) ( 360 1976 376 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 336 1776 424 ) ( 432 1792 424 ) ( 432 1792 416 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 432 1792 416 ) ( 432 1792 424 ) ( 360 1976 384 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 208 2032 352 ) ( 304 1936 384 ) ( 208 2032 336 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 256 2080 352 ) ( 208 2032 352 ) ( 208 2032 336 ) metal/metal_diamondplate_01 -48 0 0 1 1
+( 256 2080 352 ) ( 304 1936 384 ) ( 208 2032 352 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 256 2080 352 ) ( 368 1984 384 ) ( 304 1936 384 ) metal/metal_diamondplate_01 0 42.270508 0 1 1
+( 304 1936 384 ) ( 368 1984 384 ) ( 208 2032 336 ) metal/metal_diamondplate_01 0 30.612793 0 1 1
+( 208 2032 336 ) ( 368 1984 384 ) ( 256 2080 336 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 256 2080 336 ) ( 368 1984 384 ) ( 256 2080 352 ) metal/metal_diamondplate_01 32 0 0 1 1
 }
 // brush 9
 {
-( 208 2032 344 ) ( 296 1936 384 ) ( 296 1936 376 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 256 2080 344 ) ( 208 2032 344 ) ( 208 2032 336 ) metal/metal_diamondplate_01 -48 0 0 1 1
-( 256 2080 344 ) ( 296 1936 384 ) ( 208 2032 344 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 256 2080 344 ) ( 368 1984 384 ) ( 296 1936 384 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 296 1936 376 ) ( 368 1984 376 ) ( 208 2032 336 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 208 2032 336 ) ( 368 1984 376 ) ( 256 2080 336 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 296 1936 384 ) ( 368 1984 384 ) ( 368 1984 376 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 368 1984 376 ) ( 368 1984 384 ) ( 256 2080 344 ) metal/metal_diamondplate_01 32 0 0 1 1
+( 64 2112 304 ) ( 208 2032 352 ) ( 208 2032 336 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 64 2160 304 ) ( 208 2032 352 ) ( 64 2112 304 ) metal/metal_diamondplate_01 5.215088 16.461182 0 1 1
+( 64 2160 304 ) ( 256 2080 352 ) ( 208 2032 352 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 208 2032 336 ) ( 256 2080 336 ) ( 64 2112 304 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 64 2112 304 ) ( 256 2080 336 ) ( 64 2160 304 ) metal/metal_diamondplate_01 20.068848 32.189453 0 1 1
+( 256 2080 336 ) ( 256 2080 352 ) ( 64 2160 304 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 208 2032 352 ) ( 256 2080 352 ) ( 256 2080 336 ) metal/metal_diamondplate_01 -24 0 0 1 1
 }
 // brush 10
 {
-( 64 2160 304 ) ( 56 2104 304 ) ( 56 2104 296 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 56 2104 304 ) ( 208 2032 344 ) ( 208 2032 336 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 64 2160 304 ) ( 208 2032 344 ) ( 56 2104 304 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 64 2160 304 ) ( 256 2080 344 ) ( 208 2032 344 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 208 2032 336 ) ( 256 2080 336 ) ( 56 2104 296 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 56 2104 296 ) ( 256 2080 336 ) ( 64 2160 296 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 256 2080 336 ) ( 256 2080 344 ) ( 64 2160 304 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 208 2032 344 ) ( 256 2080 344 ) ( 256 2080 336 ) metal/metal_diamondplate_01 -24 0 0 1 1
+( -64 2160 272 ) ( -64 2112 272 ) ( -64 2112 256 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -64 2160 272 ) ( 64 2160 304 ) ( 64 2112 304 ) metal/metal_diamondplate_01 19.715332 32.179688 0 1 1
+( -64 2112 272 ) ( 64 2112 304 ) ( -64 2112 256 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -64 2160 256 ) ( 64 2160 304 ) ( -64 2160 272 ) metal/metal_diamondplate_01 0 0 0 1 1
+( 64 2112 304 ) ( 64 2160 304 ) ( -64 2160 256 ) metal/metal_diamondplate_01 19.161133 32.157227 0 1 1
 }
 // brush 11
 {
-( -56 2104 256 ) ( -64 2160 256 ) ( -64 2160 264 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -64 2160 264 ) ( 56 2104 304 ) ( -56 2104 264 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -64 2160 264 ) ( 64 2160 304 ) ( 56 2104 304 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -56 2104 264 ) ( 56 2104 304 ) ( 56 2104 296 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 64 2160 296 ) ( 64 2160 304 ) ( -64 2160 264 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -56 2104 256 ) ( 64 2160 296 ) ( -64 2160 256 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 56 2104 296 ) ( 64 2160 296 ) ( -56 2104 256 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 56 2104 304 ) ( 64 2160 304 ) ( 64 2160 296 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -64 2160 256 ) ( -64 2160 272 ) ( -256 2096 224 ) metal/metal_diamondplate_01 0 56 0 1 1
+( -256 2096 224 ) ( -64 2160 272 ) ( -64 2112 272 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -256 2096 224 ) ( -64 2112 272 ) ( -224 2048 224 ) metal/metal_diamondplate_01 48.526367 26.939453 0 1 1
+( -224 2048 224 ) ( -64 2160 256 ) ( -256 2096 224 ) metal/metal_diamondplate_01 2.2045898 37.527344 0 1 1
+( -64 2112 256 ) ( -64 2160 256 ) ( -224 2048 224 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -224 2048 224 ) ( -64 2112 272 ) ( -64 2112 256 ) metal/metal_diamondplate_01 0 56 0 1 1
+( -64 2112 272 ) ( -64 2160 272 ) ( -64 2160 256 ) metal/metal_diamondplate_01 0 56 0 1 1
 }
 // brush 12
 {
-( -216 2048 216 ) ( -256 2096 216 ) ( -256 2096 224 ) metal/metal_diamondplate_01 -48 56 0 1 1
-( -64 2160 256 ) ( -64 2160 264 ) ( -256 2096 224 ) metal/metal_diamondplate_01 0 56 0 1 1
-( -64 2160 264 ) ( -56 2104 264 ) ( -256 2096 224 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -256 2096 224 ) ( -56 2104 264 ) ( -216 2048 224 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -216 2048 216 ) ( -64 2160 256 ) ( -256 2096 216 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -216 2048 216 ) ( -56 2104 256 ) ( -64 2160 256 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -216 2048 224 ) ( -56 2104 264 ) ( -56 2104 256 ) metal/metal_diamondplate_01 0 56 0 1 1
-( -56 2104 256 ) ( -56 2104 264 ) ( -64 2160 264 ) metal/metal_diamondplate_01 0 56 0 1 1
+( -256 2096 224 ) ( -224 2048 224 ) ( -368 1968 192 ) metal/metal_diamondplate_01 50.210693 37.264893 0 1 1
+( -368 1968 192 ) ( -224 2048 224 ) ( -320 1952 192 ) metal/metal_diamondplate_01 -16 20.634277 0 1 1
+( -320 1952 192 ) ( -256 2096 224 ) ( -368 1968 192 ) metal/metal_diamondplate_01 45.92578 11.555542 0 1 1
+( -320 1952 192 ) ( -224 2048 224 ) ( -256 2096 224 ) metal/metal_diamondplate_01 12.795166 38.630127 0 1 1
 }
 // brush 13
 {
-( -256 2096 216 ) ( -256 2096 224 ) ( -368 1968 192 ) metal/metal_diamondplate_01 -120 56 0 1 1
-( -320 1944 184 ) ( -368 1968 184 ) ( -368 1968 192 ) metal/metal_diamondplate_01 112 56 0 1 1
-( -256 2096 224 ) ( -216 2048 224 ) ( -368 1968 192 ) metal/metal_diamondplate_01 0 8 0 1 1
-( -368 1968 192 ) ( -216 2048 224 ) ( -320 1944 192 ) metal/metal_diamondplate_01 0 8 0 1 1
-( -320 1944 184 ) ( -256 2096 216 ) ( -368 1968 184 ) metal/metal_diamondplate_01 0 8 0 1 1
-( -320 1944 184 ) ( -216 2048 216 ) ( -256 2096 216 ) metal/metal_diamondplate_01 0 8 0 1 1
-( -320 1944 192 ) ( -216 2048 224 ) ( -216 2048 216 ) metal/metal_diamondplate_01 -80 56 0 1 1
-( -216 2048 216 ) ( -216 2048 224 ) ( -256 2096 224 ) metal/metal_diamondplate_01 -104 56 0 1 1
+( -432 1808 160 ) ( -432 1680 128 ) ( -432 1680 120 ) metal/metal_diamondplate_01 16 56 0 1 1
+( -432 1680 128 ) ( -384 1680 128 ) ( -384 1680 120 ) metal/metal_diamondplate_01 -16 56 0 1 1
+( -432 1808 160 ) ( -384 1808 160 ) ( -384 1680 128 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -384 1680 120 ) ( -384 1808 152 ) ( -432 1808 152 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -384 1808 152 ) ( -384 1808 160 ) ( -432 1808 160 ) metal/metal_diamondplate_01 -16 56 0 1 1
+( -384 1680 128 ) ( -384 1808 160 ) ( -384 1808 152 ) metal/metal_diamondplate_01 -8 56 0 1 1
 }
 // brush 14
 {
-( -432 1808 160 ) ( -432 1680 128 ) ( -432 1680 120 ) metal/metal_diamondplate_01 -48 120 0 1 1
-( -432 1680 128 ) ( -384 1680 128 ) ( -384 1680 120 ) metal/metal_diamondplate_01 48 120 0 1 1
-( -432 1808 160 ) ( -384 1808 160 ) ( -384 1680 128 ) metal/metal_diamondplate_01 64 64 0 1 1
-( -384 1680 120 ) ( -384 1808 152 ) ( -432 1808 152 ) metal/metal_diamondplate_01 64 64 0 1 1
-( -384 1808 152 ) ( -384 1808 160 ) ( -432 1808 160 ) metal/metal_diamondplate_01 48 120 0 1 1
-( -384 1680 128 ) ( -384 1808 160 ) ( -384 1808 152 ) metal/metal_diamondplate_01 -8 120 0 1 1
+( -368 1968 192 ) ( -320 1952 192 ) ( -432 1808 160 ) metal/metal_diamondplate_01 48.533203 30.044434 0 1 1
+( -432 1808 160 ) ( -320 1952 192 ) ( -384 1808 160 ) metal/metal_diamondplate_01 24 8 0 1 1
+( -384 1808 160 ) ( -368 1968 192 ) ( -432 1808 160 ) metal/metal_diamondplate_01 19.199951 54.93335 0 1 1
+( -384 1808 160 ) ( -320 1952 192 ) ( -368 1968 192 ) metal/metal_diamondplate_01 24 56.916016 0 1 1
 }
 // brush 15
 {
-( -368 1968 184 ) ( -368 1968 192 ) ( -432 1808 160 ) metal/metal_diamondplate_01 -16 24 0 1 1
-( -368 1968 192 ) ( -320 1944 192 ) ( -432 1808 160 ) metal/metal_diamondplate_01 104 32 0 1 1
-( -384 1808 152 ) ( -432 1808 152 ) ( -432 1808 160 ) metal/metal_diamondplate_01 88 24 0 1 1
-( -432 1808 160 ) ( -320 1944 192 ) ( -384 1808 160 ) metal/metal_diamondplate_01 104 32 0 1 1
-( -384 1808 152 ) ( -368 1968 184 ) ( -432 1808 152 ) metal/metal_diamondplate_01 104 32 0 1 1
-( -384 1808 152 ) ( -320 1944 184 ) ( -368 1968 184 ) metal/metal_diamondplate_01 104 32 0 1 1
-( -320 1944 184 ) ( -320 1944 192 ) ( -368 1968 192 ) metal/metal_diamondplate_01 88 24 0 1 1
-( -384 1808 160 ) ( -320 1944 192 ) ( -320 1944 184 ) metal/metal_diamondplate_01 -104 24 0 1 1
+( -256 1360 64 ) ( -240 1488 64 ) ( -368 1488 96 ) metal/metal_diamondplate_01 39.164307 56.011475 0 1 1
+( -368 1488 96 ) ( -240 1488 64 ) ( -320 1536 96 ) metal/metal_diamondplate_01 11.259155 8.592529 0 1 1
+( -320 1536 96 ) ( -256 1360 64 ) ( -368 1488 96 ) metal/metal_diamondplate_01 18.144043 9.243652 0 1 1
+( -320 1536 96 ) ( -240 1488 64 ) ( -256 1360 64 ) metal/metal_diamondplate_01 52.442627 41.735962 0 1 1
 }
 // brush 16
 {
-( -320 1536 96 ) ( -360 1480 96 ) ( -360 1480 88 ) metal/metal_diamondplate_01 -48 56 0 1 1
-( -360 1480 96 ) ( -256 1360 64 ) ( -256 1360 56 ) metal/metal_diamondplate_01 -32 56 0 1 1
-( -256 1360 56 ) ( -240 1480 56 ) ( -360 1480 88 ) metal/metal_diamondplate_01 16 48 0 1 1
-( -360 1480 88 ) ( -240 1480 56 ) ( -320 1536 88 ) metal/metal_diamondplate_01 16 48 0 1 1
-( -320 1536 96 ) ( -256 1360 64 ) ( -360 1480 96 ) metal/metal_diamondplate_01 16 48 0 1 1
-( -320 1536 96 ) ( -240 1480 64 ) ( -256 1360 64 ) metal/metal_diamondplate_01 16 48 0 1 1
-( -240 1480 56 ) ( -240 1480 64 ) ( -320 1536 96 ) metal/metal_diamondplate_01 72 56 0 1 1
-( -256 1360 64 ) ( -240 1480 64 ) ( -240 1480 56 ) metal/metal_diamondplate_01 -48 56 0 1 1
+( -256 1360 64 ) ( -64 1296 32 ) ( -64 1296 16 ) metal/metal_diamondplate_01 192 16 0 1 1
+( -256 1360 64 ) ( -64 1424 16 ) ( -240 1488 64 ) metal/metal_diamondplate_01 62.399048 40.155396 0 1 1
+( -64 1296 16 ) ( -64 1424 16 ) ( -256 1360 64 ) metal/metal_diamondplate_01 0 16 0 1 1
+( -240 1488 64 ) ( -64 1296 32 ) ( -256 1360 64 ) metal/metal_diamondplate_01 26.049927 62.097656 0 1 1
+( -240 1488 64 ) ( -64 1424 32 ) ( -64 1296 32 ) metal/metal_diamondplate_01 0 16 0 1 1
+( -64 1424 16 ) ( -64 1424 32 ) ( -240 1488 64 ) metal/metal_diamondplate_01 0 16 0 1 1
+( -64 1296 32 ) ( -64 1424 32 ) ( -64 1424 16 ) metal/metal_diamondplate_01 -80 16 0 1 1
 }
 // brush 17
 {
-( -240 1480 64 ) ( -256 1360 64 ) ( -256 1360 56 ) metal/metal_diamondplate_01 -80 16 0 1 1
-( -256 1360 64 ) ( -64 1296 24 ) ( -64 1296 16 ) metal/metal_diamondplate_01 192 16 0 1 1
-( -256 1360 56 ) ( -64 1424 16 ) ( -240 1480 56 ) metal/metal_diamondplate_01 64 80 0 1 1
-( -64 1296 16 ) ( -64 1424 16 ) ( -256 1360 56 ) metal/metal_diamondplate_01 64 80 0 1 1
-( -240 1480 64 ) ( -64 1296 24 ) ( -256 1360 64 ) metal/metal_diamondplate_01 64 80 0 1 1
-( -240 1480 64 ) ( -64 1424 24 ) ( -64 1296 24 ) metal/metal_diamondplate_01 64 80 0 1 1
-( -64 1424 16 ) ( -64 1424 24 ) ( -240 1480 64 ) metal/metal_diamondplate_01 192 16 0 1 1
-( -64 1296 24 ) ( -64 1424 24 ) ( -64 1424 16 ) metal/metal_diamondplate_01 -80 16 0 1 1
+( -64 1424 32 ) ( -64 1296 32 ) ( -64 1296 16 ) metal/metal_diamondplate_01 -16 0 0 1 1
+( 32 1296 -16 ) ( 32 1424 -16 ) ( -64 1424 16 ) metal/metal_diamondplate_01 0 16 0 1 1
+( -64 1296 32 ) ( 32 1296 -16 ) ( -64 1296 16 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -64 1424 16 ) ( 32 1424 -16 ) ( -64 1424 32 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -64 1424 32 ) ( 32 1424 -16 ) ( 32 1296 -16 ) metal/metal_diamondplate_01 0 16 0 1 1
 }
 // brush 18
 {
-( -64 1424 24 ) ( -64 1296 24 ) ( -64 1296 16 ) metal/metal_diamondplate_01 -16 0 0 1 1
-( 32 1296 -16 ) ( 32 1424 -16 ) ( -64 1424 16 ) metal/metal_diamondplate_01 0 16 0 1 1
-( -64 1296 24 ) ( 32 1296 -8 ) ( 32 1296 -16 ) metal/metal_diamondplate_01 0 0 0 1 1
-( 32 1424 -16 ) ( 32 1424 -8 ) ( -64 1424 24 ) metal/metal_diamondplate_01 0 0 0 1 1
-( -64 1424 24 ) ( 32 1424 -8 ) ( 32 1296 -8 ) metal/metal_diamondplate_01 0 16 0 1 1
-( 32 1296 -8 ) ( 32 1424 -8 ) ( 32 1424 -16 ) metal/metal_diamondplate_01 -16 0 0 1 1
+( -368 1488 96 ) ( -320 1536 96 ) ( -432 1680 128 ) metal/metal_diamondplate_01 55.46875 6.0286865 0 1 1
+( -384 1680 128 ) ( -368 1488 96 ) ( -432 1680 128 ) metal/metal_diamondplate_01 58.913574 46.96167 0 1 1
+( -432 1680 128 ) ( -320 1536 96 ) ( -384 1680 128 ) metal/metal_diamondplate_01 8 40 0 1 1
+( -384 1680 128 ) ( -320 1536 96 ) ( -368 1488 96 ) metal/metal_diamondplate_01 9.096191 59.668335 0 1 1
 }
 // brush 19
 {
-( -432 1680 128 ) ( -360 1480 96 ) ( -360 1480 88 ) metal/metal_diamondplate_01 -104 88 0 1 1
-( -360 1480 88 ) ( -320 1536 88 ) ( -432 1680 120 ) metal/metal_diamondplate_01 88 120 0 1 1
-( -384 1680 128 ) ( -360 1480 96 ) ( -432 1680 128 ) metal/metal_diamondplate_01 88 120 0 1 1
-( -432 1680 120 ) ( -320 1536 88 ) ( -384 1680 120 ) metal/metal_diamondplate_01 88 120 0 1 1
-( -384 1680 128 ) ( -432 1680 128 ) ( -432 1680 120 ) metal/metal_diamondplate_01 72 88 0 1 1
-( -384 1680 128 ) ( -320 1536 96 ) ( -360 1480 96 ) metal/metal_diamondplate_01 88 120 0 1 1
-( -360 1480 96 ) ( -320 1536 96 ) ( -320 1536 88 ) metal/metal_diamondplate_01 -120 88 0 1 1
-( -320 1536 88 ) ( -320 1536 96 ) ( -384 1680 128 ) metal/metal_diamondplate_01 -64 88 0 1 1
+( -432 1808 752 ) ( -432 1680 720 ) ( -432 1680 712 ) metal/metal_diamondplate_01 16 8 0 1 1
+( -432 1680 720 ) ( -352 1680 720 ) ( -352 1680 712 ) metal/metal_diamondplate_01 -16 8 0 1 1
+( -432 1808 752 ) ( -352 1808 752 ) ( -352 1680 720 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -352 1680 712 ) ( -352 1808 744 ) ( -432 1808 744 ) metal/metal_diamondplate_01 0 0 0 1 1
+( -352 1808 744 ) ( -352 1808 752 ) ( -432 1808 752 ) metal/metal_diamondplate_01 -16 8 0 1 1
+( -352 1680 720 ) ( -352 1808 752 ) ( -352 1808 744 ) metal/metal_diamondplate_01 -8 8 0 1 1
+}
+// brush 20
+{
+( -368 1488 696 ) ( -432 1680 712 ) ( -432 1680 720 ) metal/metal_diamondplate_01 16 40 0 1 1
+( -368 1488 696 ) ( -272 1568 680 ) ( -432 1680 712 ) metal/metal_diamondplate_01 -48 0 0 1 1
+( -432 1680 720 ) ( -352 1680 720 ) ( -368 1488 704 ) metal/metal_diamondplate_01 -48 0 0 1 1
+( -432 1680 712 ) ( -272 1568 680 ) ( -352 1680 712 ) metal/metal_diamondplate_01 -48 0 0 1 1
+( -352 1680 712 ) ( -352 1680 720 ) ( -432 1680 720 ) metal/metal_diamondplate_01 0 40 0 1 1
+( -352 1680 720 ) ( -272 1568 688 ) ( -368 1488 704 ) metal/metal_diamondplate_01 -48 0 0 1 1
+( -368 1488 704 ) ( -272 1568 688 ) ( -272 1568 680 ) metal/metal_diamondplate_01 0 40 0 1 1
+( -272 1568 680 ) ( -272 1568 688 ) ( -352 1680 720 ) metal/metal_diamondplate_01 56 40 0 1 1
+}
+// brush 21
+{
+( -368 1968 784 ) ( -432 1808 752 ) ( -432 1808 744 ) metal/metal_diamondplate_01 -48 40 0 1 1
+( -368 1968 784 ) ( -256 1952 784 ) ( -432 1808 752 ) metal/metal_diamondplate_01 -48 0 0 1 1
+( -432 1808 752 ) ( -352 1808 752 ) ( -352 1808 744 ) metal/metal_diamondplate_01 0 40 0 1 1
+( -432 1808 752 ) ( -256 1952 784 ) ( -352 1808 752 ) metal/metal_diamondplate_01 -48 0 0 1 1
+( -432 1808 744 ) ( -352 1808 744 ) ( -368 1968 776 ) metal/metal_diamondplate_01 -48 0 0 1 1
+( -352 1808 744 ) ( -256 1952 776 ) ( -368 1968 776 ) metal/metal_diamondplate_01 -48 0 0 1 1
+( -256 1952 776 ) ( -256 1952 784 ) ( -368 1968 784 ) metal/metal_diamondplate_01 0 40 0 1 1
+( -352 1808 752 ) ( -256 1952 784 ) ( -256 1952 776 ) metal/metal_diamondplate_01 -8 40 0 1 1
+}
+// brush 22
+{
+( -256 2096 824 ) ( -256 2096 832 ) ( -368 1968 784 ) metal/metal_diamondplate_01 -16 8 0 1 1
+( -256 2096 832 ) ( -144 2048 839 ) ( -368 1968 784 ) metal/metal_diamondplate_01 -16 16 0 1 1
+( -256 1952 776 ) ( -368 1968 776 ) ( -368 1968 784 ) metal/metal_diamondplate_01 0 8 0 1 1
+( -368 1968 784 ) ( -144 2048 839 ) ( -256 1952 784 ) metal/metal_diamondplate_01 -16 16 0 1 1
+( -256 1952 776 ) ( -256 2096 824 ) ( -368 1968 776 ) metal/metal_diamondplate_01 -16 16 0 1 1
+( -256 1952 776 ) ( -144 2048 831 ) ( -256 2096 824 ) metal/metal_diamondplate_01 -16 16 0 1 1
+( -144 2048 831 ) ( -144 2048 839 ) ( -256 2096 832 ) metal/metal_diamondplate_01 32 8 0 1 1
+( -256 1952 784 ) ( -144 2048 839 ) ( -144 2048 831 ) metal/metal_diamondplate_01 24 8 0 1 1
+}
+// brush 23
+{
+( -40 1280 824 ) ( -40 1280 832 ) ( -40 1264 824 ) metal/metal_diamondplate_04 32 8 0 1 1
+( -40 1280 832 ) ( 40 1280 832 ) ( 40 1264 824 ) metal/metal_diamondplate_04 0 -32 0 1 1
+( 40 1264 824 ) ( 40 1280 824 ) ( -40 1280 824 ) metal/metal_diamondplate_04 0 -32 0 1 1
+( 40 1280 824 ) ( 40 1280 832 ) ( -40 1280 832 ) metal/metal_diamondplate_04 0 8 0 1 1
+( 40 1264 824 ) ( 40 1280 832 ) ( 40 1280 824 ) metal/metal_diamondplate_04 32 8 0 1 1
 }
 }
 // entity 32

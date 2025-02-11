@@ -107,7 +107,6 @@ properties/20/replication_mode = 1
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_msqe6"]
 auto_exposure_enabled = true
-auto_exposure_speed = 64.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xjel"]
 size = Vector3(1.72325, 1.55173, 3.13662)

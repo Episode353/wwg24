@@ -1,4 +1,4 @@
-res://player.tscn
+res://world.tscn
 res://models/grenade/grenade_proj.gd
 res://models/the_power/fireball/fireball.gdshader
 res://manadrop.gd
@@ -11,5 +11,7 @@ res://sys/weapon_resources/shotgun.tres
 res://sys/weapon_resources/keyboard.tres
 res://CollisionScript.gd
 res://mat/grey_grid_3.tres
+res://sys/shaders/player_vision_02.gdshader
+res://sys/shaders/player_vision.gdshader
 res://entities/world/load/map.gd
-res://world.tscn
+res://player.tscn
