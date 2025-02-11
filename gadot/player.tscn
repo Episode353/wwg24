@@ -1,4 +1,4 @@
-[gd_scene load_steps=185 format=4 uid="uid://xcjrjq5cbn7y"]
+[gd_scene load_steps=186 format=4 uid="uid://xcjrjq5cbn7y"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_ebgxs"]
 [ext_resource type="Script" path="res://main_camera.gd" id="2_38wgo"]
@@ -104,6 +104,10 @@ properties/19/replication_mode = 1
 properties/20/path = NodePath("neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher:rotation")
 properties/20/spawn = true
 properties/20/replication_mode = 1
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_msqe6"]
+auto_exposure_enabled = true
+auto_exposure_speed = 64.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xjel"]
 size = Vector3(1.72325, 1.55173, 3.13662)
@@ -4202,7 +4206,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 [node name="main_camera" type="Camera3D" parent="neck/head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00521731, 0.00207496, 0.00310946)
 cull_mask = 1
-fov = 90.0
+attributes = SubResource("CameraAttributesPhysical_msqe6")
 script = ExtResource("2_38wgo")
 
 [node name="area_collision" type="Area3D" parent="neck/head/main_camera"]

@@ -1,0 +1,15 @@
+res://player.tscn
+res://models/grenade/grenade_proj.gd
+res://models/the_power/fireball/fireball.gdshader
+res://manadrop.gd
+res://shaders/manadrop.gdshader
+res://interaction_ray.gd
+res://sys/weapon_resources/ak47.tres
+res://sys/weapon_resources/knife.tres
+res://sys/weapon_resources/hands.tres
+res://sys/weapon_resources/shotgun.tres
+res://sys/weapon_resources/keyboard.tres
+res://CollisionScript.gd
+res://mat/grey_grid_3.tres
+res://entities/world/load/map.gd
+res://world.tscn

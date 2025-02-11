@@ -8,33 +8,20 @@
 [ext_resource type="Script" path="res://crosshair.gd" id="4_5hrlb"]
 [ext_resource type="PackedScene" uid="uid://c1lfio6su6m7o" path="res://menufadein.tscn" id="7_bypg1"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u5pdl"]
-sun_angle_max = 60.85
-sun_curve = 0.0989632
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_clnmc"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_o7fep"]
-sky_material = SubResource("ProceduralSkyMaterial_u5pdl")
+[sub_resource type="Sky" id="Sky_ayvap"]
+sky_material = SubResource("ProceduralSkyMaterial_clnmc")
 
-[sub_resource type="Environment" id="Environment_6knbf"]
+[sub_resource type="Environment" id="Environment_kwrsd"]
 background_mode = 2
-background_energy_multiplier = 1.69
-sky = SubResource("Sky_o7fep")
-ambient_light_source = 3
-ambient_light_color = Color(0.721221, 1, 0.995472, 1)
-ambient_light_sky_contribution = 0.86
-ambient_light_energy = 1.5
-tonemap_white = 16.0
-ssr_depth_tolerance = 22.71
-glow_normalized = true
-glow_intensity = 0.27
-glow_strength = 1.22
-glow_bloom = 0.22
-glow_blend_mode = 0
-glow_hdr_threshold = 0.74
-fog_light_energy = 0.06
-adjustment_enabled = true
-adjustment_contrast = 1.09
-adjustment_saturation = 1.08
+sky = SubResource("Sky_ayvap")
+tonemap_mode = 3
+tonemap_exposure = 0.55
+glow_enabled = true
+volumetric_fog_density = 0.005
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkytg"]
 bg_color = Color(0.678431, 0.0980392, 0.772549, 1)
@@ -53,15 +40,15 @@ bg_color = Color(0.00392157, 1, 0, 1)
 [node name="World" type="Node" groups=["world_root"]]
 script = ExtResource("1_6tkge")
 
-[node name="DirectionalLight3D (Orange)" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-light_color = Color(1, 0.777837, 0.558944, 1)
-light_energy = 2.051
-light_bake_mode = 1
-shadow_enabled = true
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_6knbf")
+environment = SubResource("Environment_kwrsd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(1, 1, 0.670588, 1)
+shadow_enabled = true
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 8192.0
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player.tscn")
@@ -214,6 +201,7 @@ navigation_mesh = SubResource("NavigationMesh_p4c1t")
 [node name="TBLoader" type="TBLoader" parent="NavigationRegion3D"]
 map_resource = "res://tbmaps/avery.map"
 option_skip_hidden_layers = false
+option_filter_nearest = true
 
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
 [connection signal="pressed" from="CanvasLayer/Pause Menu/Button" to="." method="_on_button_pressed"]
