@@ -1,83 +1,91 @@
-shader_type spatial;
+/*
+	Custom Crosshair Shader by: Quot3e
+	https://github.com/Quot3e/godot-crosshair-shader
+	
+	MIT License
+*/
 
-render_mode cull_disabled, unshaded;
-uniform sampler2D depth_texture : source_color, hint_depth_texture;
-uniform sampler2D screen_texture : source_color, hint_screen_texture, repeat_disable, filter_nearest;
+shader_type canvas_item;
 
-uniform bool enable_fog = true; 
-uniform vec3 fog_color : source_color;
-uniform vec3 noise_color : source_color;
-uniform float fog_distance : hint_range(1, 6000) = 100;
-uniform float fog_fade_range : hint_range(1, 6000) = 50;
-uniform bool enable_noise = true;
-uniform float noise_time_fac : hint_range(0.1, 10) = 4;
-uniform bool enable_color_limitation = true;
-uniform int color_levels : hint_range(2, 256) = 32;
-uniform bool enable_dithering = true;
-uniform float dither_strength : hint_range(0.0, 1.0) = 0.3; 
+uniform bool is_symmetric = true;
+uniform vec2 center_offset;
+uniform vec4 line_color : source_color = vec4(1.0);
+uniform vec4 line_outline_color : source_color = vec4(vec3(0.0), 1);
+uniform vec2 line_length = vec2(20.0);
+uniform vec2 line_thickness = vec2(1.0);
+uniform vec2 line_offset = vec2(10.0);
+uniform vec2 line_outline_thickness = vec2(1.0);
 
-float hashOld12(vec2 p){
-	return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453 + (sin((TIME)) / noise_time_fac)) ;
+uniform vec4 dot_color : source_color = vec4(1.0);
+uniform vec4 dot_outline_color : source_color= vec4(vec3(0.0), 1.0);
+uniform float dot_size = 2.0;
+uniform float dot_outline_thickness = 1.0;
+
+float center_line(float value, float thickness) {
+	return step(distance(0.5, value), thickness);
 }
 
-vec3 color_mix(vec3 a, vec3 b, float f ){
-	f = clamp(abs(f), 0,1);
-	float invf = 1.0 - f;
-	return (a*f) + (b*invf);
-}
-
-vec3 quantize_color(vec3 color, int levels) {
-    float quantizer = float(levels - 1);
-    return floor(color * quantizer + 0.5) / quantizer;
-}
-
-float dither(vec2 position, float brightness) {
-    int x = int(mod(position.x, 4.0));
-    int y = int(mod(position.y, 4.0));
-    int index = x + y * 4;
-    float dithering[16] = float[](
-        0.0, 0.5, 0.125, 0.625,
-        0.75, 0.25, 0.875, 0.375,
-        0.1875, 0.6875, 0.0625, 0.5625,
-        0.9375, 0.4375, 1.0, 0.8125
-    );
-    float threshold = dithering[index];
-    return brightness < threshold ? 0.0 : 1.0;
-}
-
-void vertex() {
-  POSITION = vec4(VERTEX.xy, 1.0, 1.0);
-}
-
-void fragment(){
-	vec3 screen_color = texture(screen_texture, SCREEN_UV).rgb;
-	vec2 screen_coords = SCREEN_UV * 2.0 - 1.0;
-	float depth = texture(depth_texture, SCREEN_UV).x;
-	vec3 ndc = vec3(screen_coords, depth);
+float crosshair_segment(float thickness, float offset, float range, float outline, vec2 pixel, vec2 uv){
 	
-	vec4 view = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
-	view.xyz /= view.w;
+	thickness = round(thickness);
+	offset = round(offset);
+	range = round(range);
+	outline =  round(outline);
 	
-	float linear_depth = -view.z;
-	
-	float depth_mask_inv = clamp((linear_depth - (fog_distance - fog_fade_range)) / fog_fade_range, 0.0, 1.0);
-	
-	vec3 final_color = screen_color;
-	
-	if (enable_noise){
-		vec3 twocolornoise = color_mix(fog_color, noise_color, hashOld12(screen_coords));
-		final_color = color_mix(twocolornoise, final_color, depth_mask_inv);
+	if (is_symmetric){
+		thickness = thickness * 2.0 - 1.0;
+		offset = offset * 2.0 - 1.0;
+		range = range * 2.0;
+		outline =  outline * 2.0;
 	}
-	if (enable_fog){
-		final_color = color_mix(fog_color, final_color, depth_mask_inv);
+	
+	float line = center_line(uv.x, (thickness + outline) * pixel.x);
+	line *= 1.0 - center_line(uv.y, (offset - outline) * pixel.y);
+	line *= center_line(uv.y, (range + offset + outline) * pixel.y);
+	return line;
+}
+
+float center_square(float size, float outline, vec2 pixel, vec2 uv){
+	size = round(size);
+	outline = round(outline);
+	
+	if (is_symmetric){
+		size = size * 2.0 - 1.0;
+		outline = outline * 2.0;
 	}
-	if (enable_color_limitation){
-		final_color = quantize_color(final_color, color_levels);
-	}
-	if (enable_dithering){
-		float brightness = dot(final_color, vec3(0.3, 0.59, 0.11));
-		brightness += dither_strength * (dither(FRAGCOORD.xy, brightness) - 0.5);
-		final_color *= (1.0 + dither_strength * (dither(FRAGCOORD.xy, brightness) - 0.5));
-	}
-	ALBEDO = final_color;
+	
+	float center_dot = center_line(uv.x, (size + outline) * pixel.x);
+	center_dot *= center_line(uv.y, (size + outline) * pixel.y);
+	return center_dot;
+}
+
+vec4 blend_layers(vec4 bottom, vec4 top) {
+	float final_alpha = top.a + bottom.a * (1.0 - top.a);
+	float safe_div = step(0.0001, final_alpha);
+	vec3 final_color = (top.rgb * top.a + bottom.rgb * bottom.a * (1.0 - top.a)) / max(final_alpha, 0.0001);
+	return vec4(final_color, final_alpha * safe_div);
+}
+
+void fragment() {
+	vec2 uv = FRAGCOORD.xy * SCREEN_PIXEL_SIZE + center_offset;
+	vec2 pixel = SCREEN_PIXEL_SIZE/2.0;
+	
+	float line_x = crosshair_segment(line_thickness.x, line_offset.x, line_length.x, 0.0, pixel.yx, uv.yx);
+	float line_y = crosshair_segment(line_thickness.y, line_offset.y, line_length.y, 0.0, pixel, uv);
+	
+	float line_outline_x = crosshair_segment(line_thickness.x, line_offset.x, line_length.x, line_outline_thickness.x, pixel.yx, uv.yx);
+	float line_outline_y = crosshair_segment(line_thickness.y, line_offset.y, line_length.y, line_outline_thickness.y, pixel, uv);
+	
+	float center_dot = center_square(dot_size, 0.0, pixel, uv);
+	float center_dot_outline = center_square(dot_size, dot_outline_thickness, pixel, uv);
+	
+	vec4 center_dot_layer = center_dot * dot_color + (center_dot_outline - center_dot) * dot_outline_color;
+	vec4 line_layer1 = line_x * line_color + (line_outline_x - line_x) * line_outline_color;
+	vec4 line_layer2 = line_y * line_color + (line_outline_y - line_y) * line_outline_color;
+	
+	vec4 blended_result = center_dot_layer;
+	blended_result = blend_layers(blended_result, line_layer1);
+	blended_result = blend_layers(blended_result, line_layer2);
+	
+	COLOR = blended_result;
 }

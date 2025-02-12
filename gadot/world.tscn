@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://sys/ServerConnectionHandler.gd" id="2_hna3u"]
 [ext_resource type="Script" path="res://CanvasLayer.gd" id="2_sgno6"]
 [ext_resource type="Script" path="res://FPSCount.gd" id="4_04ai0"]
+[ext_resource type="Shader" path="res://sys/shaders/player_vision_02.gdshader" id="4_y0pat"]
 [ext_resource type="PackedScene" uid="uid://c1lfio6su6m7o" path="res://menufadein.tscn" id="7_bypg1"]
-[ext_resource type="Shader" path="res://sys/shaders/player_vision.gdshader" id="8_44c0t"]
 
 [sub_resource type="Gradient" id="Gradient_q3jm3"]
 offsets = PackedFloat32Array(0.0955679, 0.142659, 0.265928, 0.33518, 1)
@@ -42,8 +42,19 @@ bg_color = Color(1, 0.117647, 0, 1)
 bg_color = Color(0.00392157, 1, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2q5a"]
-shader = ExtResource("8_44c0t")
-shader_parameter/quantizeStrength = 32.0
+shader = ExtResource("4_y0pat")
+shader_parameter/is_symmetric = true
+shader_parameter/center_offset = null
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_outline_color = Color(0, 0, 0, 1)
+shader_parameter/line_length = Vector2(20, 20)
+shader_parameter/line_thickness = Vector2(1, 1)
+shader_parameter/line_offset = Vector2(10, 10)
+shader_parameter/line_outline_thickness = Vector2(1, 1)
+shader_parameter/dot_color = Color(1, 1, 1, 1)
+shader_parameter/dot_outline_color = Color(0, 0, 0, 1)
+shader_parameter/dot_size = 2.0
+shader_parameter/dot_outline_thickness = 1.0
 
 [sub_resource type="Gradient" id="Gradient_t8x7k"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
@@ -115,6 +126,20 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_vcby2")
 value = 100.0
 
 [node name="Color Quantize" type="TextureRect" parent="CanvasLayer/HUD"]
+light_mask = 1023
+visibility_layer = 1023
+z_as_relative = false
+material = SubResource("ShaderMaterial_g2q5a")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_ehpd1")
+
+[node name="Crosshair" type="TextureRect" parent="CanvasLayer/HUD"]
 light_mask = 1023
 visibility_layer = 1023
 z_as_relative = false

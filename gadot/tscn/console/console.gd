@@ -28,8 +28,10 @@ var commands = {
 		"args": 0},
 	"add_bot": {"func": func() -> String:
 		var world = get_tree().get_root().get_node("World")
+		var players = get_tree().get_nodes_in_group("players")
+		var player = players[0]
 		if world:
-			world.rpc("add_bot")
+			world.rpc("add_bot", Vector3.ZERO)
 			return "Bot added successfully."
 		else:
 			return "Error: 'World' node not found."

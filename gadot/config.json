@@ -1,7 +1,7 @@
 {
 	"camera_fov": 85,
-	"fullscreen": true,
-	"master_volume": 0.5,
+	"fullscreen": false,
+	"master_volume": 0,
 	"max_fps": 99999999,
 	"mouse_sensitivity": 1.5,
 	"show_host_popup": false,

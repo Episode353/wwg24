@@ -130,32 +130,49 @@ func load_map(load_map_name: String):
 @rpc("any_peer", "call_local")
 func rebuild_map():
 	tb_loader.build_meshes()
+	$NavigationRegion3D.bake_navigation_mesh()
+	# Remove all bots from the scene.
+	for child in get_children():
+		# Check if the child has an "is_bot" property and if it's true.
+		# (Bots created in add_bot() have is_bot = true.)
+		if child.has_method("get") and child.get("is_bot") == true:
+			child.queue_free()
+
 	
+	
+
+var next_bot_id: int = -1
+
 @rpc("any_peer", "call_local")
-func add_bot():
-	# Preload and instantiate the player scene
+func add_bot(disable_respawn, spawn_position: Vector3 = Vector3.ZERO):
 	var Player = preload("res://player.tscn")
 	var bot_instance = Player.instantiate()
-	var bot_peer_id = multiplayer.get_unique_id()
-	# Give the bot a unique name (for example, using a timestamp)
+	print(spawn_position)
+
+	# Assign a unique bot ID from our counter.
+	var bot_peer_id = next_bot_id
+	next_bot_id -= 1  # Prepare the next unique ID
+
 	bot_instance.name = str(bot_peer_id)
-	
-	# Set the is_bot variable to true
 	bot_instance.is_bot = true
 	bot_instance.set_multiplayer_authority(bot_peer_id)
 	bot_instance.peer_id = bot_peer_id
-	# Spawn the bot at a spawn point
-	spawn_player(bot_instance)
-	
-	# Add the bot to the scene tree
+	bot_instance.add_to_group("bots")  # <-- Add the bot to a "bots" group
+
+	if spawn_position == Vector3.ZERO:
+		spawn_player(bot_instance)
+	else:
+		bot_instance.global_transform.origin = spawn_position
+		bot_instance.disable_respawn = disable_respawn
+		if bot_instance is RigidBody3D:
+			bot_instance.linear_velocity = Vector3.ZERO
+			bot_instance.angular_velocity = Vector3.ZERO
+			bot_instance.velocity = Vector3.ZERO
+
 	add_child(bot_instance)
-	print("Bot added to the scene at position: ", bot_instance.global_transform.origin)
-	
-	# If the bot is the authority (e.g. in offline mode or if running in a trusted environment),
-	# connect its signals for HUD updates (health and mana)
-	if bot_instance.is_multiplayer_authority():
-		bot_instance.health_changed.connect(update_health_bar)
-		bot_instance.mana_changed.connect(update_mana_bar)
+	print("Bot added to the scene with unique id: ", bot_peer_id, " at position: ", bot_instance.global_transform.origin)
+
+
 
 
 

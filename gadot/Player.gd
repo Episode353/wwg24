@@ -10,6 +10,7 @@ signal mana_changed(mana_value)
 # Player Nodes
 
 var is_bot = false
+var disable_respawn = false
 
 @onready var head = $neck/head
 @onready var neck = $neck
@@ -456,6 +457,8 @@ func update_velocity_air(wish_dir: Vector3, delta):
 	
 
 func player_death():
+	if disable_respawn:
+		queue_free()
 	interaction_ray.release_grabbed_object()
 	var world_pos = global_transform.origin
 	# Reset momentum
@@ -722,13 +725,23 @@ func rpc_play_footstep(is_left: bool) -> void:
 var BOT_SPEED = MAX_VELOCITY_GROUND
 
 func bot_physics_process(delta):
-	if not is_inside_tree() or not multiplayer.has_multiplayer_peer() or not is_multiplayer_authority():
-		find_objects()
-		var current_location = global_transform.origin
-		var next_location = nav_agent.get_next_path_position()
-		var new_velocity = (next_location - current_location).normalized() * BOT_SPEED
-		velocity = velocity.move_toward(new_velocity, .25)
-		move_and_slide()
+	# This code only runs on the authority (host)
+	find_objects()
+	var current_location = global_transform.origin
+	var next_location = nav_agent.get_next_path_position()
+	var new_velocity = (next_location - current_location).normalized() * BOT_SPEED
+	velocity = velocity.move_toward(new_velocity, 0.25)
+	move_and_slide()
+	
+	# Send the updated transform to clients.
+	rpc("sync_bot_transform", global_transform)
+
+@rpc("any_peer", "call_local")
+func sync_bot_transform(new_transform: Transform3D) -> void:
+	# On remote peers, update the bot’s transform with the one received from the host.
+	global_transform = new_transform
+
+
 
 func update_target_location(target_location):
 	nav_agent.set_target_position(target_location)
@@ -740,9 +753,12 @@ func find_objects():
 	var min_distance = INF  # Start with a very high value.
 	var my_position = global_transform.origin
 
-	# Iterate over all players to find the closest one.
 	for player in players:
-		# Skip self to avoid counting the current player.
+		# Only process nodes of the expected type.
+		if not (player is CharacterBody3D):
+			continue
+
+		# Now it's safe to check for the property.
 		if player.is_bot:
 			continue
 
@@ -752,6 +768,7 @@ func find_objects():
 		if distance < min_distance:
 			min_distance = distance
 			closest_player = player
+
 
 	# If a closest player was found, update the navigation target.
 	if closest_player:

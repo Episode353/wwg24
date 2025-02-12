@@ -69,3 +69,8 @@
     teleport_size(string) : "Teleport Size" : "5 5 5"
     target_position(string) : "Target Position" : "0 0 0"
 ]
+
+@PointClass size(-8 -8 -8, 8 8 8) color(255 0 255) = bot_spawn : "Enemy Bot Spawn" [
+    use_spawn_position(bool) : "Use Spawn Position" : 1 : "If 1, the bot spawns at the given spawn_position; if 0, it spawns at the entity's location."
+    disable_respawn(bool) : "Use Spawn Position" : 1 : "If 1, the bot will not resapwn; if 0, the bot will respawn"
+]
