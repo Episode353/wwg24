@@ -31,7 +31,7 @@ var commands = {
 		var players = get_tree().get_nodes_in_group("players")
 		var player = players[0]
 		if world:
-			world.rpc("add_bot", Vector3.ZERO)
+			world.rpc("add_bot", "0 0 0", true, "100", "ak47", false, Vector3.ZERO)
 			return "Bot added successfully."
 		else:
 			return "Error: 'World' node not found."

@@ -1,4 +1,4 @@
-[gd_scene load_steps=187 format=4 uid="uid://xcjrjq5cbn7y"]
+[gd_scene load_steps=186 format=4 uid="uid://xcjrjq5cbn7y"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_ebgxs"]
 [ext_resource type="Script" path="res://main_camera.gd" id="2_38wgo"]
@@ -34,7 +34,6 @@
 [ext_resource type="Script" path="res://viewmodel_camera.gd" id="28_p4825"]
 [ext_resource type="Script" path="res://display_health.gd" id="30_jkaaj"]
 [ext_resource type="AudioStream" uid="uid://h6pkf0tevw2m" path="res://sounds/player/hurt.wav" id="34_jjjwd"]
-[ext_resource type="Script" path="res://bot_logic.gd" id="35_oump4"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5mehu"]
 radius = 0.519
@@ -4525,14 +4524,6 @@ font_size = 64
 outline_size = 32
 script = ExtResource("28_ip48q")
 
-[node name="Bot_Label" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 0)
-visible = false
-billboard = 2
-text = "(Bot)"
-font_size = 64
-outline_size = 32
-
 [node name="display_health" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13091, 0)
 pixel_size = 0.002
@@ -4595,9 +4586,6 @@ volume_db = -10.0
 max_db = 0.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-
-[node name="Bot_Logic" type="Node3D" parent="."]
-script = ExtResource("35_oump4")
 
 [connection signal="timeout" from="neck/head/main_camera/area_collision/Timer" to="neck/head/main_camera/Weapons_Manager" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="neck/head/main_camera/Weapons_Manager/FPS_RIG/AnimationPlayer" to="neck/head/main_camera/Weapons_Manager" method="_on_animation_player_animation_finished"]

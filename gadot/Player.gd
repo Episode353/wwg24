@@ -8,9 +8,18 @@ signal mana_changed(mana_value)
 @onready var player = $"."
 
 # Player Nodes
-
+# ============================================================================
+# Bot Variables
+# ============================================================================
+var BOT_SPEED = 8.0
+var shoot_cooldown_time := 2.0
+var shoot_timer := 0.0
 var is_bot = false
 var disable_respawn = false
+var bot_starter_weapon = "rocket_launcher"
+var bot_weapon_range = "25"
+var use_spawn_position = false
+var bot_origin = "0 0 0"
 
 @onready var head = $neck/head
 @onready var neck = $neck
@@ -213,8 +222,6 @@ func _unhandled_input(event):
 
 
 func _physics_process(delta):
-	if is_bot:
-		bot_physics_process(delta)
 	if not is_multiplayer_authority():
 		return
 		
@@ -465,8 +472,8 @@ func player_death():
 	velocity = Vector3.ZERO
 	# Reset ammo for all weapons
 
-	$neck/head/main_camera/Weapons_Manager.reset_all_ammo()
-	$neck/head/main_camera/Weapons_Manager.drop_all_weapons()
+	weapons_manager.reset_all_ammo()
+	weapons_manager.drop_all_weapons()
 	# Spawn mana drop only for the local player who died
 	if is_multiplayer_authority():
 		rpc("spawn_mana_for_all", world_pos)
@@ -721,58 +728,12 @@ func rpc_play_footstep(is_left: bool) -> void:
 		footstep_player.stream = footstep_right_sound
 	footstep_player.play()
 
-@onready var nav_agent = $NavigationAgent3D
-var BOT_SPEED = MAX_VELOCITY_GROUND
-
-func bot_physics_process(delta):
-	# This code only runs on the authority (host)
-	find_objects()
-	var current_location = global_transform.origin
-	var next_location = nav_agent.get_next_path_position()
-	var new_velocity = (next_location - current_location).normalized() * BOT_SPEED
-	velocity = velocity.move_toward(new_velocity, 0.25)
-	move_and_slide()
-	
-	# Send the updated transform to clients.
-	rpc("sync_bot_transform", global_transform)
-
-@rpc("any_peer", "call_local")
-func sync_bot_transform(new_transform: Transform3D) -> void:
-	# On remote peers, update the bot’s transform with the one received from the host.
-	global_transform = new_transform
 
 
 
-func update_target_location(target_location):
-	nav_agent.set_target_position(target_location)
-
-func find_objects():
-	var players = get_tree().get_nodes_in_group("players")
-		
-	var closest_player = null
-	var min_distance = INF  # Start with a very high value.
-	var my_position = global_transform.origin
-
-	for player in players:
-		# Only process nodes of the expected type.
-		if not (player is CharacterBody3D):
-			continue
-
-		# Now it's safe to check for the property.
-		if player.is_bot:
-			continue
-
-		var player_position = player.global_transform.origin
-		var distance = my_position.distance_to(player_position)
-		
-		if distance < min_distance:
-			min_distance = distance
-			closest_player = player
 
 
-	# If a closest player was found, update the navigation target.
-	if closest_player:
-		update_target_location(closest_player.global_transform.origin)
+
 
 func can_move_in_direction(move_dir: Vector3) -> bool:
 	# Only do this check when on the floor and when moving.

@@ -4513,7 +4513,6 @@ collision_mask = 257
 
 [node name="bot_debug_direction" type="CSGCylinder3D" parent="neck/head/main_camera"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -5)
-visible = false
 radius = 0.01
 height = 10.0
 

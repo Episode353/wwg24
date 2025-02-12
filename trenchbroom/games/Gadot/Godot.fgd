@@ -73,4 +73,6 @@
 @PointClass size(-8 -8 -8, 8 8 8) color(255 0 255) = bot_spawn : "Enemy Bot Spawn" [
     use_spawn_position(bool) : "Use Spawn Position" : 1 : "If 1, the bot spawns at the given spawn_position; if 0, it spawns at the entity's location."
     disable_respawn(bool) : "Use Spawn Position" : 1 : "If 1, the bot will not resapwn; if 0, the bot will respawn"
+    weapon(string) : "What weapon the Bot Starts With. (ak47, knife, rocket_launcher, shotgun, hegrenade, salsa, keyboard or hands" : "rocket_launcher"
+    weapon_range(string) : "Use Spawn Position" : 25 : "How far in meters an enemy must be for the bot to shoot. The Bot will not fire at enimies further than this distance"
 ]

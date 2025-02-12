@@ -144,7 +144,7 @@ func rebuild_map():
 var next_bot_id: int = -1
 
 @rpc("any_peer", "call_local")
-func add_bot(disable_respawn, spawn_position: Vector3 = Vector3.ZERO):
+func add_bot(origin, use_spawn_position, weapon_range, weapon, disable_respawn, spawn_position: Vector3 = Vector3.ZERO):
 	var Player = preload("res://player.tscn")
 	var bot_instance = Player.instantiate()
 	print(spawn_position)
@@ -155,6 +155,11 @@ func add_bot(disable_respawn, spawn_position: Vector3 = Vector3.ZERO):
 
 	bot_instance.name = str(bot_peer_id)
 	bot_instance.is_bot = true
+	bot_instance.bot_origin = origin
+	bot_instance.use_spawn_position = use_spawn_position
+	bot_instance.bot_starter_weapon = weapon
+	bot_instance.bot_weapon_range = weapon_range
+	bot_instance.rpc("set_is_bot", true)
 	bot_instance.set_multiplayer_authority(bot_peer_id)
 	bot_instance.peer_id = bot_peer_id
 	bot_instance.add_to_group("bots")  # <-- Add the bot to a "bots" group
@@ -212,21 +217,48 @@ func _on_map_loaded():
 
 func spawn_player(player):
 	print("Spawning player: ", player.name)
-	var spawn_points = get_tree().get_nodes_in_group("info_player_start")
-	print("Found ", spawn_points.size(), " spawn points in group 'info_player_start'")
-	if spawn_points.size() == 0:
-		print("No spawn points found in the group 'info_player_start'. Using default spawn position.")
-		player.global_transform.origin = Vector3(0, 0, 0)
+	
+	if player.use_spawn_position:
+		# Use the player's bot_origin string to set its position.
+		var origin_str = player.bot_origin.strip_edges()
+		var parts = origin_str.split(" ")
+		if parts.size() != 3:
+			push_error("Invalid bot_origin format for player. Expected three numbers separated by spaces, got: " + origin_str)
+			player.global_transform.origin = Vector3.ZERO
+		else:
+			# Convert the string values to floats.
+			var tb_x = parts[0].to_float()
+			var tb_y = parts[1].to_float()
+			var tb_z = parts[2].to_float()
+			
+			# Apply the transformation formula:
+			# Godot x = tb_y / 16, Godot y = tb_z / 16, Godot z = tb_x / 16
+			var godot_position = Vector3(tb_y / 16.0, tb_z / 16.0, tb_x / 16.0)
+			player.global_transform.origin = godot_position
+			print("Spawning player at bot_origin (converted): ", godot_position)
 	else:
-		var chosen_spawn_point = spawn_points[randi() % spawn_points.size()]
-		var start_position = chosen_spawn_point.global_transform
-		print("Chosen spawn point: ", chosen_spawn_point.name, " at position: ", start_position)
-		player.global_transform = start_position
-		# Set the player's velocity to zero
+		# Get spawn points from the group "info_player_start"
+		var spawn_points = get_tree().get_nodes_in_group("info_player_start")
+		print("Found ", spawn_points.size(), " spawn points in group 'info_player_start'")
+		
+		if spawn_points.size() == 0:
+			print("No spawn points found in the group 'info_player_start'. Using default spawn position.")
+			player.global_transform.origin = Vector3.ZERO
+		else:
+			var chosen_spawn_point = spawn_points[randi() % spawn_points.size()]
+			var start_transform = chosen_spawn_point.global_transform
+			print("Chosen spawn point: ", chosen_spawn_point.name, " at position: ", start_transform)
+			player.global_transform = start_transform
+	 
+	# Reset the player's velocities if it is a RigidBody3D.
 	if player is RigidBody3D:
 		player.linear_velocity = Vector3.ZERO
 		player.angular_velocity = Vector3.ZERO
-		player.velocity = Vector3.ZERO
+		# In some cases, you may have a custom 'velocity' property.
+		if "velocity" in player:
+			player.velocity = Vector3.ZERO
+
+
 
 func respawn_player(player):
 	print("Respawning player: ", player.name)

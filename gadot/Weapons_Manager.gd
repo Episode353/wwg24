@@ -9,7 +9,7 @@ signal update_weapon_stack
 
 @onready var world = get_tree().get_root().get_node("World")
 @onready var player = $"../../../.."
-
+var infinite_ammo = false
 var current_weapon = null
 var weapon_raise = false
 var weapon_stack = [] # An array of all weapons the player has
@@ -272,9 +272,11 @@ func apply_force_to_body(body_path: NodePath, force: Vector3, position: Vector3)
 		print("apply_force_to_body: Could not find node at", body_path)
 		
 func raycast_shoot_procc():
-	if !is_multiplayer_authority():
-		return
+	#if !is_multiplayer_authority() or !player.is_bot:
+		#return
 	var hit_object = raycast_shoot.get_collider()
+	if hit_object == null: return
+	print(hit_object)
 	var col_nor = raycast_shoot.get_collision_normal()
 	var col_point = raycast_shoot.get_collision_point()
 	if !hit_object.is_in_group("destructable"):
@@ -352,18 +354,19 @@ func shoot():
 	if player.is_holding_object: return
 	if !current_weapon.is_gun and !current_weapon.is_projectile_launcher:
 		return
-	if current_weapon.current_ammo != 0:
+	if current_weapon.current_ammo != 0 or infinite_ammo == true:
 		if !animation_player.is_playing() or animation_player.current_animation == current_weapon.idle_anim:
 			animation_player.play(current_weapon.shoot_anim)
 			play_fire_sound()
 		else:
 			return
-		if current_weapon.disable_ammo == false:
+		if current_weapon.disable_ammo == false and infinite_ammo == false:
 			current_weapon.current_ammo -= 1
 			emit_signal("update_ammo", [current_weapon.current_ammo, current_weapon.reserve_ammo])
 		
 		if raycast_shoot.is_colliding():
 			raycast_shoot_procc()
+			
 			
 			
 		if current_weapon.is_projectile_launcher:
