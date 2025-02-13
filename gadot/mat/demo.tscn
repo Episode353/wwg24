@@ -1,0 +1,187 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5whkj84wreoy"]
+
+[ext_resource type="Shader" path="res://sys/shaders/COLOR_PALETTE.gdshader" id="1_6ds5e"]
+
+[sub_resource type="ShaderMaterial" id="1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m8f7l"]
+shader = ExtResource("1_6ds5e")
+
+[sub_resource type="PlaneMesh" id="2"]
+size = Vector2(25, 25)
+
+[sub_resource type="SphereMesh" id="3"]
+
+[sub_resource type="BoxMesh" id="4"]
+
+[sub_resource type="PrismMesh" id="5"]
+
+[node name="Demo" type="Node3D"]
+
+[node name="ViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Viewport" type="SubViewport" parent="ViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Gradient" type="TextureRect" parent="ViewportContainer/Viewport"]
+material = SubResource("ShaderMaterial_m8f7l")
+expand_mode = 1
+
+[node name="DirectionalLight" type="DirectionalLight3D" parent="ViewportContainer/Viewport"]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 7.33164, 0)
+shadow_enabled = true
+
+[node name="Camera" type="Camera3D" parent="ViewportContainer/Viewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.52829, 6.27066)
+
+[node name="Primitives" type="Node3D" parent="ViewportContainer/Viewport"]
+
+[node name="Plane" type="MeshInstance3D" parent="ViewportContainer/Viewport/Primitives"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103946, -0.0237961, -0.066411)
+mesh = SubResource("2")
+
+[node name="Sphere" type="MeshInstance3D" parent="ViewportContainer/Viewport/Primitives"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.742296, 2.33721, 1.39276)
+mesh = SubResource("3")
+
+[node name="Cube" type="MeshInstance3D" parent="ViewportContainer/Viewport/Primitives"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.09066, 2.26568, 0.0691072)
+mesh = SubResource("4")
+
+[node name="Prism" type="MeshInstance3D" parent="ViewportContainer/Viewport/Primitives"]
+transform = Transform3D(0.895254, 0, 0.445557, 0, 1, 0, -0.445557, 0, 0.895254, 4.20599, 2.26568, 0.964667)
+mesh = SubResource("5")
+
+[node name="Controls" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Controls"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TabContainer" type="TabContainer" parent="Controls/Control"]
+layout_mode = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+current_tab = 0
+
+[node name="Params" type="VBoxContainer" parent="Controls/Control/TabContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_tab_index = 0
+
+[node name="HSeparator" type="HSeparator" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="HSeparator4" type="HSeparator" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="Palette" type="HBoxContainer" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Controls/Control/TabContainer/Params/Palette"]
+layout_mode = 2
+text = "Palette"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls/Control/TabContainer/Params/Palette"]
+layout_mode = 2
+
+[node name="Checkbox" type="CheckBox" parent="Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Checkbox2" type="CheckBox" parent="Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Checkbox3" type="CheckBox" parent="Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Checkbox4" type="CheckBox" parent="Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Checkbox5" type="CheckBox" parent="Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PalettePreview" type="TextureRect" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HSeparator5" type="HSeparator" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="Dither" type="HBoxContainer" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Controls/Control/TabContainer/Params/Dither"]
+layout_mode = 2
+text = "Dither Pattern"
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="HBoxContainer" parent="Controls/Control/TabContainer/Params/Dither"]
+layout_mode = 2
+
+[node name="Dither1" type="CheckBox" parent="Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Dither2" type="CheckBox" parent="Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Dither3" type="CheckBox" parent="Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Dither4" type="CheckBox" parent="Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Dither5" type="CheckBox" parent="Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DitherPreview" type="TextureRect" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DitherLabel" type="Label" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="Minimise" type="Button" parent="Controls/Control"]
+layout_mode = 0
+
+[node name="Move" type="Button" parent="Controls/Control"]
+layout_mode = 0
+
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox" to="." method="_on_Checkbox_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox2" to="." method="_on_Checkbox2_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox3" to="." method="_on_Checkbox3_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox4" to="." method="_on_Checkbox4_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox5" to="." method="_on_Checkbox5_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither1" to="." method="_on_Dither1_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither2" to="." method="_on_Dither2_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither3" to="." method="_on_Dither3_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither4" to="." method="_on_Dither4_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither5" to="." method="_on_Dither5_pressed"]
+[connection signal="pressed" from="Controls/Control/Minimise" to="." method="_on_Minimise_pressed"]
+[connection signal="button_down" from="Controls/Control/Move" to="." method="_on_Move_button_down"]
+[connection signal="button_up" from="Controls/Control/Move" to="." method="_on_Move_button_up"]

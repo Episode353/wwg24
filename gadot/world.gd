@@ -156,6 +156,7 @@ func add_bot(origin, use_spawn_position, weapon_range, weapon, disable_respawn, 
 	bot_instance.name = str(bot_peer_id)
 	bot_instance.is_bot = true
 	bot_instance.bot_origin = origin
+	bot_instance.disable_respawn = disable_respawn
 	bot_instance.use_spawn_position = use_spawn_position
 	bot_instance.bot_starter_weapon = weapon
 	bot_instance.bot_weapon_range = weapon_range
@@ -168,7 +169,6 @@ func add_bot(origin, use_spawn_position, weapon_range, weapon, disable_respawn, 
 		spawn_player(bot_instance)
 	else:
 		bot_instance.global_transform.origin = spawn_position
-		bot_instance.disable_respawn = disable_respawn
 		if bot_instance is RigidBody3D:
 			bot_instance.linear_velocity = Vector3.ZERO
 			bot_instance.angular_velocity = Vector3.ZERO

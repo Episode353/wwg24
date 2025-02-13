@@ -20,6 +20,7 @@ var bot_starter_weapon = "rocket_launcher"
 var bot_weapon_range = "25"
 var use_spawn_position = false
 var bot_origin = "0 0 0"
+@onready var bot_logic = $Bot_Logic
 
 @onready var head = $neck/head
 @onready var neck = $neck
@@ -487,6 +488,9 @@ func player_death():
 	self.set_on_fire(false)
 	mana_changed.emit(mana)
 	health_changed.emit(health)
+	if is_bot:
+		bot_logic.initialize_bot()
+		
 
 
 @rpc("call_local")

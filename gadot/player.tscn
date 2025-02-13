@@ -1,8 +1,9 @@
-[gd_scene load_steps=187 format=4 uid="uid://xcjrjq5cbn7y"]
+[gd_scene load_steps=189 format=4 uid="uid://xcjrjq5cbn7y"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_ebgxs"]
 [ext_resource type="Script" path="res://main_camera.gd" id="2_38wgo"]
 [ext_resource type="Script" path="res://Weapons_Manager.gd" id="2_dh310"]
+[ext_resource type="CameraAttributesPhysical" uid="uid://hkmnwgf3rmtx" path="res://tscn/viewmodelcameraattributes.tres" id="2_vbl0t"]
 [ext_resource type="Script" path="res://interaction_ray.gd" id="3_hxk1l"]
 [ext_resource type="Resource" uid="uid://bof3ewi4ljhjc" path="res://sys/weapon_resources/ak47.tres" id="3_vtnjn"]
 [ext_resource type="Script" path="res://sys/weapon_resource.gd" id="4_qoin8"]
@@ -33,6 +34,7 @@
 [ext_resource type="Script" path="res://sys/username_label.gd" id="28_ip48q"]
 [ext_resource type="Script" path="res://viewmodel_camera.gd" id="28_p4825"]
 [ext_resource type="Script" path="res://display_health.gd" id="30_jkaaj"]
+[ext_resource type="Shader" path="res://sys/shaders/COLOR_PALETTE.gdshader" id="30_o3qak"]
 [ext_resource type="AudioStream" uid="uid://h6pkf0tevw2m" path="res://sounds/player/hurt.wav" id="34_jjjwd"]
 [ext_resource type="Script" path="res://bot_logic.gd" id="35_oump4"]
 
@@ -105,9 +107,6 @@ properties/19/replication_mode = 1
 properties/20/path = NodePath("neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher:rotation")
 properties/20/spawn = true
 properties/20/replication_mode = 1
-
-[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_msqe6"]
-auto_exposure_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xjel"]
 size = Vector3(1.72325, 1.55173, 3.13662)
@@ -4136,6 +4135,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hn4i4")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xtxaa"]
+shader = ExtResource("30_o3qak")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwmod"]
 albedo_color = Color(0.541176, 0, 1, 1)
 
@@ -4206,7 +4208,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 [node name="main_camera" type="Camera3D" parent="neck/head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00521731, 0.00207496, 0.00310946)
 cull_mask = 1
-attributes = SubResource("CameraAttributesPhysical_msqe6")
+attributes = ExtResource("2_vbl0t")
 script = ExtResource("2_38wgo")
 
 [node name="area_collision" type="Area3D" parent="neck/head/main_camera"]
@@ -4504,7 +4506,17 @@ render_target_update_mode = 4
 [node name="viewmodel_camera" type="Camera3D" parent="neck/head/main_camera/SubViewportContainer/viewmodel_viewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80978, 0)
 cull_mask = 2
+fov = 37.8493
 script = ExtResource("28_p4825")
+
+[node name="COLOR DITHER" type="TextureRect" parent="neck/head/main_camera/SubViewportContainer/viewmodel_viewport"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_xtxaa")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="holding_body" type="StaticBody3D" parent="neck/head/main_camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.88758e-06, -1.76314)

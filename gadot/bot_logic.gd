@@ -50,7 +50,7 @@ func initialize_bot() -> void:
 	# Configure weapons manager for bots.
 	weapons_manager.infinite_ammo = true
 	weapons_manager.add_weapon(player.bot_starter_weapon)
-	fps_rig.show()  # Ensure FPS_RIG is visible
+	#fps_rig.show()  # Ensure FPS_RIG is visible
 
 # Process bot physics (runs only on the host/authority).
 func bot_physics_process(delta: float) -> void:

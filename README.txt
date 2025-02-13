@@ -92,6 +92,18 @@ Features to add:
 
 
 Bugs to fix:
+	- Lots of bots create a lot of lag
+	- Joining players cant punch sometimes
+	- Make keyboard fireballs despawn after a duration
+	- when adding a bot in the console, make can respawn false
+	- Add Awp
+	- make the wall color effect more drastic
+	- avery, kill the ball pit
+	- When you close the console with the x you cant move your mouse
+	- Clients cant pickup items sometimes
+	- Bots don't respawn with their weapons they are supposed to
+	- Bots sorta float around when thrown by explosives
+	- Put mana and ammo on scraper
 	- Add an item or weapon that shoots the player forward with a lot of speed
 	- Players don't spawn at spawnpoints on level switch
 	- Make the cool map
