@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://6e20625007tp" path="res://fonts/Daydream.ttf" id="1_yvp2q"]
 
 [node name="Console_Window" type="Window"]
-title = "Wizards With Guns (Console)"
+title = "WWG CONSOLE"
 position = Vector2i(60, 110)
 size = Vector2i(400, 200)
 always_on_top = true

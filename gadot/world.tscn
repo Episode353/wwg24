@@ -276,30 +276,7 @@ offset_bottom = 40.0
 grow_horizontal = 0
 
 [node name="menufadein" parent="CanvasLayer" instance=ExtResource("7_bypg1")]
-
-[node name="Pause Menu" type="Control" parent="CanvasLayer"]
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Button" type="Button" parent="CanvasLayer/Pause Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Disconnect"
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_p4c1t")
@@ -310,4 +287,3 @@ option_skip_hidden_layers = false
 option_filter_nearest = true
 
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
-[connection signal="pressed" from="CanvasLayer/Pause Menu/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv5liljbq3twx"]
+
+[ext_resource type="Script" path="res://tscn/settings/settings.gd" id="1_1klxu"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1klxu")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -45.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Volume Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="Volume Slider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Max Fps Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Max Fps"
+
+[node name="Max Fps Slider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 500.0
+
+[node name="Mouse Sensitivity Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Mouse Sensitivity Slider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume Slider" to="." method="_on_volume_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Max Fps Slider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Mouse Sensitivity Slider" to="." method="_on_mouse_sensitivity_slider_value_changed"]

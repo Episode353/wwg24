@@ -162,6 +162,7 @@ func save_config():
 func apply_config():
 	if "max_fps" in config_data:
 		Engine.max_fps = int(config_data["max_fps"])
+		Globals.max_fps = int(config_data["max_fps"])
 	
 	if "camera_fov" in config_data:
 		Globals.camera_fov = float(config_data["camera_fov"])
@@ -202,6 +203,7 @@ func _handle_variable_assignment(command: String):
 					return
 				value = int(value_str)
 				Engine.max_fps = value
+				Globals.max_fps = value  # Update Globals as well.
 			"camera_fov":
 				if not is_valid_float(value_str):
 					_output_error("Invalid value for camera_fov. It must be a float.")

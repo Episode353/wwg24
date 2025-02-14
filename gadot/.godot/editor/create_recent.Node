@@ -1,3 +1,9 @@
+Label
+RichTextLabel
+Window
+HSlider
+VBoxContainer
+MarginContainer
 MultiplayerSynchronizer
 OccluderInstance3D
 TextureRect
@@ -6,10 +12,3 @@ SubViewport
 MeshInstance3D
 MultiMeshInstance3D
 ColorRect
-Node3D
-CSGCylinder3D
-CSGBox3D
-WorldEnvironment
-Label3D
-SpotLight3D
-CSGSphere3D
