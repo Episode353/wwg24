@@ -94,6 +94,10 @@ func start_host(map: String):
 	# Now create a Timer to periodically send server info
 	setup_server_info_timer()
 	print("Host started on port %d. Timer set up to re-send server info periodically.")
+	# "For those about to rock / AC?DC"
+	#for i in 70:
+		#add_bot("0 0 0", false, "100", "ak47", false, Vector3.ZERO)
+	#
 
 func start_join(address: String):
 	hud.show()
@@ -126,7 +130,7 @@ func load_map(load_map_name: String):
 	$NavigationRegion3D.bake_navigation_mesh()
 	Globals.map_loaded = true
 	emit_signal("map_loaded")
-	
+
 @rpc("any_peer", "call_local")
 func rebuild_map():
 	tb_loader.build_meshes()
@@ -312,18 +316,19 @@ func upnp_setup():
 	DisplayServer.clipboard_set(external_ip)
 
 func setup_server_info_timer():
-	# If it already exists (just in case), clean it up
-	if server_info_timer and server_info_timer.is_inside_tree():
-		server_info_timer.stop()
-		server_info_timer.queue_free()
+	if is_multiplayer_authority():
+		# If it already exists (just in case), clean it up
+		if server_info_timer and server_info_timer.is_inside_tree():
+			server_info_timer.stop()
+			server_info_timer.queue_free()
 
-	server_info_timer = Timer.new()
-	server_info_timer.wait_time = server_info_resend_duration
-	server_info_timer.one_shot = false
-	# Connect the Timer’s timeout to our function that re-sends info
-	server_info_timer.connect("timeout", Callable(self, "_on_server_info_timer_timeout"))
-	add_child(server_info_timer)
-	server_info_timer.start()
+		server_info_timer = Timer.new()
+		server_info_timer.wait_time = server_info_resend_duration
+		server_info_timer.one_shot = false
+		# Connect the Timer’s timeout to our function that re-sends info
+		server_info_timer.connect("timeout", Callable(self, "_on_server_info_timer_timeout"))
+		add_child(server_info_timer)
+		server_info_timer.start()
 
 
 func _on_server_info_timer_timeout():

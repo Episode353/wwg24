@@ -16,8 +16,10 @@ extends Node3D
 # Constants and Variables
 # ============================================================================
 var BOT_SPEED = 8.0
-var shoot_cooldown_time := 2.0
+var shoot_cooldown_time := randf_range(0.5, 1.5)
 var shoot_timer := 0.0
+# Define a gravity constant (adjust as needed for your game)
+const GRAVITY: float = -9.8
 
 # ============================================================================
 # Lifecycle Functions
@@ -42,7 +44,6 @@ func _physics_process(delta: float) -> void:
 func initialize_bot() -> void:
 	if not player.is_bot:
 		return
-
 	# Show debug labels and directions.
 	bot_label.show()
 	bot_debug_direction.show()
@@ -52,21 +53,53 @@ func initialize_bot() -> void:
 	weapons_manager.add_weapon(player.bot_starter_weapon)
 	#fps_rig.show()  # Ensure FPS_RIG is visible
 
-# Process bot physics (runs only on the host/authority).
+# Member variables
+var frame_count: int = 0
+
+# The reason we do this is because we want to limit how often we do a get_next path_position
+# but we also dont want all the bots doing this calculaton on the same frame
+# I found that 20 is the max we can go before their movement is weird
+var path_position_often: int = randf_range(10, 20)
+var next_location: Vector3 = Vector3.ZERO
+
 func bot_physics_process(delta: float) -> void:
 	# Update target selection, aiming, and shooting.
 	find_objects(delta)
 	
-	# Compute movement towards the next navigation point.
+	# Increment the frame counter.
+	frame_count += 1
+	# Update the next navigation point every four frames.
+	if frame_count % path_position_often == 0:
+		next_location = nav_agent.get_next_path_position()
+	
+	# Compute horizontal movement towards the next navigation point.
 	var current_location: Vector3 = global_transform.origin
-	var next_location: Vector3 = nav_agent.get_next_path_position()
-	var new_velocity: Vector3 = (next_location - current_location).normalized() * BOT_SPEED
-	player.velocity = player.velocity.move_toward(new_velocity, 0.25)
+	var desired_direction: Vector3 = (next_location - current_location).normalized()
+
+	# Calculate the desired horizontal velocity (ignoring vertical component).
+	var desired_horizontal_velocity: Vector3 = desired_direction * BOT_SPEED
+
+	# Separate current velocity into horizontal and vertical components.
+	var current_velocity: Vector3 = player.velocity
+	var current_vertical_velocity: float = current_velocity.y
+	var current_horizontal_velocity: Vector3 = Vector3(current_velocity.x, 0, current_velocity.z)
+
+	# Smoothly interpolate horizontal velocity.
+	current_horizontal_velocity = current_horizontal_velocity.move_toward(desired_horizontal_velocity, 0.25)
+	
+	# Apply gravity to the vertical velocity.
+	current_vertical_velocity += GRAVITY * delta
+	
+	# Combine horizontal and vertical components back into the full velocity.
+	player.velocity = Vector3(current_horizontal_velocity.x, current_vertical_velocity, current_horizontal_velocity.z)
+
+	# Move the player, allowing gravity to take effect.
 	player.move_and_slide()
 
 	# Synchronize transforms with remote peers.
 	rpc("sync_bot_transform", player.global_transform)
 	rpc("sync_neck_local_transform", neck.transform)
+
 
 # ============================================================================
 # Target Selection, Aiming, and Shooting

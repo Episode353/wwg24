@@ -349,4 +349,4 @@ func _on_visibility_changed() -> void:
 		input.release_focus()
 
 func _on_close_requested() -> void:
-	self.hide()
+	toggle_console()

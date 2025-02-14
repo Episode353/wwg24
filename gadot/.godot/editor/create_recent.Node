@@ -1,3 +1,5 @@
+MultiplayerSynchronizer
+OccluderInstance3D
 TextureRect
 SubViewportContainer
 SubViewport
@@ -11,4 +13,3 @@ WorldEnvironment
 Label3D
 SpotLight3D
 CSGSphere3D
-CollisionShape3D

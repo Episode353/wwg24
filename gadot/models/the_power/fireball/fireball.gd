@@ -5,6 +5,7 @@ extends Node3D
 var objects_removed = false
 var owner_player
 var queue_timer = 0
+@onready var node_3d = $"."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,15 +24,15 @@ func _physics_process(delta):
 	
 
 
-func remove_objects():
-	objects_removed = true
-	fireball.queue_free()
+
 
 func _on_timer_timeout() -> void:
-	remove_objects()
+	objects_removed = true
+	node_3d.queue_free()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body == owner_player:
 		return
 	body.rpc("receive_damage", 20)
-	remove_objects()
+	objects_removed = true
+	node_3d.queue_free()

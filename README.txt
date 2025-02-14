@@ -63,20 +63,15 @@ Features to add:
 			and then has a scenario which you need to do the thing to get past
 			- This would benefit if it had the shooting range enimies from the shooting range map
 		make a map that is a wizard tower (aiden drawing)
+
 	Objects:
-		Grenade should move objects
-		- Grabbable objects
-			Objects in "Grabbable group" can be picked up with e and also placed down
+
 	Weapons:
 	- AWP
 	- Magic wand weapon?
-	- A guitar that shoots musicv as bullet gun, reload the gun by cocking the frettboard from the neck to the bodty and when shooting the effeftrs come from the nck of the guitar
+	- A guitar that shoots musicv as bullet gun, reload the gun by cocking the frettboard from the neck to the bodty and when shooting the effects come from the nck of the guitar
 	- Another movement based weapon like the rocket launcher would be really cool
 	-Portal Gun
-	- The Power
-		- has a number of different effects such as low gravity or resistance
-		- only one effect can be active at a time
-	make the shotgun shoot slower and be more powerful
 
 
 	Website:
@@ -92,22 +87,8 @@ Features to add:
 
 
 Bugs to fix:
-	- Lots of bots create a lot of lag
 	- Joining players cant punch sometimes
-	- Make keyboard fireballs despawn after a duration
-	- when adding a bot in the console, make can respawn false
-	- Add Awp
-	- make the wall color effect more drastic
-	- avery, kill the ball pit
-	- When you close the console with the x you cant move your mouse
 	- Clients cant pickup items sometimes
-	- Bots don't respawn with their weapons they are supposed to
-	- Bots sorta float around when thrown by explosives
-	- Put mana and ammo on scraper
-	- Add an item or weapon that shoots the player forward with a lot of speed
-	- Players don't spawn at spawnpoints on level switch
-	- Make the cool map
-	- Different Combos on the power, add notes
 	- Charachter exclusive stuff, like if you're a human or a wizard
 	- add gamemodes
 	- work on "london" more and add more little rooms

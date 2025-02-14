@@ -35,6 +35,7 @@ func _ready():
 	
 func _input(event):
 	if not is_multiplayer_authority(): return
+	if player.is_bot: return
 	if Globals.paused:
 		return
 	if event.is_action_pressed("w_up"):
@@ -283,7 +284,6 @@ func raycast_shoot_procc():
 		if !hit_object.is_in_group("moveable"):
 			if !hit_object.is_in_group("players") and !hit_object.get_parent().is_in_group("players"):
 				if !hit_object.is_in_group("pushable"):
-					print(hit_object)
 					# Place the Bullet Decal
 					rpc("create_bullet_decal", col_point, col_nor)
 					
@@ -298,18 +298,13 @@ func raycast_shoot_procc():
 	if hit_object.is_in_group("players"):
 		hit_object.rpc("receive_damage", current_weapon.damage)
 		hit_object.rpc("update_last_tagged_by", player.name)
-		print("Hit Object is player")
 		play_hit_player_sound()
 
 		
 	if hit_object.is_in_group("destructable"):
-		print("Hit Destructable Object")
-		print(hit_object)
 		hit_object.rpc("destruct")
 		
 	if !hit_object.is_in_group("players"):
-		print("Hit object is not a player.")
-		print(hit_object)
 		print(hit_object.get_parent())
 		
 		

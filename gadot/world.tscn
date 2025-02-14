@@ -305,7 +305,7 @@ text = "Disconnect"
 navigation_mesh = SubResource("NavigationMesh_p4c1t")
 
 [node name="TBLoader" type="TBLoader" parent="NavigationRegion3D"]
-map_resource = "res://tbmaps/avery.map"
+map_resource = "res://tbmaps/scraper.map"
 option_skip_hidden_layers = false
 option_filter_nearest = true
 

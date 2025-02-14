@@ -42,10 +42,11 @@ var last_tagged_by = "Unknown"
 
 # Source
 const MAX_VELOCITY_AIR = 0.6
-const MAX_VELOCITY_GROUND = 8.0
-const MAX_VELOCITY_GROUND_WALKING = 4.0
+const MAX_VELOCITY_GROUND = 7.5
+const MAX_VELOCITY_GROUND_WALKING = 3.5
 const MAX_ACCELERATION = 10 * MAX_VELOCITY_GROUND
 const GRAVITY = 12
+const KNIFE_EXTRA_SPEED = 1.5
 # GRAVITY USED TO BE 15.34
 const STOP_SPEED = 2 # Was 1.5
 const JUMP_IMPULSE = sqrt(2 * GRAVITY * 3) #Orig was sqrt(2 * GRAVITY * 1.85)
@@ -188,7 +189,8 @@ func _ready():
 	fps_rig.show()  # Ensure FPS_RIG is visible
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	main_camera.current = true
+	
+	main_camera.current = !is_bot # If is bot is false (if is a bot) we dont need the camera (set it to false)
 	
 	# Connect the size_changed signal to the _on_size_changed function
 	get_viewport().connect("size_changed", Callable(self, "_on_size_changed"))
@@ -207,6 +209,7 @@ const CS_SENSITIVITY_SCALE = 0.022  # Counter-Strike scale factor for sensitivit
 
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
+	if is_bot: return
 	if Globals.paused:
 		return
 	if event is InputEventMouseMotion:
@@ -225,6 +228,7 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
+	if is_bot: return
 		
 	 # Update coyote time: reset if on floor, otherwise count down
 	if is_on_floor():
@@ -276,6 +280,7 @@ func _physics_process(delta):
 
 
 func update_view_bobbing(delta):
+	if is_bot: return
 	# Calculate the horizontal velocity (ignore Y component)
 	var horizontal_velocity = Vector3(velocity.x, 0, velocity.z).length()
 	
@@ -310,6 +315,7 @@ func update_view_bobbing(delta):
 
 
 func process_input():
+	if is_bot: return
 	direction = Vector3()
 	if Globals.paused:
 		return
@@ -389,6 +395,7 @@ func _handle_noclip(delta) -> bool:
 
 
 func process_movement(delta):
+	if is_bot: return
 	if self.position.y < -100:
 		print("Player has fallen off of map, Respawning...")
 		player_death()
@@ -426,6 +433,7 @@ func process_movement(delta):
 				_snap_down_to_stairs_check()
 
 func _process(delta):
+	if is_bot: return
 	viewmodel_camera.global_transform = main_camera.global_transform
 	
 
@@ -455,6 +463,9 @@ func update_velocity_ground(wish_dir: Vector3, delta):
 		max_velocity_ground_current = MAX_VELOCITY_GROUND_WALKING
 	if crouching:
 		max_velocity_ground_current = crouching_speed
+		
+	if weapons_manager.current_weapon.weapon_name == "knife" or weapons_manager.current_weapon.weapon_name == "hands":
+		max_velocity_ground_current += KNIFE_EXTRA_SPEED
 
 	return accelerate(wish_dir, max_velocity_ground_current, delta)
 

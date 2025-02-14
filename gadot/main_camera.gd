@@ -1,4 +1,5 @@
 extends Camera3D
+@onready var player = $"../../.."
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,6 +11,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if player.is_bot: return
 	# Optionally, update the FOV dynamically during the game
 	if Globals.camera_fov != null:
 		fov = Globals.camera_fov
