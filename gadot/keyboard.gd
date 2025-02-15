@@ -1,7 +1,7 @@
 extends Node3D
 
-@onready var player_self = $"../../../../../.."
-@onready var keyboard_animation_player = $the_power/keyboard_animation_player
+@onready var player_self: CharacterBody3D = $"../../../../../.."
+@onready var keyboard_animation_player: AnimationPlayer = $the_power/keyboard_animation_player
 @onready var main_camera: Camera3D = $"../../.."
 
 var speed_mana_cost: int = 5

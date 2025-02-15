@@ -4,16 +4,16 @@ signal weapon_changed
 signal update_ammo
 signal update_weapon_stack
 
-@onready var animation_player = $FPS_RIG/AnimationPlayer
-@onready var main_camera = $".."
+@onready var animation_player: AnimationPlayer = $FPS_RIG/AnimationPlayer
+@onready var main_camera: Camera3D = $".."
 
-@onready var world = get_tree().get_root().get_node("World")
-@onready var player = $"../../../.."
-var infinite_ammo = false
+@onready var world: Node = get_tree().get_root().get_node("World")
+@onready var player: CharacterBody3D = $"../../../.."
+var infinite_ammo: bool = false
 var current_weapon = null
-var weapon_raise = false
+var weapon_raise: bool = false
 var weapon_stack = [] # An array of all weapons the player has
-@onready var raycast_shoot = $"../raycast_shoot"
+@onready var raycast_shoot: RayCast3D = $"../raycast_shoot"
 var weapon_indicator = 0
 var next_weapon: String
 @onready var ac_timer = $"../area_collision/Timer"
@@ -22,7 +22,7 @@ var next_weapon: String
 
 var weapon_list = {}
 @export var _weapon_resources: Array[Weapon_Resource]
-@onready var raycast_wall = $"../../../../raycast_wall"
+@onready var raycast_wall: RayCast3D = $"../../../../raycast_wall"
 @onready var area_collision = $"../area_collision"
 
 @onready var audio_stream_player_3d = $"../../../../AudioStreamPlayer3D"

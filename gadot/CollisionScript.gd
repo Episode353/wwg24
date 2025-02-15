@@ -1,10 +1,10 @@
 extends CollisionShape3D
 
-var flame_timer = 0.0
-const FLAME_TIMER_MAX = 5.0
-var has_set_on_fire_method = false
-var was_on_fire = false  # Track the previous on-fire state
-@onready var player = $"../.."
+var flame_timer: float = 0.0
+const FLAME_TIMER_MAX: float = 5.0
+var has_set_on_fire_method: bool = false
+var was_on_fire: bool = false  # Track the previous on-fire state
+@onready var player: CharacterBody3D = $"../.."
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

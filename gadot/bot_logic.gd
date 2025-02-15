@@ -3,13 +3,13 @@ extends Node3D
 # ============================================================================
 # Node References (onready)
 # ============================================================================
-@onready var player            = $".."
-@onready var weapons_manager   = $"../neck/head/main_camera/Weapons_Manager"
-@onready var fps_rig = $"../neck/head/main_camera/Weapons_Manager/FPS_RIG"
-@onready var neck              = $"../neck"
-@onready var nav_agent         = $"../NavigationAgent3D"
-@onready var bot_label = $"../Bot_Label"
-@onready var bot_debug_direction = $"../neck/head/main_camera/bot_debug_direction"
+@onready var player: CharacterBody3D            = $".."
+@onready var weapons_manager: Node3D   = $"../neck/head/main_camera/Weapons_Manager"
+@onready var fps_rig: Node3D = $"../neck/head/main_camera/Weapons_Manager/FPS_RIG"
+@onready var neck: Node3D              = $"../neck"
+@onready var nav_agent: NavigationAgent3D         = $"../NavigationAgent3D"
+@onready var bot_label: Label3D = $"../Bot_Label"
+@onready var bot_debug_direction: CSGCylinder3D = $"../neck/head/main_camera/bot_debug_direction"
 
 
 # ============================================================================
@@ -21,6 +21,15 @@ var shoot_timer := 0.0
 # Define a gravity constant (adjust as needed for your game)
 const GRAVITY: float = -9.8
 
+
+# Member variables
+var frame_count: int = 0
+
+# The reason we do this is because we want to limit how often we do a get_next path_position
+# but we also dont want all the bots doing this calculaton on the same frame
+# I found that 20 is the max we can go before their movement is weird
+var path_position_often: int = randf_range(10, 20)
+var next_location: Vector3 = Vector3.ZERO
 # ============================================================================
 # Lifecycle Functions
 # ============================================================================
@@ -53,14 +62,7 @@ func initialize_bot() -> void:
 	weapons_manager.add_weapon(player.bot_starter_weapon)
 	#fps_rig.show()  # Ensure FPS_RIG is visible
 
-# Member variables
-var frame_count: int = 0
 
-# The reason we do this is because we want to limit how often we do a get_next path_position
-# but we also dont want all the bots doing this calculaton on the same frame
-# I found that 20 is the max we can go before their movement is weird
-var path_position_often: int = randf_range(10, 20)
-var next_location: Vector3 = Vector3.ZERO
 
 func bot_physics_process(delta: float) -> void:
 	# Update target selection, aiming, and shooting.

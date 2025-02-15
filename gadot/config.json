@@ -1,5 +1,7 @@
 {
-	"master_volume": 0.01,
-	"max_fps": 125,
-	"mouse_sensitivity": 3.57
+	"fullscreen": false,
+	"master_volume": 0.46,
+	"max_fps": 500,
+	"mouse_sensitivity": 2.59,
+	"show_host_popup": false
 }

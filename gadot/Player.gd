@@ -11,140 +11,140 @@ signal mana_changed(mana_value)
 # ============================================================================
 # Bot Variables
 # ============================================================================
-var BOT_SPEED = 8.0
-var shoot_cooldown_time := 2.0
-var shoot_timer := 0.0
-var is_bot = false
-var disable_respawn = false
-var bot_starter_weapon = "rocket_launcher"
-var bot_weapon_range = "25"
-var use_spawn_position = false
-var bot_origin = "0 0 0"
-@onready var bot_logic = $Bot_Logic
+var BOT_SPEED: float = 8.0
+var shoot_cooldown_time: float = 2.0
+var shoot_timer: float = 0.0
+var is_bot: bool = false
+var disable_respawn: bool = false
+var bot_starter_weapon: String = "rocket_launcher"
+var bot_weapon_range: String = "25"
+var use_spawn_position: bool = false
+var bot_origin: String = "0 0 0"
+@onready var bot_logic: Node3D = $Bot_Logic
 
-@onready var head = $neck/head
-@onready var neck = $neck
-@onready var standing_collision_shape = $standing_collision_shape
-@onready var crouching_collision_shape = $crouching_collision_shape
-@onready var main_camera = $neck/head/main_camera
-@onready var viewmodel_camera = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport/viewmodel_camera
-@onready var viewmodel_viewport = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport
-@onready var weapons_manager = $neck/head/main_camera/Weapons_Manager
-@onready var player_hurt_noise = $player_hurt_noise
-@onready var raycast_crouching = $raycast_crouching
-@onready var interaction_ray = $neck/head/main_camera/interaction_ray
+@onready var head: Node3D = $neck/head
+@onready var neck: Node3D = $neck
+@onready var standing_collision_shape: CollisionShape3D = $standing_collision_shape
+@onready var crouching_collision_shape: CollisionShape3D = $crouching_collision_shape
+@onready var main_camera: Camera3D = $neck/head/main_camera
+@onready var viewmodel_camera: Camera3D = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport/viewmodel_camera
+@onready var viewmodel_viewport: SubViewport = $neck/head/main_camera/SubViewportContainer/viewmodel_viewport
+@onready var weapons_manager: Node3D = $neck/head/main_camera/Weapons_Manager
+@onready var player_hurt_noise: AudioStreamPlayer3D = $player_hurt_noise
+@onready var raycast_crouching: RayCast3D = $raycast_crouching
+@onready var interaction_ray: RayCast3D = $neck/head/main_camera/interaction_ray
 
-@onready var raycast_wall = $raycast_wall
+@onready var raycast_wall: RayCast3D = $raycast_wall
 
-@onready var _3p_model = $"3p_model"
-var last_tagged_by = "Unknown"
+@onready var _3p_model: Node3D = $"3p_model"
+var last_tagged_by: String = "Unknown"
 
 
 # Source
-const MAX_VELOCITY_AIR = 0.6
-const MAX_VELOCITY_GROUND = 7.5
-const MAX_VELOCITY_GROUND_WALKING = 3.5
-const MAX_ACCELERATION = 10 * MAX_VELOCITY_GROUND
-const GRAVITY = 12
-const KNIFE_EXTRA_SPEED = 1.5
+const MAX_VELOCITY_AIR: float = 0.6
+const MAX_VELOCITY_GROUND: float = 7.5
+const MAX_VELOCITY_GROUND_WALKING: float = 3.5
+const MAX_ACCELERATION: float = 10 * MAX_VELOCITY_GROUND
+const GRAVITY: int = 12
+const KNIFE_EXTRA_SPEED: float = 1.5
 # GRAVITY USED TO BE 15.34
-const STOP_SPEED = 2 # Was 1.5
-const JUMP_IMPULSE = sqrt(2 * GRAVITY * 3) #Orig was sqrt(2 * GRAVITY * 1.85)
-const PLAYER_WALKING_MULTIPLIER = 0.666
-var direction = Vector3.ZERO
-var friction = 4
+const STOP_SPEED: int = 2 # Was 1.5
+const JUMP_IMPULSE: float = sqrt(2 * GRAVITY * 3) #Orig was sqrt(2 * GRAVITY * 1.85)
+const PLAYER_WALKING_MULTIPLIER: float = 0.666
+var direction: Vector3 = Vector3.ZERO
+var friction: int = 4
 var wish_jump = false
-var sensitivity = 0.05
-var walking = false
+var sensitivity: float = 0.05
+var walking: bool = false
 
 # Physcis interaction
 var grabbed_object: RigidBody3D
-var is_holding_object = false
+var is_holding_object: bool = false
 
-var health = 100 # Inital health
-var max_health = 100 # Health set to max health on respawn
+var health: int = 100 # Inital health
+var max_health: int = 100 # Health set to max health on respawn
 
-var mana = 50 # Inital mana
-var max_mana = 100 # mana set to max health on respaw
+var mana: int = 50 # Inital mana
+var max_mana: int = 100 # mana set to max health on respaw
 
 # Speed Variables
-const walking_speed = 5.0
-const sprinting_speed = 10.0
-const crouching_speed = 3.0
-var current_speed = 10.0
-const JUMP_VELOCITY = 10.0
-var lerp_speed = 20.0
-var crouching_depth = -1.0
-var standing_depth = 0.0
+const walking_speed: float = 5.0
+const sprinting_speed: float = 10.0
+const crouching_speed: float = 3.0
+var current_speed: float = 10.0
+const JUMP_VELOCITY: float = 10.0
+var lerp_speed: float = 20.0
+var crouching_depth: float = -1.0
+var standing_depth: float = 0.0
 
-var free_look_tilt_ammount = 8
-const CROUCH_JUMP_BOOST = 1.0  # Adjust this value as needed for the boost amount
-var has_crouch_boosted = false
+var free_look_tilt_ammount: int = 8
+const CROUCH_JUMP_BOOST: float = 1.0  # Adjust this value as needed for the boost amount
+var has_crouch_boosted: bool = false
 
 
 # Staris
-const MAX_STEP_HEIGHT = 0.5
-var _snapped_to_stairs_last_frame := false
+const MAX_STEP_HEIGHT: float = 0.5
+var _snapped_to_stairs_last_frame: bool = false
 var _last_time_was_on_floor = -INF
 
 # States
 # Moved walking to Source Section
-var sprinting = false
-var crouching = false
-var free_looking = false
-var sliding = false
-var is_walking = false
+var sprinting: bool = false
+var crouching: bool = false
+var free_looking: bool = false
+var sliding: bool = false
+var is_walking: bool = false
 
 # Jumping
-const COYOTE_TIME = 0.1  # seconds you allow the jump after leaving the ground
-var coyote_time_remaining = 0.0
+const COYOTE_TIME: float = 0.1  # seconds you allow the jump after leaving the ground
+var coyote_time_remaining: float = 0.0
 var CUT_JUMP_HEIGHT: float = 0.5
 
 
 
 # Slide Vars
-var slide_timer = 0.0
-var slide_timer_max = 1.0
-var slide_vector = Vector2.ZERO
-var slide_speed = 15.0
+var slide_timer: float = 0.0
+var slide_timer_max: float = 1.0
+var slide_vector: Vector2 = Vector2.ZERO
+var slide_speed: float = 15.0
 
 # Health States
-var is_on_fire = false
-@onready var player_flames_fx = $Area3D/PlayerFlamesFx
-var fire_counter = 0
+var is_on_fire: bool = false
+@onready var player_flames_fx: GPUParticles3D = $Area3D/PlayerFlamesFx
+var fire_counter: int = 0
 
 # View Bobbing Variables
-var bob_amplitude = 0.0
-const MAX_BOB_AMPLITUDE = 0.006  # Maximum bobbing amplitude
-const BOB_FREQUENCY = 10.0       # Frequency of the bobbing (adjust as needed)
-const BOB_ACCELERATION = 0.08   # Rate at which bob_amplitude increases
-const BOB_DECELERATION = 0.014     # Rate at which bob_amplitude decreases
-var bob_phase = 0.0
-const VELOCITY_THRESHOLD = 6  # Adjust as needed
+var bob_amplitude: float = 0.0
+const MAX_BOB_AMPLITUDE: float = 0.006  # Maximum bobbing amplitude
+const BOB_FREQUENCY: float = 10.0       # Frequency of the bobbing (adjust as needed)
+const BOB_ACCELERATION: float = 0.08   # Rate at which bob_amplitude increases
+const BOB_DECELERATION: float = 0.014     # Rate at which bob_amplitude decreases
+var bob_phase: float = 0.0
+const VELOCITY_THRESHOLD: int = 6  # Adjust as needed
 
 
-@onready var fps_rig = $neck/head/main_camera/Weapons_Manager/FPS_RIG
-var base_fps_rig_position = Vector3.ZERO  # To store the original position
+@onready var fps_rig: Node3D = $neck/head/main_camera/Weapons_Manager/FPS_RIG
+var base_fps_rig_position: Vector3 = Vector3.ZERO  # To store the original position
 
 
 # Moved Direction to Source
 
 # Bhop Variables
-var bhop_count = 0
-var time_on_floor = 0.0
-const bhop_reset_delay = 0.2  # How long the player can be on the floor before resetting bhop counter
-const bhop_increase_speed_multiplier = 5 # How much speed is added per bhop
+var bhop_count: int = 0
+var time_on_floor: float = 0.0
+const bhop_reset_delay: float = 0.2  # How long the player can be on the floor before resetting bhop counter
+const bhop_increase_speed_multiplier: int = 5 # How much speed is added per bhop
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = 20.0
+var gravity: float = 20.0
 
 # Create  a Three second cool down, to not allow spamming of the Kill key
-var kill_timeout = 3
-var kill_max_timeout = 3
-var can_die = true
+var kill_timeout: int = 3
+var kill_max_timeout: int = 3
+var can_die: bool = true
 
 # Footsteps
-@onready var footstep_player = $FootstepAudioPlayer
+@onready var footstep_player: AudioStreamPlayer3D = $FootstepAudioPlayer
 var distance_accumulated: float = 0.0
 var step_distance_threshold: float = 4.0  # Adjust this to suit your game’s scale and speed
 var last_position: Vector3

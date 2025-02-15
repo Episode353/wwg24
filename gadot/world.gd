@@ -2,11 +2,11 @@
 
 extends Node
 
-@onready var hud = $CanvasLayer/HUD
-@onready var health_bar = $CanvasLayer/HUD/HealthBar
-@onready var mana_bar = $CanvasLayer/HUD/ManaBar
-@onready var tb_loader = $NavigationRegion3D/TBLoader
-@onready var server_connection_handler = $ServerConnectionHandler
+@onready var hud: Control = $CanvasLayer/HUD
+@onready var health_bar: ProgressBar = $CanvasLayer/HUD/HealthBar
+@onready var mana_bar: ProgressBar = $CanvasLayer/HUD/ManaBar
+@onready var tb_loader: Node = $NavigationRegion3D/TBLoader
+@onready var server_connection_handler: Node = $ServerConnectionHandler
 var server_info_timer: Timer
 var server_info_resend_duration : int = 5
 var external_ip : String = "NULL"
@@ -94,7 +94,7 @@ func start_host(map: String):
 	# Now create a Timer to periodically send server info
 	setup_server_info_timer()
 	print("Host started on port %d. Timer set up to re-send server info periodically.")
-	# "For those about to rock / AC?DC"
+	 #"For those about to rock / AC?DC"
 	#for i in 70:
 		#add_bot("0 0 0", false, "100", "ak47", false, Vector3.ZERO)
 	#
