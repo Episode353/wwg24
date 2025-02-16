@@ -78,9 +78,8 @@ var commands = {
 		if players.size() == 0:
 			return "Error: No player found."
 		var player = players[0]
-		if player.has_node("Weapons_Manager"):
-			var wm = player.get_node_or_null("Weapons_Manager")
-			wm.rpc("add_all_weapons")
+		if player.rpc("add_all_weapons"):
+			player.rpc("add_all_weapons")
 			return "All weapons granted."
 		else:
 			return "Error: Weapons Manager not found on the player."

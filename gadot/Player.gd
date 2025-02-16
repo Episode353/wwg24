@@ -397,7 +397,6 @@ func _handle_noclip(delta) -> bool:
 func process_movement(delta):
 	if is_bot: return
 	if self.position.y < -100:
-		print("Player has fallen off of map, Respawning...")
 		player_death()
 	if is_on_floor(): _last_time_was_on_floor = Engine.get_physics_frames()
 	# Get the normalized input direction so that we don't move faster on diagonals
@@ -592,28 +591,25 @@ func play_hurt_sound():
 
 @rpc("any_peer", "call_local")
 func receive_damage(dmg):
-	health -= dmg
+	health -= int(dmg)
 	health_changed.emit(health)
 	if health <= 0:
 		player_death()
-	print(health)
 	play_hurt_sound()
 	
 	
 @rpc("any_peer", "call_local")
 func receive_health(rcv_hp):
-	health += rcv_hp
+	health += int(rcv_hp)
 	health_changed.emit(health)
 	if health >= max_health:
 		health = max_health
-	print(health)
 
 	
 	
 @rpc("any_peer", "call_local")
 func receive_mana(received_mana):
-	print("receive_mana:", received_mana)
-	mana += received_mana
+	mana += int(received_mana)
 	if mana >= max_mana:# Dont let Mana exceed the maximum
 		mana = max_mana
 	if mana < 0:# Prevent mama from going negative
@@ -631,6 +627,10 @@ func is_ammo_full() -> bool:
 @rpc("any_peer", "call_local")
 func receive_weapon(received_weapon):
 	weapons_manager.add_weapon(received_weapon)
+	
+@rpc("any_peer", "call_local")
+func add_all_weapons():
+	weapons_manager.add_all_weapons()
 
 func does_have_weapon(weapon):
 	return weapons_manager.does_have_weapon(weapon)
@@ -642,7 +642,6 @@ func set_on_fire(state: bool) -> void:
 	is_on_fire = state
 	player_flames_fx.emitting = state
 	# Add additional logic here, such as applying damage or visual effects
-	print("Player is_on_fire set to: ", is_on_fire)
 	
 	
 func calculate_fire_damage():

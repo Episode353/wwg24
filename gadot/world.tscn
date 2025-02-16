@@ -76,7 +76,7 @@ shader = ExtResource("4_paja1")
 shader_parameter/fog_density = 0.1
 shader_parameter/fog_speed = 0.3
 shader_parameter/noise_scale = 4.0
-shader_parameter/fog_opacity = 0.5
+shader_parameter/fog_opacity = 0.2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2q5a"]
 shader = ExtResource("4_y0pat")

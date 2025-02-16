@@ -496,6 +496,26 @@ func drop_all_weapons():
 	# Play the activation animation for "hands"
 	animation_player.play("RESET")
 
+func add_all_weapons():
+	print("I shall add all the weapons")
+	var added_new_weapon = false
+	# Loop over every available weapon in the weapon list.
+	for weapon_name in weapon_list.keys():
+		if not does_have_weapon(weapon_name):
+			weapon_stack.push_back(weapon_name)
+			print("Added weapon:", weapon_name)
+			added_new_weapon = true
+	if added_new_weapon:
+		emit_signal("update_weapon_stack", weapon_stack)
+	else:
+		print("All weapons already added.")
+
+	# Optional: Auto-switch to a 'real' weapon if current_weapon is "hands"
+	if current_weapon == null or (current_weapon.weapon_name == "hands" and weapon_stack.size() > 1):
+		for weapon_name in weapon_stack:
+			if weapon_name != "hands":
+				change_weapon(weapon_name)
+				break
 
 
 func _on_timer_timeout():

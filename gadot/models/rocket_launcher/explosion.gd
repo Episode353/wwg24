@@ -8,9 +8,9 @@ extends Node3D
 @export var upward_force: float = 5.0
 
 # Maximum damage for a direct hit
-@export var max_damage: float = 10.0
+@export var max_damage: float = 35.0
 # Minimum damage at the edge of explosion radius
-@export var min_damage: float = 0.0
+@export var min_damage: float = 10.0
 var owner_player
 
 @export var rigid_body_force_multiplier: float = 100.0

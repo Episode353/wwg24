@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://bv1ytocq25auy"]
+
+[ext_resource type="Script" path="res://sys/weapon_resource.gd" id="1_vn6sd"]
+
+[resource]
+script = ExtResource("1_vn6sd")
+weapon_name = "wand"
+activate_anim = "wand_activate"
+shoot_anim = "wand_activate"
+reload_anim = "wand_activate"
+deactivate_anim = "wand_deactivate"
+out_of_ammo_anim = "wand_activate"
+wall_raise_anim = "wand_activate"
+wall_lower_anim = "wand_activate"
+has_idle_anim = false
+idle_anim = ""
+current_ammo = 40
+current_ammo_default = 40
+reserve_ammo = 40
+reserve_ammo_default = 40
+mag_ammo = 40
+mag_ammo_default = 40
+max_ammo = 40
+damage = 40
+weapon_range = 0
+auto_fire = false
+disable_wall_prox = true
+disable_ammo = true
+is_gun = false
+is_spell = false
+is_projectile_launcher = true
+use_area_damage_collision = false
+area_damage_radius = 0
+skip_animation_on_fire = false
+fire_rate = 0.0
