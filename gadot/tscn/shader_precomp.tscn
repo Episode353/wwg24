@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://byiycuoyfk45q"]
+
+[ext_resource type="Script" path="res://tscn/shader_precomp.gd" id="1_jurwd"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_jurwd")
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 144.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Compiling Shaders"
+
+[node name="Compile Count Text" type="Label" parent="."]
+z_index = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -23.0
+offset_right = 72.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

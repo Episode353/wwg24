@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1l1hf2wo0hlu"
+uid="uid://di7hkgvu2dg61"
 path.s3tc="res://.godot/imported/mana_potion_1.png-61679bbd1644492523da515e26045d66.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "c642833688e7c9a8485a7ae68b7b30a1"
 }
 
 [deps]

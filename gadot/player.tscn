@@ -4597,7 +4597,7 @@ skeleton = NodePath("")
 [node name="wand" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
 
 [node name="wand_01" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/wand"]
-transform = Transform3D(1, 0, 0, 0, -0.0755009, 0.997145, 0, -0.997146, -0.0755008, 0, -0.361018, -0.537551)
+transform = Transform3D(1, 0, 0, 0, -0.0755018, 0.997145, 0, -0.997146, -0.0755018, 0, -0.361018, -0.537551)
 visible = false
 
 [node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/wand/wand_01"]

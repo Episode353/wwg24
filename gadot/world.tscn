@@ -163,6 +163,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_vcby2")
 value = 100.0
 
 [node name="COLOR PALETE" type="TextureRect" parent="CanvasLayer/HUD"]
+visible = false
 modulate = Color(1, 1, 1, 0.254902)
 z_index = 3
 z_as_relative = false
@@ -177,6 +178,7 @@ mouse_filter = 2
 texture = SubResource("PlaceholderTexture2D_s3tfj")
 
 [node name="CRT SHADER" type="ColorRect" parent="CanvasLayer/HUD"]
+visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_ipgik")
 layout_mode = 1
@@ -187,6 +189,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VHS Shader" type="ColorRect" parent="CanvasLayer/HUD"]
+visible = false
 material = SubResource("ShaderMaterial_ohlmd")
 layout_mode = 1
 anchors_preset = 15

@@ -1,5 +1,6 @@
-Node3D
+ColorRect
 Label
+Node3D
 RichTextLabel
 Window
 HSlider
@@ -12,4 +13,3 @@ SubViewportContainer
 SubViewport
 MeshInstance3D
 MultiMeshInstance3D
-ColorRect

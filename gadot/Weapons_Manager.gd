@@ -87,6 +87,9 @@ func switch_weapon(slot_index: int):
 
 
 func reset_all_ammo():
+	if player.is_bot: 
+		print("Player is Bot, Not resetting Ammo")
+		return
 	print("weapons_manager reset all ammo")
 	for weapon_name in weapon_stack:
 		var weapon = weapon_list[weapon_name]

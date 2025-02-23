@@ -27,8 +27,8 @@ func find_objects():
 	# Iterate over all players to find the closest one.
 	for player in players:
 		# Skip self to avoid counting the current player.
-		if player.is_bot:
-			continue
+		#if player.is_bot:
+			#continue
 		
 		var player_position = player.global_transform.origin
 		var distance = my_position.distance_to(player_position)
