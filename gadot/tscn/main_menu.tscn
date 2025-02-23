@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dptgttk8gkprg"]
+[gd_scene load_steps=11 format=3 uid="uid://dptgttk8gkprg"]
 
 [ext_resource type="Script" path="res://sys/ServerDataCollection.gd" id="1_7wr8n"]
 [ext_resource type="Script" path="res://tscn/main_menu.gd" id="1_jlapi"]
 [ext_resource type="Script" path="res://tscn/autoexec.gd" id="2_3wnrv"]
 [ext_resource type="Script" path="res://tscn/main_menu_canvas_layer.gd" id="2_5pqri"]
 [ext_resource type="AudioStream" uid="uid://ccs4au54nqqwx" path="res://music/main_menu_01.ogg" id="3_3mkf0"]
+[ext_resource type="Texture2D" uid="uid://ds81orwdmrjbj" path="res://tscn/settings/gear.svg" id="5_fst2u"]
 [ext_resource type="Shader" path="res://tscn/main_menu_stars.gdshader" id="5_j8ubb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_86sxb"]
@@ -165,6 +166,25 @@ grow_vertical = 0
 size_flags_vertical = 4
 text = "Don't Show again."
 
+[node name="Settings Button" type="Button" parent="MenuNodes/CanvasLayer"]
+custom_minimum_size = Vector2(25, 25)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Press Escape to open Setttings"
+text = "
+"
+icon = ExtResource("5_fst2u")
+expand_icon = true
+
 [node name="Menu_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_3mkf0")
 volume_db = -4.0
@@ -180,3 +200,4 @@ environment = SubResource("Environment_dt0kg")
 [connection signal="item_activated" from="MenuNodes/CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ServerBrowser/Servers" to="ServerDataCollection" method="_on_servers_item_activated"]
 [connection signal="close_requested" from="MenuNodes/CanvasLayer/Popup_window" to="MenuNodes/CanvasLayer" method="_on_popup_window_close_requested"]
 [connection signal="pressed" from="MenuNodes/CanvasLayer/Popup_window/Button" to="MenuNodes/CanvasLayer" method="_on_button_pressed"]
+[connection signal="pressed" from="MenuNodes/CanvasLayer/Settings Button" to="MenuNodes/CanvasLayer" method="_on_settings_button_pressed"]

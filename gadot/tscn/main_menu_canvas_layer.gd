@@ -47,3 +47,7 @@ func _on_popup_window_close_requested() -> void:
 func _on_button_pressed():
 	Globals.exec("show_host_popup = false")
 	popup_window.hide()
+
+
+func _on_settings_button_pressed() -> void:
+	get_node("Pause Menu").toggle_pause_menu()

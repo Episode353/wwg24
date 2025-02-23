@@ -1,3 +1,5 @@
+MarginContainer
+Button
 ColorRect
 Label
 Node3D
@@ -5,11 +7,8 @@ RichTextLabel
 Window
 HSlider
 VBoxContainer
-MarginContainer
 MultiplayerSynchronizer
 OccluderInstance3D
 TextureRect
 SubViewportContainer
 SubViewport
-MeshInstance3D
-MultiMeshInstance3D

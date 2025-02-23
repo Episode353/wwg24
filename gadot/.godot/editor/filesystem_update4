@@ -16,7 +16,8 @@ res://sys/shaders/COLOR_PALETTE.gdshader
 res://sys/shaders/CRT_SHADER.gdshader
 res://sys/shaders/VHS_SHADER.gdshader
 res://sys/shaders/CROSSHAIR_SHADER.gdshader
-res://tscn/shader_precomp.gd
 res://player.tscn
 res://tscn/shader_precomp.tscn
-res://Weapons_Manager.gd
+res://tscn/main_menu_canvas_layer.gd
+res://tscn/main_menu.tscn
+res://tscn/settings/settings.tscn
