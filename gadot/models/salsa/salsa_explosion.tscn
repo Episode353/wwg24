@@ -58,7 +58,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.347059, 0)
 target_position = Vector3(0, -20, 0)
 
 [node name="flames" type="GPUParticles3D" parent="Explosion"]
-amount = 100
+amount = 32
 randomness = 1.0
 fixed_fps = 20
 process_material = SubResource("ParticleProcessMaterial_eg7er")
