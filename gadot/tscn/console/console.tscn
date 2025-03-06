@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bo6ocdsbl26iy"]
 
-[ext_resource type="Script" path="res://tscn/console/console.gd" id="1_6l1qw"]
+[ext_resource type="Script" uid="uid://dg3ygtxvyqiif" path="res://tscn/console/console.gd" id="1_6l1qw"]
 [ext_resource type="FontFile" uid="uid://6e20625007tp" path="res://fonts/Daydream.ttf" id="1_yvp2q"]
 
 [node name="Console_Window" type="Window"]

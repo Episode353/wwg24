@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cb7x7p255f8oo"]
 
-[ext_resource type="Script" path="res://models/rocket_launcher/explosion.gd" id="1_dxays"]
+[ext_resource type="Script" uid="uid://c3p1gfsjbats0" path="res://models/rocket_launcher/explosion.gd" id="1_dxays"]
 [ext_resource type="Texture2D" uid="uid://bvxusr4s0aia" path="res://models/rocket_launcher/Flare00.PNG" id="2_4kxt2"]
 [ext_resource type="AudioStream" uid="uid://7opsqbkbcj23" path="res://sounds/rocket_launcher/rocket_launcher_explosion_collision.wav" id="3_uornu"]
 

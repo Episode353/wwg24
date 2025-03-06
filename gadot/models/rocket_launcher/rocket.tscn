@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1lgwvy4u24q6"]
 
-[ext_resource type="Script" path="res://models/rocket_launcher/rocket.gd" id="1_5cmco"]
+[ext_resource type="Script" uid="uid://2w8a0rxxg6v1" path="res://models/rocket_launcher/rocket.gd" id="1_5cmco"]
 [ext_resource type="PackedScene" uid="uid://dhpoafi2om3a8" path="res://models/rocket_launcher/rocket.gltf" id="1_8j38g"]
-[ext_resource type="Script" path="res://models/rocket_launcher/Area3D.gd" id="3_kkh6h"]
+[ext_resource type="Script" uid="uid://dpy6sc6gxabny" path="res://models/rocket_launcher/Area3D.gd" id="3_kkh6h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tit45"]
 

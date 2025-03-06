@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://8iemg5edxu0h"]
 
-[ext_resource type="Script" path="res://entities/pickup/weapon/weapon_pickup.gd" id="1_sdubb"]
+[ext_resource type="Script" uid="uid://c4uphq55dgrdg" path="res://entities/pickup/weapon/weapon_pickup.gd" id="1_sdubb"]
 [ext_resource type="PackedScene" uid="uid://xldscu02hsep" path="res://models/knife/Knife.glb" id="2_u0fcc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bnk6n"]

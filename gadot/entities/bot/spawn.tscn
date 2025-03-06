@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c7ug6sc3j4824"]
 
-[ext_resource type="Script" path="res://entities/bot/spawn.gd" id="1_8jlqq"]
+[ext_resource type="Script" uid="uid://dcisojc5okhhk" path="res://entities/bot/spawn.gd" id="1_8jlqq"]
 
 [node name="Spawn" type="Node3D"]
 visible = false

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dxwwnvjscfnrh"]
 
-[ext_resource type="Script" path="res://entities/pickup/weapon/weapon_pickup.gd" id="1_byu6y"]
+[ext_resource type="Script" uid="uid://c4uphq55dgrdg" path="res://entities/pickup/weapon/weapon_pickup.gd" id="1_byu6y"]
 [ext_resource type="PackedScene" uid="uid://c4s1ybiyslhwl" path="res://models/rocket_launcher/rocket_launcher.gltf" id="2_31gao"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bnk6n"]

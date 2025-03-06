@@ -1,13 +1,13 @@
 [gd_scene load_steps=28 format=3 uid="uid://c8oqxmm2w2wvv"]
 
-[ext_resource type="Script" path="res://world.gd" id="1_6tkge"]
-[ext_resource type="Script" path="res://sys/ServerConnectionHandler.gd" id="2_hna3u"]
-[ext_resource type="Script" path="res://CanvasLayer.gd" id="2_sgno6"]
-[ext_resource type="Script" path="res://FPSCount.gd" id="4_04ai0"]
-[ext_resource type="Shader" path="res://sys/shaders/COLOR_PALETTE.gdshader" id="4_73exp"]
-[ext_resource type="Shader" path="res://sys/shaders/CRT_SHADER.gdshader" id="4_hlbr0"]
-[ext_resource type="Shader" path="res://sys/shaders/VHS_SHADER.gdshader" id="4_paja1"]
-[ext_resource type="Shader" path="res://sys/shaders/CROSSHAIR_SHADER.gdshader" id="4_y0pat"]
+[ext_resource type="Script" uid="uid://balg5y2xwumxc" path="res://world.gd" id="1_6tkge"]
+[ext_resource type="Script" uid="uid://cgfnx548wmxwr" path="res://sys/ServerConnectionHandler.gd" id="2_hna3u"]
+[ext_resource type="Script" uid="uid://dlji1l8xhgvux" path="res://CanvasLayer.gd" id="2_sgno6"]
+[ext_resource type="Script" uid="uid://c07wlrwihsnt2" path="res://FPSCount.gd" id="4_04ai0"]
+[ext_resource type="Shader" uid="uid://cqn84s5kso51x" path="res://sys/shaders/COLOR_PALETTE.gdshader" id="4_73exp"]
+[ext_resource type="Shader" uid="uid://bdrf4xixe0qf3" path="res://sys/shaders/CRT_SHADER.gdshader" id="4_hlbr0"]
+[ext_resource type="Shader" uid="uid://cttxqdvjm1xil" path="res://sys/shaders/VHS_SHADER.gdshader" id="4_paja1"]
+[ext_resource type="Shader" uid="uid://bq5y5ovypy0pn" path="res://sys/shaders/CROSSHAIR_SHADER.gdshader" id="4_y0pat"]
 [ext_resource type="Texture2D" uid="uid://cii13l8l6362c" path="res://mat/aurora-1x.png" id="5_j4an6"]
 [ext_resource type="PackedScene" uid="uid://c1lfio6su6m7o" path="res://menufadein.tscn" id="7_bypg1"]
 
@@ -81,7 +81,7 @@ shader_parameter/fog_opacity = 0.2
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2q5a"]
 shader = ExtResource("4_y0pat")
 shader_parameter/is_symmetric = true
-shader_parameter/center_offset = null
+shader_parameter/center_offset = Vector2(0, 0)
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_outline_color = Color(0, 0, 0, 1)
 shader_parameter/line_length = Vector2(20, 20)
@@ -115,7 +115,7 @@ directional_shadow_blend_splits = true
 directional_shadow_max_distance = 8192.0
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://player.tscn")
+_spawnable_scenes = PackedStringArray("uid://xcjrjq5cbn7y")
 spawn_path = NodePath("..")
 
 [node name="ServerConnectionHandler" type="Node" parent="."]

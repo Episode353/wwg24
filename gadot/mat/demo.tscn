@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c5whkj84wreoy"]
 
-[ext_resource type="Shader" path="res://sys/shaders/COLOR_PALETTE.gdshader" id="1_6ds5e"]
+[ext_resource type="Shader" uid="uid://cqn84s5kso51x" path="res://sys/shaders/COLOR_PALETTE.gdshader" id="1_6ds5e"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 

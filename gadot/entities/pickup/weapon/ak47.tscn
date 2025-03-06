@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cve7repibm1du"]
 
-[ext_resource type="Script" path="res://entities/pickup/weapon/weapon_pickup.gd" id="1_fn7rp"]
+[ext_resource type="Script" uid="uid://c4uphq55dgrdg" path="res://entities/pickup/weapon/weapon_pickup.gd" id="1_fn7rp"]
 [ext_resource type="PackedScene" uid="uid://b6l28hw8movg2" path="res://models/ak47/ak47.glb" id="2_wrsva"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bnk6n"]

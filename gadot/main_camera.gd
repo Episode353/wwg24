@@ -15,3 +15,4 @@ func _process(_delta):
 	# Optionally, update the FOV dynamically during the game
 	if Globals.camera_fov != null:
 		fov = Globals.camera_fov
+	

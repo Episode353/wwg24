@@ -1,7 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dx6fu3mkh76y"]
 
-[ext_resource type="Script" path="res://entities/pickup/ammo/ammo_pickup.gd" id="1_qgv2c"]
-
+[ext_resource type="Script" uid="uid://dulpigo4uceps" path="res://entities/pickup/ammo/ammo_pickup.gd" id="1_qgv2c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ykyn0"]
 size = Vector3(2, 1.5, 2)

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Weapon_Resource" load_steps=4 format=3 uid="uid://b1gcuee3knuwf"]
 
-[ext_resource type="Script" path="res://sys/weapon_resource.gd" id="1_7jqly"]
+[ext_resource type="Script" uid="uid://c833r24e7s2jf" path="res://sys/weapon_resource.gd" id="1_7jqly"]
 [ext_resource type="AudioStream" uid="uid://b8fv474ipntxn" path="res://sounds/rocket_launcher/rocket_launcher_shoot.wav" id="1_eum3j"]
 [ext_resource type="AudioStream" uid="uid://b4n12af0mccb8" path="res://sounds/rocket_launcher/rocket_launcher_reload.wav" id="2_eun2x"]
 

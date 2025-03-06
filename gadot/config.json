@@ -1,6 +1,6 @@
 {
 	"master_volume": 0.46,
-	"max_fps": 500,
+	"max_fps": 500.0,
 	"mouse_sensitivity": 5.02,
 	"show_host_popup": false
 }

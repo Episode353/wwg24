@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://cgbhwcvrnd5q0"]
 
-[ext_resource type="Script" path="res://models/salsa/salsa_proj.gd" id="1_nqjva"]
-[ext_resource type="Texture2D" uid="uid://6c3oi65oxila" path="res://models/salsa/salsa_0.png" id="2_7546e"]
+[ext_resource type="Script" uid="uid://r0qicf0d0f8h" path="res://models/salsa/salsa_proj.gd" id="1_nqjva"]
+[ext_resource type="Texture2D" uid="uid://c0brsr8sn2h7f" path="res://models/salsa/salsa_0.png" id="2_7546e"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gho32"]
 bounce = 0.35

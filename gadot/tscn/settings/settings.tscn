@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cv5liljbq3twx"]
 
-[ext_resource type="Script" path="res://tscn/settings/settings.gd" id="1_1klxu"]
+[ext_resource type="Script" uid="uid://cdmamlatnbker" path="res://tscn/settings/settings.gd" id="1_1klxu"]
 [ext_resource type="FontFile" uid="uid://6e20625007tp" path="res://fonts/Daydream.ttf" id="1_8rjmw"]
 
 [node name="Pause Menu" type="Window"]

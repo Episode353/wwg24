@@ -5,7 +5,7 @@ extends RayCast3D
 @onready var holding_body: StaticBody3D = $"../holding_body"
 @onready var player = $"../../../.."
 
-var grab_joint: JoltGeneric6DOFJoint3D
+var grab_joint: Generic6DOFJoint3D
 
 # A constant to control how strong the shot is
 const SHOOT_FORCE: float = 10.0
@@ -73,7 +73,7 @@ func on_object_picked_up(object_path: NodePath):
 
 
 func create_6dof_joint(body: RigidBody3D):
-	grab_joint = JoltGeneric6DOFJoint3D.new()
+	grab_joint = Generic6DOFJoint3D.new()
 	grab_joint.node_a = holding_body.get_path()
 	grab_joint.node_b = body.get_path()
 	grab_joint.solver_velocity_iterations = 120

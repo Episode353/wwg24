@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8nc5oi74ny11"]
 
-[ext_resource type="Script" path="res://sys/voip/audio_controller.gd" id="1_27m7q"]
+[ext_resource type="Script" uid="uid://25v65th4neow" path="res://sys/voip/audio_controller.gd" id="1_27m7q"]
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_hue7o"]
 buffer_length = 0.1

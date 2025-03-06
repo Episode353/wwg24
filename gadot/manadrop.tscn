@@ -1,23 +1,23 @@
 [gd_scene load_steps=11 format=3 uid="uid://ca1xo5djf8hqf"]
 
-[ext_resource type="Script" path="res://manadrop.gd" id="1_kaao6"]
-[ext_resource type="Shader" path="res://shaders/manadrop.gdshader" id="2_ih3nc"]
+[ext_resource type="Script" uid="uid://ce3liw75fccsk" path="res://manadrop.gd" id="1_kaao6"]
+[ext_resource type="Shader" uid="uid://dhkr747d7b2q0" path="res://shaders/manadrop.gdshader" id="2_ih3nc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0a8dt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_483yu"]
 render_priority = 0
 shader = ExtResource("2_ih3nc")
-shader_parameter/albedo = null
-shader_parameter/specular = null
-shader_parameter/metallic = null
-shader_parameter/alpha_scissor_threshold = null
-shader_parameter/roughness = null
-shader_parameter/point_size = null
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
-shader_parameter/uv2_scale = null
-shader_parameter/uv2_offset = null
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/alpha_scissor_threshold = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/point_size = 0.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/speed = 5.0
 shader_parameter/frequency_uniform = 30.0
 shader_parameter/is_breath = false
@@ -179,10 +179,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_26yoe"]
 _data = {
-"RESET": SubResource("Animation_gfvbc"),
-"dissapear": SubResource("Animation_aqrjq"),
-"flashing": SubResource("Animation_6mv3s"),
-"manaidle": SubResource("Animation_k6850")
+&"RESET": SubResource("Animation_gfvbc"),
+&"dissapear": SubResource("Animation_aqrjq"),
+&"flashing": SubResource("Animation_6mv3s"),
+&"manaidle": SubResource("Animation_k6850")
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n3ce8"]

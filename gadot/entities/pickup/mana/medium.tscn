@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cx4pyyicmkycf"]
 
 [ext_resource type="PackedScene" uid="uid://bfkd2s733x2b" path="res://models/mana_drop/mana_potion.glb" id="2_i8m7q"]
-[ext_resource type="Script" path="res://entities/pickup/mana/mana_drop.gd" id="2_ln06f"]
+[ext_resource type="Script" uid="uid://cds4d10t1xa2x" path="res://entities/pickup/mana/mana_drop.gd" id="2_ln06f"]
 [ext_resource type="AudioStream" uid="uid://c1ead1mvxsjon" path="res://sounds/pickup/item_pickup_01.wav" id="3_x4n5h"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3qfhx"]
@@ -64,8 +64,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f82yq"]
 _data = {
-"RESET": SubResource("Animation_5hbo0"),
-"mana_drop_rotate": SubResource("Animation_0h7ij")
+&"RESET": SubResource("Animation_5hbo0"),
+&"mana_drop_rotate": SubResource("Animation_0h7ij")
 }
 
 [node name="mana_drop_scene" type="Node3D"]

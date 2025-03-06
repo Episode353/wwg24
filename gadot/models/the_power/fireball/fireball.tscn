@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbck53uiykrgl"]
 
-[ext_resource type="Script" path="res://models/the_power/fireball/fireball.gd" id="1_vtjjc"]
-[ext_resource type="Shader" path="res://models/the_power/fireball/fireball.gdshader" id="2_q5j6b"]
+[ext_resource type="Script" uid="uid://cqdnfc5uj0jrr" path="res://models/the_power/fireball/fireball.gd" id="1_vtjjc"]
+[ext_resource type="Shader" uid="uid://dukq122wkqf1w" path="res://models/the_power/fireball/fireball.gdshader" id="2_q5j6b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g5fss"]
 render_priority = 0

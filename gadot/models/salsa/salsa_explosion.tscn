@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c5uqivlpnwarb"]
 
-[ext_resource type="Script" path="res://models/salsa/salsa_explosion.gd" id="1_p04c0"]
+[ext_resource type="Script" uid="uid://dtcxnuid4shax" path="res://models/salsa/salsa_explosion.gd" id="1_p04c0"]
 [ext_resource type="AudioStream" uid="uid://m3jdosh66028" path="res://sounds/salsa/salsa_explosion_collision.wav" id="2_8wg73"]
 [ext_resource type="AudioStream" uid="uid://d0lfyws8sfibf" path="res://sounds/salsa/salsa_fire_spatial.wav" id="3_glj66"]
 

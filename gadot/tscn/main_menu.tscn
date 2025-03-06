@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://dptgttk8gkprg"]
 
-[ext_resource type="Script" path="res://sys/ServerDataCollection.gd" id="1_7wr8n"]
-[ext_resource type="Script" path="res://tscn/main_menu.gd" id="1_jlapi"]
-[ext_resource type="Script" path="res://tscn/autoexec.gd" id="2_3wnrv"]
-[ext_resource type="Script" path="res://tscn/main_menu_canvas_layer.gd" id="2_5pqri"]
+[ext_resource type="Script" uid="uid://bhrewnrvbwwi4" path="res://sys/ServerDataCollection.gd" id="1_7wr8n"]
+[ext_resource type="Script" uid="uid://dlvlmb37tiwy5" path="res://tscn/main_menu.gd" id="1_jlapi"]
+[ext_resource type="Script" uid="uid://dxr4eac3vomt" path="res://tscn/autoexec.gd" id="2_3wnrv"]
+[ext_resource type="Script" uid="uid://p46sy5ogu3ym" path="res://tscn/main_menu_canvas_layer.gd" id="2_5pqri"]
 [ext_resource type="AudioStream" uid="uid://ccs4au54nqqwx" path="res://music/main_menu_01.ogg" id="3_3mkf0"]
 [ext_resource type="Texture2D" uid="uid://ds81orwdmrjbj" path="res://tscn/settings/gear.svg" id="5_fst2u"]
-[ext_resource type="Shader" path="res://tscn/main_menu_stars.gdshader" id="5_j8ubb"]
+[ext_resource type="Shader" uid="uid://cvdm63nj4n41s" path="res://tscn/main_menu_stars.gdshader" id="5_j8ubb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_86sxb"]
 shader = ExtResource("5_j8ubb")

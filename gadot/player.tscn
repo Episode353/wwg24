@@ -1,12 +1,12 @@
 [gd_scene load_steps=194 format=4 uid="uid://xcjrjq5cbn7y"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_ebgxs"]
-[ext_resource type="Script" path="res://main_camera.gd" id="2_38wgo"]
-[ext_resource type="Script" path="res://Weapons_Manager.gd" id="2_dh310"]
+[ext_resource type="Script" uid="uid://d2ne21fikmggg" path="res://player.gd" id="1_ebgxs"]
+[ext_resource type="Script" uid="uid://ddnxxp2m6samt" path="res://main_camera.gd" id="2_38wgo"]
+[ext_resource type="Script" uid="uid://dokvk6njhlxvr" path="res://Weapons_Manager.gd" id="2_dh310"]
 [ext_resource type="CameraAttributesPhysical" uid="uid://hkmnwgf3rmtx" path="res://tscn/viewmodelcameraattributes.tres" id="2_vbl0t"]
-[ext_resource type="Script" path="res://interaction_ray.gd" id="3_hxk1l"]
+[ext_resource type="Script" uid="uid://c3allvvb43a1f" path="res://interaction_ray.gd" id="3_hxk1l"]
 [ext_resource type="Resource" uid="uid://bof3ewi4ljhjc" path="res://sys/weapon_resources/ak47.tres" id="3_vtnjn"]
-[ext_resource type="Script" path="res://sys/weapon_resource.gd" id="4_qoin8"]
+[ext_resource type="Script" uid="uid://c833r24e7s2jf" path="res://sys/weapon_resource.gd" id="4_qoin8"]
 [ext_resource type="Resource" uid="uid://cea7mprhctago" path="res://sys/weapon_resources/knife.tres" id="6_vxs5u"]
 [ext_resource type="Resource" uid="uid://5tv31ewa2jw3" path="res://sys/weapon_resources/hands.tres" id="7_6ncrt"]
 [ext_resource type="Resource" uid="uid://cqscctj06yo0b" path="res://sys/weapon_resources/hegrenade.tres" id="7_207gd"]
@@ -29,15 +29,15 @@
 [ext_resource type="Texture2D" uid="uid://bcypyuvqq6th4" path="res://models/rocket_launcher/rocket_0.png" id="21_vqms1"]
 [ext_resource type="Texture2D" uid="uid://cxs7hm06biaee" path="res://models/grenade/grenade_0.png" id="22_oynkj"]
 [ext_resource type="Texture2D" uid="uid://c0brsr8sn2h7f" path="res://models/salsa/salsa_0.png" id="23_krb4n"]
-[ext_resource type="Script" path="res://CollisionScript.gd" id="26_arl6k"]
-[ext_resource type="Texture2D" uid="uid://cd7ia8hllsbbx" path="res://models/the_power/the_power_0.png" id="27_nxu68"]
-[ext_resource type="Script" path="res://keyboard.gd" id="27_uk5cr"]
-[ext_resource type="Script" path="res://sys/username_label.gd" id="28_ip48q"]
-[ext_resource type="Script" path="res://viewmodel_camera.gd" id="28_p4825"]
-[ext_resource type="Script" path="res://display_health.gd" id="30_jkaaj"]
+[ext_resource type="Script" uid="uid://14iir2a874sm" path="res://CollisionScript.gd" id="26_arl6k"]
+[ext_resource type="Texture2D" uid="uid://dvtndc6jdgm5v" path="res://models/the_power/the_power_0.png" id="27_nxu68"]
+[ext_resource type="Script" uid="uid://dytbe5ghtqq8w" path="res://keyboard.gd" id="27_uk5cr"]
+[ext_resource type="Script" uid="uid://dd48li2plgv6v" path="res://sys/username_label.gd" id="28_ip48q"]
+[ext_resource type="Script" uid="uid://b78n3sg8a6xd4" path="res://viewmodel_camera.gd" id="28_p4825"]
+[ext_resource type="Script" uid="uid://bqiukocqepdw5" path="res://display_health.gd" id="30_jkaaj"]
 [ext_resource type="Texture2D" uid="uid://c4cjao3lktjr0" path="res://models/wand/wand_01_0.png" id="31_fpgmk"]
 [ext_resource type="AudioStream" uid="uid://h6pkf0tevw2m" path="res://sounds/player/hurt.wav" id="34_jjjwd"]
-[ext_resource type="Script" path="res://bot_logic.gd" id="35_oump4"]
+[ext_resource type="Script" uid="uid://bb82gvx5ows1x" path="res://bot_logic.gd" id="35_oump4"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_06gil"]
 properties/0/path = NodePath(".:position")
@@ -2509,51 +2509,51 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hucl6"]
 _data = {
-"RESET": SubResource("Animation_drglv"),
-"ak47_activate": SubResource("Animation_ribrg"),
-"ak47_deactivate": SubResource("Animation_63j7y"),
-"ak47_ooa": SubResource("Animation_rhqpq"),
-"ak47_reload": SubResource("Animation_rmgrj"),
-"ak47_shoot": SubResource("Animation_em0k2"),
-"ak47_wall_lower": SubResource("Animation_c2i02"),
-"ak47_wall_raise": SubResource("Animation_54huw"),
-"flame_spell_activate": SubResource("Animation_uik3w"),
-"flame_spell_deactivate": SubResource("Animation_tpq4n"),
-"flame_spell_idle": SubResource("Animation_ofn4h"),
-"flame_spell_shoot": SubResource("Animation_y1idq"),
-"grenade_active": SubResource("Animation_y54kx"),
-"grenade_deactive": SubResource("Animation_w8pb5"),
-"grenade_idle": SubResource("Animation_jmv45"),
-"grenade_shoot": SubResource("Animation_xm8nn"),
-"knife_activate": SubResource("Animation_742mw"),
-"knife_deactivate": SubResource("Animation_jhq07"),
-"knife_idle": SubResource("Animation_b8mil"),
-"knife_shoot": SubResource("Animation_0m4bb"),
-"rocket_launcher_activate": SubResource("Animation_iuvs1"),
-"rocket_launcher_deactivate": SubResource("Animation_7inxj"),
-"rocket_launcher_idle": SubResource("Animation_nr1vh"),
-"rocket_launcher_reload": SubResource("Animation_hv6qy"),
-"rocket_launcher_shoot": SubResource("Animation_ig5sf"),
-"rocket_launcher_wall_lower": SubResource("Animation_vgufm"),
-"rocket_launcher_wall_raise": SubResource("Animation_to5ik"),
-"salsa_activate": SubResource("Animation_eb62l"),
-"salsa_deactivate": SubResource("Animation_0fxg6"),
-"salsa_idle": SubResource("Animation_uu2si"),
-"salsa_shoot": SubResource("Animation_o2uka"),
-"shotgun_activate": SubResource("Animation_wssnf"),
-"shotgun_deactivate": SubResource("Animation_e80dv"),
-"shotgun_ooa": SubResource("Animation_vqfqk"),
-"shotgun_reload": SubResource("Animation_hq0hi"),
-"shotgun_shoot": SubResource("Animation_fck6w"),
-"shotgun_wall_lower": SubResource("Animation_fx4a2"),
-"shotgun_wall_raise": SubResource("Animation_l8tc0"),
-"the_power_activate": SubResource("Animation_htdsp"),
-"the_power_deactivate": SubResource("Animation_xtti4"),
-"the_power_idle": SubResource("Animation_5k557"),
-"the_power_lower": SubResource("Animation_pgeon"),
-"the_power_raise": SubResource("Animation_2y6xb"),
-"wand_activate": SubResource("Animation_pjap0"),
-"wand_deactivate": SubResource("Animation_cioby")
+&"RESET": SubResource("Animation_drglv"),
+&"ak47_activate": SubResource("Animation_ribrg"),
+&"ak47_deactivate": SubResource("Animation_63j7y"),
+&"ak47_ooa": SubResource("Animation_rhqpq"),
+&"ak47_reload": SubResource("Animation_rmgrj"),
+&"ak47_shoot": SubResource("Animation_em0k2"),
+&"ak47_wall_lower": SubResource("Animation_c2i02"),
+&"ak47_wall_raise": SubResource("Animation_54huw"),
+&"flame_spell_activate": SubResource("Animation_uik3w"),
+&"flame_spell_deactivate": SubResource("Animation_tpq4n"),
+&"flame_spell_idle": SubResource("Animation_ofn4h"),
+&"flame_spell_shoot": SubResource("Animation_y1idq"),
+&"grenade_active": SubResource("Animation_y54kx"),
+&"grenade_deactive": SubResource("Animation_w8pb5"),
+&"grenade_idle": SubResource("Animation_jmv45"),
+&"grenade_shoot": SubResource("Animation_xm8nn"),
+&"knife_activate": SubResource("Animation_742mw"),
+&"knife_deactivate": SubResource("Animation_jhq07"),
+&"knife_idle": SubResource("Animation_b8mil"),
+&"knife_shoot": SubResource("Animation_0m4bb"),
+&"rocket_launcher_activate": SubResource("Animation_iuvs1"),
+&"rocket_launcher_deactivate": SubResource("Animation_7inxj"),
+&"rocket_launcher_idle": SubResource("Animation_nr1vh"),
+&"rocket_launcher_reload": SubResource("Animation_hv6qy"),
+&"rocket_launcher_shoot": SubResource("Animation_ig5sf"),
+&"rocket_launcher_wall_lower": SubResource("Animation_vgufm"),
+&"rocket_launcher_wall_raise": SubResource("Animation_to5ik"),
+&"salsa_activate": SubResource("Animation_eb62l"),
+&"salsa_deactivate": SubResource("Animation_0fxg6"),
+&"salsa_idle": SubResource("Animation_uu2si"),
+&"salsa_shoot": SubResource("Animation_o2uka"),
+&"shotgun_activate": SubResource("Animation_wssnf"),
+&"shotgun_deactivate": SubResource("Animation_e80dv"),
+&"shotgun_ooa": SubResource("Animation_vqfqk"),
+&"shotgun_reload": SubResource("Animation_hq0hi"),
+&"shotgun_shoot": SubResource("Animation_fck6w"),
+&"shotgun_wall_lower": SubResource("Animation_fx4a2"),
+&"shotgun_wall_raise": SubResource("Animation_l8tc0"),
+&"the_power_activate": SubResource("Animation_htdsp"),
+&"the_power_deactivate": SubResource("Animation_xtti4"),
+&"the_power_idle": SubResource("Animation_5k557"),
+&"the_power_lower": SubResource("Animation_pgeon"),
+&"the_power_raise": SubResource("Animation_2y6xb"),
+&"wand_activate": SubResource("Animation_pjap0"),
+&"wand_deactivate": SubResource("Animation_cioby")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6gcm"]
@@ -3626,31 +3626,31 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l02vw"]
 _data = {
-"RESET": SubResource("Animation_e8i47"),
-"key_01_activate": SubResource("Animation_5d6je"),
-"key_01_deactivate": SubResource("Animation_8gq8t"),
-"key_02_activate": SubResource("Animation_4mjkk"),
-"key_02_deactivate": SubResource("Animation_p8tvk"),
-"key_03_activate": SubResource("Animation_5pn3d"),
-"key_03_deactivate": SubResource("Animation_nq6j3"),
-"key_04_activate": SubResource("Animation_hcwjj"),
-"key_04_deactivate": SubResource("Animation_rocb2"),
-"key_05_activate": SubResource("Animation_va0nm"),
-"key_05_deactivate": SubResource("Animation_3b1w5"),
-"key_06_activate": SubResource("Animation_3p0ps"),
-"key_06_deactivate": SubResource("Animation_f5jkx"),
-"key_07_activate": SubResource("Animation_f6q2q"),
-"key_07_deactivate": SubResource("Animation_56v6j"),
-"key_08_activate": SubResource("Animation_n3ab8"),
-"key_08_deactivate": SubResource("Animation_svfbt"),
-"key_09_activate": SubResource("Animation_b261q"),
-"key_09_deactivate": SubResource("Animation_oh8js"),
-"key_10_activate": SubResource("Animation_ef2kw"),
-"key_10_deactivate": SubResource("Animation_v1tot"),
-"key_11_activate": SubResource("Animation_vdobw"),
-"key_11_deactivate": SubResource("Animation_gpfry"),
-"key_12_activate": SubResource("Animation_5yquu"),
-"key_12_deactivate": SubResource("Animation_dbs4r")
+&"RESET": SubResource("Animation_e8i47"),
+&"key_01_activate": SubResource("Animation_5d6je"),
+&"key_01_deactivate": SubResource("Animation_8gq8t"),
+&"key_02_activate": SubResource("Animation_4mjkk"),
+&"key_02_deactivate": SubResource("Animation_p8tvk"),
+&"key_03_activate": SubResource("Animation_5pn3d"),
+&"key_03_deactivate": SubResource("Animation_nq6j3"),
+&"key_04_activate": SubResource("Animation_hcwjj"),
+&"key_04_deactivate": SubResource("Animation_rocb2"),
+&"key_05_activate": SubResource("Animation_va0nm"),
+&"key_05_deactivate": SubResource("Animation_3b1w5"),
+&"key_06_activate": SubResource("Animation_3p0ps"),
+&"key_06_deactivate": SubResource("Animation_f5jkx"),
+&"key_07_activate": SubResource("Animation_f6q2q"),
+&"key_07_deactivate": SubResource("Animation_56v6j"),
+&"key_08_activate": SubResource("Animation_n3ab8"),
+&"key_08_deactivate": SubResource("Animation_svfbt"),
+&"key_09_activate": SubResource("Animation_b261q"),
+&"key_09_deactivate": SubResource("Animation_oh8js"),
+&"key_10_activate": SubResource("Animation_ef2kw"),
+&"key_10_deactivate": SubResource("Animation_v1tot"),
+&"key_11_activate": SubResource("Animation_vdobw"),
+&"key_11_deactivate": SubResource("Animation_gpfry"),
+&"key_12_activate": SubResource("Animation_5yquu"),
+&"key_12_deactivate": SubResource("Animation_dbs4r")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kaeoh"]
@@ -4351,7 +4351,7 @@ start_weapons = Array[String](["hands"])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
 libraries = {
-"": SubResource("AnimationLibrary_hucl6")
+&"": SubResource("AnimationLibrary_hucl6")
 }
 autoplay = "RESET"
 
@@ -4507,7 +4507,7 @@ transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
 
 [node name="keyboard_animation_player" type="AnimationPlayer" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power"]
 libraries = {
-"": SubResource("AnimationLibrary_l02vw")
+&"": SubResource("AnimationLibrary_l02vw")
 }
 speed_scale = 100.0
 
