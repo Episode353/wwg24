@@ -1,5 +1,5 @@
 {
-	"fullscreen": false,
+	"fullscreen": true,
 	"master_volume": 0.46,
 	"max_fps": 250.0,
 	"mouse_sensitivity": 2.69,

@@ -84,6 +84,7 @@ Features to add:
 
 
 Bugs to fix:
+	- Add weapon pickup for the wand
 	- Joining players cant punch sometimes
 	- Clients cant pickup items sometimes
 	- Charachter exclusive stuff, like if you're a human or a wizard
