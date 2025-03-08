@@ -37,7 +37,8 @@ func explode():
 		var explosion_scene = EXPLOSION_PRELOAD.instantiate()
 		explosion_scene.owner_player = owner_player
 		explosion_scene.global_position = explosion_position
-		world.add_child(explosion_scene)
+		if world:
+			world.add_child(explosion_scene)
 
 	queue_free()
 

@@ -33,7 +33,7 @@ func _get_weapon_name(weapon_value: int) -> String:
 
 func _process(delta: float) -> void:
 	# Rotate the weapon model for a nice effect.
-	weapon_model.rotation.y += 1.0 * delta
+	weapon_model.rotation.y += 7 * delta
 
 func _ready() -> void:
 	# Only the server (network authority) should handle collision events.

@@ -26,6 +26,9 @@ var commands = {
 	"quit": {"func": func() -> String:
 		return quit_function(),
 		"args": 0},
+	"disconnect": {"func": func() -> String:
+		return disconnect_func(),
+		"args": 0},
 	"add_bot": {"func": func() -> String:
 		var world = get_tree().get_root().get_node("World")
 		var players = get_tree().get_nodes_in_group("players")
@@ -324,6 +327,12 @@ func _navigate_history(direction):
 func quit_function() -> String:
 	get_tree().quit()
 	return "Quitting"
+	
+# Custom function to be run by the command
+func disconnect_func():
+	var world = get_tree().get_root().get_node("World")
+	world.rpc("disconnect_me")
+	return "Disconnecting"
 
 # Function to dynamically return all available commands
 func get_available_commands() -> String:

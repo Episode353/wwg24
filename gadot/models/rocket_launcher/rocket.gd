@@ -34,7 +34,8 @@ func explode():
 	explosion_scene.owner_player = null
 	explosion_scene.global_transform = rocket_proj.global_transform
 	explosion_scene.scale = Vector3.ONE  # Ensure the explosion scale is 1
-	world.add_child.call_deferred(explosion_scene)
+	if world:
+		world.add_child.call_deferred(explosion_scene)
 
 	# Free the rocket
 	queue_free()

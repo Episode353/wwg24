@@ -25,7 +25,7 @@ Edit the autoexec.json
 How to edit your Configs
 Edit the config.json
 
-Made with Godot_v4.3-stable_win64.exe
+Made with Godot_v4.4-stable_win64.exe
 
 
 Priority 1
@@ -36,9 +36,6 @@ custom player (cylinder) color
 Features to add:
 
 	Menus
-		- Settings Menu that will save and load data to/from the config.txt
-		- Should be openable from a settings icon on the main menu or pause menu
-		- Should console be open by default when opening pause menu?
 		- Custom Player Color
 		- Visual settings, such as anti aliasing, resolution, etc
 		- Edit Username

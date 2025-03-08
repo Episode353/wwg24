@@ -4605,11 +4605,12 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 
 [node name="Layer_1" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/wand/wand_01/Node"]
 transform = Transform3D(1.98975, -0.00298209, 0.202246, 0.0710846, 1.88253, -0.671589, -0.189366, 0.675334, 1.87298, 0.496813, 0.00214422, -0.934401)
-layers = 99
+layers = 2
 mesh = SubResource("ArrayMesh_262ai")
 skeleton = NodePath("")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="neck/head/main_camera"]
+z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -4620,12 +4621,12 @@ grow_vertical = 2
 transparent_bg = true
 handle_input_locally = false
 canvas_cull_mask = 4293918720
-size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
 [node name="viewmodel_camera" type="Camera3D" parent="neck/head/main_camera/SubViewportContainer/viewmodel_viewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80978, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00521731, 0.00207496, 0.00310946)
 cull_mask = 2
+fov = 37.8493
 script = ExtResource("28_p4825")
 
 [node name="holding_body" type="StaticBody3D" parent="neck/head/main_camera"]

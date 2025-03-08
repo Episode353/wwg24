@@ -415,7 +415,8 @@ func update_weapon_hud():
 	
 	weapon_stack_label.text = formatted_stack.strip_edges()  # Remove any unnecessary trailing newline
 
-func _on_button_pressed():
+@rpc("any_peer", "call_local")
+func disconnect_me():
 	if is_multiplayer_authority():
 		rpc("_on_server_disconnected")
 	rpc("kick_players")

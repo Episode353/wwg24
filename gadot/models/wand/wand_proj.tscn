@@ -1,0 +1,106 @@
+[gd_scene load_steps=12 format=3 uid="uid://c0vnh0sycauu"]
+
+[ext_resource type="Script" uid="uid://l7mi437b3qh1" path="res://models/wand/wand_proj.gd" id="1_vrumx"]
+[ext_resource type="Shader" uid="uid://7xofupjr0cwg" path="res://models/wand/wand_proj.gdshader" id="2_majrx"]
+[ext_resource type="Shader" uid="uid://r4lsm5u23q1" path="res://models/wand/wand_proj2.gdshader" id="3_d41r8"]
+[ext_resource type="Shader" uid="uid://bk0gh3d6jequa" path="res://models/wand/wand_proj3.gdshader" id="4_6ty1u"]
+[ext_resource type="Shader" uid="uid://duldmrjfjpc3e" path="res://models/wand/wand_proj_lightning.gdshader" id="5_6yah5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ty1u"]
+bounce = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vrumx"]
+radius = 0.807
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d41r8"]
+render_priority = 3
+shader = ExtResource("2_majrx")
+shader_parameter/sphere_color = Color(0, 0, 0, 0)
+shader_parameter/wave_amplitude = 0.006
+shader_parameter/wave_frequency = 19.397
+shader_parameter/wave_speed = 3.618
+shader_parameter/chroma_amount = 1.0
+shader_parameter/stars_enabled = true
+shader_parameter/star_field_scale = 4.377
+shader_parameter/star_size = 0.008
+shader_parameter/star_intensity = 1.0
+shader_parameter/star_axis_speed = 0.051
+shader_parameter/star_move_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ty1u"]
+render_priority = 2
+shader = ExtResource("3_d41r8")
+shader_parameter/frequency = 4.0
+shader_parameter/amplitude = 2.0
+shader_parameter/ripple_rate = 5.0
+shader_parameter/blending = 1.0
+shader_parameter/wave_amplitude = 0.05
+shader_parameter/wave_frequency = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6yah5"]
+render_priority = 5
+shader = ExtResource("4_6ty1u")
+shader_parameter/albedo = Color(1, 1, 1, 0)
+shader_parameter/roughness = 0.15
+shader_parameter/refraction = 0.5
+shader_parameter/refraction_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/normal_strength = 0.0
+shader_parameter/edge_color = Color(0, 0, 0, 1)
+shader_parameter/surface_contribution = 0.2
+shader_parameter/specular_contribution = 0.2
+shader_parameter/refraction_contribution = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gn4wy"]
+render_priority = 5
+shader = ExtResource("5_6yah5")
+shader_parameter/shatter = true
+shader_parameter/fracture_scale = 1.5
+shader_parameter/roughness = 0.675
+shader_parameter/transparency = 0.675
+shader_parameter/normal_offset_multiplier = 0.375
+shader_parameter/glass_tint = 0.675
+shader_parameter/edge_thickness = 0.0
+shader_parameter/impact_range = 1.25
+shader_parameter/compression_strength = -1.125
+shader_parameter/impact_points = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+collision_layer = 0
+physics_material_override = SubResource("PhysicsMaterial_6ty1u")
+script = ExtResource("1_vrumx")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4607
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_vrumx")
+
+[node name="Visual Root" type="Node3D" parent="."]
+
+[node name="Aberation" type="CSGSphere3D" parent="Visual Root"]
+material = SubResource("ShaderMaterial_d41r8")
+
+[node name="Edge" type="CSGSphere3D" parent="Visual Root"]
+radius = 0.55
+material = SubResource("ShaderMaterial_6ty1u")
+
+[node name="Glass" type="CSGSphere3D" parent="Visual Root"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+radius = 0.3
+material = SubResource("ShaderMaterial_6yah5")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Visual Root"]
+light_color = Color(0.517647, 1, 1, 1)
+light_energy = 0.5
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Visual Root"]
+radius = 0.225134
+material = SubResource("ShaderMaterial_gn4wy")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_vrumx")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

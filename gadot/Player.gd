@@ -49,7 +49,7 @@ const GRAVITY: int = 12
 const KNIFE_EXTRA_SPEED: float = 1.5
 # GRAVITY USED TO BE 15.34
 const STOP_SPEED: int = 2 # Was 1.5
-const JUMP_IMPULSE: float = sqrt(2 * GRAVITY * 3) #Orig was sqrt(2 * GRAVITY * 1.85)
+const JUMP_IMPULSE: float = sqrt(2 * GRAVITY * 2) #Orig was sqrt(2 * GRAVITY * 1.85)
 const PLAYER_WALKING_MULTIPLIER: float = 0.666
 var direction: Vector3 = Vector3.ZERO
 var friction: int = 4
@@ -66,6 +66,10 @@ var max_health: int = 100 # Health set to max health on respawn
 
 var mana: int = 50 # Inital mana
 var max_mana: int = 100 # mana set to max health on respaw
+
+# How long it takes to passivly regen mana
+var mana_regen_timer: float = 0
+var mana_regen_length:float = 4
 
 # Speed Variables
 const walking_speed: float = 5.0
@@ -103,10 +107,6 @@ var CUT_JUMP_HEIGHT: float = 0.5
 
 
 # Slide Vars
-var slide_timer: float = 0.0
-var slide_timer_max: float = 1.0
-var slide_vector: Vector2 = Vector2.ZERO
-var slide_speed: float = 15.0
 
 # Health States
 var is_on_fire: bool = false
@@ -221,14 +221,19 @@ func _unhandled_input(event):
 			rotate_y(deg_to_rad(-event.relative.x * sensitivity))
 			head.rotate_x(deg_to_rad(-event.relative.y * sensitivity))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-98), deg_to_rad(89))
-
-
-
+			
 
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
 	if is_bot: return
+	
+	
+	mana_regen_timer += delta
+	if mana_regen_timer >= mana_regen_length:
+		mana_regen_timer = 0
+		receive_mana(1)
+	
 		
 	 # Update coyote time: reset if on floor, otherwise count down
 	if is_on_floor():
@@ -276,6 +281,8 @@ func _physics_process(delta):
 		neck.rotation.x = lerp(neck.rotation.x, 0.0, delta * 5)
 		neck.rotation.y = lerp(neck.rotation.y, 0.0, delta * 5)
 		neck.rotation.z = lerp(neck.rotation.z, 0.0, delta * 5)
+	viewmodel_camera.global_transform = main_camera.global_transform
+	
 
 
 
@@ -431,10 +438,7 @@ func process_movement(delta):
 				move_and_slide()
 				_snap_down_to_stairs_check()
 
-func _process(delta):
-	if is_bot: return
-	viewmodel_camera.global_transform = main_camera.global_transform
-	
+
 
 
 
@@ -514,6 +518,27 @@ func launch_rocket():
 	proj_instance.owner_player = self
 	var launch_rocket_to_world = get_parent()
 	launch_rocket_to_world.add_child.call_deferred(proj_instance)
+	
+	
+@rpc("call_local")
+func launch_wand():
+	const wand_proj = preload("res://models/wand/wand_proj.tscn")
+
+	var proj_instance = wand_proj.instantiate()
+	var forward_direction = -main_camera.global_transform.basis.z.normalized() # Forward direction
+	var spawn_distance = 1.0 # Adjust as needed
+
+	# Offset the spawn position
+	proj_instance.global_transform.origin = main_camera.global_transform.origin + (forward_direction * spawn_distance)
+
+	# Set owner and velocity
+	proj_instance.owner_player = self
+	var launch_speed = 50.0
+	proj_instance.linear_velocity = forward_direction * launch_speed
+
+	# Add to scene
+	get_parent().add_child.call_deferred(proj_instance)
+
 	
 @rpc("call_local")
 func launch_he_grenade():

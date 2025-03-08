@@ -302,6 +302,7 @@ func raycast_shoot_procc():
 		hit_object.rpc("receive_damage", current_weapon.damage)
 		hit_object.rpc("update_last_tagged_by", player.name)
 		play_hit_player_sound()
+	
 
 		
 	if hit_object.is_in_group("destructable"):
@@ -310,7 +311,8 @@ func raycast_shoot_procc():
 	if !hit_object.is_in_group("players"):
 		print(hit_object.get_parent())
 		
-		
+
+
 
 @rpc("any_peer", "call_local")
 func create_bullet_decal(col_point: Vector3, col_nor: Vector3):
@@ -371,6 +373,12 @@ func shoot():
 			if current_weapon.weapon_name == "rocket_launcher":
 				player.rpc("launch_rocket")
 				play_fire_sound()
+				
+			if current_weapon.weapon_name == "wand":
+				if player.mana >= 25:
+					player.rpc("receive_mana", -25)
+					player.rpc("launch_wand")
+					play_fire_sound()
 				
 			if current_weapon.weapon_name == "hegrenade":
 				await get_tree().create_timer(0.5).timeout

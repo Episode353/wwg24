@@ -76,8 +76,8 @@ func create_6dof_joint(body: RigidBody3D):
 	grab_joint = Generic6DOFJoint3D.new()
 	grab_joint.node_a = holding_body.get_path()
 	grab_joint.node_b = body.get_path()
-	grab_joint.solver_velocity_iterations = 120
-	grab_joint.solver_position_iterations = 120
+	#grab_joint.solver_velocity_iterations = 120
+	#grab_joint.solver_position_iterations = 120
 	add_child(grab_joint)
 
 

@@ -2,3 +2,5 @@
 
 [resource]
 auto_exposure_enabled = true
+frustum_focal_length = 1.6
+frustum_near = 0.001

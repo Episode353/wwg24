@@ -227,9 +227,11 @@ rebuild_map={
 [physics]
 
 common/max_physics_steps_per_frame=60
-common/physics_jitter_fix=0.0
 3d/physics_engine="Jolt Physics"
+jolt_physics_3d/simulation/velocity_steps=120
+jolt_physics_3d/simulation/position_steps=120
 jolt_physics_3d/simulation/areas_detect_static_bodies=true
+common/physics_interpolation=true
 jolt_3d/collisions/areas_detect_static_bodies=true
 jolt_3d/collisions/report_all_kinematic_contacts=true
 
@@ -238,4 +240,6 @@ jolt_3d/collisions/report_all_kinematic_contacts=true
 textures/canvas_textures/default_texture_filter=0
 textures/vram_compression/import_s3tc_bptc=true
 environment/ssao/half_size=false
+anti_aliasing/quality/msaa_3d=2
 anti_aliasing/screen_space_roughness_limiter/enabled=false
+anti_aliasing/quality/use_debanding=true

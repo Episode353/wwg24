@@ -1,15 +1,28 @@
-[gd_scene load_steps=28 format=3 uid="uid://c8oqxmm2w2wvv"]
+[gd_scene load_steps=44 format=3 uid="uid://c8oqxmm2w2wvv"]
 
 [ext_resource type="Script" uid="uid://balg5y2xwumxc" path="res://world.gd" id="1_6tkge"]
 [ext_resource type="Script" uid="uid://cgfnx548wmxwr" path="res://sys/ServerConnectionHandler.gd" id="2_hna3u"]
+[ext_resource type="Resource" uid="uid://ca45noqewsyvp" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_experimental_blur_stage.tres" id="2_ikiii"]
 [ext_resource type="Script" uid="uid://dlji1l8xhgvux" path="res://CanvasLayer.gd" id="2_sgno6"]
+[ext_resource type="Resource" uid="uid://cslvcweyejh3c" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_movement_component.tres" id="2_wukud"]
+[ext_resource type="Resource" uid="uid://cvb65hfs2lrxo" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_neighbor_max_stage.tres" id="3_cbp6q"]
+[ext_resource type="Resource" uid="uid://iru8ynu04i00" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_rotation_component.tres" id="3_il2jm"]
 [ext_resource type="Script" uid="uid://c07wlrwihsnt2" path="res://FPSCount.gd" id="4_04ai0"]
+[ext_resource type="Resource" uid="uid://bidsfymvdyhek" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_overlay_stage.tres" id="4_26xuy"]
 [ext_resource type="Shader" uid="uid://cqn84s5kso51x" path="res://sys/shaders/COLOR_PALETTE.gdshader" id="4_73exp"]
 [ext_resource type="Shader" uid="uid://bdrf4xixe0qf3" path="res://sys/shaders/CRT_SHADER.gdshader" id="4_hlbr0"]
 [ext_resource type="Shader" uid="uid://cttxqdvjm1xil" path="res://sys/shaders/VHS_SHADER.gdshader" id="4_paja1"]
+[ext_resource type="Resource" uid="uid://rp3mpjmisoyh" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_object_movement_component.tres" id="4_wjb0r"]
 [ext_resource type="Shader" uid="uid://bq5y5ovypy0pn" path="res://sys/shaders/CROSSHAIR_SHADER.gdshader" id="4_y0pat"]
+[ext_resource type="Script" uid="uid://xdrmckvuitsc" path="res://addons/SphynxMotionBlurToolkit/Guertin/new_guertin_motion_blur.gd" id="5_bc84e"]
 [ext_resource type="Texture2D" uid="uid://cii13l8l6362c" path="res://mat/aurora-1x.png" id="5_j4an6"]
+[ext_resource type="Resource" uid="uid://c8ulad7utgrg7" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processing_stage.tres" id="5_mc2jv"]
+[ext_resource type="Script" uid="uid://dagbguxydihal" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processor.gd" id="6_bo7i5"]
+[ext_resource type="Resource" uid="uid://dipvwksvqb3dm" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_max_x_stage.tres" id="6_wukud"]
 [ext_resource type="PackedScene" uid="uid://c1lfio6su6m7o" path="res://menufadein.tscn" id="7_bypg1"]
+[ext_resource type="Resource" uid="uid://bxfg45ubc2pv7" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_max_y_stage.tres" id="7_il2jm"]
+[ext_resource type="Resource" uid="uid://bqehecsdgt70s" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_variance_stage.tres" id="8_wjb0r"]
+[ext_resource type="Script" uid="uid://co04ap10rbrrg" path="res://addons/SphynxMotionBlurToolkit/BaseClasses/mb_compositor.gd" id="9_mc2jv"]
 
 [sub_resource type="Gradient" id="Gradient_q3jm3"]
 offsets = PackedFloat32Array(0.0955679, 0.142659, 0.265928, 0.33518, 1)
@@ -28,13 +41,61 @@ sky_material = SubResource("ProceduralSkyMaterial_clnmc")
 [sub_resource type="Environment" id="Environment_kwrsd"]
 background_mode = 2
 sky = SubResource("Sky_ayvap")
-tonemap_mode = 3
-tonemap_exposure = 0.25
+tonemap_mode = 4
+tonemap_exposure = 3.35
 glow_map = SubResource("GradientTexture2D_7yniy")
 volumetric_fog_density = 0.005
 adjustment_enabled = true
 adjustment_brightness = 1.4
 adjustment_saturation = 1.2
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_il2jm"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("6_bo7i5")
+pre_blur_processor_stage = ExtResource("5_mc2jv")
+camera_rotation_component = ExtResource("3_il2jm")
+camera_movement_component = ExtResource("2_wukud")
+object_movement_component = ExtResource("4_wjb0r")
+debug = false
+metadata/_custom_type_script = "uid://dagbguxydihal"
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_wjb0r"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("5_bc84e")
+blur_stage = ExtResource("2_ikiii")
+overlay_stage = ExtResource("4_26xuy")
+tile_max_x_stage = ExtResource("6_wukud")
+tile_max_y_stage = ExtResource("7_il2jm")
+neighbor_max_stage = ExtResource("3_cbp6q")
+tile_variance_stage = ExtResource("8_wjb0r")
+tile_size = 40
+linear_falloff_slope = 1.0
+importance_bias = 40.0
+maximum_jitter_value = 0.95
+minimum_user_threshold = 1.5
+debug = false
+metadata/_custom_type_script = "uid://xdrmckvuitsc"
+
+[sub_resource type="Compositor" id="Compositor_mc2jv"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_il2jm"), SubResource("CompositorEffect_wjb0r")])
+script = ExtResource("9_mc2jv")
+samples = 16
+intensity = 1.0
+center_fade = 0.0
+framerate_independent = true
+uncapped_independence = false
+target_constant_framerate = 30.0
+metadata/_custom_type_script = "uid://co04ap10rbrrg"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkytg"]
 bg_color = Color(0.678431, 0.0980392, 0.772549, 1)
@@ -106,10 +167,12 @@ script = ExtResource("1_6tkge")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kwrsd")
+compositor = SubResource("Compositor_mc2jv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 light_color = Color(1, 1, 0.670588, 1)
+light_specular = 0.0
 shadow_enabled = true
 directional_shadow_blend_splits = true
 directional_shadow_max_distance = 8192.0

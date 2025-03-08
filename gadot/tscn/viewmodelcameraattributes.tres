@@ -2,3 +2,6 @@
 
 [resource]
 auto_exposure_enabled = true
+auto_exposure_speed = 30.85
+auto_exposure_min_exposure_value = 2.65
+auto_exposure_max_exposure_value = 16.0
