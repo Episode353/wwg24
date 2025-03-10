@@ -10,6 +10,7 @@ enum Weapons {
 	flamespell,
 	salsa,
 	keyboard,
+	wand,
 	random
 }
 
@@ -17,7 +18,7 @@ enum Weapons {
 @export var weapon: Weapons
 
 # An array that maps each enum value to its string name.
-const WeaponNames = ["ak47", "knife", "rocket_launcher", "shotgun", "hegrenade", "flamespell", "salsa", "keyboard", "random", "wand"]
+const WeaponNames = ["ak47", "knife", "rocket_launcher", "shotgun", "hegrenade", "flamespell", "salsa", "keyboard", "wand", "random"]
 
 # How long before the weapon reappears.
 @export var respawn_delay: float = 5.0

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl2pa5drhxr10"]
+
+[ext_resource type="Script" uid="uid://c4uphq55dgrdg" path="res://entities/pickup/weapon/weapon_pickup.gd" id="1_3dvdk"]
+[ext_resource type="PackedScene" uid="uid://eq6nu0r55c0h" path="res://models/wand/wand_01.gltf" id="2_3dvdk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bnk6n"]
+size = Vector3(2, 1.5, 2)
+
+[node name="weapon_root" type="Node3D"]
+script = ExtResource("1_3dvdk")
+weapon = 8
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 17
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("BoxShape3D_bnk6n")
+
+[node name="weapon_model" type="Node3D" parent="."]
+
+[node name="wand_01" parent="weapon_model" instance=ExtResource("2_3dvdk")]
+transform = Transform3D(3, 0, 0, 0, 2.44043, 1.74479, 0, -1.74479, 2.44043, -2.38419e-07, 0.249669, 0.322703)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.4514, -1.88056e-09)
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

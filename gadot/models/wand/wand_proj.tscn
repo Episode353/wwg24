@@ -7,7 +7,7 @@
 [ext_resource type="Shader" uid="uid://duldmrjfjpc3e" path="res://models/wand/wand_proj_lightning.gdshader" id="5_6yah5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ty1u"]
-bounce = 0.5
+bounce = 0.25
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vrumx"]
 radius = 0.807
@@ -69,6 +69,7 @@ shader_parameter/impact_points = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
 [node name="RigidBody3D" type="RigidBody3D"]
 collision_layer = 0
 physics_material_override = SubResource("PhysicsMaterial_6ty1u")
+can_sleep = false
 script = ExtResource("1_vrumx")
 
 [node name="Area3D" type="Area3D" parent="."]

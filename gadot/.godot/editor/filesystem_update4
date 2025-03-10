@@ -1,4 +1,3 @@
-res://default_bus_layout.tres
 res://world.tscn
 res://models/wand/wand_proj.gdshader
 res://models/wand/wand_proj2.gdshader
@@ -29,3 +28,6 @@ res://player.tscn
 res://models/wand/wand_proj.tscn
 res://models/salsa/salsa_proj.tscn
 res://models/rocket_launcher/rocket.tscn
+res://models/rocket_launcher/explosion.gd
+res://entities/pickup/weapon/wand.tscn
+res://entities/pickup/weapon/weapon_pickup.gd
