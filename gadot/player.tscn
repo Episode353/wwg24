@@ -30,7 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://cxs7hm06biaee" path="res://models/grenade/grenade_0.png" id="22_oynkj"]
 [ext_resource type="Texture2D" uid="uid://c0brsr8sn2h7f" path="res://models/salsa/salsa_0.png" id="23_krb4n"]
 [ext_resource type="Script" uid="uid://14iir2a874sm" path="res://CollisionScript.gd" id="26_arl6k"]
-[ext_resource type="Texture2D" uid="uid://dvtndc6jdgm5v" path="res://models/the_power/the_power_0.png" id="27_nxu68"]
+[ext_resource type="Texture2D" uid="uid://8pu5feyfkurw" path="res://models/the_power/the_power_0.png" id="27_nxu68"]
 [ext_resource type="Script" uid="uid://dytbe5ghtqq8w" path="res://keyboard.gd" id="27_uk5cr"]
 [ext_resource type="Script" uid="uid://dd48li2plgv6v" path="res://sys/username_label.gd" id="28_ip48q"]
 [ext_resource type="Script" uid="uid://b78n3sg8a6xd4" path="res://viewmodel_camera.gd" id="28_p4825"]
@@ -4310,7 +4310,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="head" type="Node3D" parent="neck"]
 
-[node name="main_camera" type="Camera3D" parent="neck/head"]
+[node name="main_camera" type="Camera3D" parent="neck/head" groups=["cameras"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00521731, 0.00207496, 0.00310946)
 cull_mask = 1
 attributes = ExtResource("2_vbl0t")
@@ -4623,7 +4623,7 @@ handle_input_locally = false
 canvas_cull_mask = 4293918720
 render_target_update_mode = 4
 
-[node name="viewmodel_camera" type="Camera3D" parent="neck/head/main_camera/SubViewportContainer/viewmodel_viewport"]
+[node name="viewmodel_camera" type="Camera3D" parent="neck/head/main_camera/SubViewportContainer/viewmodel_viewport" groups=["cameras"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00521731, 0.00207496, 0.00310946)
 cull_mask = 2
 fov = 37.8493

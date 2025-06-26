@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv5liljbq3twx"]
+[gd_scene load_steps=4 format=3 uid="uid://cv5liljbq3twx"]
 
 [ext_resource type="Script" uid="uid://cdmamlatnbker" path="res://tscn/settings/settings.gd" id="1_1klxu"]
 [ext_resource type="FontFile" uid="uid://6e20625007tp" path="res://fonts/Daydream.ttf" id="1_8rjmw"]
+[ext_resource type="Script" uid="uid://be5aoc10k2mcv" path="res://sys/toggle_video_settings.gd" id="3_h1yfc"]
 
 [node name="Pause Menu" type="Window"]
 auto_translate_mode = 1
 title = "WWG SETTINGS"
 position = Vector2i(440, 230)
 size = Vector2i(400, 259)
-always_on_top = true
 min_size = Vector2i(400, 259)
 theme_override_colors/title_color = Color(0.596078, 0.4, 0.74902, 1)
 theme_override_fonts/title_font = ExtResource("1_8rjmw")
@@ -27,6 +27,28 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+
+[node name="Graphics Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Graphics Quality"
+
+[node name="GraphicsOptions" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+action_mode = 1
+keep_pressed_outside = true
+shortcut_feedback = false
+shortcut_in_tooltip = false
+allow_reselect = true
+item_count = 4
+popup/item_0/text = "Very Low"
+popup/item_0/id = 0
+popup/item_1/text = "Low"
+popup/item_1/id = 1
+popup/item_2/text = "Medium"
+popup/item_2/id = 2
+popup/item_3/text = "High"
+popup/item_3/id = 3
+script = ExtResource("3_h1yfc")
 
 [node name="Volume Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -60,6 +82,7 @@ layout_mode = 2
 text = "Disconnect"
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/GraphicsOptions" to="MarginContainer/VBoxContainer/GraphicsOptions" method="_on_item_selected"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume Slider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Max Fps Slider" to="." method="_on_max_fps_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Mouse Sensitivity Slider" to="." method="_on_mouse_sensitivity_slider_value_changed"]

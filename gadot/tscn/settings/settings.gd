@@ -33,6 +33,7 @@ func initalize_settings_values():
 	
 	mouse_sensitivity_label.text = "Mouse Sensitivity = " + str(Globals.mouse_sensitivity)
 	mouse_sensitivity_slider.value = Globals.mouse_sensitivity 
+	$MarginContainer/VBoxContainer/GraphicsOptions.set_graphics_quality(Globals.graphics_options)
 
 
 func _on_mouse_sensitivity_slider_value_changed(value):

@@ -238,8 +238,14 @@ jolt_3d/collisions/report_all_kinematic_contacts=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-textures/vram_compression/import_s3tc_bptc=true
-environment/ssao/half_size=false
-anti_aliasing/quality/msaa_3d=2
-anti_aliasing/screen_space_roughness_limiter/enabled=false
-anti_aliasing/quality/use_debanding=true
+rendering_device/driver.windows="d3d12"
+lights_and_shadows/directional_shadow/size=512
+lights_and_shadows/directional_shadow/size.mobile=512
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
+lights_and_shadows/directional_shadow/16_bits=false
+shading/overrides/force_vertex_shading=true
+textures/default_filters/anisotropic_filtering_level=0
+environment/ssao/quality=0
+environment/ssil/quality=0
+environment/glow/upscale_mode=0
+environment/volumetric_fog/use_filter=0

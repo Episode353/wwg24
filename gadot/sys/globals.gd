@@ -5,6 +5,7 @@ extends Node
 const PORT_UDP_COMM: int = 7777
 const IP_SERVER_BROWSER: String = "www.wizardswithguns.com"
 
+
 var camera_fov = 85
 var max_fps = 60  # Default FPS limit
 var mouse_sensitivity = 0.1
@@ -15,6 +16,7 @@ var show_host_popup = true
 var fullscreen = false
 var self_harm = true # If True, players can harm themselves
 var map_loaded = false
+var graphics_options: int = 2  # 0 = VERY_LOW, 1 = LOW, 2 = MEDIUM, 3 = HIGH
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("fullscreen"):

@@ -10,7 +10,7 @@ var switch_scene_wait_duration: float = 0.000000001
 var shader_wait_duration: float = 0
 
 # Enabling this makes shader comp take longer and shows progress
-var show_progress: bool = true
+var show_progress: bool = false
 
 func _ready() -> void:
 	await load_all_scenes_from_folder(entities_folder_path)

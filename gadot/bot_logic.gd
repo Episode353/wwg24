@@ -146,12 +146,7 @@ func find_objects(delta: float) -> void:
 		var neck_forward = -neck.global_transform.basis.z  # Current forward direction
 		var dot_product = neck_forward.dot(target_direction)
 		var aim_threshold = 0.96  # Higher threshold = more precise aiming required
-		
-		# Debug prints
-		print("Neck forward: ", neck_forward)
-		print("Target direction: ", target_direction)
-		print("Dot product: ", dot_product, " Threshold: ", aim_threshold, " Can shoot: ", dot_product > aim_threshold)
-		
+
 		# Smoothly interpolate the neck's rotation towards the target.
 		var current_basis: Basis = neck.global_transform.basis
 		var max_rotation_speed: float = deg_to_rad(200)  # Higher value means faster head movement.

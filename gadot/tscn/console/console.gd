@@ -168,6 +168,9 @@ func apply_config():
 	
 	if "camera_fov" in config_data:
 		Globals.camera_fov = float(config_data["camera_fov"])
+		
+	if "graphics_options" in config_data:
+		Globals.graphics_options = int(config_data["graphics_options"])
 	
 	if "mouse_sensitivity" in config_data:
 		Globals.mouse_sensitivity = float(config_data["mouse_sensitivity"])
@@ -206,6 +209,13 @@ func _handle_variable_assignment(command: String):
 				value = int(value_str)
 				Engine.max_fps = value
 				Globals.max_fps = value  # Update Globals as well.
+			"graphics_options":
+				if not is_valid_int(value_str):
+					_output_error("Invalid value for graphics_options. It must be an integer.")
+					return
+				value = int(value_str)
+				Globals.graphics_options = value
+				config_data["graphics_options"] = value  # <- this line was missing
 			"camera_fov":
 				if not is_valid_float(value_str):
 					_output_error("Invalid value for camera_fov. It must be a float.")
