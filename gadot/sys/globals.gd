@@ -15,6 +15,7 @@ var username = null
 var show_host_popup = true
 var fullscreen = false
 var self_harm = true # If True, players can harm themselves
+var bots_fight = true # If True, players can harm themselves
 var map_loaded = false
 var graphics_options: int = 2  # 0 = VERY_LOW, 1 = LOW, 2 = MEDIUM, 3 = HIGH
 

@@ -1,5 +1,6 @@
 {
-	"graphics_options": 0.0,
+	"fullscreen": true,
+	"graphics_options": 3,
 	"master_volume": 0.21,
 	"max_fps": 60.0,
 	"mouse_sensitivity": 3.05

@@ -20,7 +20,8 @@ var shoot_cooldown_time := randf_range(0.1, 0.5)
 var shoot_timer := 0.0
 # Define a gravity constant (adjust as needed for your game)
 const GRAVITY: float = -9.8
-
+const MAX_SHOOT_DISTANCE := 20.0  # Replace 20.0 with whatever you want
+var retreat_health: int = 50 # Once health is below this value, retreat
 
 # Member variables
 var frame_count: int = 0
@@ -103,6 +104,18 @@ func bot_physics_process(delta: float) -> void:
 	rpc("sync_neck_local_transform", neck.transform)
 
 
+func get_nodes_named_healthdrop() -> Array:
+	var matches = []
+	var root = get_tree().root
+	_find_nodes_named("HealthDrop", root, matches)
+	return matches
+
+func _find_nodes_named(target_name: String, node: Node, result: Array) -> void:
+	if node.name == target_name:
+		result.append(node)
+	for child in node.get_children():
+		_find_nodes_named(target_name, child, result)
+
 # ============================================================================
 # Target Selection, Aiming, and Shooting
 # ============================================================================
@@ -112,7 +125,26 @@ func bot_physics_process(delta: float) -> void:
 func find_objects(delta: float) -> void:
 	# Decrease shoot timer.
 	shoot_timer = max(shoot_timer - delta, 0)
-	
+	# If bot health is low, seek the nearest health pack instead of fighting
+	if player.health < retreat_health:
+		var health_packs = get_nodes_named_healthdrop()
+		var closest_health_pack: Node3D = null
+		var closest_dist := INF
+		player.wish_jump = true
+		for health in health_packs:
+			print(health)
+			if health is Node3D:
+				var dist = player.global_transform.origin.distance_to(health.global_transform.origin)
+				if dist < closest_dist:
+					closest_dist = dist
+					closest_health_pack = health
+					
+		
+		if closest_health_pack:
+			update_target_location(closest_health_pack.global_transform.origin)
+			print(closest_health_pack.global_transform.origin)
+			return  # Skip combat behavior
+
 	# Get all players in the scene.
 	var players = get_tree().get_nodes_in_group("players")
 	
@@ -120,11 +152,16 @@ func find_objects(delta: float) -> void:
 	var min_distance: float = INF
 	var my_position: Vector3 = global_transform.origin
 
-	# Identify the closest non-bot player.
 	for other in players:
 		if not (other is CharacterBody3D):
 			continue
-		if other.is_bot:
+		
+		# Always skip self
+		if other == player:
+			continue
+		
+		# If the other is a bot and bots_fight is false, skip
+		if other.is_bot and not Globals.bots_fight:
 			continue
 		
 		var distance: float = my_position.distance_to(other.global_transform.origin)
@@ -132,8 +169,9 @@ func find_objects(delta: float) -> void:
 			min_distance = distance
 			closest_player = other
 
+
 # If a valid target is found, update navigation, aim, and shoot.
-	if closest_player:
+	if closest_player and player.health > retreat_health:
 		update_target_location(closest_player.global_transform.origin)
 		
 		# Aim at the target with an offset (e.g., 1.5 meters above the player's origin).
@@ -158,17 +196,22 @@ func find_objects(delta: float) -> void:
 		
 		
 # Only shoot if aligned with target and timer allows
-		if min_distance < float(player.bot_weapon_range) and shoot_timer <= 0.0 and dot_product > aim_threshold:
-			# Only NOW check the random chance (once per cooldown period)
-			var shoot_chance = 0.1 #Lower number more liketly to shoot
-			var random_roll = randf()  # Returns 0.0 to 1.0
-			
+# Only shoot if aligned with target, timer allows, and target is close enough
+		if min_distance < float(player.bot_weapon_range) \
+				and min_distance < MAX_SHOOT_DISTANCE \
+				and shoot_timer <= 0.0 \
+				and dot_product > aim_threshold:
+
+			var shoot_chance = 0.1  # Lower number = more likely to shoot
+			var random_roll = randf()
+
 			if random_roll > shoot_chance:
 				print("SHOOTING! Random roll: ", random_roll, " vs chance: ", shoot_chance)
 				weapons_manager.shoot()
 				shoot_timer = shoot_cooldown_time
 			else:
-				shoot_timer = shoot_cooldown_time  # Reset timer even if we don't shoot
+				shoot_timer = shoot_cooldown_time
+		
 				
 # Update the navigation agent's target position.
 func update_target_location(target_location: Vector3) -> void:

@@ -18,7 +18,7 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 
 mesh = SubResource("CapsuleMesh_u2ygk")
 material = SubResource("StandardMaterial3D_vo4gs")
 
-[node name="Area3D" type="Area3D" parent="CSGMesh3D"]
+[node name="Area3D" type="Area3D" parent="CSGMesh3D" groups=["HealthDrop"]]
 collision_layer = 0
 collision_mask = 255
 script = ExtResource("1_gwm2n")

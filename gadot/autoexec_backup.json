@@ -25,6 +25,7 @@
 		"interact": "e",
 		"fullscreen": "f11",
 		"rebuild_map": "f12"
+
 	},
 	"weapon_buttons": {
 		"w1": "1",

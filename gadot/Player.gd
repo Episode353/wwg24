@@ -599,7 +599,7 @@ func spawn_mana_for_all(world_pos):
 @rpc("any_peer", "call_local")
 func update_last_tagged_by(tagged_name):
 	last_tagged_by = tagged_name
-
+	print(last_tagged_by)
 #func player_respawn():
 	#health = max_health
 	#mana = 0
