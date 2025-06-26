@@ -1,6 +1,6 @@
 [gd_scene load_steps=194 format=4 uid="uid://xcjrjq5cbn7y"]
 
-[ext_resource type="Script" uid="uid://d2ne21fikmggg" path="res://player.gd" id="1_ebgxs"]
+[ext_resource type="Script" uid="uid://d2ne21fikmggg" path="res://Player.gd" id="1_ebgxs"]
 [ext_resource type="Script" uid="uid://ddnxxp2m6samt" path="res://main_camera.gd" id="2_38wgo"]
 [ext_resource type="Script" uid="uid://dokvk6njhlxvr" path="res://Weapons_Manager.gd" id="2_dh310"]
 [ext_resource type="CameraAttributesPhysical" uid="uid://hkmnwgf3rmtx" path="res://tscn/viewmodelcameraattributes.tres" id="2_vbl0t"]
@@ -4712,9 +4712,9 @@ volume_db = -30.0
 max_db = -10.0
 
 [node name="FootstepAudioPlayer" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20213, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.116977, 0)
 attenuation_model = 2
-volume_db = -10.0
+volume_db = -35.0
 max_db = 0.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

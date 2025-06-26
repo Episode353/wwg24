@@ -16,7 +16,7 @@ extends Node3D
 # Constants and Variables
 # ============================================================================
 var BOT_SPEED = 8.0
-var shoot_cooldown_time := randf_range(0.5, 1.5)
+var shoot_cooldown_time := randf_range(0.1, 0.5)
 var shoot_timer := 0.0
 # Define a gravity constant (adjust as needed for your game)
 const GRAVITY: float = -9.8
@@ -132,7 +132,7 @@ func find_objects(delta: float) -> void:
 			min_distance = distance
 			closest_player = other
 
-	# If a valid target is found, update navigation, aim, and shoot.
+# If a valid target is found, update navigation, aim, and shoot.
 	if closest_player:
 		update_target_location(closest_player.global_transform.origin)
 		
@@ -142,20 +142,39 @@ func find_objects(delta: float) -> void:
 		var target_direction: Vector3 = (adjusted_target - neck.global_transform.origin).normalized()
 		var target_basis: Basis = Basis().looking_at(target_direction, Vector3.UP)
 		
+		# CHECK ALIGNMENT BEFORE ROTATING THE NECK
+		var neck_forward = -neck.global_transform.basis.z  # Current forward direction
+		var dot_product = neck_forward.dot(target_direction)
+		var aim_threshold = 0.96  # Higher threshold = more precise aiming required
+		
+		# Debug prints
+		print("Neck forward: ", neck_forward)
+		print("Target direction: ", target_direction)
+		print("Dot product: ", dot_product, " Threshold: ", aim_threshold, " Can shoot: ", dot_product > aim_threshold)
+		
 		# Smoothly interpolate the neck's rotation towards the target.
 		var current_basis: Basis = neck.global_transform.basis
-		var max_rotation_speed: float = deg_to_rad(300)  # Higher value means faster head movement.
+		var max_rotation_speed: float = deg_to_rad(200)  # Higher value means faster head movement.
 		var t: float = clamp(max_rotation_speed * delta, 0, 1)
 		neck.global_transform.basis = current_basis.slerp(target_basis, t)
 		
 		# Synchronize the neck's transform on remote peers.
 		rpc("sync_neck_local_transform", neck.transform)
 		
-		# Shoot if the target is within 5.0 units and the cooldown has elapsed.
-		if min_distance < float(player.bot_weapon_range) and shoot_timer <= 0.0:
-			weapons_manager.shoot()
-			shoot_timer = shoot_cooldown_time
-
+		
+# Only shoot if aligned with target and timer allows
+		if min_distance < float(player.bot_weapon_range) and shoot_timer <= 0.0 and dot_product > aim_threshold:
+			# Only NOW check the random chance (once per cooldown period)
+			var shoot_chance = 0.1 #Lower number more liketly to shoot
+			var random_roll = randf()  # Returns 0.0 to 1.0
+			
+			if random_roll > shoot_chance:
+				print("SHOOTING! Random roll: ", random_roll, " vs chance: ", shoot_chance)
+				weapons_manager.shoot()
+				shoot_timer = shoot_cooldown_time
+			else:
+				shoot_timer = shoot_cooldown_time  # Reset timer even if we don't shoot
+				
 # Update the navigation agent's target position.
 func update_target_location(target_location: Vector3) -> void:
 	nav_agent.set_target_position(target_location)
