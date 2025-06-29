@@ -226,25 +226,21 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
+	calculate_fire_damage()
 	if is_bot: return
-	
 	
 	mana_regen_timer += delta
 	if mana_regen_timer >= mana_regen_length:
 		mana_regen_timer = 0
 		receive_mana(1)
 	
-		
 	 # Update coyote time: reset if on floor, otherwise count down
 	if is_on_floor():
 		coyote_time_remaining = COYOTE_TIME
 	else:
 		coyote_time_remaining = max(coyote_time_remaining - delta, 0)
 	
-	calculate_fire_damage()
 	process_input()
-
-
 	
 	# Toggle collision shapes
 	if crouching:

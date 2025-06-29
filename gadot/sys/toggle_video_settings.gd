@@ -9,7 +9,7 @@ var quality_names = ["VERY LOW", "LOW", "MEDIUM", "HIGH"]
 # Data-driven quality configurations
 var quality_configs = {
 	GraphicsQuality.VERY_LOW: {
-		"scaling_3d_scale": 0.45,
+		"scaling_3d_scale": 0.3,
 		"scaling_3d_mode": Viewport.SCALING_3D_MODE_BILINEAR,  # bilinear undersampling
 		"vsync": DisplayServer.VSYNC_DISABLED,
 		"msaa_3d": RenderingServer.VIEWPORT_MSAA_DISABLED,
@@ -33,7 +33,7 @@ var quality_configs = {
 		}
 	},
 	GraphicsQuality.LOW: {
-		"scaling_3d_scale": 0.65,
+		"scaling_3d_scale": 0.50,
 		"scaling_3d_mode": Viewport.SCALING_3D_MODE_BILINEAR,
 		"vsync": DisplayServer.VSYNC_ENABLED,
 		"msaa_3d": RenderingServer.VIEWPORT_MSAA_DISABLED,
@@ -57,7 +57,7 @@ var quality_configs = {
 		}
 	},
 	GraphicsQuality.MEDIUM: {
-		"scaling_3d_scale": 0.85,
+		"scaling_3d_scale": 0.75,
 		"scaling_3d_mode": Viewport.SCALING_3D_MODE_BILINEAR,
 		"vsync": DisplayServer.VSYNC_ENABLED,
 		"msaa_3d": RenderingServer.VIEWPORT_MSAA_2X,
@@ -121,53 +121,71 @@ func cycle_graphics_quality():
 
 func apply_graphics_settings(quality: GraphicsQuality):
 	var config = quality_configs[quality]
-	var viewport = get_viewport()
-	var viewport_rid = viewport.get_viewport_rid()
-	var cfg = quality_configs[quality]  # Dictionary
-	var vp = get_tree().root
-
-	var rid = vp.get_viewport_rid()
-
+	var cfg = quality_configs[quality]
+	
 	print("Applying " + quality_names[quality] + " quality settings…")
 
-	# --- 3D Resolution Scaling :contentReference[oaicite:0]{index=0}
-	# Set scaling mode and scale
-	vp.scaling_3d_mode = cfg["scaling_3d_mode"]
-	vp.scaling_3d_scale = cfg["scaling_3d_scale"]
-	DisplayServer.window_set_vsync_mode(cfg["vsync"])
-	print("Scaling mode:", vp.scaling_3d_mode, " | Scale:", vp.scaling_3d_scale)
-
-	# --- Anti-Aliasing
-	RenderingServer.viewport_set_msaa_3d(rid, cfg["msaa_3d"])
-	RenderingServer.viewport_set_msaa_2d(rid, cfg["msaa_2d"])
-	RenderingServer.viewport_set_screen_space_aa(rid, cfg["screen_space_aa"])
-	vp.use_taa = cfg["use_taa"]
+	# Apply settings to ALL viewports (main + subviewports)
+	apply_viewport_settings(get_tree().root, cfg)
 	
-	# === Shadows ===
+	# Find and apply settings to all SubViewports
+	var subviewports = get_tree().get_nodes_in_group("subviewports")
+	for subviewport in subviewports:
+		if subviewport is SubViewport:
+			apply_viewport_settings(subviewport, cfg)
+	
+	# Alternative: Find SubViewports by searching the scene tree
+	# This will find ALL SubViewports automatically
+	find_and_configure_subviewports(get_tree().root, cfg)
+	
+	# Global settings (apply once)
+	DisplayServer.window_set_vsync_mode(cfg["vsync"])
 	RenderingServer.directional_shadow_atlas_set_size(config.shadow_atlas_size, false)
-	apply_shadow_settings(config.shadows_enabled)
 	
 	# === Lighting & Effects ===
+	apply_shadow_settings(config.shadows_enabled)
 	set_light_intensity(config.light_intensity)
 	toggle_particles(config.particles_enabled)
 	toggle_unshaded_materials(config.unshaded_materials)
-	
-	# === Viewport Properties ===
-	viewport.snap_2d_transforms_to_pixel = config.snap_pixels
-	viewport.snap_2d_vertices_to_pixel = config.snap_pixels
-	viewport.physics_object_picking = config.physics_picking
-	viewport.audio_listener_enable_3d = config.audio_3d
-	viewport.use_debanding = config.debanding
-	viewport.canvas_item_default_texture_filter = config.texture_filter
-	
-	# === 3D Rendering ===
-	RenderingServer.viewport_set_use_occlusion_culling(viewport_rid, config.occlusion_culling)
 	
 	# === Environment Effects ===
 	apply_environment_settings(config.environment)
 	
 	print("✓ " + quality_names[quality] + " quality applied")
 
+func apply_viewport_settings(viewport: Viewport, cfg: Dictionary):
+	var rid = viewport.get_viewport_rid()
+	
+	# --- 3D Resolution Scaling ---
+	viewport.scaling_3d_mode = cfg["scaling_3d_mode"]
+	viewport.scaling_3d_scale = cfg["scaling_3d_scale"]
+	
+	# --- Anti-Aliasing ---
+	RenderingServer.viewport_set_msaa_3d(rid, cfg["msaa_3d"])
+	RenderingServer.viewport_set_msaa_2d(rid, cfg["msaa_2d"])
+	RenderingServer.viewport_set_screen_space_aa(rid, cfg["screen_space_aa"])
+	viewport.use_taa = cfg["use_taa"]
+	
+	# --- Viewport Properties ---
+	viewport.snap_2d_transforms_to_pixel = cfg["snap_pixels"]
+	viewport.snap_2d_vertices_to_pixel = cfg["snap_pixels"]
+	viewport.physics_object_picking = cfg["physics_picking"]
+	viewport.audio_listener_enable_3d = cfg["audio_3d"]
+	viewport.use_debanding = cfg["debanding"]
+	viewport.canvas_item_default_texture_filter = cfg["texture_filter"]
+	
+	# --- 3D Rendering ---
+	RenderingServer.viewport_set_use_occlusion_culling(rid, cfg["occlusion_culling"])
+	
+	print("Applied viewport settings to: ", viewport.name if viewport.name != "" else "Root Viewport")
+
+func find_and_configure_subviewports(node: Node, cfg: Dictionary):
+	"""Recursively find and configure all SubViewports in the scene tree"""
+	if node is SubViewport:
+		apply_viewport_settings(node, cfg)
+	
+	for child in node.get_children():
+		find_and_configure_subviewports(child, cfg)
 
 func apply_shadow_settings(shadows_enabled):
 	var lights = get_tree().get_nodes_in_group("lights")

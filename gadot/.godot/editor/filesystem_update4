@@ -1,4 +1,11 @@
+res://default_bus_layout.tres
 res://world.tscn
+res://entities/world/load/map.gd
+res://models/grenade/grenade_proj.gd
+res://CollisionScript.gd
+res://interaction_ray.gd
+res://manadrop.gd
+res://Player.gd
 res://models/wand/wand_proj.gdshader
 res://models/wand/wand_proj2.gdshader
 res://models/wand/wand_proj3.gdshader
@@ -18,7 +25,9 @@ res://sys/shaders/VHS_SHADER.gdshader
 res://sys/shaders/CROSSHAIR_SHADER.gdshader
 res://player.tscn
 res://tscn/settings/settings.tscn
-res://sys/globals.gd
-res://bot_logic.gd
-res://Player.gd
 res://entities/health_drop.tscn
+res://sys/toggle_video_settings.gd
+res://models/grenade/grenade_explosion.gd
+res://bot_logic.gd
+res://models/salsa/salsa_explosion.tscn
+res://models/salsa/salsa_proj.tscn

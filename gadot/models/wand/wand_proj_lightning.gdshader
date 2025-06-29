@@ -37,11 +37,11 @@ vec3 get_feature_point(vec3 cell) {
 vec3 voronoi_color(vec3 world_pos, out bool should_discard, out vec3 cell_feature) {
 	vec3 cell = floor(world_pos);
 	vec3 feature = get_feature_point(cell);
-	
+
 	float minDist2 = 1e10;
 	float secondMinDist2 = 1e10;
 	vec3 nearestFeature = vec3(0.0);
-	
+
 	// Search 3x3x3 neighborhood for nearest feature points
 	for (int k = -1; k <= 1; k++) {
 		for (int j = -1; j <= 1; j++) {
@@ -50,7 +50,7 @@ vec3 voronoi_color(vec3 world_pos, out bool should_discard, out vec3 cell_featur
 				vec3 f = get_feature_point(neighbor);
 				vec3 diff = world_pos - f;
 				float d2 = dot(diff, diff);
-				
+
 				if (d2 < minDist2) {
 					secondMinDist2 = minDist2;
 					minDist2 = d2;
@@ -107,7 +107,7 @@ void vertex() {
 // Fragment Shader
 void fragment() {
 	if (shatter){
-		
+
 		// Determine the nearest impact for compression
 		int nearest_index = 0;
 		float min_dist = 1e10;
@@ -119,16 +119,16 @@ void fragment() {
 			}
 		}
 		vec3 nearestImpact = impact_points[nearest_index];
-		
+
 		// Calculate compression factor: cells closer to the impact compress more (i.e. become smaller)
 		float scale_factor = 1.0 - clamp((impact_range - min_dist) / impact_range, 0.0, 1.0) * compression_strength;
-		
+
 		// Compress world space coordinates toward the nearest impact point
 		vec3 compressed_pos = mix(world_vertex, nearestImpact, 1.0 - scale_factor);
-		
+
 		// Convert to Voronoi space by applying the global voronoi_scale
 		vec3 scaled_world_pos = compressed_pos * fracture_scale;
-		
+
 		// Compute Voronoi color and retrieve the cell's feature point
 		bool should_discard = true;
 		vec3 cell_feature;
@@ -137,24 +137,24 @@ void fragment() {
 		if (should_discard) {
 			discard;
 		}
-		
+
 		// --- Generate a flat normal per Voronoi cell based on its feature point ---
 		vec3 random_normal = normalize(vec3(
 			hash(cell_feature + vec3(1.0)),
 			hash(cell_feature + vec3(2.0)),
 			hash(cell_feature + vec3(3.0))
 		));
-		
+
 		// --- Adjust the normal direction using the multiplier ---
 		vec3 adjusted_normal = mix(vec3(0.0, 0.0, 1.0), random_normal, normal_offset_multiplier);
-		
+
 		// --- Normalize the result ---
 		vec3 shattered_normal = normalize(adjusted_normal);
-		
+
 		// --- Calculate edge bump normal using Voronoi edge ---
 		vec3 edge_normal = bump_to_normal(voronoi_tex,normal_offset_multiplier);
 		vec3 final_normal = normalize(shattered_normal + edge_normal);
-		
+
 		//FINALIZING THE (SHATTERED) MATERIAL VALUES
 		//MOST OF THIS IS A BUNCH OF DIARRHEA MATH. WASN'T EVEN TRYING.
 		METALLIC = 1.0;
@@ -166,7 +166,7 @@ void fragment() {
 		ALBEDO = vec3(glass_tint)+1.0;
 		ALBEDO -= voronoi_tex*0.5;
 	}else{
-		
+
 		//FINALIZING THE PLAIN GLASS MATERIAL VALUES
 		METALLIC = 1.0;
 		ROUGHNESS = roughness*0.125;

@@ -1,7 +1,7 @@
 extends Node3D
 
 # Radius of the explosion effect
-@export var explosion_radius: float = 6.0
+@export var explosion_radius: float = 10.0
 # Strength of the explosion force
 @export var explosion_force: float = 10.0
 # Additional upward force to ensure vertical movement
@@ -12,7 +12,7 @@ extends Node3D
 # Maximum damage for a direct hit
 @export var max_damage: float = 10.0
 # Minimum damage at the edge of explosion radius
-@export var min_damage: float = 0.0
+@export var min_damage: float = 1.0
 var owner_player
 
 @onready var smoke = $Smoke
