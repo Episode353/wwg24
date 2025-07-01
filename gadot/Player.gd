@@ -398,6 +398,7 @@ func _handle_noclip(delta) -> bool:
 
 
 func process_movement(delta):
+	
 	if is_bot: return
 	if self.position.y < -100:
 		player_death()

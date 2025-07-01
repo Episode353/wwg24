@@ -1,8 +1,10 @@
+Label
+VBoxContainer
+Node
 OptionButton
 MenuBar
 MenuButton
 ItemList
-Node
 Camera3D
 Node3D
 CSGSphere3D
@@ -10,6 +12,3 @@ SubViewportContainer
 AnimatedSprite3D
 SubViewport
 Sprite3D
-ColorRect
-CSGCylinder3D
-OmniLight3D

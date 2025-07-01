@@ -227,7 +227,7 @@ func handle_retreat_behavior() -> void:
 		# Pre-filter valid health packs to avoid repeated validity checks
 		cached_valid_health_packs.clear()
 		for health in cached_health_packs:
-			if health is Node3D and is_instance_valid(health):
+			if is_instance_valid(health) and health is Node3D:
 				cached_valid_health_packs.append(health)
 		
 		# Find the ACTUAL closest health pack every time during retreat

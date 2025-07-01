@@ -1,0 +1,370 @@
+[gd_scene load_steps=44 format=3 uid="uid://c8oqxmm2w2wvv"]
+
+[ext_resource type="Script" uid="uid://balg5y2xwumxc" path="res://world.gd" id="1_6tkge"]
+[ext_resource type="Script" uid="uid://cgfnx548wmxwr" path="res://sys/ServerConnectionHandler.gd" id="2_hna3u"]
+[ext_resource type="Resource" uid="uid://ca45noqewsyvp" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_experimental_blur_stage.tres" id="2_ikiii"]
+[ext_resource type="Script" uid="uid://dlji1l8xhgvux" path="res://CanvasLayer.gd" id="2_sgno6"]
+[ext_resource type="Resource" uid="uid://cslvcweyejh3c" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_movement_component.tres" id="2_wukud"]
+[ext_resource type="Resource" uid="uid://cvb65hfs2lrxo" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_neighbor_max_stage.tres" id="3_cbp6q"]
+[ext_resource type="Resource" uid="uid://iru8ynu04i00" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_rotation_component.tres" id="3_il2jm"]
+[ext_resource type="Resource" uid="uid://bidsfymvdyhek" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_overlay_stage.tres" id="4_26xuy"]
+[ext_resource type="Shader" uid="uid://cqn84s5kso51x" path="res://sys/shaders/COLOR_PALETTE.gdshader" id="4_73exp"]
+[ext_resource type="Shader" uid="uid://bdrf4xixe0qf3" path="res://sys/shaders/CRT_SHADER.gdshader" id="4_hlbr0"]
+[ext_resource type="Shader" uid="uid://cttxqdvjm1xil" path="res://sys/shaders/VHS_SHADER.gdshader" id="4_paja1"]
+[ext_resource type="Resource" uid="uid://rp3mpjmisoyh" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_object_movement_component.tres" id="4_wjb0r"]
+[ext_resource type="Shader" uid="uid://bq5y5ovypy0pn" path="res://sys/shaders/CROSSHAIR_SHADER.gdshader" id="4_y0pat"]
+[ext_resource type="Script" uid="uid://xdrmckvuitsc" path="res://addons/SphynxMotionBlurToolkit/Guertin/new_guertin_motion_blur.gd" id="5_bc84e"]
+[ext_resource type="Texture2D" uid="uid://cii13l8l6362c" path="res://mat/aurora-1x.png" id="5_j4an6"]
+[ext_resource type="Resource" uid="uid://c8ulad7utgrg7" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processing_stage.tres" id="5_mc2jv"]
+[ext_resource type="Script" uid="uid://dagbguxydihal" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processor.gd" id="6_bo7i5"]
+[ext_resource type="Resource" uid="uid://dipvwksvqb3dm" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_max_x_stage.tres" id="6_wukud"]
+[ext_resource type="PackedScene" uid="uid://c1lfio6su6m7o" path="res://menufadein.tscn" id="7_bypg1"]
+[ext_resource type="Resource" uid="uid://bxfg45ubc2pv7" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_max_y_stage.tres" id="7_il2jm"]
+[ext_resource type="Resource" uid="uid://bqehecsdgt70s" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_variance_stage.tres" id="8_wjb0r"]
+[ext_resource type="Script" uid="uid://co04ap10rbrrg" path="res://addons/SphynxMotionBlurToolkit/BaseClasses/mb_compositor.gd" id="9_mc2jv"]
+[ext_resource type="Script" uid="uid://bukke7yv8abyo" path="res://sys/log.gd" id="24_wjb0r"]
+
+[sub_resource type="Gradient" id="Gradient_q3jm3"]
+offsets = PackedFloat32Array(0.0955679, 0.142659, 0.265928, 0.33518, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0520674, 0.0520674, 0.0520674, 1, 0.188361, 0.188361, 0.188361, 1, 0.264931, 0.264931, 0.264931, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7yniy"]
+gradient = SubResource("Gradient_q3jm3")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_clnmc"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ayvap"]
+sky_material = SubResource("ProceduralSkyMaterial_clnmc")
+
+[sub_resource type="Environment" id="Environment_kwrsd"]
+background_mode = 2
+sky = SubResource("Sky_ayvap")
+tonemap_mode = 4
+glow_map = SubResource("GradientTexture2D_7yniy")
+volumetric_fog_density = 0.005
+adjustment_enabled = true
+adjustment_brightness = 1.4
+adjustment_saturation = 1.2
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_il2jm"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("6_bo7i5")
+pre_blur_processor_stage = ExtResource("5_mc2jv")
+camera_rotation_component = ExtResource("3_il2jm")
+camera_movement_component = ExtResource("2_wukud")
+object_movement_component = ExtResource("4_wjb0r")
+debug = false
+metadata/_custom_type_script = "uid://dagbguxydihal"
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_wjb0r"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("5_bc84e")
+blur_stage = ExtResource("2_ikiii")
+overlay_stage = ExtResource("4_26xuy")
+tile_max_x_stage = ExtResource("6_wukud")
+tile_max_y_stage = ExtResource("7_il2jm")
+neighbor_max_stage = ExtResource("3_cbp6q")
+tile_variance_stage = ExtResource("8_wjb0r")
+tile_size = 40
+linear_falloff_slope = 1.0
+importance_bias = 40.0
+maximum_jitter_value = 0.95
+minimum_user_threshold = 1.5
+debug = false
+metadata/_custom_type_script = "uid://xdrmckvuitsc"
+
+[sub_resource type="Compositor" id="Compositor_mc2jv"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_il2jm"), SubResource("CompositorEffect_wjb0r")])
+script = ExtResource("9_mc2jv")
+samples = 4
+intensity = 0.112
+center_fade = 0.0
+framerate_independent = true
+uncapped_independence = false
+target_constant_framerate = 30.0
+metadata/_custom_type_script = "uid://co04ap10rbrrg"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkytg"]
+bg_color = Color(0.678431, 0.0980392, 0.772549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qy444"]
+bg_color = Color(0.258824, 0.415686, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3lhvk"]
+bg_color = Color(1, 0.117647, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcby2"]
+bg_color = Color(0.00392157, 1, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8b105"]
+shader = ExtResource("4_73exp")
+shader_parameter/palette = ExtResource("5_j4an6")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_s3tfj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ipgik"]
+shader = ExtResource("4_hlbr0")
+shader_parameter/resolution = Vector2(1920, 1080)
+shader_parameter/scan_line_amount = 0.149
+shader_parameter/warp_amount = 0.0
+shader_parameter/noise_amount = 0.0
+shader_parameter/interference_amount = 0.0
+shader_parameter/grille_amount = 0.0
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.0
+shader_parameter/vignette_intensity = 0.0
+shader_parameter/aberation_amount = 0.329
+shader_parameter/roll_line_amount = 0.0
+shader_parameter/roll_speed = -8.0
+shader_parameter/scan_line_strength = -11.171
+shader_parameter/pixel_strength = -1.135
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohlmd"]
+shader = ExtResource("4_paja1")
+shader_parameter/fog_density = 0.1
+shader_parameter/fog_speed = 0.3
+shader_parameter/noise_scale = 4.0
+shader_parameter/fog_opacity = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g2q5a"]
+shader = ExtResource("4_y0pat")
+shader_parameter/is_symmetric = true
+shader_parameter/center_offset = Vector2(0, 0)
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_outline_color = Color(0, 0, 0, 1)
+shader_parameter/line_length = Vector2(20, 20)
+shader_parameter/line_thickness = Vector2(1, 1)
+shader_parameter/line_offset = Vector2(10, 10)
+shader_parameter/line_outline_thickness = Vector2(1, 1)
+shader_parameter/dot_color = Color(1, 1, 1, 1)
+shader_parameter/dot_outline_color = Color(0, 0, 0, 1)
+shader_parameter/dot_size = 2.0
+shader_parameter/dot_outline_thickness = 1.0
+
+[sub_resource type="Gradient" id="Gradient_t8x7k"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ehpd1"]
+gradient = SubResource("Gradient_t8x7k")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_p4c1t"]
+
+[node name="World" type="Node" groups=["world_root"]]
+script = ExtResource("1_6tkge")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kwrsd")
+compositor = SubResource("Compositor_mc2jv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(1, 1, 0.670588, 1)
+light_specular = 0.0
+shadow_enabled = true
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 8192.0
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://xcjrjq5cbn7y")
+spawn_path = NodePath("..")
+
+[node name="ServerConnectionHandler" type="Node" parent="."]
+script = ExtResource("2_hna3u")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="ServerConnectionHandler"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("2_sgno6")
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ManaBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_lkytg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qy444")
+value = 50.0
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_3lhvk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vcby2")
+value = 100.0
+
+[node name="COLOR PALETE" type="TextureRect" parent="CanvasLayer/HUD"]
+modulate = Color(1, 1, 1, 0.254902)
+z_index = 3
+z_as_relative = false
+material = SubResource("ShaderMaterial_8b105")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("PlaceholderTexture2D_s3tfj")
+
+[node name="CRT SHADER" type="ColorRect" parent="CanvasLayer/HUD"]
+visible = false
+z_index = 1
+material = SubResource("ShaderMaterial_ipgik")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VHS Shader" type="ColorRect" parent="CanvasLayer/HUD"]
+material = SubResource("ShaderMaterial_ohlmd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Crosshair Shader" type="TextureRect" parent="CanvasLayer/HUD"]
+light_mask = 1023
+visibility_layer = 1023
+z_index = 99
+z_as_relative = false
+material = SubResource("ShaderMaterial_g2q5a")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_ehpd1")
+
+[node name="LOG" type="VBoxContainer" parent="CanvasLayer/HUD"]
+layout_mode = 0
+offset_left = 1240.0
+offset_right = 1280.0
+offset_bottom = 40.0
+
+[node name="FPSCount" type="Label" parent="CanvasLayer/HUD/LOG"]
+layout_mode = 2
+tooltip_text = "FPS"
+mouse_filter = 1
+text = "60"
+horizontal_alignment = 1
+
+[node name="NodesCount" type="Label" parent="CanvasLayer/HUD/LOG"]
+layout_mode = 2
+
+[node name="FrameTime" type="Label" parent="CanvasLayer/HUD/LOG"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -121.145
+offset_bottom = -44.145
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Current Weapon:"
+
+[node name="CurrentWeapon" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/HUD/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Ammo:"
+
+[node name="CurrentAmmo" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/HUD/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Weapon Stack:"
+
+[node name="WeaponStack" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="KillfeedContainter" type="VBoxContainer" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="menufadein" parent="CanvasLayer" instance=ExtResource("7_bypg1")]
+visible = false
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_p4c1t")
+
+[node name="TBLoader" type="TBLoader" parent="NavigationRegion3D"]
+map_resource = "res://tbmaps/scraper.map"
+option_skip_hidden_layers = false
+option_filter_nearest = true
+
+[node name="Log" type="Node" parent="." node_paths=PackedStringArray("fps_counter", "frame_time", "nodes_counter")]
+script = ExtResource("24_wjb0r")
+bad_color = Color(1, 0, 0, 1)
+warning_color = Color(0.901961, 0.937255, 0, 1)
+good_color = Color(0, 1, 0, 1)
+fps_counter = NodePath("../CanvasLayer/HUD/LOG/FPSCount")
+frame_time = NodePath("../CanvasLayer/HUD/LOG/FrameTime")
+nodes_counter = NodePath("../CanvasLayer/HUD/LOG/NodesCount")
+
+[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

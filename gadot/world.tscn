@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://c8oqxmm2w2wvv"]
+[gd_scene load_steps=45 format=3 uid="uid://c8oqxmm2w2wvv"]
 
 [ext_resource type="Script" uid="uid://balg5y2xwumxc" path="res://world.gd" id="1_6tkge"]
 [ext_resource type="Script" uid="uid://cgfnx548wmxwr" path="res://sys/ServerConnectionHandler.gd" id="2_hna3u"]
@@ -7,7 +7,6 @@
 [ext_resource type="Resource" uid="uid://cslvcweyejh3c" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_movement_component.tres" id="2_wukud"]
 [ext_resource type="Resource" uid="uid://cvb65hfs2lrxo" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_neighbor_max_stage.tres" id="3_cbp6q"]
 [ext_resource type="Resource" uid="uid://iru8ynu04i00" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_rotation_component.tres" id="3_il2jm"]
-[ext_resource type="Script" uid="uid://c07wlrwihsnt2" path="res://FPSCount.gd" id="4_04ai0"]
 [ext_resource type="Resource" uid="uid://bidsfymvdyhek" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_overlay_stage.tres" id="4_26xuy"]
 [ext_resource type="Shader" uid="uid://cqn84s5kso51x" path="res://sys/shaders/COLOR_PALETTE.gdshader" id="4_73exp"]
 [ext_resource type="Shader" uid="uid://bdrf4xixe0qf3" path="res://sys/shaders/CRT_SHADER.gdshader" id="4_hlbr0"]
@@ -23,6 +22,8 @@
 [ext_resource type="Resource" uid="uid://bxfg45ubc2pv7" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_max_y_stage.tres" id="7_il2jm"]
 [ext_resource type="Resource" uid="uid://bqehecsdgt70s" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_variance_stage.tres" id="8_wjb0r"]
 [ext_resource type="Script" uid="uid://co04ap10rbrrg" path="res://addons/SphynxMotionBlurToolkit/BaseClasses/mb_compositor.gd" id="9_mc2jv"]
+[ext_resource type="LabelSettings" uid="uid://bnk2duqdctk5g" path="res://fonts/hud_labels.tres" id="22_wjb0r"]
+[ext_resource type="Script" uid="uid://bukke7yv8abyo" path="res://sys/log.gd" id="24_wjb0r"]
 
 [sub_resource type="Gradient" id="Gradient_q3jm3"]
 offsets = PackedFloat32Array(0.0955679, 0.142659, 0.265928, 0.33518, 1)
@@ -42,7 +43,6 @@ sky_material = SubResource("ProceduralSkyMaterial_clnmc")
 background_mode = 2
 sky = SubResource("Sky_ayvap")
 tonemap_mode = 4
-tonemap_exposure = 3.35
 glow_map = SubResource("GradientTexture2D_7yniy")
 volumetric_fog_density = 0.005
 adjustment_enabled = true
@@ -275,15 +275,34 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_ehpd1")
 
-[node name="FPSCount" type="Label" parent="CanvasLayer/HUD"]
-layout_mode = 0
+[node name="LOG" type="VBoxContainer" parent="CanvasLayer/HUD"]
+layout_mode = 1
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = 77.0
+
+[node name="FPSCount" type="Label" parent="CanvasLayer/HUD/LOG"]
+layout_mode = 2
+size_flags_horizontal = 0
 tooltip_text = "FPS"
 mouse_filter = 1
 text = "60"
+label_settings = ExtResource("22_wjb0r")
 horizontal_alignment = 1
-script = ExtResource("4_04ai0")
+
+[node name="NodesCount" type="Label" parent="CanvasLayer/HUD/LOG"]
+layout_mode = 2
+size_flags_horizontal = 0
+label_settings = ExtResource("22_wjb0r")
+
+[node name="FrameTime" type="Label" parent="CanvasLayer/HUD/LOG"]
+layout_mode = 2
+size_flags_horizontal = 0
+label_settings = ExtResource("22_wjb0r")
+
+[node name="Info" type="Label" parent="CanvasLayer/HUD/LOG"]
+visible = false
+layout_mode = 2
+label_settings = ExtResource("22_wjb0r")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD"]
 layout_mode = 1
@@ -349,5 +368,9 @@ navigation_mesh = SubResource("NavigationMesh_p4c1t")
 map_resource = "res://tbmaps/scraper.map"
 option_skip_hidden_layers = false
 option_filter_nearest = true
+
+[node name="Log" type="Node" parent="."]
+script = ExtResource("24_wjb0r")
+warning_color = Color(0.901961, 0.937255, 0, 1)
 
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

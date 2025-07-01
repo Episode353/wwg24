@@ -25,6 +25,11 @@ driver/enable_input=true
 
 Globals="*res://sys/globals.gd"
 
+[debug]
+
+file_logging/enable_file_logging=true
+file_logging/log_path="user://logs/CMD.log"
+
 [display]
 
 window/size/viewport_width=1280
@@ -226,6 +231,7 @@ rebuild_map={
 
 [physics]
 
+3d/run_on_separate_thread=true
 common/max_physics_steps_per_frame=60
 3d/physics_engine="Jolt Physics"
 jolt_physics_3d/simulation/velocity_steps=120
@@ -239,6 +245,8 @@ jolt_3d/collisions/report_all_kinematic_contacts=true
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 lights_and_shadows/directional_shadow/size=512
 lights_and_shadows/directional_shadow/size.mobile=512
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
