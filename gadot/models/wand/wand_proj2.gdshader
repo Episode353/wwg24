@@ -25,13 +25,13 @@ void fragment() {
 	vec2 screen_pixel_size = 1.0 / VIEWPORT_SIZE;
 	vec2 center_position = -1.0 + 2.0 * UV;
 	float center_distance = length(center_position);
-	
+
 	float ripple = sin(center_distance * -frequency * PI + ripple_rate * TIME) * amplitude / (center_distance + 1.0);
-	
+
 	vec2 uv = FRAGCOORD.xy * screen_pixel_size + (center_position/center_distance) * ripple * wave_amplitude;
 	vec2 background_wave = wave(uv, TIME);
 	vec4 background_texture = texture(SCREEN_TEXTURE, background_wave) * sqrt(amplitude);
-	
+
 	ALBEDO = background_texture.rgb;
 	ALPHA = blending;
 }

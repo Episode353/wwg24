@@ -36,14 +36,14 @@ vec3 fetch_pixel(vec2 uv, vec2 off){
 }
 
 // Distance in emulated pixels to nearest texel.
-vec2 Dist(vec2 pos){ 
+vec2 Dist(vec2 pos){
     pos = pos * resolution;
     return - ((pos - floor(pos)) - vec2(0.5));
 }
-    
+
 // 1D Gaussian.
-float Gaus(float pos, float scale){ 
-    return exp2(scale * pos * pos); 
+float Gaus(float pos, float scale){
+    return exp2(scale * pos * pos);
 }
 
 // 3-tap Gaussian filter along horizontal line.
@@ -52,13 +52,13 @@ vec3 Horz3(vec2 pos, float off){
     vec3 c = fetch_pixel(pos, vec2( 0.0, off));
     vec3 d = fetch_pixel(pos, vec2( 1.0, off));
     float dst = Dist(pos).x;
-    
+
     // Convert distance to weight.
     float scale = pixel_strength;
     float wb = Gaus(dst - 1.0, scale);
     float wc = Gaus(dst + 0.0, scale);
     float wd = Gaus(dst + 1.0, scale);
-    
+
     // Return filtered sample.
     return (b * wb + c * wc + d * wd) / (wb + wc + wd);
 }
@@ -124,7 +124,7 @@ float roll_line(vec2 uv){
 void fragment(){
     vec2 pix = FRAGCOORD.xy;
     vec2 pos = warp(SCREEN_UV);
-    
+
     float line = 0.0;
     if(roll_line_amount > 0.0){
         line = roll_line(pos);
@@ -146,11 +146,11 @@ void fragment(){
         float b = Tri(pos + chromatic_x).b;
         clr = vec3(r, g, b);
     }
-    
+
     if(grille_amount > 0.0) clr *= grille(pix);
     clr *= 1.0 + scan_line_amount * 0.6 + line * 3.0 + grille_amount * 2.0;
     if(vignette_amount > 0.0) clr *= vignette(pos);
-    
+
     COLOR.rgb = clr;
     COLOR.a = 1.0;
 }

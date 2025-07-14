@@ -292,6 +292,15 @@
 ( -256 -256 -48 ) ( -255 -256 -48 ) ( -256 -256 -47 ) ground/01Brick_03 0 0 0 1 1
 ( 128 0 -48 ) ( 128 0 -47 ) ( 128 1 -48 ) ground/01Brick_03 128 0 0 1 1
 }
+// brush 32
+{
+( -256 -128 -80 ) ( -256 -127 -80 ) ( -256 -128 -79 ) ground/01Brick_03 128 0 0 1 1
+( -640 -384 -80 ) ( -640 -384 -79 ) ( -639 -384 -80 ) ground/01Brick_03 0 0 0 1 1
+( -640 -128 -80 ) ( -639 -128 -80 ) ( -640 -127 -80 ) ground/01Brick_03 0 -128 0 1 1
+( -512 0 -48 ) ( -512 1 -48 ) ( -511 0 -48 ) ground/01Brick_03 0 -128 0 1 1
+( -512 -256 -48 ) ( -511 -256 -48 ) ( -512 -256 -47 ) ground/01Brick_03 0 0 0 1 1
+( -128 0 -48 ) ( -128 0 -47 ) ( -128 1 -48 ) ground/01Brick_03 128 0 0 1 1
+}
 }
 // entity 1
 {
@@ -318,133 +327,193 @@
 }
 // entity 4
 {
+"classname" "world_label_label_3d"
+"origin" "-200 -312 -40"
+"text" "Billboard 0"
+"text_color" "0 125 255"
+"font_size" "100"
+"pixel_size" "0.01"
+}
+// entity 5
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 -8"
+"billboard" "1"
+"text" "Billboard 1"
+"text_color" "0 255 255"
+"font_size" "100"
+"pixel_size" "0.01"
+}
+// entity 6
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 24"
+"billboard" "2"
+"text" "Billboard 2"
+"text_color" "255 0 255"
+"font_size" "100"
+"pixel_size" "0.01"
+}
+// entity 7
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 56"
+"billboard" "2"
+"text" "Yellow"
+"pixel_size" "0.01"
+"text_color" "255 255 0"
+"font_size" "100"
+}
+// entity 8
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 88"
+"billboard" "0"
+"text" "Double Sided"
+"pixel_size" "0.01"
+"text_color" "255 255 255"
+"font_size" "100"
+}
+// entity 9
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 120"
+"billboard" "0"
+"text" "Single Sided"
+"pixel_size" "0.01"
+"text_color" "255 255 255"
+"font_size" "100"
+"double_sided" "0"
+}
+// entity 10
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Entities"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 5
+// entity 11
 {
 "classname" "pickup_ammo_large"
 "origin" "72 72 -40"
 "_tb_layer" "1"
 }
-// entity 6
+// entity 12
 {
 "classname" "light"
 "origin" "-60 68 -44"
 "_tb_layer" "1"
 }
-// entity 7
+// entity 13
 {
 "classname" "pickup_ammo_medium"
 "origin" "200 72 -40"
 "_tb_layer" "1"
 }
-// entity 8
+// entity 14
 {
 "classname" "pickup_ammo_small"
 "origin" "328 72 -40"
 "_tb_layer" "1"
 }
-// entity 9
+// entity 15
 {
 "classname" "pickup_health_medium"
 "origin" "328 200 -40"
 "_tb_layer" "1"
 }
-// entity 10
+// entity 16
 {
 "classname" "pickup_mana_medium"
 "origin" "200 200 -40"
 "_tb_layer" "1"
 }
-// entity 11
+// entity 17
 {
 "classname" "player_spawn"
 "origin" "72 200 -8"
 "_tb_layer" "1"
 }
-// entity 12
+// entity 18
 {
 "classname" "props_grabbable_ball"
 "origin" "328 -56 -40"
 "_tb_layer" "1"
 }
-// entity 13
+// entity 19
 {
 "classname" "props_grabbable_box"
 "origin" "200 -56 -40"
 "_tb_layer" "1"
 }
-// entity 14
+// entity 20
 {
 "classname" "props_model_planet"
 "origin" "-312 456 -40"
 "_tb_layer" "1"
 }
-// entity 15
+// entity 21
 {
 "classname" "props_shootable_box"
 "origin" "-56 -56 -40"
 "_tb_layer" "1"
 }
-// entity 16
+// entity 22
 {
 "classname" "world_menu_camera"
 "origin" "-56 200 -40"
 "_tb_layer" "1"
 }
-// entity 17
+// entity 23
 {
 "classname" "pickup_weapon_shotgun"
 "origin" "456 -184 -40"
 "_tb_layer" "1"
 }
-// entity 18
+// entity 24
 {
 "classname" "pickup_weapon_salsa"
 "origin" "320 -200 -40"
 "_tb_layer" "1"
 }
-// entity 19
+// entity 25
 {
 "classname" "pickup_weapon_rocketlauncher"
 "origin" "88 -216 -40"
 "_tb_layer" "1"
 }
-// entity 20
+// entity 26
 {
 "classname" "pickup_weapon_keyboard"
 "origin" "-72 -200 -40"
 "_tb_layer" "1"
 }
-// entity 21
+// entity 27
 {
 "classname" "pickup_weapon_ak47"
 "origin" "200 -200 -40"
 "_tb_layer" "1"
 }
-// entity 22
+// entity 28
 {
 "classname" "pickup_weapon_hegrenade"
 "origin" "56 -72 -40"
 "_tb_layer" "1"
 }
-// entity 23
+// entity 29
 {
 "classname" "pickup_weapon_knife"
 "origin" "456 -56 -40"
 "_tb_layer" "1"
 }
-// entity 24
+// entity 30
 {
 "classname" "pickup_weapon_random"
 "origin" "-200 -200 -40"
 "_tb_layer" "1"
 }
-// entity 25
+// entity 31
 {
 "classname" "world_load_map"
 "origin" "-184 -72 -40"
@@ -452,13 +521,13 @@
 "size" "5 5 5"
 "_tb_layer" "1"
 }
-// entity 26
+// entity 32
 {
 "classname" "light"
 "origin" "-444 68 -12"
 "_tb_layer" "1"
 }
-// entity 27
+// entity 33
 {
 "classname" "player_teleport"
 "origin" "-184 56 -40"

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://drrgna76nd3ke"]
+
+[ext_resource type="Script" uid="uid://nacctfigurg6" path="res://entities/world/label/label_3d.gd" id="1_2shr4"]
+[ext_resource type="FontFile" uid="uid://be2nlepjb0rvf" path="res://fonts/Spotify.ttf" id="2_2shr4"]
+
+[node name="TextFloating" type="Node3D"]
+script = ExtResource("1_2shr4")
+
+[node name="Label3D" type="Label3D" parent="."]
+billboard = 2
+shaded = true
+texture_filter = 2
+text = "testing123"
+font = ExtResource("2_2shr4")
