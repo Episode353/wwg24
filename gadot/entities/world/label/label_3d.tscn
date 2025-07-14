@@ -7,8 +7,9 @@
 script = ExtResource("1_2shr4")
 
 [node name="Label3D" type="Label3D" parent="."]
-billboard = 2
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shaded = true
+double_sided = false
 texture_filter = 2
 text = "testing123"
 font = ExtResource("2_2shr4")
