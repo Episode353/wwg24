@@ -1,6 +1,7 @@
+Node3D
+Sprite3D
 CSGBox3D
 Label3D
-Node3D
 Label
 VBoxContainer
 Node
@@ -11,5 +12,3 @@ ItemList
 Camera3D
 CSGSphere3D
 SubViewportContainer
-AnimatedSprite3D
-SubViewport

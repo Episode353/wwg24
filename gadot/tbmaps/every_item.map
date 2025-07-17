@@ -301,6 +301,51 @@
 ( -512 -256 -48 ) ( -511 -256 -48 ) ( -512 -256 -47 ) ground/01Brick_03 0 0 0 1 1
 ( -128 0 -48 ) ( -128 0 -47 ) ( -128 1 -48 ) ground/01Brick_03 128 0 0 1 1
 }
+// brush 33
+{
+( 384 128 -80 ) ( 384 129 -80 ) ( 384 128 -79 ) ground/01Brick_03 0 0 0 1 1
+( 0 -128 -80 ) ( 0 -128 -79 ) ( 1 -128 -80 ) ground/01Brick_03 0 0 0 1 1
+( 0 128 -80 ) ( 1 128 -80 ) ( 0 129 -80 ) ground/01Brick_03 0 0 0 1 1
+( 128 256 -48 ) ( 128 257 -48 ) ( 129 256 -48 ) ground/01Brick_03 0 0 0 1 1
+( 128 0 -48 ) ( 129 0 -48 ) ( 128 0 -47 ) ground/01Brick_03 0 0 0 1 1
+( 512 256 -48 ) ( 512 256 -47 ) ( 512 257 -48 ) ground/01Brick_03 0 0 0 1 1
+}
+// brush 34
+{
+( 512 128 -80 ) ( 512 129 -80 ) ( 512 128 -79 ) ground/01Brick_03 0 0 0 1 1
+( 128 -128 -80 ) ( 128 -128 -79 ) ( 129 -128 -80 ) ground/01Brick_03 -128 0 0 1 1
+( 128 128 -80 ) ( 129 128 -80 ) ( 128 129 -80 ) ground/01Brick_03 -128 0 0 1 1
+( 256 256 -48 ) ( 256 257 -48 ) ( 257 256 -48 ) ground/01Brick_03 -128 0 0 1 1
+( 256 0 -48 ) ( 257 0 -48 ) ( 256 0 -47 ) ground/01Brick_03 -128 0 0 1 1
+( 640 256 -48 ) ( 640 256 -47 ) ( 640 257 -48 ) ground/01Brick_03 0 0 0 1 1
+}
+// brush 35
+{
+( 512 256 -80 ) ( 512 257 -80 ) ( 512 256 -79 ) ground/01Brick_03 -128 0 0 1 1
+( 128 0 -80 ) ( 128 0 -79 ) ( 129 0 -80 ) ground/01Brick_03 -128 0 0 1 1
+( 128 256 -80 ) ( 129 256 -80 ) ( 128 257 -80 ) ground/01Brick_03 -128 128 0 1 1
+( 256 384 -48 ) ( 256 385 -48 ) ( 257 384 -48 ) ground/01Brick_03 -128 128 0 1 1
+( 256 128 -48 ) ( 257 128 -48 ) ( 256 128 -47 ) ground/01Brick_03 -128 0 0 1 1
+( 640 384 -48 ) ( 640 384 -47 ) ( 640 385 -48 ) ground/01Brick_03 -128 0 0 1 1
+}
+// brush 36
+{
+( 512 0 -80 ) ( 512 1 -80 ) ( 512 0 -79 ) ground/01Brick_03 128 0 0 1 1
+( 128 -256 -80 ) ( 128 -256 -79 ) ( 129 -256 -80 ) ground/01Brick_03 -128 0 0 1 1
+( 128 0 -80 ) ( 129 0 -80 ) ( 128 1 -80 ) ground/01Brick_03 -128 -128 0 1 1
+( 256 128 -48 ) ( 256 129 -48 ) ( 257 128 -48 ) ground/01Brick_03 -128 -128 0 1 1
+( 256 -128 -48 ) ( 257 -128 -48 ) ( 256 -128 -47 ) ground/01Brick_03 -128 0 0 1 1
+( 640 128 -48 ) ( 640 128 -47 ) ( 640 129 -48 ) ground/01Brick_03 128 0 0 1 1
+}
+// brush 37
+{
+( 512 384 -80 ) ( 512 385 -80 ) ( 512 384 -79 ) ground/01Brick_03 -256 0 0 1 1
+( 128 128 -80 ) ( 128 128 -79 ) ( 129 128 -80 ) ground/01Brick_03 -128 0 0 1 1
+( 128 384 -80 ) ( 129 384 -80 ) ( 128 385 -80 ) ground/01Brick_03 -128 256 0 1 1
+( 256 512 -48 ) ( 256 513 -48 ) ( 257 512 -48 ) ground/01Brick_03 -128 256 0 1 1
+( 256 256 -48 ) ( 257 256 -48 ) ( 256 256 -47 ) ground/01Brick_03 -128 0 0 1 1
+( 640 512 -48 ) ( 640 512 -47 ) ( 640 513 -48 ) ground/01Brick_03 -256 0 0 1 1
+}
 }
 // entity 1
 {
@@ -387,133 +432,153 @@
 }
 // entity 10
 {
+"classname" "props_grass_tallgrass"
+"origin" "584 -56 -40"
+}
+// entity 11
+{
+"classname" "props_grass_wheatgrass"
+"origin" "584 72 -40"
+}
+// entity 12
+{
+"classname" "props_grass_yellowflowers"
+"origin" "568 -184 -40"
+}
+// entity 13
+{
+"classname" "props_grass_roses"
+"origin" "584 200 -40"
+}
+// entity 14
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Entities"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 11
+// entity 15
 {
 "classname" "pickup_ammo_large"
 "origin" "72 72 -40"
 "_tb_layer" "1"
 }
-// entity 12
+// entity 16
 {
 "classname" "light"
 "origin" "-60 68 -44"
 "_tb_layer" "1"
 }
-// entity 13
+// entity 17
 {
 "classname" "pickup_ammo_medium"
 "origin" "200 72 -40"
 "_tb_layer" "1"
 }
-// entity 14
+// entity 18
 {
 "classname" "pickup_ammo_small"
 "origin" "328 72 -40"
 "_tb_layer" "1"
 }
-// entity 15
+// entity 19
 {
 "classname" "pickup_health_medium"
 "origin" "328 200 -40"
 "_tb_layer" "1"
 }
-// entity 16
+// entity 20
 {
 "classname" "pickup_mana_medium"
 "origin" "200 200 -40"
 "_tb_layer" "1"
 }
-// entity 17
+// entity 21
 {
 "classname" "player_spawn"
 "origin" "72 200 -8"
 "_tb_layer" "1"
 }
-// entity 18
+// entity 22
 {
 "classname" "props_grabbable_ball"
 "origin" "328 -56 -40"
 "_tb_layer" "1"
 }
-// entity 19
+// entity 23
 {
 "classname" "props_grabbable_box"
 "origin" "200 -56 -40"
 "_tb_layer" "1"
 }
-// entity 20
+// entity 24
 {
 "classname" "props_model_planet"
 "origin" "-312 456 -40"
 "_tb_layer" "1"
 }
-// entity 21
+// entity 25
 {
 "classname" "props_shootable_box"
 "origin" "-56 -56 -40"
 "_tb_layer" "1"
 }
-// entity 22
+// entity 26
 {
 "classname" "world_menu_camera"
 "origin" "-56 200 -40"
 "_tb_layer" "1"
 }
-// entity 23
+// entity 27
 {
 "classname" "pickup_weapon_shotgun"
 "origin" "456 -184 -40"
 "_tb_layer" "1"
 }
-// entity 24
+// entity 28
 {
 "classname" "pickup_weapon_salsa"
 "origin" "320 -200 -40"
 "_tb_layer" "1"
 }
-// entity 25
+// entity 29
 {
 "classname" "pickup_weapon_rocketlauncher"
 "origin" "88 -216 -40"
 "_tb_layer" "1"
 }
-// entity 26
+// entity 30
 {
 "classname" "pickup_weapon_keyboard"
 "origin" "-72 -200 -40"
 "_tb_layer" "1"
 }
-// entity 27
+// entity 31
 {
 "classname" "pickup_weapon_ak47"
 "origin" "200 -200 -40"
 "_tb_layer" "1"
 }
-// entity 28
+// entity 32
 {
 "classname" "pickup_weapon_hegrenade"
 "origin" "56 -72 -40"
 "_tb_layer" "1"
 }
-// entity 29
+// entity 33
 {
 "classname" "pickup_weapon_knife"
 "origin" "456 -56 -40"
 "_tb_layer" "1"
 }
-// entity 30
+// entity 34
 {
 "classname" "pickup_weapon_random"
 "origin" "-200 -200 -40"
 "_tb_layer" "1"
 }
-// entity 31
+// entity 35
 {
 "classname" "world_load_map"
 "origin" "-184 -72 -40"
@@ -521,13 +586,13 @@
 "size" "5 5 5"
 "_tb_layer" "1"
 }
-// entity 32
+// entity 36
 {
 "classname" "light"
 "origin" "-444 68 -12"
 "_tb_layer" "1"
 }
-// entity 33
+// entity 37
 {
 "classname" "player_teleport"
 "origin" "-184 56 -40"

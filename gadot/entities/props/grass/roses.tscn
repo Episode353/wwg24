@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cparnmmumuik3"]
+
+[ext_resource type="Texture2D" uid="uid://oklktei7hpu5" path="res://mat/roses.png" id="1_yhqpj"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Sprite3D Big Fixed4" type="Sprite3D" parent="."]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0.229204, 0)
+modulate = Color(0.703808, 0.703808, 0.703808, 1)
+billboard = 2
+texture_filter = 4
+texture = ExtResource("1_yhqpj")

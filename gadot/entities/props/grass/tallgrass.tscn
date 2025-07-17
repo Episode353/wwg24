@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3sm5aft07ph7"]
+
+[ext_resource type="Texture2D" uid="uid://bxxx4xstix1qk" path="res://mat/tallgrass.png" id="1_vyei2"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Sprite3D Big Fixed2" type="Sprite3D" parent="."]
+transform = Transform3D(-2.84124e-08, 0, 0.65, 0, 0.65, 0, -0.65, 0, -2.84124e-08, 0, 0.808026, 0)
+texture_filter = 4
+texture = ExtResource("1_vyei2")
+
+[node name="Sprite3D Big Fixed" type="Sprite3D" parent="."]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0.808026, 0)
+texture_filter = 4
+texture = ExtResource("1_vyei2")

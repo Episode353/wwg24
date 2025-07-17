@@ -86,3 +86,8 @@
     text_color(color255) : "Color" : "255 255 255" : "R,G,B"
     double_sided(bool) : "Double sided" : 1 : "If 1, Text visible on both sides; if 0, text only visible on one side"
 ]
+
+@PointClass size(-8 -8 -8, 8 8 8) color(0 255 0) = props_grass_tallgrass : "Tall Grass" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 255 0) = props_grass_wheatgrass : "Wheat Grass" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 255 0) = props_grass_yellowflowers : "Yellow Flowers" []
+@PointClass size(-8 -8 -8, 8 8 8) color(0 255 0) = props_grass_roses : "Roses" []

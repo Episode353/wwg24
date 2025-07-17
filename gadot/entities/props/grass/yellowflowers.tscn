@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://r0vafdrlioqb"]
+
+[ext_resource type="Texture2D" uid="uid://lc1nj8sptuml" path="res://mat/yellowflowers.png" id="1_348hc"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Sprite3D Big Fixed4" type="Sprite3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.106815, 0)
+modulate = Color(0.851769, 0.851769, 0.851769, 1)
+billboard = 2
+texture_filter = 4
+texture = ExtResource("1_348hc")

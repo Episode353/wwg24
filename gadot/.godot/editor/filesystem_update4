@@ -1,4 +1,4 @@
-res://entities/world/label/label_3d.tscn
+res://entities/props/grass/tallgrass.tscn
 res://Player.gd
 res://models/wand/wand_proj.gdshader
 res://models/wand/wand_proj2.gdshader
@@ -21,6 +21,7 @@ res://sys/shaders/VHS_SHADER.gdshader
 res://sys/shaders/CROSSHAIR_SHADER.gdshader
 res://sys/shaders/CRT_SHADER.gdshader
 res://sys/shaders/COLOR_PALETTE.gdshader
+res://entities/world/label/label_3d.tscn
 res://bot_logic.gd
 res://sys/globals.gd
 res://models/grenade/grenade_explosion.gd
@@ -34,3 +35,7 @@ res://entities/world/light/spot.gd
 res://sys/toggle_video_settings.gd
 res://Weapons_Manager.gd
 res://world.gd
+res://entities/props/grass/wheatgrass.tscn
+res://entities/props/grass/largebush.tscn
+res://entities/props/grass/roses.tscn
+res://entities/props/grass/yellowflowers.tscn
