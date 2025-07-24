@@ -7,7 +7,7 @@ size = Vector3(2, 1.5, 2)
 
 [node name="weapon_root" type="Node3D"]
 script = ExtResource("1_ffgrr")
-weapon = 8
+weapon = 9
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0

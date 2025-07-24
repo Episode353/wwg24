@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://05v17x2bpsky"
+path="res://.godot/imported/france.1.map-b7e4e6340a336556a1ceb1486989afc9.tres"
+
+[deps]
+
+source_file="res://tbmaps/autosave/france.1.map"
+dest_files=["res://.godot/imported/france.1.map-b7e4e6340a336556a1ceb1486989afc9.tres"]
+
+[params]
+

@@ -60,6 +60,8 @@ func send_to_main_menu():
 	get_tree().current_scene = new_scene
 	current_scene.queue_free()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	$CanvasLayer/menufadein.show()
+
 
 
 
@@ -121,19 +123,50 @@ func start_join(address: String):
 	add_player(multiplayer.get_unique_id())
 
 
-func load_map(load_map_name: String):
+#func load_map(load_map_name: String):
+	#for child in tb_loader.get_children():
+		#child.queue_free()
+	#tb_loader.map_resource = "tbmaps/" + load_map_name
+	#tb_loader.build_meshes()
+	#print(tb_loader.map_resource)
+	#$NavigationRegion3D.bake_navigation_mesh()
+	#Globals.map_loaded = true
+	#emit_signal("map_loaded")
+@onready var func_godot_map: FuncGodotMap = $NavigationRegion3D/FuncGodotMap
+
+func load_map(map_name: String) -> void:
+	# IMPORTANT: Set map_loaded to false immediately to prevent premature spawning
+	Globals.map_loaded = false
+	
+	# Disconnect any existing signal connections
+	if func_godot_map.build_complete.is_connected(_on_build_complete):
+		func_godot_map.build_complete.disconnect(_on_build_complete)
+	
 	for child in tb_loader.get_children():
 		child.queue_free()
-	tb_loader.map_resource = "tbmaps/" + load_map_name
-	tb_loader.build_meshes()
-	print(tb_loader.map_resource)
+	
+	func_godot_map.local_map_file = "tbmaps/" + map_name
+	func_godot_map.verify_and_build()
+	
+	# Connect and await
+	func_godot_map.build_complete.connect(_on_build_complete, CONNECT_ONE_SHOT)
+	await func_godot_map.build_complete
+	
+	print("Map built, now baking navigation...")
 	$NavigationRegion3D.bake_navigation_mesh()
 	Globals.map_loaded = true
 	emit_signal("map_loaded")
 
+func _on_build_complete():
+	# Handle completion here if needed
+	pass
+
+
+
+
 @rpc("any_peer", "call_local")
 func rebuild_map():
-	tb_loader.build_meshes()
+	tb_loader.run_map()
 	$NavigationRegion3D.bake_navigation_mesh()
 	# Remove all bots from the scene.
 	for child in get_children():
@@ -149,6 +182,7 @@ var next_bot_id: int = -1
 
 @rpc("any_peer", "call_local")
 func add_bot(origin, use_spawn_position, weapon_range, weapon, disable_respawn, spawn_position: Vector3 = Vector3.ZERO):
+	print("Bot Config - Origin: ", origin, " | Use Spawn Pos: ", use_spawn_position, " | Weapon Range: ", weapon_range, " | Weapon: ", weapon, " | Disable Respawn: ", disable_respawn, " | Spawn Pos: ", spawn_position)
 	var Player = preload("res://player.tscn")
 	var bot_instance = Player.instantiate()
 	print(spawn_position)

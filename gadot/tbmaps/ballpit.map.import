@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://crcm0ldd78lcj"
+path="res://.godot/imported/ballpit.map-2313cc6a128e6de0ca0d1d815e919cfc.tres"
+
+[deps]
+
+source_file="res://tbmaps/ballpit.map"
+dest_files=["res://.godot/imported/ballpit.map-2313cc6a128e6de0ca0d1d815e919cfc.tres"]
+
+[params]
+

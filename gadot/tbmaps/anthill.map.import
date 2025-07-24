@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://k8pdejt7db1k"
+path="res://.godot/imported/anthill.map-0f6e16fc5fbbcab50e6e14dd55d7a5ad.tres"
+
+[deps]
+
+source_file="res://tbmaps/anthill.map"
+dest_files=["res://.godot/imported/anthill.map-0f6e16fc5fbbcab50e6e14dd55d7a5ad.tres"]
+
+[params]
+

@@ -53,6 +53,7 @@ func _input(event):
 	
 	if event.is_action_pressed("reload"):
 		reload()
+	
 		
 	if event.is_action_pressed("w1"):
 		switch_weapon(1)
@@ -102,7 +103,18 @@ func reset_all_ammo():
 
 func is_all_ammo_full() -> bool:
 	for weapon_name in weapon_stack:
+		if typeof(weapon_name) != TYPE_STRING:
+			continue  # Skip non-string entries
+		
+		if not weapon_list.has(weapon_name):
+			continue  # Skip if weapon doesn't exist in list
+			
 		var weapon = weapon_list[weapon_name]
+		
+		# Check if weapon is null or not the expected type
+		if weapon == null or typeof(weapon) != TYPE_OBJECT:
+			continue
+			
 		if weapon.reserve_ammo < weapon.reserve_ammo_default or weapon.current_ammo < weapon.mag_ammo:
 			return false
 	return true
@@ -114,11 +126,21 @@ func does_have_weapon(does_weapon: String) -> bool:
 	
 	# For a specific weapon, check if the player already has it.
 	for weapon_name in weapon_stack:
+		if typeof(weapon_name) != TYPE_STRING:
+			continue  # Skip non-string entries
+			
+		if not weapon_list.has(weapon_name):
+			continue  # Skip if weapon doesn't exist in list
+			
 		var weapon_item = weapon_list[weapon_name]
+		
+		# Check if weapon is null or not the expected type
+		if weapon_item == null or typeof(weapon_item) != TYPE_OBJECT:
+			continue
+			
 		if weapon_item.weapon_name == does_weapon:
 			return true  # Player already has this weapon.
 	return false  # Player does not have this weapon.
-
 
 
 
@@ -232,7 +254,6 @@ func change_weapon(change_weapon_name: String):
 	# Set up weapon properties.
 	var weapon_range = current_weapon.weapon_range
 	raycast_shoot.target_position.z = weapon_range
-	print("Switched to Weapon: ", current_weapon.weapon_name)
 	
 	if current_weapon.fire_rate <= 0:
 		print("Error: Fire rate for weapon ", current_weapon.weapon_name, " is zero. Defaulting to 0.1.")
@@ -356,8 +377,9 @@ func shoot():
 		return
 	if current_weapon.current_ammo != 0 or infinite_ammo == true:
 		if !animation_player.is_playing() or animation_player.current_animation == current_weapon.idle_anim:
-			animation_player.play(current_weapon.shoot_anim)
-			play_fire_sound()
+			if current_weapon.weapon_name != "wand":
+				animation_player.play(current_weapon.shoot_anim)
+				play_fire_sound()
 		else:
 			return
 		if current_weapon.disable_ammo == false and infinite_ammo == false:
@@ -374,24 +396,44 @@ func shoot():
 				player.rpc("launch_rocket")
 				play_fire_sound()
 				
-			if current_weapon.weapon_name == "wand":
-				if player.mana >= 25:
-					player.rpc("receive_mana", -25)
-					player.rpc("launch_wand")
-					play_fire_sound()
-				
-			if current_weapon.weapon_name == "hegrenade":
-				await get_tree().create_timer(0.5).timeout
-				player.rpc("launch_he_grenade")
-				animation_player.play(current_weapon.activate_anim)
-				play_fire_sound()
-				
-			if current_weapon.weapon_name == "salsa":
-				await get_tree().create_timer(0.5).timeout
+		if current_weapon.weapon_name == "wand":
+			var mana_cost = 0
+			if current_wand_spell == "Fireball":
+				mana_cost = 3
+				if player.mana < mana_cost: return
 				player.rpc("launch_salsa")
-				animation_player.play(current_weapon.activate_anim)
-				#play_fire_sound()
+				animation_player.play(current_weapon.shoot_anim)
+			if current_wand_spell == "Lightning Bolt":
+				mana_cost = 5
+				if player.mana < mana_cost: return
+				player.rpc("launch_lightning_ball")
+				animation_player.play(current_weapon.shoot_anim)
+			if current_wand_spell == "Magic Missile":
+				mana_cost = 12
+				if player.mana < mana_cost: return
+				player.rpc("launch_rocket")
+				animation_player.play(current_weapon.shoot_anim)
+			if current_wand_spell == "Heal":
+				if player.health > 99: return
+				mana_cost = 5
+				if player.mana < mana_cost: return
+				animation_player.play(current_weapon.shoot_anim)
+		
+			player.rpc("receive_mana", -mana_cost)
+			play_fire_sound()
 			
+		if current_weapon.weapon_name == "hegrenade":
+			await get_tree().create_timer(0.5).timeout
+			player.rpc("launch_he_grenade")
+			animation_player.play(current_weapon.activate_anim)
+			play_fire_sound()
+			
+		if current_weapon.weapon_name == "salsa":
+			await get_tree().create_timer(0.5).timeout
+			player.rpc("launch_salsa")
+			animation_player.play(current_weapon.activate_anim)
+			#play_fire_sound()
+		
 		if current_weapon.use_area_damage_collision == true:
 			area_collision_procc(multiplayer.get_unique_id())
 		
@@ -531,3 +573,32 @@ func add_all_weapons():
 
 func _on_timer_timeout():
 	shoot()
+	
+# Hardcoded list of available wand spells
+var available_spells := [
+	"Fireball",
+	"Lightning Bolt", 
+	"Magic Missile",
+	"Heal",
+]
+
+var current_wand_spell := "NULL"  # Default spell
+
+func get_wand_spells() -> Array:
+	"""Returns the list of available wand spells"""
+	return available_spells.duplicate()  # Return copy to prevent external modification
+
+func set_wand_spell(spell_name: String) -> bool:
+	"""Sets the current wand spell if it's a valid option"""
+	if spell_name in available_spells:
+		current_wand_spell = spell_name
+		print("Wand spell set to: ", spell_name)
+		return true
+	else:
+		print("Error: '", spell_name, "' is not a valid spell option!")
+		print("Available spells: ", available_spells)
+		return false
+
+func get_current_wand_spell() -> String:
+	"""Returns the currently selected wand spell"""
+	return current_wand_spell

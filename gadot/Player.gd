@@ -69,7 +69,7 @@ var max_mana: int = 100 # mana set to max health on respaw
 
 # How long it takes to passivly regen mana
 var mana_regen_timer: float = 0
-var mana_regen_length:float = 4
+var mana_regen_length:float = 1
 
 # Speed Variables
 const walking_speed: float = 5.0
@@ -103,7 +103,6 @@ var is_walking: bool = false
 const COYOTE_TIME: float = 0.1  # seconds you allow the jump after leaving the ground
 var coyote_time_remaining: float = 0.0
 var CUT_JUMP_HEIGHT: float = 0.5
-
 
 
 # Slide Vars
@@ -222,13 +221,30 @@ func _unhandled_input(event):
 			head.rotate_x(deg_to_rad(-event.relative.y * sensitivity))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-98), deg_to_rad(89))
 			
-
+var heal_counter = 0
 func _physics_process(delta):
+	# Death check for both bots and players (before authority check)
+	if position.y < -100:
+		if is_bot:
+			health = 0
+		player_death()
+		return  # Exit early after death
+	
 	if not is_multiplayer_authority():
 		return
+	
 	calculate_fire_damage()
 	if is_bot: return
+	# ... rest of function
 	
+	
+	if weapons_manager.get_current_wand_spell() == "Heal" and weapons_manager.current_weapon.weapon_name == "wand":
+		heal_counter += 1
+		if heal_counter >= 20 and mana >= 1 and health <= 99:
+			heal_counter = 0
+			rpc("receive_health", randi_range(1,3))
+			rpc("receive_mana", -1)
+
 	mana_regen_timer += delta
 	if mana_regen_timer >= mana_regen_length:
 		mana_regen_timer = 0
@@ -398,10 +414,11 @@ func _handle_noclip(delta) -> bool:
 
 
 func process_movement(delta):
-	
 	if is_bot: return
+	
 	if self.position.y < -100:
 		player_death()
+	
 	if is_on_floor(): _last_time_was_on_floor = Engine.get_physics_frames()
 	# Get the normalized input direction so that we don't move faster on diagonals
 	var wish_dir = direction.normalized()
@@ -478,27 +495,31 @@ func update_velocity_air(wish_dir: Vector3, delta):
 func player_death():
 	if disable_respawn:
 		queue_free()
-	interaction_ray.release_grabbed_object()
+		
+	if interaction_ray:
+		interaction_ray.release_grabbed_object()
+		
 	var world_pos = global_transform.origin
-	# Reset momentum
 	velocity = Vector3.ZERO
-	# Reset ammo for all weapons
-
+	
 	weapons_manager.reset_all_ammo()
 	weapons_manager.drop_all_weapons()
-	# Spawn mana drop only for the local player who died
-	if is_multiplayer_authority():
+	
+	# Make these work for bots too
+	if is_multiplayer_authority() or is_bot:  # <-- Add this condition
 		rpc("spawn_mana_for_all", world_pos)
 		world.rpc("display_to_killfeed", last_tagged_by, self.name)
 
 	# Call the world's respawn player function
 	var world_to_respawn = get_parent()
 	world_to_respawn.respawn_player(self)
+	
 	health = max_health
 	mana = 50
 	self.set_on_fire(false)
 	mana_changed.emit(mana)
 	health_changed.emit(health)
+	
 	if is_bot:
 		bot_logic.initialize_bot()
 		
@@ -515,53 +536,52 @@ func launch_rocket():
 	proj_instance.owner_player = self
 	var launch_rocket_to_world = get_parent()
 	launch_rocket_to_world.add_child.call_deferred(proj_instance)
-	
-	
+
 @rpc("call_local")
-func launch_wand():
-	const wand_proj = preload("res://models/wand/wand_proj.tscn")
+func launch_lightning_ball():
+	const ROCKET = preload("res://models/wand/wand_proj.tscn")
+	var proj_speed = 20
+	var proj = ROCKET.instantiate()  # Just use ROCKET directly
+	var forward = -main_camera.global_transform.basis.z.normalized()
+	proj.global_transform.origin = main_camera.global_transform.origin + forward
+	proj.owner_player = self
+	proj.linear_velocity = forward * proj_speed
+	get_parent().add_child.call_deferred(proj)
 
-	var proj_instance = wand_proj.instantiate()
-	var forward_direction = -main_camera.global_transform.basis.z.normalized() # Forward direction
-	var spawn_distance = 1.0 # Adjust as needed
 
-	# Offset the spawn position
-	proj_instance.global_transform.origin = main_camera.global_transform.origin + (forward_direction * spawn_distance)
 
-	# Set owner and velocity
-	proj_instance.owner_player = self
-	var launch_speed = 50.0
-	proj_instance.linear_velocity = forward_direction * launch_speed
-
-	# Add to scene
-	get_parent().add_child.call_deferred(proj_instance)
 
 	
 @rpc("call_local")
 func launch_he_grenade():
 	const GRENADE_PROJ = preload("res://models/grenade/grenade_proj.tscn")
 	var proj_instance = GRENADE_PROJ.instantiate()
-	proj_instance.global_transform = main_camera.global_transform
 	proj_instance.owner_player = self
+	
+	var launch_grenade_to_world = get_parent()
+	launch_grenade_to_world.add_child(proj_instance)  # Add first
+	
+	# Then set transform and physics
+	proj_instance.global_transform = main_camera.global_transform
 	var launch_speed = 20.0 # Adjust the speed as necessary
 	var forward_direction = main_camera.global_transform.basis.z.normalized()
 	proj_instance.linear_velocity = -forward_direction * launch_speed
-
-	var launch_grenade_to_world = get_parent()
-	launch_grenade_to_world.add_child.call_deferred(proj_instance)
 	
 	
 @rpc("call_local")
 func launch_salsa():
 	const SALSA_PROJ = preload("res://models/salsa/salsa_proj.tscn")
 	var proj_instance = SALSA_PROJ.instantiate()
-	proj_instance.global_transform = main_camera.global_transform
 	proj_instance.owner_player = self
-	var launch_speed = 20.0 # Adjust the speed as necessary
+	
+	var launch_salsa_to_world = get_parent()
+	launch_salsa_to_world.add_child(proj_instance)  # Add first
+	
+	# Then set transform and physics
+	proj_instance.global_transform = main_camera.global_transform
+	var launch_speed = 20.0
 	var forward_direction = main_camera.global_transform.basis.z.normalized()
 	proj_instance.linear_velocity = -forward_direction * launch_speed
-	var launch_salsa_to_world = get_parent()
-	launch_salsa_to_world.add_child.call_deferred(proj_instance)
 
 
 @rpc("call_local")
@@ -583,12 +603,15 @@ func spawn_mana_for_all(world_pos):
 	const MANADROP = preload("res://manadrop.tscn")
 	# Instantiate MANADROP
 	var instance = MANADROP.instantiate()
-	# Set the position slightly above the world_pos
+	
+	# Add to scene tree first
+	get_tree().current_scene.add_child(instance)
+	
+	# Then set properties
 	var spawn_height = 1  # Adjust this value as needed
 	instance.transform.origin = Vector3(world_pos.x, world_pos.y + spawn_height, world_pos.z)
 	instance.mana_drop_ammount = mana
 	instance.mana_drop_owner = self
-	get_tree().current_scene.add_child(instance)
 	
 	
 	

@@ -7,6 +7,35 @@ extends Node
 @onready var collision_shape_3d = $Area3D/CollisionShape3D
 
 
+@export var func_godot_properties: Dictionary
+
+func _func_godot_apply_properties(props: Dictionary):
+	var property_types := {}
+	for p in get_property_list():
+		property_types[p.name] = p.type
+
+	for key in props.keys():
+		if not property_types.has(key):
+			continue
+
+		var target_type = property_types[key]
+		var value = props[key]
+
+		match target_type:
+			TYPE_INT:
+				set(key, int(value))
+			TYPE_FLOAT:
+				set(key, float(value))
+			TYPE_BOOL:
+				set(key, value in ["1", "true", true])
+			TYPE_STRING:
+				set(key, str(value))
+			_:
+				set(key, value)  # Fallback: assign directly (e.g. dictionaries, arrays)
+
+	call_deferred("_update_label")
+	call_deferred("_update_teleport_size")
+
 func _update_teleport_size():
 	# Only update if teleport_size is provided.
 	if size.strip_edges() == "":

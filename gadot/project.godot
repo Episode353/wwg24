@@ -42,7 +42,7 @@ project/assembly_name="fps-mp"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/tbloader/plugin.cfg")
+enabled=PackedStringArray("res://addons/SphynxMotionBlurToolkit/plugin.cfg", "res://addons/func_godot/plugin.cfg", "res://addons/tbloader/plugin.cfg")
 
 [filesystem]
 
@@ -244,9 +244,6 @@ jolt_3d/collisions/report_all_kinematic_contacts=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-rendering_device/driver.windows="d3d12"
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
 lights_and_shadows/directional_shadow/size=512
 lights_and_shadows/directional_shadow/size.mobile=512
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3

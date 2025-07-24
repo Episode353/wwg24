@@ -18,6 +18,7 @@ var self_harm = true # If True, players can harm themselves
 var bots_fight = true # If True, players can harm themselves
 var map_loaded = false
 var graphics_options: int = 2  # 0 = VERY_LOW, 1 = LOW, 2 = MEDIUM, 3 = HIGH
+var show_bot_path = true # Do we shoe the debug paths of bots?
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("fullscreen"):

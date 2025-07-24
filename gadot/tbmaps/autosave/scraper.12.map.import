@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dj0fc77g848iw"
+path="res://.godot/imported/scraper.12.map-39f67f88acf45600395d2cd16c9983d0.tres"
+
+[deps]
+
+source_file="res://tbmaps/autosave/scraper.12.map"
+dest_files=["res://.godot/imported/scraper.12.map-39f67f88acf45600395d2cd16c9983d0.tres"]
+
+[params]
+

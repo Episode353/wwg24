@@ -188,7 +188,7 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_n3ce8"]
 radius = 2.0
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" groups=["mana_drop"]]
 script = ExtResource("1_kaao6")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
@@ -216,7 +216,7 @@ material = SubResource("ShaderMaterial_483yu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RigidBody3D/CSGSphere3D"]
 libraries = {
-"": SubResource("AnimationLibrary_26yoe")
+&"": SubResource("AnimationLibrary_26yoe")
 }
 autoplay = "manaidle"
 

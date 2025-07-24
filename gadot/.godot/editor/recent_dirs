@@ -1,3 +1,9 @@
+res://sys/scripts
+res://shaders
+res://addons/func_godot/fgd/custom
+res://addons/func_godot/fgd
+res://addons/func_godot/game_config/WWG
+res://entities
 res://mat
 res://fonts
 res://sys
@@ -14,8 +20,6 @@ C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.12
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.11
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.10
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.9
-res://entities/world/light
-res://tbmaps
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.8
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.7.2
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.7.1

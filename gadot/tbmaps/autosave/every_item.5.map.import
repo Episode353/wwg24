@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dmq6y6ah78dsg"
+path="res://.godot/imported/every_item.5.map-fe2ab4e7e6195d9a7c8647ceb3aa4a1b.tres"
+
+[deps]
+
+source_file="res://tbmaps/autosave/every_item.5.map"
+dest_files=["res://.godot/imported/every_item.5.map-fe2ab4e7e6195d9a7c8647ceb3aa4a1b.tres"]
+
+[params]
+

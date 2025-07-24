@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://bva8jxfgh1nrk"
+path="res://.godot/imported/avery.1.map-9b4ae14a5e88208acc6618f727926dbc.tres"
+
+[deps]
+
+source_file="res://tbmaps/autosave/avery.1.map"
+dest_files=["res://.godot/imported/avery.1.map-9b4ae14a5e88208acc6618f727926dbc.tres"]
+
+[params]
+

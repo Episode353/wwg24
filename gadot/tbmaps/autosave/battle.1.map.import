@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://c88mxhrbjya6k"
+path="res://.godot/imported/battle.1.map-14aba5973cc877d8c7c4aa7a2d7e0951.tres"
+
+[deps]
+
+source_file="res://tbmaps/autosave/battle.1.map"
+dest_files=["res://.godot/imported/battle.1.map-14aba5973cc877d8c7c4aa7a2d7e0951.tres"]
+
+[params]
+

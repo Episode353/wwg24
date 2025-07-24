@@ -1790,35 +1790,40 @@
 }
 // entity 44
 {
-"classname" "pickup_weapon_keyboard"
-"origin" "-24 -232 232"
-}
-// entity 45
-{
 "classname" "pickup_weapon_knife"
 "origin" "456 1048 24"
 }
-// entity 46
+// entity 45
 {
 "classname" "pickup_weapon_random"
 "origin" "760 216 -56"
 }
-// entity 47
+// entity 46
 {
 "classname" "pickup_weapon_rocketlauncher"
 "origin" "488 -120 8"
 }
-// entity 48
+// entity 47
 {
 "classname" "pickup_weapon_salsa"
 "origin" "152 552 24"
 }
-// entity 49
+// entity 48
 {
 "classname" "pickup_weapon_shotgun"
 "origin" "984 -312 -120"
 }
+// entity 49
+{
+"classname" "pickup_weapon_keyboard"
+"origin" "232 136 88"
+}
 // entity 50
+{
+"classname" "pickup_weapon_wand"
+"origin" "200 -232 232"
+}
+// entity 51
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -1826,7 +1831,7 @@
 "_tb_id" "6"
 "_tb_layer_sort_index" "0"
 }
-// entity 51
+// entity 52
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -1834,7 +1839,7 @@
 "_tb_id" "10"
 "_tb_layer_sort_index" "1"
 }
-// entity 52
+// entity 53
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"

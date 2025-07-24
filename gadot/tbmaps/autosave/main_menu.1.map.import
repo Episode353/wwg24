@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://3ly00tf050y4"
+path="res://.godot/imported/main_menu.1.map-ed640dc8744c6cfbbfea348ff537b16a.tres"
+
+[deps]
+
+source_file="res://tbmaps/autosave/main_menu.1.map"
+dest_files=["res://.godot/imported/main_menu.1.map-ed640dc8744c6cfbbfea348ff537b16a.tres"]
+
+[params]
+

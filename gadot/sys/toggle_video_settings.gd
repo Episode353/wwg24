@@ -10,7 +10,7 @@ var quality_names = ["VERY LOW", "LOW", "MEDIUM", "HIGH"]
 var quality_configs = {
 	GraphicsQuality.VERY_LOW: {
 		"scaling_3d_scale": 0.5,
-		"scaling_3d_mode": Viewport.SCALING_3D_MODE_FSR,
+		"scaling_3d_mode": Viewport.SCALING_3D_MODE_BILINEAR,
 		"vsync": DisplayServer.VSYNC_DISABLED,
 		"msaa_3d": RenderingServer.VIEWPORT_MSAA_DISABLED,
 		"msaa_2d": RenderingServer.VIEWPORT_MSAA_DISABLED,
@@ -27,7 +27,7 @@ var quality_configs = {
 	},
 	GraphicsQuality.LOW: {
 		"scaling_3d_scale": 0.65,
-		"scaling_3d_mode": Viewport.SCALING_3D_MODE_FSR,
+		"scaling_3d_mode": Viewport.SCALING_3D_MODE_BILINEAR,
 		"vsync": DisplayServer.VSYNC_DISABLED,
 		"msaa_3d": RenderingServer.VIEWPORT_MSAA_DISABLED,
 		"msaa_2d": RenderingServer.VIEWPORT_MSAA_DISABLED,

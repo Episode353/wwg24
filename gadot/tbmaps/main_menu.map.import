@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cavruxvtorruo"
+path="res://.godot/imported/main_menu.map-3161a29db38b98ba2647f5d9a7af8aeb.tres"
+
+[deps]
+
+source_file="res://tbmaps/main_menu.map"
+dest_files=["res://.godot/imported/main_menu.map-3161a29db38b98ba2647f5d9a7af8aeb.tres"]
+
+[params]
+

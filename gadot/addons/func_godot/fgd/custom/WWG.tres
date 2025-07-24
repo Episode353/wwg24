@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=35 format=3 uid="uid://dp2pyavhqiodf"]
+
+[ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_p7j0e"]
+[ext_resource type="Resource" uid="uid://b6nsx8unlujmq" path="res://addons/func_godot/fgd/custom/bot_spawn.tres" id="2_ouf3l"]
+[ext_resource type="Resource" uid="uid://d0j5bk2syayyk" path="res://addons/func_godot/fgd/custom/props_grass_roses.tres" id="3_jqja6"]
+[ext_resource type="Resource" uid="uid://dthu3x5dhe37y" path="res://addons/func_godot/fgd/custom/pickup_ammo_small.tres" id="4_778nb"]
+[ext_resource type="Script" uid="uid://b3rx6ge1lps31" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="5_dino8"]
+[ext_resource type="Resource" uid="uid://3wnxpstogvo8" path="res://addons/func_godot/fgd/custom/world_light_spot.tres" id="5_ouf3l"]
+[ext_resource type="Resource" uid="uid://cx6yyuy0mdclf" path="res://addons/func_godot/fgd/custom/pickup_mana_medium.tres" id="6_jqja6"]
+[ext_resource type="Resource" uid="uid://j7sysjioebhm" path="res://addons/func_godot/fgd/custom/pickup_health_medium.tres" id="7_778nb"]
+[ext_resource type="Resource" uid="uid://dujtjboqx5xpw" path="res://addons/func_godot/fgd/custom/player_spawn.tres" id="8_dino8"]
+[ext_resource type="Resource" uid="uid://dtt6fwlnsh5uf" path="res://addons/func_godot/fgd/custom/world_menu_camera.tres" id="9_i355k"]
+[ext_resource type="Resource" uid="uid://sjj8bos2grx0" path="res://addons/func_godot/fgd/custom/props_model_planet.tres" id="10_25cyq"]
+[ext_resource type="Resource" uid="uid://bmhvdq1fxixbv" path="res://addons/func_godot/fgd/custom/props_shootable_box.tres" id="11_bbnmw"]
+[ext_resource type="Resource" uid="uid://durp5w52a6t08" path="res://addons/func_godot/fgd/custom/pickup_ammo_medium.tres" id="12_8mg6p"]
+[ext_resource type="Resource" uid="uid://bwoqueh3unvtw" path="res://addons/func_godot/fgd/custom/pickup_ammo_large.tres" id="13_m2eip"]
+[ext_resource type="Resource" uid="uid://dhacsuox002xr" path="res://addons/func_godot/fgd/custom/props_grabbable_box.tres" id="14_p4ej5"]
+[ext_resource type="Resource" uid="uid://cf6yw37ogguai" path="res://addons/func_godot/fgd/custom/props_grabbable_ball.tres" id="15_rpjpf"]
+[ext_resource type="Resource" uid="uid://dr6dpytoky7ea" path="res://addons/func_godot/fgd/custom/pickup_weapon_random.tres" id="16_gpv32"]
+[ext_resource type="Resource" uid="uid://bukme8taq4xo6" path="res://addons/func_godot/fgd/custom/pickup_weapon_ak47.tres" id="17_bjf4j"]
+[ext_resource type="Resource" uid="uid://b3jpbih7ll4ki" path="res://addons/func_godot/fgd/custom/pickup_weapon_shotgun.tres" id="18_6y5vw"]
+[ext_resource type="Resource" uid="uid://c4mrwhqx3s670" path="res://addons/func_godot/fgd/custom/pickup_weapon_hegrenade.tres" id="19_7ncat"]
+[ext_resource type="Resource" uid="uid://rq6sabutbgs8" path="res://addons/func_godot/fgd/custom/pickup_weapon_rocketlauncher.tres" id="20_g1uvd"]
+[ext_resource type="Resource" uid="uid://hd6b3vjj7hqu" path="res://addons/func_godot/fgd/custom/pickup_weapon_salsa.tres" id="21_y8dke"]
+[ext_resource type="Resource" uid="uid://t3xbqthl52cd" path="res://addons/func_godot/fgd/custom/pickup_weapon_keyboard.tres" id="22_vc1p7"]
+[ext_resource type="Resource" uid="uid://bgy8n4kbsdce6" path="res://addons/func_godot/fgd/custom/pickup_weapon_knife.tres" id="23_nbc18"]
+[ext_resource type="Resource" uid="uid://cd5dgdgvwmlh3" path="res://addons/func_godot/fgd/custom/pickup_weapon_wand.tres" id="24_jsx05"]
+[ext_resource type="Resource" uid="uid://chg45mv45yukq" path="res://addons/func_godot/fgd/custom/world_load_map.tres" id="25_fujb3"]
+[ext_resource type="Resource" uid="uid://b7kfe40fd82mj" path="res://addons/func_godot/fgd/custom/player_teleport.tres" id="26_yysb8"]
+[ext_resource type="Resource" uid="uid://b67y03so2wjsd" path="res://addons/func_godot/fgd/custom/world_label_label_3d.tres" id="27_0nw5q"]
+[ext_resource type="Resource" uid="uid://ktr2e163x3b3" path="res://addons/func_godot/fgd/custom/props_grass_tallgrass.tres" id="28_vfcb4"]
+[ext_resource type="Resource" uid="uid://cj63gbhth0gw0" path="res://addons/func_godot/fgd/custom/props_grass_wheatgrass.tres" id="29_thvbm"]
+[ext_resource type="Resource" uid="uid://e54nu1tnhcve" path="res://addons/func_godot/fgd/custom/props_grass_yellowflowers.tres" id="30_ngc6h"]
+[ext_resource type="Resource" uid="uid://bnxu5cvr6vh3f" path="res://addons/func_godot/fgd/custom/water.tres" id="31_q275a"]
+[ext_resource type="Resource" uid="uid://cxepfiyodlqn7" path="res://addons/func_godot/fgd/custom/grass.tres" id="32_ydbh2"]
+[ext_resource type="Resource" uid="uid://cfrh8ia5ul3dq" path="res://addons/func_godot/fgd/custom/rainwater.tres" id="33_32l44"]
+
+[resource]
+script = ExtResource("5_dino8")
+export_file = false
+target_map_editor = 1
+fgd_name = "FuncGodot"
+base_fgd_files = Array[Resource]([ExtResource("1_p7j0e")])
+entity_definitions = Array[Resource]([ExtResource("2_ouf3l"), ExtResource("3_jqja6"), ExtResource("4_778nb"), ExtResource("5_ouf3l"), ExtResource("6_jqja6"), ExtResource("7_778nb"), ExtResource("8_dino8"), ExtResource("9_i355k"), ExtResource("10_25cyq"), ExtResource("11_bbnmw"), ExtResource("12_8mg6p"), ExtResource("13_m2eip"), ExtResource("14_p4ej5"), ExtResource("15_rpjpf"), ExtResource("16_gpv32"), ExtResource("17_bjf4j"), ExtResource("18_6y5vw"), ExtResource("19_7ncat"), ExtResource("20_g1uvd"), ExtResource("21_y8dke"), ExtResource("22_vc1p7"), ExtResource("23_nbc18"), ExtResource("24_jsx05"), ExtResource("25_fujb3"), ExtResource("26_yysb8"), ExtResource("27_0nw5q"), ExtResource("28_vfcb4"), ExtResource("29_thvbm"), ExtResource("30_ngc6h"), ExtResource("31_q275a"), ExtResource("32_ydbh2"), ExtResource("33_32l44")])
+metadata/_custom_type_script = "uid://b3rx6ge1lps31"

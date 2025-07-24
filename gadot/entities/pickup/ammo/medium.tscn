@@ -5,7 +5,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_ykyn0"]
 size = Vector3(2, 1.5, 2)
 
-[node name="ammo_root" type="Node3D"]
+[node name="ammo_root" type="Node3D" groups=["ammo_pack"]]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

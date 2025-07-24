@@ -4284,6 +4284,7 @@ height = 0.1
 [node name="Player" type="CharacterBody3D" groups=["moveable", "players"]]
 collision_layer = 48
 collision_mask = 273
+floor_max_angle = 0.872665
 script = ExtResource("1_ebgxs")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
@@ -4342,7 +4343,7 @@ collision_mask = 289
 hit_back_faces = false
 collide_with_areas = true
 
-[node name="Weapons_Manager" type="Node3D" parent="neck/head/main_camera"]
+[node name="Weapons_Manager" type="Node3D" parent="neck/head/main_camera" groups=["weapons_manager"]]
 script = ExtResource("2_dh310")
 _weapon_resources = Array[ExtResource("4_qoin8")]([ExtResource("3_vtnjn"), ExtResource("6_vxs5u"), ExtResource("8_85x0p"), ExtResource("9_022uy"), ExtResource("7_207gd"), ExtResource("10_ccirh"), ExtResource("12_2sgvr"), ExtResource("7_6ncrt"), ExtResource("15_oqu52")])
 start_weapons = Array[String](["hands"])
@@ -4642,7 +4643,7 @@ radius = 0.01
 height = 10.0
 
 [node name="username_label" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59967, 0)
 billboard = 2
 text = "Example Name"
 font_size = 64
@@ -4650,7 +4651,7 @@ outline_size = 32
 script = ExtResource("28_ip48q")
 
 [node name="Bot_Label" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98495, 0)
 visible = false
 billboard = 2
 text = "(Bot)"
@@ -4665,6 +4666,14 @@ text = "Example Name"
 font_size = 64
 outline_size = 32
 script = ExtResource("30_jkaaj")
+
+[node name="Weapon" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3049, 0)
+pixel_size = 0.002
+billboard = 2
+text = "Example Name"
+font_size = 64
+outline_size = 32
 
 [node name="3p_model" type="Node3D" parent="."]
 
@@ -4719,6 +4728,12 @@ volume_db = -35.0
 max_db = 0.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+simplify_path = true
+simplify_epsilon = 1.0
+avoidance_enabled = true
+radius = 1.0
+use_3d_avoidance = true
+debug_enabled = true
 
 [node name="Bot_Logic" type="Node3D" parent="."]
 script = ExtResource("35_oump4")

@@ -12,6 +12,7 @@
 	},
 	"weapon_keys": {
 		"shoot": "mouse1",
+		"alt_fire": "mouse2",
 		"w_up": "mouse_scroll_up",
 		"w_down": "mouse_scroll_down",
 		"reload": "r"

@@ -1,1 +1,8 @@
+FuncGodotFGDSolidClass
+FuncGodotFGDEntityClass
+TrenchBroomTag
+FuncGodotFGDBaseClass
+FuncGodotFGDPointClass
+FuncGodotFGDFile
+Resource
 Weapon_Resource

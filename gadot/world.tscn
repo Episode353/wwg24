@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://c8oqxmm2w2wvv"]
+[gd_scene load_steps=50 format=3 uid="uid://c8oqxmm2w2wvv"]
 
 [ext_resource type="Script" uid="uid://balg5y2xwumxc" path="res://world.gd" id="1_6tkge"]
 [ext_resource type="Script" uid="uid://cgfnx548wmxwr" path="res://sys/ServerConnectionHandler.gd" id="2_hna3u"]
@@ -23,7 +23,12 @@
 [ext_resource type="Resource" uid="uid://bqehecsdgt70s" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_variance_stage.tres" id="8_wjb0r"]
 [ext_resource type="Script" uid="uid://co04ap10rbrrg" path="res://addons/SphynxMotionBlurToolkit/BaseClasses/mb_compositor.gd" id="9_mc2jv"]
 [ext_resource type="LabelSettings" uid="uid://bnk2duqdctk5g" path="res://fonts/hud_labels.tres" id="22_wjb0r"]
+[ext_resource type="Script" uid="uid://drtjocjfacr7n" path="res://sys/scripts/radial_menu.gd" id="23_k83mh"]
+[ext_resource type="Script" uid="uid://vbaq2o0k4qkk" path="res://tb_loader.gd" id="24_mc2jv"]
+[ext_resource type="Script" uid="uid://pxcsnb6vtgpf" path="res://sys/scripts/loading_progress_bar.gd" id="24_o3ebs"]
 [ext_resource type="Script" uid="uid://bukke7yv8abyo" path="res://sys/log.gd" id="24_wjb0r"]
+[ext_resource type="Script" uid="uid://m1jt6dnvql6b" path="res://addons/func_godot/src/map/func_godot_map.gd" id="25_4h6ng"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="26_o3ebs"]
 
 [sub_resource type="Gradient" id="Gradient_q3jm3"]
 offsets = PackedFloat32Array(0.0955679, 0.142659, 0.265928, 0.33518, 1)
@@ -34,7 +39,9 @@ gradient = SubResource("Gradient_q3jm3")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_clnmc"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_energy_multiplier = 2.0
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+energy_multiplier = 2.0
 
 [sub_resource type="Sky" id="Sky_ayvap"]
 sky_material = SubResource("ProceduralSkyMaterial_clnmc")
@@ -43,8 +50,13 @@ sky_material = SubResource("ProceduralSkyMaterial_clnmc")
 background_mode = 2
 sky = SubResource("Sky_ayvap")
 tonemap_mode = 4
+tonemap_exposure = 0.74
 glow_map = SubResource("GradientTexture2D_7yniy")
-volumetric_fog_density = 0.005
+fog_density = 0.001
+volumetric_fog_density = 0.015
+volumetric_fog_albedo = Color(0.321728, 0.321728, 0.321728, 1)
+volumetric_fog_emission = Color(0.0962047, 0.0962048, 0.0962047, 1)
+volumetric_fog_gi_inject = 0.4
 adjustment_enabled = true
 adjustment_brightness = 1.4
 adjustment_saturation = 1.2
@@ -161,6 +173,7 @@ colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
 gradient = SubResource("Gradient_t8x7k")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_p4c1t"]
+agent_radius = 1.5
 
 [node name="World" type="Node" groups=["world_root"]]
 script = ExtResource("1_6tkge")
@@ -171,8 +184,7 @@ compositor = SubResource("Compositor_mc2jv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-light_color = Color(1, 1, 0.670588, 1)
-light_specular = 0.0
+light_color = Color(1, 1, 0.678431, 1)
 shadow_enabled = true
 directional_shadow_blend_splits = true
 directional_shadow_max_distance = 8192.0
@@ -261,6 +273,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="Crosshair Shader" type="TextureRect" parent="CanvasLayer/HUD"]
+visible = false
 light_mask = 1023
 visibility_layer = 1023
 z_index = 99
@@ -358,8 +371,71 @@ offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
+[node name="WandRadialSelection" type="Control" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/HUD/WandRadialSelection"]
+modulate = Color(0.886275, 0.886275, 0.886275, 0.521569)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Circle" type="Control" parent="CanvasLayer/HUD/WandRadialSelection/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("23_k83mh")
+normal_color = Color(0.219501, 0.219501, 0.219501, 1)
+
 [node name="menufadein" parent="CanvasLayer" instance=ExtResource("7_bypg1")]
 visible = false
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -294.0
+offset_top = -13.5
+offset_right = 294.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("24_o3ebs")
+
+[node name="Label" type="Label" parent="CanvasLayer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 100.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "Loading Map..."
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_p4c1t")
@@ -368,6 +444,12 @@ navigation_mesh = SubResource("NavigationMesh_p4c1t")
 map_resource = "res://tbmaps/scraper.map"
 option_skip_hidden_layers = false
 option_filter_nearest = true
+script = ExtResource("24_mc2jv")
+
+[node name="FuncGodotMap" type="Node3D" parent="NavigationRegion3D"]
+script = ExtResource("25_4h6ng")
+map_settings = ExtResource("26_o3ebs")
+metadata/_custom_type_script = "uid://m1jt6dnvql6b"
 
 [node name="Log" type="Node" parent="."]
 script = ExtResource("24_wjb0r")

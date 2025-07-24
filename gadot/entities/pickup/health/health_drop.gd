@@ -13,7 +13,7 @@ func _ready():
 	# Ensure the Area can detect bodies
 	monitoring = true
 	monitorable = true
-
+	health_root.add_to_group("HealthDrop")
 	# Make sure the Timer is a child, connect signal
 	health_root.add_child(timer)
 	timer.one_shot = true

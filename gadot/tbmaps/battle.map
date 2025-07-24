@@ -1,0 +1,240 @@
+// Game: Godot
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+// brush 0
+{
+( 2448 1008 -168 ) ( 2448 1009 -168 ) ( 2448 1008 -167 ) ground/01Brick_03 0 0 0 1 1
+( 2448 880 -168 ) ( 2448 880 -167 ) ( 2449 880 -168 ) ground/01Brick_03 0 0 0 1 1
+( 2448 1008 -168 ) ( 2449 1008 -168 ) ( 2448 1009 -168 ) ground/01Brick_03 0 0 0 1 1
+( 2544 1088 -136 ) ( 2544 1089 -136 ) ( 2545 1088 -136 ) ground/01Brick_03 0 0 0 1 1
+( 2544 1216 -136 ) ( 2545 1216 -136 ) ( 2544 1216 -135 ) ground/01Brick_03 0 0 0 1 1
+( 2976 1088 -136 ) ( 2976 1088 -135 ) ( 2976 1089 -136 ) ground/01Brick_03 0 0 0 1 1
+}
+// brush 1
+{
+( 1984 1088 -104 ) ( 1984 1024 -104 ) ( 1984 1024 -136 ) ground/01Brick_03 0 0 0 1 1
+( 2448 1024 -168 ) ( 2448 1088 -168 ) ( 1984 1088 -136 ) ground/01Brick_03 0 0 0 1 1
+( 1984 1024 -104 ) ( 2448 1024 -136 ) ( 2448 1024 -168 ) ground/01Brick_03 0 0 0 1 1
+( 2448 1088 -168 ) ( 2448 1088 -136 ) ( 1984 1088 -104 ) ground/01Brick_03 0 0 0 1 1
+( 1984 1088 -104 ) ( 2448 1088 -136 ) ( 2448 1024 -136 ) ground/01Brick_03 0 0 0 1 1
+( 2448 1024 -136 ) ( 2448 1088 -136 ) ( 2448 1088 -168 ) ground/01Brick_03 0 0 0 1 1
+}
+// brush 2
+{
+( 1168 912 -136 ) ( 1168 913 -136 ) ( 1168 912 -135 ) ground/01Brick_03 0 0 0 1 1
+( 1344 656 -136 ) ( 1344 656 -135 ) ( 1345 656 -136 ) ground/01Brick_03 0 0 0 1 1
+( 1344 912 -136 ) ( 1345 912 -136 ) ( 1344 913 -136 ) ground/01Brick_03 0 0 0 1 1
+( 1472 1040 -104 ) ( 1472 1041 -104 ) ( 1473 1040 -104 ) ground/01Brick_03 0 0 0 1 1
+( 1472 1344 -104 ) ( 1473 1344 -104 ) ( 1472 1344 -103 ) ground/01Brick_03 0 0 0 1 1
+( 1984 1040 -104 ) ( 1984 1040 -103 ) ( 1984 1041 -104 ) ground/01Brick_03 0 0 0 1 1
+}
+// brush 3
+{
+( 384 1616 -200 ) ( 384 1617 -200 ) ( 384 1616 -199 ) ground/01Brick_03 0 0 0 1 1
+( 880 944 -200 ) ( 880 944 -199 ) ( 881 944 -200 ) ground/01Brick_03 0 0 0 1 1
+( 880 1616 -200 ) ( 881 1616 -200 ) ( 880 1617 -200 ) ground/01Brick_03 0 0 0 1 1
+( 1008 1744 -168 ) ( 1008 1745 -168 ) ( 1009 1744 -168 ) ground/01Brick_03 0 0 0 1 1
+( 1008 2048 -168 ) ( 1009 2048 -168 ) ( 1008 2048 -167 ) ground/01Brick_03 0 0 0 1 1
+( 1520 1744 -168 ) ( 1520 1744 -167 ) ( 1520 1745 -168 ) ground/01Brick_03 0 0 0 1 1
+}
+// brush 4
+{
+( 832 1392 -168 ) ( 832 1200 -168 ) ( 832 1200 -200 ) ground/01Brick_03 0 0 0 1 1
+( 832 1392 -168 ) ( 1168 1392 -104 ) ( 1168 1200 -104 ) ground/01Brick_03 0 0 0 1 1
+( 832 896 -168 ) ( 1168 896 -104 ) ( 1168 896 -136 ) ground/01Brick_03 0 0 0 1 1
+( 1168 1392 -136 ) ( 1168 1392 -104 ) ( 832 1392 -168 ) ground/01Brick_03 0 0 0 1 1
+( 1168 1200 -136 ) ( 1168 1392 -136 ) ( 832 1392 -200 ) ground/01Brick_03 0 0 0 1 1
+( 1168 1200 -104 ) ( 1168 1392 -104 ) ( 1168 1392 -136 ) ground/01Brick_03 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "bot_spawn"
+"origin" "920 1144 -24"
+"use_spawn_position" "1"
+"disable_respawn" "0"
+"weapon" "random"
+"weapon_range" "25"
+}
+// entity 2
+{
+"classname" "bot_spawn"
+"origin" "1216 688 -24"
+"disable_respawn" "0"
+"use_spawn_position" "1"
+"weapon" "random"
+"weapon_range" "25"
+}
+// entity 3
+{
+"classname" "bot_spawn"
+"origin" "1944 680 -24"
+"use_spawn_position" "1"
+"disable_respawn" "0"
+"weapon" "random"
+"weapon_range" "25"
+}
+// entity 4
+{
+"classname" "bot_spawn"
+"origin" "408 1544 -24"
+"use_spawn_position" "1"
+"disable_respawn" "0"
+"weapon" "random"
+"weapon_range" "25"
+}
+// entity 5
+{
+"classname" "bot_spawn"
+"origin" "1544 1320 -24"
+"use_spawn_position" "1"
+"disable_respawn" "0"
+"weapon" "random"
+"weapon_range" "25"
+}
+// entity 6
+{
+"classname" "bot_spawn"
+"origin" "1960 1320 -24"
+"use_spawn_position" "1"
+"disable_respawn" "0"
+"weapon" "random"
+"weapon_range" "25"
+}
+// entity 7
+{
+"classname" "player_spawn"
+"origin" "2568 1064 -128"
+"angle" "180"
+}
+// entity 8
+{
+"classname" "pickup_ammo_large"
+"origin" "2728 936 -128"
+}
+// entity 9
+{
+"classname" "pickup_ammo_medium"
+"origin" "2728 1016 -128"
+}
+// entity 10
+{
+"classname" "pickup_health_medium"
+"origin" "2728 1096 -128"
+}
+// entity 11
+{
+"classname" "pickup_mana_medium"
+"origin" "2728 1160 -128"
+}
+// entity 12
+{
+"classname" "pickup_mana_medium"
+"origin" "2648 1176 -128"
+}
+// entity 13
+{
+"classname" "pickup_weapon_ak47"
+"origin" "2904 1192 -128"
+}
+// entity 14
+{
+"classname" "pickup_weapon_hegrenade"
+"origin" "2904 1144 -128"
+}
+// entity 15
+{
+"classname" "pickup_weapon_keyboard"
+"origin" "2888 1080 -128"
+}
+// entity 16
+{
+"classname" "pickup_weapon_knife"
+"origin" "2856 1032 -128"
+}
+// entity 17
+{
+"classname" "pickup_weapon_random"
+"origin" "2904 1000 -128"
+}
+// entity 18
+{
+"classname" "pickup_weapon_rocketlauncher"
+"origin" "2840 1144 -128"
+}
+// entity 19
+{
+"classname" "pickup_weapon_salsa"
+"origin" "2824 936 -128"
+}
+// entity 20
+{
+"classname" "pickup_weapon_shotgun"
+"origin" "2824 1064 -128"
+}
+// entity 21
+{
+"classname" "pickup_weapon_wand"
+"origin" "2920 936 -128"
+}
+// entity 22
+{
+"classname" "bot_spawn"
+"origin" "968 1512 -128"
+"weapon" "random"
+}
+// entity 23
+{
+"classname" "bot_spawn"
+"origin" "536 1944 -128"
+"weapon" "random"
+}
+// entity 24
+{
+"classname" "bot_spawn"
+"origin" "968 1976 -128"
+"weapon" "random"
+}
+// entity 25
+{
+"classname" "bot_spawn"
+"origin" "1432 1832 -128"
+"weapon" "random"
+}
+// entity 26
+{
+"classname" "pickup_mana_medium"
+"origin" "520 1448 -160"
+}
+// entity 27
+{
+"classname" "pickup_mana_medium"
+"origin" "1512 952 -96"
+}
+// entity 28
+{
+"classname" "pickup_mana_medium"
+"origin" "1272 1736 -160"
+}
+// entity 29
+{
+"classname" "pickup_health_medium"
+"origin" "696 1800 -160"
+}
+// entity 30
+{
+"classname" "pickup_health_medium"
+"origin" "680 1000 -160"
+}
+// entity 31
+{
+"classname" "pickup_health_medium"
+"origin" "1432 1080 -96"
+}
+// entity 32
+{
+"classname" "pickup_health_medium"
+"origin" "1800 808 -96"
+}

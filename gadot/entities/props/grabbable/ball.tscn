@@ -1,4 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4rgid30xqmhp"]
+[gd_scene load_steps=6 format=3 uid="uid://b4rgid30xqmhp"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_72u6y"]
+bounce = 0.69
 
 [sub_resource type="GDScript" id="GDScript_srjy1"]
 script/source = "extends RigidBody3D
@@ -50,6 +53,7 @@ properties/1/replication_mode = 1
 collision_layer = 256
 collision_mask = 257
 mass = 0.5
+physics_material_override = SubResource("PhysicsMaterial_72u6y")
 contact_monitor = true
 max_contacts_reported = 1
 script = SubResource("GDScript_srjy1")
