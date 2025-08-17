@@ -1,0 +1,253 @@
+[gd_scene load_steps=34 format=3 uid="uid://c76ggriths1rd"]
+
+[ext_resource type="Script" uid="uid://bkexvj4muqyhb" path="res://addons/EffectBlocks/source_files/scripts/small_explosion.gd" id="1_b76o4"]
+[ext_resource type="AudioStream" uid="uid://g2cyhbgkp3gl" path="res://addons/EffectBlocks/source_files/audio/small_explosion.wav" id="2_1s72p"]
+
+[sub_resource type="Curve" id="Curve_4o2wr"]
+_data = [Vector2(0.126866, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0432777), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uuaeg"]
+curve = SubResource("Curve_4o2wr")
+
+[sub_resource type="Gradient" id="Gradient_ks7hx"]
+offsets = PackedFloat32Array(0, 0.409274)
+colors = PackedColorArray(1.2, 0.8, 0.067, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kgw1x"]
+gradient = SubResource("Gradient_ks7hx")
+
+[sub_resource type="Curve" id="Curve_wuyhy"]
+max_value = 5.0
+_data = [Vector2(0, 0.877197), 0.0, 2.57445, 0, 0, Vector2(0.0205224, 5), -0.0593313, -0.0593313, 0, 0, Vector2(0.354478, 0.0061512), -7.6056, -7.6056, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_r2js6"]
+curve = SubResource("Curve_wuyhy")
+
+[sub_resource type="Curve" id="Curve_qgo4m"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.164179, 0.994288), 0.0, 0.0, 0, 0, Vector2(0.205224, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.29174), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_u30o4"]
+curve = SubResource("Curve_qgo4m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cu3cb"]
+lifetime_randomness = 0.4
+angle_max = 90.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+angular_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_u30o4")
+color = Color(1.2, 0.6, 0.18, 1)
+color_ramp = SubResource("GradientTexture1D_kgw1x")
+alpha_curve = SubResource("CurveTexture_uuaeg")
+emission_curve = SubResource("CurveTexture_r2js6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_atqis"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.658824, 0.207843, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jupgj"]
+_surfaces = [{
+"aabb": AABB(-0.154951, -0.163546, -0.146853, 0.306201, 0.326742, 0.295014),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 1, 0, 5, 0, 0, 0, 0, 0, 3, 0, 2, 0, 0, 0, 4, 0, 3, 0, 0, 0, 5, 0, 4, 0, 1, 0, 10, 0, 5, 0, 2, 0, 6, 0, 1, 0, 3, 0, 7, 0, 2, 0, 4, 0, 8, 0, 3, 0, 5, 0, 9, 0, 4, 0, 1, 0, 6, 0, 10, 0, 2, 0, 7, 0, 6, 0, 3, 0, 8, 0, 7, 0, 4, 0, 9, 0, 8, 0, 5, 0, 10, 0, 9, 0, 6, 0, 11, 0, 10, 0, 7, 0, 11, 0, 6, 0, 8, 0, 11, 0, 7, 0, 9, 0, 11, 0, 8, 0, 10, 0, 11, 0, 9, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray(57, 131, 0, 0, 57, 126, 0, 0, 251, 231, 19, 72, 174, 214, 0, 0, 229, 97, 253, 67, 255, 255, 0, 0, 0, 0, 76, 69, 0, 119, 0, 0, 115, 84, 204, 65, 0, 0, 0, 0, 114, 222, 67, 77, 222, 55, 0, 0, 108, 162, 56, 178, 164, 247, 0, 0, 150, 28, 15, 186, 175, 201, 0, 0, 217, 31, 174, 192, 143, 54, 0, 0, 135, 167, 252, 184, 150, 3, 0, 0, 255, 255, 103, 184, 37, 140, 0, 0, 114, 130, 255, 255, 203, 127, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ehnay"]
+resource_name = "icosphere_Icosphere"
+_surfaces = [{
+"aabb": AABB(-0.154951, -0.163546, -0.146853, 0.306201, 0.326742, 0.295014),
+"attribute_data": PackedByteArray(139, 46, 255, 255, 22, 93, 255, 255, 162, 139, 255, 255, 45, 186, 255, 255, 185, 232, 255, 255, 209, 69, 175, 215, 69, 23, 175, 215, 255, 255, 175, 215, 115, 209, 175, 215, 232, 162, 175, 215, 92, 116, 175, 215, 139, 46, 96, 175, 0, 0, 96, 175, 185, 232, 96, 175, 45, 186, 96, 175, 162, 139, 96, 175, 22, 93, 96, 175, 69, 23, 17, 135, 209, 69, 17, 135, 92, 116, 17, 135, 232, 162, 17, 135, 115, 209, 17, 135),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray(0, 0, 6, 0, 5, 0, 5, 0, 10, 0, 1, 0, 4, 0, 8, 0, 7, 0, 3, 0, 9, 0, 8, 0, 2, 0, 10, 0, 9, 0, 5, 0, 16, 0, 10, 0, 6, 0, 11, 0, 5, 0, 8, 0, 13, 0, 7, 0, 9, 0, 14, 0, 8, 0, 10, 0, 15, 0, 9, 0, 5, 0, 11, 0, 16, 0, 6, 0, 12, 0, 11, 0, 8, 0, 14, 0, 13, 0, 9, 0, 15, 0, 14, 0, 10, 0, 16, 0, 15, 0, 11, 0, 18, 0, 16, 0, 12, 0, 17, 0, 11, 0, 14, 0, 21, 0, 13, 0, 15, 0, 20, 0, 14, 0, 16, 0, 19, 0, 15, 0),
+"material": SubResource("StandardMaterial3D_atqis"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 22,
+"vertex_data": PackedByteArray(57, 131, 0, 0, 57, 126, 75, 193, 57, 131, 0, 0, 57, 126, 30, 214, 57, 131, 0, 0, 57, 126, 52, 244, 57, 131, 0, 0, 57, 126, 243, 230, 57, 131, 0, 0, 57, 126, 159, 201, 251, 231, 19, 72, 174, 214, 157, 169, 229, 97, 253, 67, 255, 255, 140, 150, 229, 97, 253, 67, 255, 255, 209, 154, 0, 0, 76, 69, 0, 119, 191, 194, 115, 84, 204, 65, 0, 0, 217, 243, 114, 222, 67, 77, 222, 55, 145, 218, 108, 162, 56, 178, 164, 247, 9, 150, 150, 28, 15, 186, 175, 201, 44, 169, 150, 28, 15, 186, 175, 201, 128, 173, 217, 31, 174, 192, 143, 54, 217, 218, 135, 167, 252, 184, 150, 3, 120, 242, 255, 255, 103, 184, 37, 140, 18, 192, 114, 130, 255, 255, 203, 127, 67, 192, 114, 130, 255, 255, 203, 127, 160, 197, 114, 130, 255, 255, 203, 127, 115, 227, 114, 130, 255, 255, 203, 127, 148, 246, 114, 130, 255, 255, 203, 127, 218, 213, 179, 28, 86, 111, 118, 87, 250, 82, 40, 118, 41, 68, 105, 50, 19, 229, 175, 30, 156, 191, 169, 91, 228, 50, 171, 54, 111, 165, 93, 40, 243, 209, 33, 88, 58, 236, 159, 99, 114, 251, 16, 118, 24, 32, 250, 214, 253, 76, 176, 178, 6, 206, 153, 151, 14, 199, 18, 141, 69, 218, 93, 154, 198, 2, 88, 169, 50, 20, 133, 224, 119, 142, 45, 225, 47, 67, 101, 205, 57, 26, 197, 138, 209, 185, 8, 170, 3, 170)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_jupgj")
+
+[sub_resource type="Curve" id="Curve_7227o"]
+_data = [Vector2(0.102612, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_48gr2"]
+curve = SubResource("Curve_7227o")
+
+[sub_resource type="Gradient" id="Gradient_di5kr"]
+colors = PackedColorArray(0.898039, 0.345098, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qpj4j"]
+gradient = SubResource("Gradient_di5kr")
+
+[sub_resource type="Curve" id="Curve_cbibj"]
+max_value = 5.0
+_data = [Vector2(0.164179, 5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cdlk0"]
+curve = SubResource("Curve_cbibj")
+
+[sub_resource type="Curve" id="Curve_6h23u"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.141791, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ada02"]
+curve = SubResource("Curve_6h23u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p1p2v"]
+lifetime_randomness = 0.4
+particle_flag_align_y = true
+angle_max = 180.0
+velocity_pivot = Vector3(1, 1, 1)
+direction = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_ada02")
+color = Color(1, 0.454902, 0.152941, 1)
+color_ramp = SubResource("GradientTexture1D_qpj4j")
+alpha_curve = SubResource("CurveTexture_48gr2")
+emission_curve = SubResource("CurveTexture_cdlk0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0isau"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_53upp"]
+_surfaces = [{
+"aabb": AABB(-0.0402224, -0.702579, -0.0464448, 0.0804447, 0.739765, 0.0696672),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray(2, 0, 3, 0, 1, 0, 3, 0, 4, 0, 1, 0, 4, 0, 2, 0, 1, 0, 0, 0, 2, 0, 4, 0, 0, 0, 4, 0, 3, 0, 0, 0, 3, 0, 2, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 5,
+"vertex_data": PackedByteArray(255, 127, 0, 0, 169, 170, 0, 0, 255, 127, 255, 255, 169, 170, 0, 0, 255, 127, 163, 235, 0, 0, 0, 0, 255, 255, 163, 235, 255, 255, 0, 0, 0, 0, 163, 235, 255, 255, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_itufy"]
+resource_name = "cylinder_Cylinder"
+_surfaces = [{
+"aabb": AABB(-0.0402224, -0.702579, -0.0464448, 0.0804447, 0.739765, 0.0696672),
+"attribute_data": PackedByteArray(169, 170, 255, 255, 84, 213, 255, 255, 255, 255, 255, 255, 169, 170, 255, 127, 84, 213, 255, 127, 255, 127, 255, 127, 255, 255, 182, 142, 255, 127, 182, 142, 84, 213, 182, 142, 169, 170, 182, 142),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray(6, 0, 8, 0, 4, 0, 8, 0, 9, 0, 3, 0, 9, 0, 7, 0, 5, 0, 0, 0, 7, 0, 9, 0, 1, 0, 9, 0, 8, 0, 2, 0, 8, 0, 6, 0),
+"material": SubResource("StandardMaterial3D_0isau"),
+"primitive": 3,
+"uv_scale": Vector4(2, 1, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray(255, 127, 0, 0, 169, 170, 140, 226, 255, 127, 0, 0, 169, 170, 255, 191, 255, 127, 0, 0, 169, 170, 140, 226, 255, 127, 255, 255, 169, 170, 255, 191, 255, 127, 255, 255, 169, 170, 140, 226, 255, 127, 255, 255, 169, 170, 140, 226, 255, 127, 163, 235, 0, 0, 228, 253, 255, 127, 163, 235, 0, 0, 228, 253, 255, 255, 163, 235, 255, 255, 123, 176, 0, 0, 163, 235, 255, 255, 152, 172, 169, 49, 82, 227, 0, 0, 255, 127, 83, 99, 85, 78, 255, 255, 255, 127, 85, 206, 172, 28, 171, 156, 169, 177, 44, 160, 241, 19, 241, 147, 210, 223, 116, 169, 18, 1, 111, 180, 0, 222)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_53upp")
+
+[sub_resource type="Curve" id="Curve_o3356"]
+max_value = 0.5
+_data = [Vector2(0.811567, 0.491432), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a3kuo"]
+curve = SubResource("Curve_o3356")
+
+[sub_resource type="Curve" id="Curve_kbntl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.113806, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lysh5"]
+curve = SubResource("Curve_kbntl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7d8yj"]
+angle_max = 90.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 4, 0)
+scale_curve = SubResource("CurveTexture_lysh5")
+color = Color(0.205117, 0.205117, 0.205117, 1)
+alpha_curve = SubResource("CurveTexture_a3kuo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4io1p"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4jo3c"]
+resource_name = "icosphere_Icosphere"
+_surfaces = [{
+"aabb": AABB(-0.154951, -0.163546, -0.146853, 0.306201, 0.326742, 0.295014),
+"attribute_data": PackedByteArray(139, 46, 255, 255, 22, 93, 255, 255, 162, 139, 255, 255, 45, 186, 255, 255, 185, 232, 255, 255, 209, 69, 175, 215, 69, 23, 175, 215, 255, 255, 175, 215, 115, 209, 175, 215, 232, 162, 175, 215, 92, 116, 175, 215, 139, 46, 96, 175, 0, 0, 96, 175, 185, 232, 96, 175, 45, 186, 96, 175, 162, 139, 96, 175, 22, 93, 96, 175, 69, 23, 17, 135, 209, 69, 17, 135, 92, 116, 17, 135, 232, 162, 17, 135, 115, 209, 17, 135),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray(0, 0, 6, 0, 5, 0, 5, 0, 10, 0, 1, 0, 4, 0, 8, 0, 7, 0, 3, 0, 9, 0, 8, 0, 2, 0, 10, 0, 9, 0, 5, 0, 16, 0, 10, 0, 6, 0, 11, 0, 5, 0, 8, 0, 13, 0, 7, 0, 9, 0, 14, 0, 8, 0, 10, 0, 15, 0, 9, 0, 5, 0, 11, 0, 16, 0, 6, 0, 12, 0, 11, 0, 8, 0, 14, 0, 13, 0, 9, 0, 15, 0, 14, 0, 10, 0, 16, 0, 15, 0, 11, 0, 18, 0, 16, 0, 12, 0, 17, 0, 11, 0, 14, 0, 21, 0, 13, 0, 15, 0, 20, 0, 14, 0, 16, 0, 19, 0, 15, 0),
+"material": SubResource("StandardMaterial3D_4io1p"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 22,
+"vertex_data": PackedByteArray(57, 131, 0, 0, 57, 126, 75, 193, 57, 131, 0, 0, 57, 126, 30, 214, 57, 131, 0, 0, 57, 126, 52, 244, 57, 131, 0, 0, 57, 126, 243, 230, 57, 131, 0, 0, 57, 126, 159, 201, 251, 231, 19, 72, 174, 214, 157, 169, 229, 97, 253, 67, 255, 255, 140, 150, 229, 97, 253, 67, 255, 255, 209, 154, 0, 0, 76, 69, 0, 119, 191, 194, 115, 84, 204, 65, 0, 0, 217, 243, 114, 222, 67, 77, 222, 55, 145, 218, 108, 162, 56, 178, 164, 247, 9, 150, 150, 28, 15, 186, 175, 201, 44, 169, 150, 28, 15, 186, 175, 201, 128, 173, 217, 31, 174, 192, 143, 54, 217, 218, 135, 167, 252, 184, 150, 3, 120, 242, 255, 255, 103, 184, 37, 140, 18, 192, 114, 130, 255, 255, 203, 127, 67, 192, 114, 130, 255, 255, 203, 127, 160, 197, 114, 130, 255, 255, 203, 127, 115, 227, 114, 130, 255, 255, 203, 127, 148, 246, 114, 130, 255, 255, 203, 127, 218, 213, 179, 28, 86, 111, 118, 87, 250, 82, 40, 118, 41, 68, 105, 50, 19, 229, 175, 30, 156, 191, 169, 91, 228, 50, 171, 54, 111, 165, 93, 40, 243, 209, 33, 88, 58, 236, 159, 99, 114, 251, 16, 118, 24, 32, 250, 214, 253, 76, 176, 178, 6, 206, 153, 151, 14, 199, 18, 141, 69, 218, 93, 154, 198, 2, 88, 169, 50, 20, 133, 224, 119, 142, 45, 225, 47, 67, 101, 205, 57, 26, 197, 138, 209, 185, 8, 170, 3, 170)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_jupgj")
+
+[node name="ExplosionSmall" type="Node3D"]
+script = ExtResource("1_b76o4")
+
+[node name="Fire" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 16
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_cu3cb")
+draw_pass_1 = SubResource("ArrayMesh_ehnay")
+
+[node name="Sparks" type="GPUParticles3D" parent="."]
+sorting_offset = -1.0
+emitting = false
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_p1p2v")
+draw_pass_1 = SubResource("ArrayMesh_itufy")
+
+[node name="Smoke" type="GPUParticles3D" parent="."]
+sorting_offset = -2.0
+emitting = false
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_7d8yj")
+draw_pass_1 = SubResource("ArrayMesh_4jo3c")
+
+[node name="Audio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_1s72p")
+volume_db = -80.0

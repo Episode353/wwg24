@@ -12,14 +12,28 @@ var shader_wait_duration: float = 0
 # Enabling this makes shader comp take longer and shows progress
 var show_progress: bool = false
 
+
 func _ready() -> void:
+	
+		# Mute everything
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
+
+
+
+	# Silence (effectively mute)
 	await load_all_scenes_from_folder(entities_folder_path)
 	await load_all_scenes_from_folder(models_folder_path)
 	await load_all_scenes_from_folder(sys_folder_path)
 	# Now that all scenes have been loaded, wait the switch_scene_wait_duration seconds, then switch scene.
 	await get_tree().create_timer(switch_scene_wait_duration).timeout
-	switch_scene("res://tscn/main_menu.tscn")
 
+
+
+
+	switch_scene("res://tscn/main_menu.tscn")
+	# Later, unmute
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
+	
 # Recursively load all .tscn files in the given folder and its subfolders
 func load_all_scenes_from_folder(current_path: String) -> void:
 	var dir := DirAccess.open(current_path)

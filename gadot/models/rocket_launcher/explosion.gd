@@ -14,6 +14,10 @@ extends Node3D
 var owner_player
 
 @export var rigid_body_force_multiplier: float = 100.0
+@onready var smoke_big = $SmokeBig
+@onready var explosion_big = $ExplosionBig
+@onready var fire_small = $FireSmall
+@onready var timer = $Timer
 
 @onready var smoke = $Smoke
 
@@ -44,7 +48,7 @@ func calculate_damage(distance: float) -> float:
 	return clamp(damage, min_damage, max_damage)
 
 func _ready():
-	smoke.emitting = true
+	show_smoke()
 	if owner_player == null:
 		return
 
@@ -74,7 +78,19 @@ func _ready():
 		if distance <= explosion_radius:
 			apply_explosion_force_to_rigidbody(body)
 			
+func show_smoke():
+	smoke.emitting = true
+	smoke_big.emitting = true
+	explosion_big.explosion()
 	
+func hide_smoke():
+	smoke.emitting = false
+	smoke_big.emitting = false
+	fire_small.disable()
+	
+func _process(delta):
+	if timer.time_left < 2:
+		hide_smoke()
 
 func _on_timer_timeout():
 	queue_free()

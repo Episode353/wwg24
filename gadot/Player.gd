@@ -52,7 +52,7 @@ const STOP_SPEED: int = 2 # Was 1.5
 const JUMP_IMPULSE: float = sqrt(2 * GRAVITY * 2) #Orig was sqrt(2 * GRAVITY * 1.85)
 const PLAYER_WALKING_MULTIPLIER: float = 0.666
 var direction: Vector3 = Vector3.ZERO
-var friction: int = 4
+var friction: int = 6
 var wish_jump = false
 var sensitivity: float = 0.05
 var walking: bool = false
@@ -98,6 +98,8 @@ var crouching: bool = false
 var free_looking: bool = false
 var sliding: bool = false
 var is_walking: bool = false
+var is_underwater:bool = false
+var _was_underwater: bool = false
 
 # Jumping
 const COYOTE_TIME: float = 0.1  # seconds you allow the jump after leaving the ground
@@ -412,10 +414,110 @@ func _handle_noclip(delta) -> bool:
 
 	return true
 
+func _process_movement_underwater(delta: float) -> void:
+	# --- Tunables (local) ---
+	const WATER_MAX_SWIM_SPEED: float = 6.5
+	const WATER_ACCEL: float = 8.0
+	const WATER_DRAG: float = 3.0
+	const CONSTANT_WATER_GRAVITY: float = GRAVITY * 0.5   # constant downward pull (½ gravity)
+	const WATER_BUOYANCY: float = GRAVITY * 0.18          # upward nudge (floaty feel)
+	const SWIM_UP_ACCEL: float = 16.0                     # rise speed control
+	const MAX_VERTICAL_SWIM_SPEED: float = 12.0            # vertical cap
+	const EXIT_WATER_BURST: float = JUMP_IMPULSE * 0.9    # in-water assist
+	const CROUCH_EXTRA_GRAVITY: float = GRAVITY * 0.25    # faster sink on crouch
+	const SURFACE_HELP_DIST: float = 0.6                  # “near surface” window
+	const SURFACE_POP: float = JUMP_IMPULSE * 1.1         # extra pop when near top
+
+	# Camera-aligned input (horizontal)
+	var input_dir: Vector2 = Input.get_vector("left", "right", "forward", "backward")
+	var wish: Vector3 = main_camera.global_transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)
+	if wish != Vector3.ZERO:
+		wish = wish.normalized()
+
+	# --- Horizontal: accelerate + drag ---
+	var horiz_vel: Vector3 = velocity; horiz_vel.y = 0.0
+	var target: Vector3 = wish * WATER_MAX_SWIM_SPEED
+	var change: Vector3 = target - horiz_vel
+	var max_change: float = WATER_ACCEL * delta
+	if change.length() > max_change:
+		change = change.normalized() * max_change
+	horiz_vel += change
+	horiz_vel -= horiz_vel * min(WATER_DRAG * delta, 1.0)
+	velocity.x = horiz_vel.x
+	velocity.z = horiz_vel.z
+
+	# --- Vertical: constant gravity (½), buoyancy, swim up/down, drag ---
+	var vy: float = velocity.y
+
+	vy -= CONSTANT_WATER_GRAVITY * delta
+	vy += WATER_BUOYANCY * delta
+
+	if Input.is_action_pressed("jump"):
+		vy += SWIM_UP_ACCEL * delta
+	elif Input.is_action_pressed("crouch"):
+		vy -= SWIM_UP_ACCEL * delta
+		vy -= CROUCH_EXTRA_GRAVITY * delta
+
+	# In-water assist toward the surface
+	if wish_jump:
+		vy = max(vy, EXIT_WATER_BURST)
+
+	# If we're **near the top** of any water area and holding jump, add an extra pop
+	var surf_y: float = _current_water_surface_y()
+	if wish_jump and surf_y > -INF:
+		var dist_to_top: float = surf_y - global_position.y
+		if dist_to_top <= SURFACE_HELP_DIST:
+			vy = max(vy, SURFACE_POP)
+
+	# Clamp + mild vertical drag
+	vy = clamp(vy, -MAX_VERTICAL_SWIM_SPEED, MAX_VERTICAL_SWIM_SPEED)
+	vy -= vy * min((WATER_DRAG * 0.5) * delta, 1.0)
+
+	velocity.y = vy
+
+	move_and_slide()
+
+func _current_water_surface_y() -> float:
+	var space: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+	var params := PhysicsPointQueryParameters3D.new()
+	params.position = global_position
+	params.collide_with_areas = true
+	params.collide_with_bodies = false
+
+	var hits: Array[Dictionary] = space.intersect_point(params, 16)
+	var top_y: float = -INF
+	for h: Dictionary in hits:
+		var area: Area3D = h.get("collider") as Area3D
+		if area and area.is_in_group("water"):
+			for child in area.get_children():
+				if child is CollisionShape3D and (child as CollisionShape3D).shape is BoxShape3D:
+					var cs := child as CollisionShape3D
+					var box := cs.shape as BoxShape3D
+					var local_top: float = cs.position.y + box.size.y * 0.5
+					var world_top: float = area.to_global(Vector3(0, local_top, 0)).y
+					if world_top > top_y:
+						top_y = world_top
+	return top_y
+
 
 func process_movement(delta):
 	if is_bot: return
-	
+	# --- Water branch at the start of process_movement ---
+	# Give a strong upward kick the moment we leave water while holding jump.
+	# (Prevents oscillation right at the surface.)
+	var just_exited_water := _was_underwater and not is_underwater
+	_was_underwater = is_underwater
+
+	if just_exited_water and wish_jump:
+		# Stronger pop on the frame you leave water to prevent bobbing
+		velocity.y = max(velocity.y, JUMP_IMPULSE * 1.05)
+
+
+	if is_underwater:
+		_process_movement_underwater(delta)
+		return
+
+
 	if self.position.y < -100:
 		player_death()
 	

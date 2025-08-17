@@ -6,8 +6,10 @@ extends Node3D
 @export var explosion_force: float = 10.0
 # Additional upward force to ensure vertical movement
 @export var upward_force: float = 5.0
+@onready var timer = $Timer
 
 @export var rigid_body_force_multiplier: float = 100.0
+@onready var smoke_big = $SmokeBig
 
 # Maximum damage for a direct hit
 @export var max_damage: float = 10.0
@@ -16,6 +18,7 @@ extends Node3D
 var owner_player
 
 @onready var smoke = $Smoke
+@onready var fire_small = $FireSmall
 
 func apply_explosion_force(player):
 	if player is CharacterBody3D:
@@ -37,7 +40,7 @@ func calculate_damage(distance: float) -> float:
 	return clamp(damage, min_damage, max_damage)
 
 func _ready():
-	smoke.emitting = true
+	show_smoke()
 	# Scan for all players within the explosion radius
 	var players = get_tree().get_nodes_in_group("players")
 	for player in players:
@@ -69,6 +72,20 @@ func apply_explosion_force_to_rigidbody(body):
 		var force = direction * explosion_force * rigid_body_force_multiplier
 		# Using add_force at the body's origin to mimic add_central_force
 		body.apply_force(force, body.global_transform.origin)
+
+func show_smoke():
+	smoke.emitting = true
+	smoke_big.emitting = true
+	$ExplosionBig.explosion()
+	
+func hide_smoke():
+	smoke.emitting = false
+	smoke_big.emitting = false
+	fire_small.disable()
+	
+func _process(delta):
+	if timer.time_left < 2:
+		hide_smoke()
 
 func _on_timer_timeout():
 	queue_free()

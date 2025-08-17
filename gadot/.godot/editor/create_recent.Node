@@ -1,3 +1,5 @@
+CollisionShape3D
+Area3D
 CSGBox3D
 TextureButton
 Button
@@ -11,4 +13,3 @@ FuncGodotMap
 Node3D
 Sprite3D
 Label3D
-VBoxContainer

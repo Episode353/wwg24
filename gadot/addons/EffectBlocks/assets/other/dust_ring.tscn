@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://by55cbg34v6j7"]
+
+[sub_resource type="Curve" id="Curve_1xc4k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.332649, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pyvwn"]
+curve = SubResource("Curve_1xc4k")
+
+[sub_resource type="Curve" id="Curve_msacf"]
+_data = [Vector2(0, 1), 0.0, -1.32864, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_d3su1"]
+curve = SubResource("Curve_msacf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ym1ah"]
+direction = Vector3(0, 0, 1)
+spread = 180.0
+flatness = 1.0
+radial_velocity_min = 0.8
+radial_velocity_max = 1.2
+radial_velocity_curve = SubResource("CurveTexture_d3su1")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+alpha_curve = SubResource("CurveTexture_pyvwn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g308k"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.176419, 0.176419, 0.176419, 0.0117647)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+billboard_keep_scale = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_51dim"]
+_surfaces = [{
+"aabb": AABB(-0.154951, -0.163546, -0.146853, 0.306201, 0.326742, 0.295014),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 1, 0, 5, 0, 0, 0, 0, 0, 3, 0, 2, 0, 0, 0, 4, 0, 3, 0, 0, 0, 5, 0, 4, 0, 1, 0, 10, 0, 5, 0, 2, 0, 6, 0, 1, 0, 3, 0, 7, 0, 2, 0, 4, 0, 8, 0, 3, 0, 5, 0, 9, 0, 4, 0, 1, 0, 6, 0, 10, 0, 2, 0, 7, 0, 6, 0, 3, 0, 8, 0, 7, 0, 4, 0, 9, 0, 8, 0, 5, 0, 10, 0, 9, 0, 6, 0, 11, 0, 10, 0, 7, 0, 11, 0, 6, 0, 8, 0, 11, 0, 7, 0, 9, 0, 11, 0, 8, 0, 10, 0, 11, 0, 9, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray(57, 131, 0, 0, 57, 126, 0, 0, 251, 231, 19, 72, 174, 214, 0, 0, 229, 97, 253, 67, 255, 255, 0, 0, 0, 0, 76, 69, 0, 119, 0, 0, 115, 84, 204, 65, 0, 0, 0, 0, 114, 222, 67, 77, 222, 55, 0, 0, 108, 162, 56, 178, 164, 247, 0, 0, 150, 28, 15, 186, 175, 201, 0, 0, 217, 31, 174, 192, 143, 54, 0, 0, 135, 167, 252, 184, 150, 3, 0, 0, 255, 255, 103, 184, 37, 140, 0, 0, 114, 130, 255, 255, 203, 127, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_bde6a"]
+resource_name = "icosphere_Icosphere"
+_surfaces = [{
+"aabb": AABB(-0.154951, -0.163546, -0.146853, 0.306201, 0.326742, 0.295014),
+"attribute_data": PackedByteArray(139, 46, 255, 255, 22, 93, 255, 255, 162, 139, 255, 255, 45, 186, 255, 255, 185, 232, 255, 255, 209, 69, 175, 215, 69, 23, 175, 215, 255, 255, 175, 215, 115, 209, 175, 215, 232, 162, 175, 215, 92, 116, 175, 215, 139, 46, 96, 175, 0, 0, 96, 175, 185, 232, 96, 175, 45, 186, 96, 175, 162, 139, 96, 175, 22, 93, 96, 175, 69, 23, 17, 135, 209, 69, 17, 135, 92, 116, 17, 135, 232, 162, 17, 135, 115, 209, 17, 135),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray(0, 0, 6, 0, 5, 0, 5, 0, 10, 0, 1, 0, 4, 0, 8, 0, 7, 0, 3, 0, 9, 0, 8, 0, 2, 0, 10, 0, 9, 0, 5, 0, 16, 0, 10, 0, 6, 0, 11, 0, 5, 0, 8, 0, 13, 0, 7, 0, 9, 0, 14, 0, 8, 0, 10, 0, 15, 0, 9, 0, 5, 0, 11, 0, 16, 0, 6, 0, 12, 0, 11, 0, 8, 0, 14, 0, 13, 0, 9, 0, 15, 0, 14, 0, 10, 0, 16, 0, 15, 0, 11, 0, 18, 0, 16, 0, 12, 0, 17, 0, 11, 0, 14, 0, 21, 0, 13, 0, 15, 0, 20, 0, 14, 0, 16, 0, 19, 0, 15, 0),
+"material": SubResource("StandardMaterial3D_g308k"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 22,
+"vertex_data": PackedByteArray(57, 131, 0, 0, 57, 126, 75, 193, 57, 131, 0, 0, 57, 126, 30, 214, 57, 131, 0, 0, 57, 126, 52, 244, 57, 131, 0, 0, 57, 126, 243, 230, 57, 131, 0, 0, 57, 126, 159, 201, 251, 231, 19, 72, 174, 214, 157, 169, 229, 97, 253, 67, 255, 255, 140, 150, 229, 97, 253, 67, 255, 255, 209, 154, 0, 0, 76, 69, 0, 119, 191, 194, 115, 84, 204, 65, 0, 0, 217, 243, 114, 222, 67, 77, 222, 55, 145, 218, 108, 162, 56, 178, 164, 247, 9, 150, 150, 28, 15, 186, 175, 201, 44, 169, 150, 28, 15, 186, 175, 201, 128, 173, 217, 31, 174, 192, 143, 54, 217, 218, 135, 167, 252, 184, 150, 3, 120, 242, 255, 255, 103, 184, 37, 140, 18, 192, 114, 130, 255, 255, 203, 127, 67, 192, 114, 130, 255, 255, 203, 127, 160, 197, 114, 130, 255, 255, 203, 127, 115, 227, 114, 130, 255, 255, 203, 127, 148, 246, 114, 130, 255, 255, 203, 127, 218, 213, 179, 28, 86, 111, 118, 87, 250, 82, 40, 118, 41, 68, 105, 50, 19, 229, 175, 30, 156, 191, 169, 91, 228, 50, 171, 54, 111, 165, 93, 40, 243, 209, 33, 88, 58, 236, 159, 99, 114, 251, 16, 118, 24, 32, 250, 214, 253, 76, 176, 178, 6, 206, 153, 151, 14, 199, 18, 141, 69, 218, 93, 154, 198, 2, 88, 169, 50, 20, 133, 224, 119, 142, 45, 225, 47, 67, 101, 205, 57, 26, 197, 138, 209, 185, 8, 170, 3, 170)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_51dim")
+
+[node name="DustRing" type="GPUParticles3D"]
+amount = 64
+lifetime = 2.0
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ym1ah")
+draw_pass_1 = SubResource("ArrayMesh_bde6a")

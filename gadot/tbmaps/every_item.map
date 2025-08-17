@@ -454,104 +454,93 @@
 ( -256 448 -80 ) ( -255 448 -80 ) ( -256 448 -79 ) ground/01Brick_03 256 -32 0 1 1
 ( 128 704 -80 ) ( 128 704 -79 ) ( 128 705 -80 ) ground/01Brick_03 -192 -32 0 1 1
 }
+// brush 50
+{
+( 128 1536 -1328 ) ( 128 1537 -1328 ) ( 128 1536 -1327 ) ground/01Brick_03 -128 -224 0 1 1
+( -128 1152 -1328 ) ( -128 1152 -1327 ) ( -127 1152 -1328 ) ground/01Brick_03 0 -224 0 1 1
+( -128 1536 -1312 ) ( -127 1536 -1312 ) ( -128 1537 -1312 ) ground/01Brick_03 0 128 0 1 1
+( 0 1664 -1296 ) ( 0 1665 -1296 ) ( 1 1664 -1296 ) ground/01Brick_03 0 128 0 1 1
+( 0 1536 -1296 ) ( 1 1536 -1296 ) ( 0 1536 -1295 ) ground/01Brick_03 0 -224 0 1 1
+( 512 1664 -1296 ) ( 512 1664 -1295 ) ( 512 1665 -1296 ) ground/01Brick_03 -128 -224 0 1 1
+}
+// brush 51
+{
+( 128 1136 -96 ) ( 128 1137 -96 ) ( 128 1136 -95 ) ground/01Brick_03 0 0 0 1 1
+( 128 1136 -96 ) ( 128 1136 -95 ) ( 129 1136 -96 ) ground/01Brick_03 0 0 0 1 1
+( 128 1136 -1296 ) ( 129 1136 -1296 ) ( 128 1137 -1296 ) ground/01Brick_03 0 0 0 1 1
+( 512 1152 -80 ) ( 512 1153 -80 ) ( 513 1152 -80 ) ground/01Brick_03 0 0 0 1 1
+( 512 1152 -80 ) ( 513 1152 -80 ) ( 512 1152 -79 ) ground/01Brick_03 0 0 0 1 1
+( 896 1152 -80 ) ( 896 1152 -79 ) ( 896 1153 -80 ) ground/01Brick_03 0 0 0 1 1
+}
+// brush 52
+{
+( 112 1152 -96 ) ( 112 1153 -96 ) ( 112 1152 -95 ) ground/01Brick_03 0 0 0 1 1
+( 112 1152 -96 ) ( 112 1152 -95 ) ( 113 1152 -96 ) ground/01Brick_03 0 0 0 1 1
+( 112 1152 -1296 ) ( 113 1152 -1296 ) ( 112 1153 -1296 ) ground/01Brick_03 0 0 0 1 1
+( 128 1536 -80 ) ( 128 1537 -80 ) ( 129 1536 -80 ) ground/01Brick_03 0 0 0 1 1
+( 128 1920 -80 ) ( 129 1920 -80 ) ( 128 1920 -79 ) ground/01Brick_03 0 0 0 1 1
+( 128 1536 -80 ) ( 128 1536 -79 ) ( 128 1537 -80 ) ground/01Brick_03 0 0 0 1 1
+}
+// brush 53
+{
+( 128 1920 -1328 ) ( 128 1921 -1328 ) ( 128 1920 -1327 ) ground/01Brick_03 0 -224 0 1 1
+( -128 1536 -1328 ) ( -128 1536 -1327 ) ( -127 1536 -1328 ) ground/01Brick_03 0 -224 0 1 1
+( -128 1920 -1312 ) ( -127 1920 -1312 ) ( -128 1921 -1312 ) ground/01Brick_03 0 0 0 1 1
+( 0 2048 -1296 ) ( 0 2049 -1296 ) ( 1 2048 -1296 ) ground/01Brick_03 0 0 0 1 1
+( 0 1920 -1296 ) ( 1 1920 -1296 ) ( 0 1920 -1295 ) ground/01Brick_03 0 -224 0 1 1
+( 512 2048 -1296 ) ( 512 2048 -1295 ) ( 512 2049 -1296 ) ground/01Brick_03 0 -224 0 1 1
+}
+// brush 54
+{
+( 512 1920 -1328 ) ( 512 1921 -1328 ) ( 512 1920 -1327 ) ground/01Brick_03 0 -224 0 1 1
+( 256 1536 -1328 ) ( 256 1536 -1327 ) ( 257 1536 -1328 ) ground/01Brick_03 -384 -224 0 1 1
+( 256 1920 -1312 ) ( 257 1920 -1312 ) ( 256 1921 -1312 ) ground/01Brick_03 -384 0 0 1 1
+( 384 2048 -1296 ) ( 384 2049 -1296 ) ( 385 2048 -1296 ) ground/01Brick_03 -384 0 0 1 1
+( 384 1920 -1296 ) ( 385 1920 -1296 ) ( 384 1920 -1295 ) ground/01Brick_03 -384 -224 0 1 1
+( 896 2048 -1296 ) ( 896 2048 -1295 ) ( 896 2049 -1296 ) ground/01Brick_03 0 -224 0 1 1
+}
+// brush 55
+{
+( 512 1536 -1328 ) ( 512 1537 -1328 ) ( 512 1536 -1327 ) ground/01Brick_03 -128 -224 0 1 1
+( 256 1152 -1328 ) ( 256 1152 -1327 ) ( 257 1152 -1328 ) ground/01Brick_03 -384 -224 0 1 1
+( 256 1536 -1312 ) ( 257 1536 -1312 ) ( 256 1537 -1312 ) ground/01Brick_03 -384 128 0 1 1
+( 384 1664 -1296 ) ( 384 1665 -1296 ) ( 385 1664 -1296 ) ground/01Brick_03 -384 128 0 1 1
+( 384 1536 -1296 ) ( 385 1536 -1296 ) ( 384 1536 -1295 ) ground/01Brick_03 -384 -224 0 1 1
+( 896 1664 -1296 ) ( 896 1664 -1295 ) ( 896 1665 -1296 ) ground/01Brick_03 -128 -224 0 1 1
+}
+// brush 56
+{
+( 896 1536 -80 ) ( 896 1536 -79 ) ( 896 1535 -80 ) ground/01Brick_03 0 0 180 1 -1
+( 896 1152 -80 ) ( 895 1152 -80 ) ( 896 1152 -79 ) ground/01Brick_03 0 0 180 1 -1
+( 912 1920 -1296 ) ( 911 1920 -1296 ) ( 912 1919 -1296 ) ground/01Brick_03 0 0 180 1 1
+( 896 1536 -80 ) ( 896 1535 -80 ) ( 895 1536 -80 ) ground/01Brick_03 0 0 180 1 1
+( 912 1920 -96 ) ( 912 1920 -95 ) ( 911 1920 -96 ) ground/01Brick_03 0 0 180 1 -1
+( 912 1920 -96 ) ( 912 1919 -96 ) ( 912 1920 -95 ) ground/01Brick_03 0 0 180 1 -1
+}
+// brush 57
+{
+( 128 1920 -80 ) ( 128 1920 -79 ) ( 128 1919 -80 ) ground/01Brick_03 0 0 180 1 -1
+( 512 1920 -80 ) ( 511 1920 -80 ) ( 512 1920 -79 ) ground/01Brick_03 0 0 180 1 -1
+( 896 1936 -1296 ) ( 895 1936 -1296 ) ( 896 1935 -1296 ) ground/01Brick_03 0 0 180 1 1
+( 512 1920 -80 ) ( 512 1919 -80 ) ( 511 1920 -80 ) ground/01Brick_03 0 0 180 1 1
+( 896 1936 -96 ) ( 896 1936 -95 ) ( 895 1936 -96 ) ground/01Brick_03 0 0 180 1 -1
+( 896 1936 -96 ) ( 896 1935 -96 ) ( 896 1936 -95 ) ground/01Brick_03 0 0 180 1 -1
+}
 }
 // entity 1
 {
-"classname" "world_light_spot"
-"origin" "452 196 12"
-"angles" "90 0 0"
-"members/attenuation" "69420"
-"energy" "20"
-"light_color" "255 231 179"
-"range" "10"
-"specular" "0.5"
+"classname" "rainwater"
+// brush 0
+{
+( 0 576 -80 ) ( 0 577 -80 ) ( 0 576 -79 ) ground/01Brick_03 -192 0 0 1 1
+( -384 320 -80 ) ( -384 320 -79 ) ( -383 320 -80 ) ground/01Brick_03 256 0 0 1 1
+( -384 576 -64 ) ( -383 576 -64 ) ( -384 577 -64 ) ground/01Brick_03 256 192 0 1 1
+( -256 704 -48 ) ( -256 705 -48 ) ( -255 704 -48 ) ground/01Brick_03 256 192 0 1 1
+( -256 448 -48 ) ( -255 448 -48 ) ( -256 448 -47 ) ground/01Brick_03 256 0 0 1 1
+( 128 704 -48 ) ( 128 704 -47 ) ( 128 705 -48 ) ground/01Brick_03 -192 0 0 1 1
+}
 }
 // entity 2
-{
-"classname" "pickup_weapon_wand"
-"origin" "72 -328 -40"
-}
-// entity 3
-{
-"classname" "world_label_label_3d"
-"origin" "-200 -312 -40"
-"text" "Billboard 0"
-"text_color" "0 125 255"
-"font_size" "100"
-"pixel_size" "0.01"
-}
-// entity 4
-{
-"classname" "world_label_label_3d"
-"origin" "-200 -312 -8"
-"billboard" "1"
-"text" "Billboard 1"
-"text_color" "0 255 255"
-"font_size" "100"
-"pixel_size" "0.01"
-}
-// entity 5
-{
-"classname" "world_label_label_3d"
-"origin" "-200 -312 24"
-"billboard" "2"
-"text" "Billboard 2"
-"text_color" "255 0 255"
-"font_size" "100"
-"pixel_size" "0.01"
-}
-// entity 6
-{
-"classname" "world_label_label_3d"
-"origin" "-200 -312 56"
-"billboard" "2"
-"text" "Yellow"
-"pixel_size" "0.01"
-"text_color" "255 255 0"
-"font_size" "100"
-}
-// entity 7
-{
-"classname" "world_label_label_3d"
-"origin" "-200 -312 88"
-"billboard" "0"
-"text" "Double Sided"
-"pixel_size" "0.01"
-"text_color" "255 255 255"
-"font_size" "100"
-}
-// entity 8
-{
-"classname" "world_label_label_3d"
-"origin" "-200 -312 120"
-"billboard" "0"
-"text" "Single Sided"
-"pixel_size" "0.01"
-"text_color" "255 255 255"
-"font_size" "100"
-"double_sided" "0"
-}
-// entity 9
-{
-"classname" "props_grass_tallgrass"
-"origin" "584 -56 -40"
-}
-// entity 10
-{
-"classname" "props_grass_wheatgrass"
-"origin" "584 72 -40"
-}
-// entity 11
-{
-"classname" "props_grass_yellowflowers"
-"origin" "568 -184 -40"
-}
-// entity 12
-{
-"classname" "props_grass_roses"
-"origin" "584 200 -40"
-}
-// entity 13
 {
 "classname" "area"
 // brush 0
@@ -564,7 +553,7 @@
 ( 720 -48 -16 ) ( 720 -48 -15 ) ( 720 -47 -16 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 14
+// entity 3
 {
 "classname" "grass"
 "grass_scale" "2"
@@ -579,33 +568,207 @@
 ( 640 448 -48 ) ( 640 448 -47 ) ( 640 449 -48 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 15
+// entity 4
+{
+"classname" "water"
+// brush 0
+{
+( 304 768 64 ) ( 304 769 64 ) ( 304 768 65 ) ground/01Brick_03 -384 144 0 1 1
+( -80 512 64 ) ( -80 512 65 ) ( -79 512 64 ) ground/01Brick_03 -48 144 0 1 1
+( -80 768 0 ) ( -79 768 0 ) ( -80 769 0 ) ground/01Brick_03 -48 384 0 1 1
+( 48 896 16 ) ( 48 897 16 ) ( 49 896 16 ) ground/01Brick_03 -48 384 0 1 1
+( 48 528 96 ) ( 49 528 96 ) ( 48 528 97 ) ground/01Brick_03 -48 144 0 1 1
+( 336 896 96 ) ( 336 896 97 ) ( 336 897 96 ) ground/01Brick_03 -384 144 0 1 1
+}
+}
+// entity 5
 {
 "classname" "water"
 // brush 0
 {
 ( 256 576 -80 ) ( 256 577 -80 ) ( 256 576 -79 ) ground/01Brick_03 -192 0 0 1 1
 ( -128 320 -80 ) ( -128 320 -79 ) ( -127 320 -80 ) ground/01Brick_03 0 0 0 1 1
-( -128 576 -64 ) ( -127 576 -64 ) ( -128 577 -64 ) ground/01Brick_03 0 192 0 1 1
+( -128 576 -80 ) ( -127 576 -80 ) ( -128 577 -80 ) ground/01Brick_03 0 192 0 1 1
 ( 0 704 -48 ) ( 0 705 -48 ) ( 1 704 -48 ) ground/01Brick_03 0 192 0 1 1
 ( 0 448 -48 ) ( 1 448 -48 ) ( 0 448 -47 ) ground/01Brick_03 0 0 0 1 1
 ( 384 704 -48 ) ( 384 704 -47 ) ( 384 705 -48 ) ground/01Brick_03 -192 0 0 1 1
 }
 }
-// entity 16
+// entity 6
 {
-"classname" "rainwater"
+"classname" "water"
 // brush 0
 {
-( 0 576 -80 ) ( 0 577 -80 ) ( 0 576 -79 ) ground/01Brick_03 -192 0 0 1 1
-( -384 320 -80 ) ( -384 320 -79 ) ( -383 320 -80 ) ground/01Brick_03 256 0 0 1 1
-( -384 576 -64 ) ( -383 576 -64 ) ( -384 577 -64 ) ground/01Brick_03 256 192 0 1 1
-( -256 704 -48 ) ( -256 705 -48 ) ( -255 704 -48 ) ground/01Brick_03 256 192 0 1 1
-( -256 448 -48 ) ( -255 448 -48 ) ( -256 448 -47 ) ground/01Brick_03 256 0 0 1 1
-( 128 704 -48 ) ( 128 704 -47 ) ( 128 705 -48 ) ground/01Brick_03 -192 0 0 1 1
+( 304 800 64 ) ( 304 801 64 ) ( 304 800 65 ) ground/01Brick_03 -416 144 0 1 1
+( -80 544 64 ) ( -80 544 65 ) ( -79 544 64 ) ground/01Brick_03 -48 144 0 1 1
+( -80 800 0 ) ( -79 800 0 ) ( -80 801 0 ) ground/01Brick_03 -48 416 0 1 1
+( 48 928 32 ) ( 48 929 32 ) ( 49 928 32 ) ground/01Brick_03 -48 416 0 1 1
+( 48 576 96 ) ( 49 576 96 ) ( 48 576 97 ) ground/01Brick_03 -48 144 0 1 1
+( 336 928 96 ) ( 336 928 97 ) ( 336 929 96 ) ground/01Brick_03 -416 144 0 1 1
 }
+}
+// entity 7
+{
+"classname" "water"
+// brush 0
+{
+( 224 992 64 ) ( 224 993 64 ) ( 224 992 65 ) ground/01Brick_03 -96 144 0 1 1
+( -128 736 64 ) ( -128 736 65 ) ( -127 736 64 ) ground/01Brick_03 0 144 0 1 1
+( -128 992 0 ) ( -127 992 0 ) ( -128 993 0 ) ground/01Brick_03 0 96 0 1 1
+( 0 1120 80 ) ( 0 1121 80 ) ( 1 1120 80 ) ground/01Brick_03 0 96 0 1 1
+( 0 800 96 ) ( 1 800 96 ) ( 0 800 97 ) ground/01Brick_03 0 144 0 1 1
+( 416 1120 96 ) ( 416 1120 97 ) ( 416 1121 96 ) ground/01Brick_03 -96 144 0 1 1
+}
+}
+// entity 8
+{
+"classname" "water"
+// brush 0
+{
+( 128 2048 -112 ) ( 128 2049 -112 ) ( 128 2048 -111 ) ground/01Brick_03 -128 -32 0 1 1
+( -256 1152 -112 ) ( -256 1152 -111 ) ( -255 1152 -112 ) ground/01Brick_03 128 -32 0 1 1
+( -256 2048 -1296 ) ( -255 2048 -1296 ) ( -256 2049 -1296 ) ground/01Brick_03 128 128 0 1 1
+( -128 2176 -80 ) ( -128 2177 -80 ) ( -127 2176 -80 ) ground/01Brick_03 128 128 0 1 1
+( -128 1920 -80 ) ( -127 1920 -80 ) ( -128 1920 -79 ) ground/01Brick_03 128 -32 0 1 1
+( 896 2176 -80 ) ( 896 2176 -79 ) ( 896 2177 -80 ) ground/01Brick_03 -128 -32 0 1 1
+}
+}
+// entity 9
+{
+"classname" "water"
+// brush 0
+{
+( 192 1088 64 ) ( 192 1089 64 ) ( 192 1088 65 ) ground/01Brick_03 -192 144 0 1 1
+( -160 832 64 ) ( -160 832 65 ) ( -159 832 64 ) ground/01Brick_03 32 144 0 1 1
+( -160 1088 0 ) ( -159 1088 0 ) ( -160 1089 0 ) ground/01Brick_03 32 192 0 1 1
+( -32 1216 80 ) ( -32 1217 80 ) ( -31 1216 80 ) ground/01Brick_03 32 192 0 1 1
+( -32 1024 96 ) ( -31 1024 96 ) ( -32 1024 97 ) ground/01Brick_03 32 144 0 1 1
+( 448 1216 96 ) ( 448 1216 97 ) ( 448 1217 96 ) ground/01Brick_03 -192 144 0 1 1
+}
+}
+// entity 10
+{
+"classname" "water"
+// brush 0
+{
+( 256 912 64 ) ( 256 913 64 ) ( 256 912 65 ) ground/01Brick_03 -16 144 0 1 1
+( -128 656 64 ) ( -128 656 65 ) ( -127 656 64 ) ground/01Brick_03 0 144 0 1 1
+( -128 912 0 ) ( -127 912 0 ) ( -128 913 0 ) ground/01Brick_03 0 16 0 1 1
+( 0 1040 64 ) ( 0 1041 64 ) ( 1 1040 64 ) ground/01Brick_03 0 16 0 1 1
+( 0 720 96 ) ( 1 720 96 ) ( 0 720 97 ) ground/01Brick_03 0 144 0 1 1
+( 384 1040 96 ) ( 384 1040 97 ) ( 384 1041 96 ) ground/01Brick_03 -16 144 0 1 1
+}
+}
+// entity 11
+{
+"classname" "water"
+// brush 0
+{
+( 288 848 64 ) ( 288 849 64 ) ( 288 848 65 ) ground/01Brick_03 -464 144 0 1 1
+( -96 592 64 ) ( -96 592 65 ) ( -95 592 64 ) ground/01Brick_03 -32 144 0 1 1
+( -96 848 0 ) ( -95 848 0 ) ( -96 849 0 ) ground/01Brick_03 -32 464 0 1 1
+( 32 976 48 ) ( 32 977 48 ) ( 33 976 48 ) ground/01Brick_03 -32 464 0 1 1
+( 32 640 96 ) ( 33 640 96 ) ( 32 640 97 ) ground/01Brick_03 -32 144 0 1 1
+( 352 976 96 ) ( 352 976 97 ) ( 352 977 96 ) ground/01Brick_03 -464 144 0 1 1
+}
+}
+// entity 12
+{
+"classname" "world_light_spot"
+"origin" "452 196 12"
+"angles" "90 0 0"
+"members/attenuation" "69420"
+"energy" "20"
+"light_color" "255 231 179"
+"range" "10"
+"specular" "0.5"
+}
+// entity 13
+{
+"classname" "pickup_weapon_wand"
+"origin" "72 -328 -40"
+}
+// entity 14
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 -40"
+"text" "Billboard 0"
+"text_color" "0 125 255"
+"font_size" "100"
+"pixel_size" "0.01"
+}
+// entity 15
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 -8"
+"billboard" "1"
+"text" "Billboard 1"
+"text_color" "0 255 255"
+"font_size" "100"
+"pixel_size" "0.01"
+}
+// entity 16
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 24"
+"billboard" "2"
+"text" "Billboard 2"
+"text_color" "255 0 255"
+"font_size" "100"
+"pixel_size" "0.01"
 }
 // entity 17
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 56"
+"billboard" "2"
+"text" "Yellow"
+"pixel_size" "0.01"
+"text_color" "255 255 0"
+"font_size" "100"
+}
+// entity 18
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 88"
+"billboard" "0"
+"text" "Double Sided"
+"pixel_size" "0.01"
+"text_color" "255 255 255"
+"font_size" "100"
+}
+// entity 19
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 120"
+"billboard" "0"
+"text" "Single Sided"
+"pixel_size" "0.01"
+"text_color" "255 255 255"
+"font_size" "100"
+"double_sided" "0"
+}
+// entity 20
+{
+"classname" "props_grass_tallgrass"
+"origin" "584 -56 -40"
+}
+// entity 21
+{
+"classname" "props_grass_wheatgrass"
+"origin" "584 72 -40"
+}
+// entity 22
+{
+"classname" "props_grass_yellowflowers"
+"origin" "568 -184 -40"
+}
+// entity 23
+{
+"classname" "props_grass_roses"
+"origin" "584 200 -40"
+}
+// entity 24
 {
 "classname" "bot_spawn"
 "origin" "448 64 -40"
@@ -614,7 +777,7 @@
 "weapon" "knife"
 "weapon_range" "25"
 }
-// entity 18
+// entity 25
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -622,127 +785,127 @@
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 19
+// entity 26
 {
 "classname" "pickup_ammo_large"
 "origin" "72 72 -40"
 "_tb_layer" "1"
 }
-// entity 20
+// entity 27
 {
 "classname" "light"
 "origin" "-60 68 -44"
 "_tb_layer" "1"
 }
-// entity 21
+// entity 28
 {
 "classname" "pickup_ammo_medium"
 "origin" "200 72 -40"
 "_tb_layer" "1"
 }
-// entity 22
+// entity 29
 {
 "classname" "pickup_ammo_small"
 "origin" "328 72 -40"
 "_tb_layer" "1"
 }
-// entity 23
+// entity 30
 {
 "classname" "pickup_health_medium"
 "origin" "328 200 -40"
 "_tb_layer" "1"
 }
-// entity 24
+// entity 31
 {
 "classname" "pickup_mana_medium"
 "origin" "200 200 -40"
 "_tb_layer" "1"
 }
-// entity 25
+// entity 32
 {
 "classname" "player_spawn"
 "origin" "72 200 -8"
 "_tb_layer" "1"
 }
-// entity 26
+// entity 33
 {
 "classname" "props_grabbable_ball"
 "origin" "328 -56 -40"
 "_tb_layer" "1"
 }
-// entity 27
+// entity 34
 {
 "classname" "props_grabbable_box"
 "origin" "200 -56 -40"
 "_tb_layer" "1"
 }
-// entity 28
+// entity 35
 {
 "classname" "props_model_planet"
 "origin" "-312 456 -40"
 "_tb_layer" "1"
 }
-// entity 29
+// entity 36
 {
 "classname" "props_shootable_box"
 "origin" "-56 -56 -40"
 "_tb_layer" "1"
 }
-// entity 30
+// entity 37
 {
 "classname" "world_menu_camera"
 "origin" "-56 200 -40"
 "_tb_layer" "1"
 }
-// entity 31
+// entity 38
 {
 "classname" "pickup_weapon_shotgun"
 "origin" "456 -184 -40"
 "_tb_layer" "1"
 }
-// entity 32
+// entity 39
 {
 "classname" "pickup_weapon_salsa"
 "origin" "320 -200 -40"
 "_tb_layer" "1"
 }
-// entity 33
+// entity 40
 {
 "classname" "pickup_weapon_rocketlauncher"
 "origin" "88 -216 -40"
 "_tb_layer" "1"
 }
-// entity 34
+// entity 41
 {
 "classname" "pickup_weapon_keyboard"
 "origin" "-72 -200 -40"
 "_tb_layer" "1"
 }
-// entity 35
+// entity 42
 {
 "classname" "pickup_weapon_ak47"
 "origin" "200 -200 -40"
 "_tb_layer" "1"
 }
-// entity 36
+// entity 43
 {
 "classname" "pickup_weapon_hegrenade"
 "origin" "56 -72 -40"
 "_tb_layer" "1"
 }
-// entity 37
+// entity 44
 {
 "classname" "pickup_weapon_knife"
 "origin" "456 -56 -40"
 "_tb_layer" "1"
 }
-// entity 38
+// entity 45
 {
 "classname" "pickup_weapon_random"
 "origin" "-200 -200 -40"
 "_tb_layer" "1"
 }
-// entity 39
+// entity 46
 {
 "classname" "world_load_map"
 "origin" "-184 -72 -40"
@@ -750,13 +913,13 @@
 "size" "5 5 5"
 "_tb_layer" "1"
 }
-// entity 40
+// entity 47
 {
 "classname" "light"
 "origin" "-444 68 -12"
 "_tb_layer" "1"
 }
-// entity 41
+// entity 48
 {
 "classname" "player_teleport"
 "origin" "-184 56 -40"

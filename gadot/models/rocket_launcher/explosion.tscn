@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cb7x7p255f8oo"]
+[gd_scene load_steps=12 format=3 uid="uid://cb7x7p255f8oo"]
 
 [ext_resource type="Script" uid="uid://c3p1gfsjbats0" path="res://models/rocket_launcher/explosion.gd" id="1_dxays"]
 [ext_resource type="Texture2D" uid="uid://bvxusr4s0aia" path="res://models/rocket_launcher/Flare00.PNG" id="2_4kxt2"]
 [ext_resource type="AudioStream" uid="uid://7opsqbkbcj23" path="res://sounds/rocket_launcher/rocket_launcher_explosion_collision.wav" id="3_uornu"]
+[ext_resource type="PackedScene" uid="uid://ce0l7sdpyg8kw" path="res://addons/EffectBlocks/assets/smoke/smoke_big.tscn" id="4_107jv"]
+[ext_resource type="PackedScene" uid="uid://ddl2u52th0ebh" path="res://addons/EffectBlocks/assets/explosions/explosion_big.tscn" id="5_tvhfn"]
+[ext_resource type="PackedScene" uid="uid://c54o67tient15" path="res://addons/EffectBlocks/assets/fire/fire_small.tscn" id="6_iojl2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_johg4"]
 transparency = 1
@@ -52,7 +55,7 @@ process_material = SubResource("ParticleProcessMaterial_g0tem")
 draw_pass_1 = SubResource("QuadMesh_5cnd7")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 2.5
 one_shot = true
 autostart = true
 
@@ -61,5 +64,12 @@ stream = ExtResource("3_uornu")
 volume_db = -15.0
 max_db = -5.0
 autoplay = true
+
+[node name="SmokeBig" parent="." instance=ExtResource("4_107jv")]
+
+[node name="ExplosionBig" parent="." instance=ExtResource("5_tvhfn")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+
+[node name="FireSmall" parent="." instance=ExtResource("6_iojl2")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

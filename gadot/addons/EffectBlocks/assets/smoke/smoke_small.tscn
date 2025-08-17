@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://cg8asq50oc2m1"]
+
+[sub_resource type="Gradient" id="Gradient_oyxsh"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8l3ko"]
+gradient = SubResource("Gradient_oyxsh")
+
+[sub_resource type="Curve" id="Curve_b100s"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.587329, 0.501806), -3.14482, -3.14482, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_bgnyc"]
+curve = SubResource("Curve_b100s")
+
+[sub_resource type="Curve" id="Curve_quq64"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_er5xf"]
+curve = SubResource("Curve_quq64")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sc4il"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_max = 90.0
+spread = 0.0
+gravity = Vector3(0, 4, 0)
+scale_min = 0.25
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_bgnyc")
+color = Color(0.414704, 0.414704, 0.414704, 0.219608)
+color_ramp = SubResource("GradientTexture1D_8l3ko")
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+turbulence_noise_scale = 5.0
+turbulence_influence_over_life = SubResource("CurveTexture_er5xf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8jt4"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_udcdq"]
+_surfaces = [{
+"aabb": AABB(-1.15811, -1.02635, -4.7252e-08, 2.17129, 2.09224, 1.00998e-05),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray(4, 0, 1, 0, 7, 0, 0, 0, 7, 0, 1, 0, 1, 0, 3, 0, 2, 0, 4, 0, 3, 0, 1, 0, 4, 0, 6, 0, 5, 0, 6, 0, 4, 0, 7, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(106, 147, 254, 255, 135, 2, 0, 0, 39, 67, 247, 238, 186, 2, 0, 0, 0, 0, 205, 128, 73, 1, 0, 0, 21, 36, 233, 36, 90, 0, 0, 0, 234, 161, 0, 0, 0, 0, 0, 0, 246, 235, 165, 54, 217, 0, 0, 0, 255, 255, 228, 122, 31, 1, 0, 0, 26, 240, 234, 187, 78, 1, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ap74b"]
+resource_name = "particle_circle_particle_circle"
+_surfaces = [{
+"aabb": AABB(-1.15811, -1.02635, -4.7252e-08, 2.17129, 2.09224, 1.00998e-05),
+"attribute_data": PackedByteArray(0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray(4, 0, 1, 0, 7, 0, 0, 0, 7, 0, 1, 0, 1, 0, 3, 0, 2, 0, 4, 0, 3, 0, 1, 0, 4, 0, 6, 0, 5, 0, 6, 0, 4, 0, 7, 0),
+"material": SubResource("StandardMaterial3D_n8jt4"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(106, 147, 254, 255, 135, 2, 254, 127, 39, 67, 247, 238, 186, 2, 254, 127, 0, 0, 205, 128, 73, 1, 254, 127, 21, 36, 233, 36, 90, 0, 254, 127, 234, 161, 0, 0, 0, 0, 254, 127, 246, 235, 165, 54, 217, 0, 254, 127, 255, 255, 228, 122, 31, 1, 254, 127, 26, 240, 234, 187, 78, 1, 254, 127, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_udcdq")
+
+[node name="SmokeSmall" type="GPUParticles3D"]
+amount = 64
+lifetime = 2.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_sc4il")
+draw_pass_1 = SubResource("ArrayMesh_ap74b")

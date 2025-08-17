@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_5ln1d")
-revision = 0
+revision = 1
 map_data = "// Game: Godot
 // Format: Standard
 // entity 0

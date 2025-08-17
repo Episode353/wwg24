@@ -1,0 +1,108 @@
+[gd_scene load_steps=15 format=3 uid="uid://b2mxxtc218bmu"]
+
+[ext_resource type="Shader" path="res://PolyBlocks/EffectBlocks/source_files/shaders/lightning.gdshader" id="1_fv2nm"]
+[ext_resource type="PackedScene" uid="uid://ca0xt7tqp4c1g" path="res://PolyBlocks/EffectBlocks/assets/energy/electric_sparks_1.tscn" id="2_040t6"]
+
+[sub_resource type="Curve" id="Curve_j53ne"]
+_data = [Vector2(0.145522, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rikus"]
+curve = SubResource("Curve_j53ne")
+
+[sub_resource type="Gradient" id="Gradient_ycq0a"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qdmee"]
+gradient = SubResource("Gradient_ycq0a")
+
+[sub_resource type="Curve" id="Curve_muxi5"]
+max_value = 3.0
+_data = [Vector2(0, 1.57777), 0.0, 0.0, 0, 0, Vector2(0.13806, 3), 0.0, 0.0, 0, 0, Vector2(0.451493, 1.43212), 0.0, 0.0, 0, 0, Vector2(0.645522, 1.96331), 0.0, 0.0, 0, 0, Vector2(1, 0.738137), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_p3aer"]
+curve = SubResource("Curve_muxi5")
+
+[sub_resource type="Curve" id="Curve_07c3b"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0677618, 1), 0.0, 0.0, 0, 0, Vector2(0.353183, 1), 0.0, 0.0, 0, 0, Vector2(0.492813, 0.769156), 0.0, 0.0, 0, 0, Vector2(0.601643, 1), 0.0, 0.0, 0, 0, Vector2(0.934292, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[sub_resource type="CurveTexture" id="CurveTexture_w61t0"]
+curve = SubResource("Curve_07c3b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bst6b"]
+particle_flag_align_y = true
+emission_shape_scale = Vector3(0, 0, 0)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_min = 0.01
+initial_velocity_max = 0.01
+gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_w61t0")
+color = Color(0.17376, 0.544089, 1, 1)
+color_ramp = SubResource("GradientTexture1D_qdmee")
+alpha_curve = SubResource("CurveTexture_rikus")
+emission_curve = SubResource("CurveTexture_p3aer")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jcegi"]
+render_priority = 0
+shader = ExtResource("1_fv2nm")
+shader_parameter/lightning_color = Color(0, 0.5, 1, 1)
+shader_parameter/glow_color = Color(0.3, 0.5, 1, 0.6)
+shader_parameter/intensity = 4.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/branch_scale = 1.0
+shader_parameter/thickness = 0.2
+shader_parameter/jitter = 0.35
+shader_parameter/speed = 8.0
+shader_parameter/glow_width = 0.15
+shader_parameter/flicker_speed = 4.0
+shader_parameter/flicker_intensity = 0.5
+shader_parameter/vertex_displacement = 0.2
+shader_parameter/use_vertex_color = true
+shader_parameter/vertex_color_mix = 0.8
+shader_parameter/y_billboard = true
+shader_parameter/y_stretch = 3.523
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_151k6"]
+_surfaces = [{
+"aabb": AABB(-5.81477, -0.118795, -2.87401e-08, 9.55784, 9.39207, 1.00331e-05),
+"format": 34896613377,
+"index_count": 78,
+"index_data": PackedByteArray(4, 0, 3, 0, 27, 0, 4, 0, 2, 0, 3, 0, 0, 0, 16, 0, 1, 0, 0, 0, 15, 0, 16, 0, 15, 0, 17, 0, 16, 0, 15, 0, 14, 0, 17, 0, 14, 0, 18, 0, 17, 0, 14, 0, 13, 0, 18, 0, 13, 0, 12, 0, 18, 0, 18, 0, 12, 0, 19, 0, 12, 0, 20, 0, 19, 0, 12, 0, 11, 0, 20, 0, 11, 0, 21, 0, 20, 0, 11, 0, 10, 0, 21, 0, 10, 0, 22, 0, 21, 0, 10, 0, 9, 0, 22, 0, 9, 0, 23, 0, 22, 0, 9, 0, 8, 0, 23, 0, 8, 0, 24, 0, 23, 0, 8, 0, 7, 0, 24, 0, 7, 0, 25, 0, 24, 0, 7, 0, 6, 0, 25, 0, 6, 0, 26, 0, 25, 0, 6, 0, 5, 0, 26, 0, 5, 0, 27, 0, 26, 0, 5, 0, 4, 0, 27, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 28,
+"vertex_data": PackedByteArray(89, 145, 0, 0, 216, 0, 0, 0, 96, 164, 228, 0, 245, 0, 0, 0, 114, 149, 255, 255, 168, 0, 0, 0, 234, 162, 26, 255, 139, 0, 0, 0, 245, 128, 201, 236, 187, 0, 0, 0, 109, 202, 76, 214, 101, 0, 0, 0, 81, 78, 163, 201, 75, 1, 0, 0, 245, 128, 93, 177, 187, 0, 0, 0, 0, 0, 84, 168, 22, 2, 0, 0, 245, 128, 192, 137, 187, 0, 0, 0, 231, 90, 13, 117, 158, 0, 0, 0, 138, 194, 79, 92, 0, 0, 0, 0, 40, 173, 14, 75, 82, 0, 0, 0, 113, 101, 14, 82, 177, 3, 0, 0, 223, 11, 135, 51, 88, 2, 0, 0, 183, 154, 130, 19, 206, 0, 0, 0, 166, 193, 195, 25, 152, 1, 0, 0, 182, 82, 107, 52, 116, 2, 0, 0, 234, 162, 112, 56, 120, 0, 0, 0, 154, 227, 30, 80, 245, 0, 0, 0, 138, 237, 210, 124, 22, 4, 0, 0, 121, 144, 13, 117, 158, 0, 0, 0, 134, 182, 192, 137, 187, 0, 0, 0, 50, 114, 33, 155, 109, 0, 0, 0, 60, 206, 93, 177, 187, 0, 0, 0, 134, 182, 44, 197, 187, 0, 0, 0, 255, 255, 76, 214, 101, 0, 0, 0, 134, 182, 201, 236, 187, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_yqh0c"]
+resource_name = "lightning_lightning"
+_surfaces = [{
+"aabb": AABB(-5.81477, -0.118795, -2.87401e-08, 9.55784, 9.39207, 1.00331e-05),
+"attribute_data": PackedByteArray(0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 177, 19, 0, 0, 98, 39, 0, 0, 19, 59, 0, 0, 196, 78, 0, 0, 117, 98, 0, 0, 38, 118, 0, 0, 216, 137, 0, 0, 137, 157, 0, 0, 58, 177, 0, 0, 235, 196, 0, 0, 156, 216, 0, 0, 77, 236, 255, 255, 77, 236, 255, 255, 156, 216, 255, 255, 235, 196, 255, 255, 58, 177, 255, 255, 137, 157, 255, 255, 216, 137, 255, 255, 38, 118, 255, 255, 117, 98, 255, 255, 196, 78, 255, 255, 19, 59, 255, 255, 98, 39, 255, 255, 177, 19),
+"format": 34896613399,
+"index_count": 78,
+"index_data": PackedByteArray(4, 0, 3, 0, 27, 0, 4, 0, 2, 0, 3, 0, 0, 0, 16, 0, 1, 0, 0, 0, 15, 0, 16, 0, 15, 0, 17, 0, 16, 0, 15, 0, 14, 0, 17, 0, 14, 0, 18, 0, 17, 0, 14, 0, 13, 0, 18, 0, 13, 0, 12, 0, 18, 0, 18, 0, 12, 0, 19, 0, 12, 0, 20, 0, 19, 0, 12, 0, 11, 0, 20, 0, 11, 0, 21, 0, 20, 0, 11, 0, 10, 0, 21, 0, 10, 0, 22, 0, 21, 0, 10, 0, 9, 0, 22, 0, 9, 0, 23, 0, 22, 0, 9, 0, 8, 0, 23, 0, 8, 0, 24, 0, 23, 0, 8, 0, 7, 0, 24, 0, 7, 0, 25, 0, 24, 0, 7, 0, 6, 0, 25, 0, 6, 0, 26, 0, 25, 0, 6, 0, 5, 0, 26, 0, 5, 0, 27, 0, 26, 0, 5, 0, 4, 0, 27, 0),
+"material": SubResource("ShaderMaterial_jcegi"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 28,
+"vertex_data": PackedByteArray(89, 145, 0, 0, 216, 0, 138, 132, 96, 164, 228, 0, 245, 0, 224, 129, 114, 149, 255, 255, 168, 0, 166, 130, 234, 162, 26, 255, 139, 0, 151, 128, 245, 128, 201, 236, 187, 0, 167, 128, 109, 202, 76, 214, 101, 0, 0, 128, 81, 78, 163, 201, 75, 1, 158, 129, 245, 128, 93, 177, 187, 0, 178, 128, 0, 0, 84, 168, 22, 2, 53, 132, 245, 128, 192, 137, 187, 0, 132, 128, 231, 90, 13, 117, 158, 0, 0, 128, 138, 194, 79, 92, 0, 0, 6, 153, 40, 173, 14, 75, 82, 0, 228, 129, 113, 101, 14, 82, 177, 3, 213, 143, 223, 11, 135, 51, 88, 2, 80, 136, 183, 154, 130, 19, 206, 0, 34, 134, 166, 193, 195, 25, 152, 1, 88, 133, 182, 82, 107, 52, 116, 2, 176, 128, 234, 162, 112, 56, 120, 0, 228, 138, 154, 227, 30, 80, 245, 0, 182, 131, 138, 237, 210, 124, 22, 4, 176, 141, 121, 144, 13, 117, 158, 0, 62, 130, 134, 182, 192, 137, 187, 0, 0, 128, 50, 114, 33, 155, 109, 0, 30, 132, 60, 206, 93, 177, 187, 0, 242, 128, 134, 182, 44, 197, 187, 0, 10, 129, 255, 255, 76, 214, 101, 0, 131, 128, 134, 182, 201, 236, 187, 0, 0, 128, 255, 255, 255, 255, 255, 255, 255, 255, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 255, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 127, 255, 255)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_151k6")
+
+[node name="LightningBall" type="GPUParticles3D"]
+amount = 4
+lifetime = 0.2
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_bst6b")
+draw_pass_1 = SubResource("ArrayMesh_yqh0c")
+
+[node name="ElectricSparks_1" parent="." instance=ExtResource("2_040t6")]

@@ -1,8 +1,8 @@
 {
-	"fullscreen": true,
-	"graphics_options": 0,
-	"master_volume": 0.21,
+	"fullscreen": false,
+	"graphics_options": 3,
+	"master_volume": 0.18,
 	"max_fps": 219.0,
-	"mouse_sensitivity": 3.88,
+	"mouse_sensitivity": 2.9,
 	"show_host_popup": false
 }

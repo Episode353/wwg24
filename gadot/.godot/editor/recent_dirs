@@ -1,8 +1,10 @@
+res://addons/EffectBlocks/source_files/shaders
+res://addons/EffectBlocks/source_files/scripts
+C:/Users/creat/Desktop/github/wizards-with-guns/wwg24/gadot
 res://sys/scripts
 res://shaders
 res://addons/func_godot/fgd/custom
 res://addons/func_godot/fgd
-res://addons/func_godot/game_config/WWG
 res://entities
 res://mat
 res://fonts
@@ -19,10 +21,3 @@ res://sys/shaders
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.12
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.11
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.10
-C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.9
-C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.8
-C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.7.2
-C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.7.1
-C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.6.2
-C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.6.1
-C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.3

@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://burm48w72nc4a"]
+[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://burm48w72nc4a"]
 
 [sub_resource type="AudioEffectCapture" id="AudioEffectCapture_glnly"]
 resource_name = "Capture"
@@ -9,11 +9,17 @@ resource_name = "Limiter"
 [sub_resource type="AudioEffectStereoEnhance" id="AudioEffectStereoEnhance_2fh2v"]
 resource_name = "StereoEnhance"
 
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
+resource_name = "Compressor"
+threshold = -24.0
+ratio = 8.0
+gain = 20.0
+
 [resource]
 bus/0/volume_db = -80.0
 bus/1/name = &"Record"
 bus/1/solo = false
-bus/1/mute = true
+bus/1/mute = false
 bus/1/bypass_fx = false
 bus/1/volume_db = 0.0
 bus/1/send = &"Master"
@@ -23,3 +29,5 @@ bus/1/effect/1/effect = SubResource("AudioEffectLimiter_8w40c")
 bus/1/effect/1/enabled = true
 bus/1/effect/2/effect = SubResource("AudioEffectStereoEnhance_2fh2v")
 bus/1/effect/2/enabled = true
+bus/1/effect/3/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/1/effect/3/enabled = true
