@@ -92,8 +92,23 @@
 @PointClass size(-8 -8 -8, 8 8 8) color(0 255 0) = props_grass_yellowflowers : "Yellow Flowers" []
 @PointClass size(-8 -8 -8, 8 8 8) color(0 255 0) = props_grass_roses : "Roses" []
 
-@SolidClass = water : "Water" []
+@SolidClass = water : "Water" [
+    water_color(color255) : "Water Color" : "26 102 102" : "Base water tint (RGB)"
+    ripple_color(color255) : "Ripple Color" : "255 255 255" : "Ripple highlight color (RGB)"
+
+    wave_strength(float) : "Wave Strength" : 0.2 : "UV distortion amplitude"
+    wave_speed(float) : "Wave Speed" : 0.05 : "Scrolling speed"
+    water_transparency(float) : "Transparency (0–1)" : 0.8 : "Alpha, 0=opaque, 1=very transparent"
+    water_roughness(float) : "Roughness (0–1)" : 1.0 : "PBR roughness"
+    water_depth_fade(float) : "Depth Fade" : 0.5 : "Depth-based fade strength"
+
+    edge_size(float) : "Edge Size" : 2.0 : "Foam edge width"
+    edge_intensity(float) : "Edge Intensity" : 2.0 : "Foam edge intensity"
+    ripple_intensity(float) : "Ripple Intensity" : 0.6 : "Small ripple amount"
+]
+
 @SolidClass = rainwater : "Rain Water" []
+
 @SolidClass = grass : "Grass" [
 	grass_scale(float) : "Scale the size of the grass." : 1
 	spacing(float) : "Distance between grass blades. Value between 0 and 1. Lower Values less grass blades and better preformance" : 0.4

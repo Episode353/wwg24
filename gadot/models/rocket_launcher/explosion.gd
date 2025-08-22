@@ -19,7 +19,6 @@ var owner_player
 @onready var fire_small = $FireSmall
 @onready var timer = $Timer
 
-@onready var smoke = $Smoke
 
 func apply_explosion_force_to_character(player):
 	if player is CharacterBody3D:
@@ -79,12 +78,10 @@ func _ready():
 			apply_explosion_force_to_rigidbody(body)
 			
 func show_smoke():
-	smoke.emitting = true
 	smoke_big.emitting = true
 	explosion_big.explosion()
 	
 func hide_smoke():
-	smoke.emitting = false
 	smoke_big.emitting = false
 	fire_small.disable()
 	

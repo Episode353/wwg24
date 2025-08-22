@@ -308,8 +308,9 @@ func raycast_shoot_procc():
 		if !hit_object.is_in_group("moveable"):
 			if !hit_object.is_in_group("players") and !hit_object.get_parent().is_in_group("players"):
 				if !hit_object.is_in_group("pushable"):
-					# Place the Bullet Decal
-					rpc("create_bullet_decal", col_point, col_nor)
+					if !hit_object.is_in_group("water"):
+						# Place the Bullet Decal
+						rpc("create_bullet_decal", col_point, col_nor)
 					
 					
 	if hit_object.is_in_group("grabbable"):
@@ -396,31 +397,56 @@ func shoot():
 				player.rpc("launch_rocket")
 				play_fire_sound()
 				
-		if current_weapon.weapon_name == "wand":
-			var mana_cost = 0
-			if current_wand_spell == "Fireball":
-				mana_cost = 3
-				if player.mana < mana_cost: return
-				player.rpc("launch_salsa")
+		if current_weapon.weapon_name != "wand":
+			return
+
+		var mana_delta := 0
+		var health_delta := 0
+
+		match current_wand_spell:
+			"Fireball":
+				if player.mana < 3: return
+				mana_delta = -3
+				player.rpc("launch_wand_fireball")
 				animation_player.play(current_weapon.shoot_anim)
-			if current_wand_spell == "Lightning Bolt":
-				mana_cost = 5
-				if player.mana < mana_cost: return
+
+			"Lightning Bolt":
+				if player.mana < 5: return
+				mana_delta = -5
 				player.rpc("launch_lightning_ball")
 				animation_player.play(current_weapon.shoot_anim)
-			if current_wand_spell == "Magic Missile":
-				mana_cost = 12
-				if player.mana < mana_cost: return
-				player.rpc("launch_rocket")
+
+			"Magic Missile":
+				if player.mana < 12: return
+				mana_delta = -12
+				player.rpc("launch_magic_missile")
 				animation_player.play(current_weapon.shoot_anim)
-			if current_wand_spell == "Heal":
-				if player.health > 99: return
-				mana_cost = 5
-				if player.mana < mana_cost: return
+
+			"Heal":   # spend mana -> gain health
+				const COST := 5
+				const HEAL := 15
+				if player.mana < COST or player.health > 99: return
+				mana_delta = -COST
+				health_delta = +HEAL
 				animation_player.play(current_weapon.shoot_anim)
-		
-			player.rpc("receive_mana", -mana_cost)
-			play_fire_sound()
+
+			"Tap":    # spend health -> gain mana
+				const COST := 5
+				const GAIN := 5
+				# keep at least 1 HP; also don’t overfill mana
+				if player.health <= COST or player.mana > 99: return
+				health_delta = -COST
+				mana_delta = +GAIN
+				animation_player.play(current_weapon.shoot_anim)
+
+			_:
+				return
+
+		if mana_delta != 0:   player.rpc("receive_mana", mana_delta)      # + = gain, - = spend
+		if health_delta != 0: player.rpc("receive_health", health_delta)  # + = heal, - = hurt
+		play_fire_sound()
+
+
 			
 		if current_weapon.weapon_name == "hegrenade":
 			await get_tree().create_timer(0.5).timeout
@@ -580,6 +606,7 @@ var available_spells := [
 	"Lightning Bolt", 
 	"Magic Missile",
 	"Heal",
+	"Tap"
 ]
 
 var current_wand_spell := "NULL"  # Default spell

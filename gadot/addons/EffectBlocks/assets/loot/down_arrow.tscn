@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://ibwc13r4vgpd"]
 
-[ext_resource type="Texture2D" uid="uid://be5acis1q4v56" path="res://PolyBlocks/EffectBlocks/source_files/textures/icons/down_arrow.png" id="1_5w0ua"]
-[ext_resource type="Shader" path="res://PolyBlocks/EffectBlocks/source_files/shaders/gradient_scroll.gdshader" id="3_3rfvm"]
+[ext_resource type="Texture2D" uid="uid://be5acis1q4v56" path="res://addons/EffectBlocks/source_files/textures/icons/down_arrow.png" id="1_5w0ua"]
+[ext_resource type="Shader" uid="uid://brc0wsfsyni51" path="res://addons/EffectBlocks/source_files/shaders/gradient_scroll.gdshader" id="3_3rfvm"]
 
 [sub_resource type="Gradient" id="Gradient_c06pq"]
 offsets = PackedFloat32Array(0.0756972, 0.193227, 0.350598, 0.426295, 0.567729, 0.750996)

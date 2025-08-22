@@ -1,7 +1,51 @@
+
 extends Node
 # @tool  # <- enable if you want this to run in-editor
 
 const WATER_SCENE_PATH := "res://addons/EffectBlocks/assets/water/water.tscn"
+
+# ---- exported params (match FGD key names exactly) ----
+@export var water_color: Color = Color(0.1, 0.4, 0.4)      # vec4 in shader uses alpha from transparency below
+@export var ripple_color: Color = Color(1.0, 1.0, 1.0)
+
+@export var wave_strength : float = 0.2
+@export var wave_speed : float = 0.05
+@export var water_transparency : float = 0.8
+@export var water_roughness : float = 1.0
+@export var water_depth_fade : float = 0.5
+
+@export var edge_size := 2.0
+@export var edge_intensity := 2.0
+@export var ripple_intensity := 0.6
+@export var func_godot_properties: Dictionary
+
+func _func_godot_apply_properties(props: Dictionary):
+	var property_types := {}
+	for p in get_property_list():
+		property_types[p.name] = p.type
+
+	for key in props.keys():
+		if not property_types.has(key):
+			continue
+
+		var target_type = property_types[key]
+		var value = props[key]
+
+		match target_type:
+			TYPE_INT:
+				set(key, int(value))
+			TYPE_FLOAT:
+				set(key, float(value))
+			TYPE_BOOL:
+				set(key, value in ["1", "true", true])
+			TYPE_STRING:
+				set(key, str(value))
+			_:
+				set(key, value)  # Fallback: assign directly (e.g. dictionaries, arrays)
+
+
+
+
 
 func _func_godot_build_complete() -> void:
 	var old_mesh := _find_first_mesh(self)
@@ -95,6 +139,8 @@ func _func_godot_build_complete() -> void:
 	water_area.global_transform = old_mesh.global_transform
 	water_area.add_child(shape)
 	shape.owner = old_mesh.owner
+	
+	
 
 	# Add to "water" group for easy queries/signals
 	if not water_area.is_in_group("water"):

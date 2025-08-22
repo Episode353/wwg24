@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://b2mxxtc218bmu"]
 
-[ext_resource type="Shader" path="res://PolyBlocks/EffectBlocks/source_files/shaders/lightning.gdshader" id="1_fv2nm"]
-[ext_resource type="PackedScene" uid="uid://ca0xt7tqp4c1g" path="res://PolyBlocks/EffectBlocks/assets/energy/electric_sparks_1.tscn" id="2_040t6"]
+[ext_resource type="Shader" uid="uid://dawb5ltjgi5ra" path="res://addons/EffectBlocks/source_files/shaders/lightning.gdshader" id="1_fv2nm"]
+[ext_resource type="PackedScene" uid="uid://ca0xt7tqp4c1g" path="res://addons/EffectBlocks/assets/energy/electric_sparks_1.tscn" id="2_040t6"]
 
 [sub_resource type="Curve" id="Curve_j53ne"]
 _data = [Vector2(0.145522, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=3 uid="uid://bbhsu60brcpyg"]
 
-[ext_resource type="PackedScene" uid="uid://dy2yjmj5evqx5" path="res://PolyBlocks/EffectBlocks/assets/ground_effects/ground_effect_1.tscn" id="1_vn32w"]
-[ext_resource type="Texture2D" uid="uid://ca2fvci3f1ul5" path="res://PolyBlocks/EffectBlocks/source_files/textures/icons/rune.png" id="2_75av4"]
-[ext_resource type="Script" path="res://PolyBlocks/EffectBlocks/source_files/scripts/rune.gd" id="3_ovixj"]
-[ext_resource type="Texture2D" uid="uid://c5cmwnpwvshvd" path="res://PolyBlocks/EffectBlocks/source_files/textures/icons/cross.png" id="4_irb2j"]
+[ext_resource type="PackedScene" uid="uid://dy2yjmj5evqx5" path="res://addons/EffectBlocks/assets/ground_effects/ground_effect_1.tscn" id="1_vn32w"]
+[ext_resource type="Texture2D" uid="uid://ca2fvci3f1ul5" path="res://addons/EffectBlocks/source_files/textures/icons/rune.png" id="2_75av4"]
+[ext_resource type="Script" uid="uid://c47u0otx5hwl0" path="res://addons/EffectBlocks/source_files/scripts/rune.gd" id="3_ovixj"]
+[ext_resource type="Texture2D" uid="uid://c5cmwnpwvshvd" path="res://addons/EffectBlocks/source_files/textures/icons/cross.png" id="4_irb2j"]
 
 [sub_resource type="Curve" id="Curve_a4qh0"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.272388, 1), 0.0, 0.0, 0, 0, Vector2(0.893657, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

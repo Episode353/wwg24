@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dvl13042jqtk0"]
 
-[ext_resource type="Script" path="res://PolyBlocks/EffectBlocks/source_files/scripts/splashes.gd" id="1_w4wny"]
-[ext_resource type="PackedScene" uid="uid://cqjsxh6tso3kr" path="res://PolyBlocks/EffectBlocks/assets/decals/decal_slime_1.tscn" id="2_n6u4c"]
+[ext_resource type="Script" uid="uid://cou4q24ys57uj" path="res://addons/EffectBlocks/source_files/scripts/splashes.gd" id="1_w4wny"]
+[ext_resource type="PackedScene" uid="uid://cqjsxh6tso3kr" path="res://addons/EffectBlocks/assets/decals/decal_slime_1.tscn" id="2_n6u4c"]
 
 [sub_resource type="Gradient" id="Gradient_0yugf"]
 

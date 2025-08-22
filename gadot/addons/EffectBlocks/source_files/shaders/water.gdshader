@@ -27,6 +27,9 @@ void vertex() {
 }
 
 void fragment() {
+	
+	
+	
     vec3 noise = get_noise(UV, TIME);
     float enhanced_noise = pow(noise.x, 1.25);
     

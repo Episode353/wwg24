@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://iq6yhdppml6q"]
 
-[ext_resource type="Shader" path="res://PolyBlocks/EffectBlocks/source_files/shaders/gradient_scroll.gdshader" id="1_nyv8j"]
-[ext_resource type="ArrayMesh" uid="uid://br1n3kqw0vb3e" path="res://PolyBlocks/EffectBlocks/source_files/meshes/icons/ammo.mesh" id="2_ifsjv"]
-[ext_resource type="Script" path="res://PolyBlocks/EffectBlocks/source_files/scripts/simple_rotate.gd" id="3_onhv4"]
+[ext_resource type="Shader" uid="uid://brc0wsfsyni51" path="res://addons/EffectBlocks/source_files/shaders/gradient_scroll.gdshader" id="1_nyv8j"]
+[ext_resource type="ArrayMesh" uid="uid://br1n3kqw0vb3e" path="res://addons/EffectBlocks/source_files/meshes/icons/ammo.mesh" id="2_ifsjv"]
+[ext_resource type="Script" uid="uid://d1l76ttae6vcy" path="res://addons/EffectBlocks/source_files/scripts/simple_rotate.gd" id="3_onhv4"]
 
 [sub_resource type="Gradient" id="Gradient_7wega"]
 offsets = PackedFloat32Array(0.0756972, 0.193227, 0.350598, 0.426295, 0.567729, 0.750996)

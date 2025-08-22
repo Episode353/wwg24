@@ -1,6 +1,9 @@
+OccluderInstance3D
+CSGBox3D
+Timer
 CollisionShape3D
 Area3D
-CSGBox3D
+RigidBody3D
 TextureButton
 Button
 Control
@@ -10,6 +13,3 @@ ProgressBar
 CSGSphere3D
 MeshInstance3D
 FuncGodotMap
-Node3D
-Sprite3D
-Label3D

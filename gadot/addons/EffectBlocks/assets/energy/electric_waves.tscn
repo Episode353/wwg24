@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c8358n4rj4dg1"]
 
-[ext_resource type="Shader" path="res://PolyBlocks/EffectBlocks/source_files/shaders/electric_waves.gdshader" id="1_sgt0r"]
+[ext_resource type="Shader" uid="uid://bliyyslhab1kc" path="res://addons/EffectBlocks/source_files/shaders/electric_waves.gdshader" id="1_sgt0r"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_t1bof"]
 seed = 305

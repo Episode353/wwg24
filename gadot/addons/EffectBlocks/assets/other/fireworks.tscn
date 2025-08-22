@@ -1,6 +1,6 @@
 [gd_scene load_steps=55 format=3 uid="uid://dkir186rogtp6"]
 
-[ext_resource type="Script" path="res://PolyBlocks/EffectBlocks/source_files/scripts/light_flicker.gd" id="1_fuvp1"]
+[ext_resource type="Script" uid="uid://b340huib30so8" path="res://addons/EffectBlocks/source_files/scripts/light_flicker.gd" id="1_fuvp1"]
 
 [sub_resource type="Curve" id="Curve_s8ycd"]
 _data = [Vector2(0.274254, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.268893), 0.0, 0.0, 0, 0]

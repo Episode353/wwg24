@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6go864c63tgt"]
 
-[ext_resource type="ArrayMesh" uid="uid://5r44knku251m" path="res://PolyBlocks/EffectBlocks/source_files/meshes/bird.mesh" id="1_7r00c"]
-[ext_resource type="Script" path="res://PolyBlocks/EffectBlocks/source_files/scripts/flying_birds.gd" id="1_wvxg7"]
+[ext_resource type="ArrayMesh" uid="uid://5r44knku251m" path="res://addons/EffectBlocks/source_files/meshes/bird.mesh" id="1_7r00c"]
+[ext_resource type="Script" uid="uid://b7ktlkr1604qu" path="res://addons/EffectBlocks/source_files/scripts/flying_birds.gd" id="1_wvxg7"]
 
 [node name="FlyingBirds" type="Node3D"]
 

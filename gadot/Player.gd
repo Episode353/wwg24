@@ -224,6 +224,11 @@ func _unhandled_input(event):
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-98), deg_to_rad(89))
 			
 var heal_counter = 0
+var tap_counter = 0
+const CONVERT_TICK := 20         # how many frames between conversions
+const M_TO_H_COST := 2           # 2 mana -> 1 health
+const H_TO_M_COST := 2           # 2 health -> 1 mana
+
 func _physics_process(delta):
 	# Death check for both bots and players (before authority check)
 	if position.y < -100:
@@ -240,12 +245,24 @@ func _physics_process(delta):
 	# ... rest of function
 	
 	
+	# HEAL: spend 2 mana, gain 1 health
 	if weapons_manager.get_current_wand_spell() == "Heal" and weapons_manager.current_weapon.weapon_name == "wand":
 		heal_counter += 1
-		if heal_counter >= 20 and mana >= 1 and health <= 99:
+		if heal_counter >= CONVERT_TICK:
 			heal_counter = 0
-			rpc("receive_health", randi_range(1,3))
-			rpc("receive_mana", -1)
+			if mana >= M_TO_H_COST and health < max_health:
+				rpc("receive_health", 1)
+				rpc("receive_mana", -M_TO_H_COST)
+
+	# TAP: spend 2 health, gain 1 mana (keep at least 1 HP)
+	if weapons_manager.get_current_wand_spell() == "Tap" and weapons_manager.current_weapon.weapon_name == "wand":
+		tap_counter += 1
+		if tap_counter >= CONVERT_TICK:
+			tap_counter = 0
+			if health > H_TO_M_COST and mana < max_mana:
+				rpc("receive_mana", 1)
+				rpc("receive_health", -H_TO_M_COST)
+
 
 	mana_regen_timer += delta
 	if mana_regen_timer >= mana_regen_length:
@@ -513,7 +530,7 @@ func process_movement(delta):
 		velocity.y = max(velocity.y, JUMP_IMPULSE * 1.05)
 
 
-	if is_underwater:
+	if is_underwater and !noclip:
 		_process_movement_underwater(delta)
 		return
 
@@ -638,6 +655,19 @@ func launch_rocket():
 	proj_instance.owner_player = self
 	var launch_rocket_to_world = get_parent()
 	launch_rocket_to_world.add_child.call_deferred(proj_instance)
+	
+
+@rpc("call_local")
+func launch_magic_missile():
+	const MAGIC_MISSILE = preload("res://models/wand/magic_missile/magic_missile.tscn")
+	var proj_instance = MAGIC_MISSILE.instantiate()
+
+	proj_instance.global_transform = main_camera.global_transform
+	
+	# Set the owner of the projectile
+	proj_instance.owner_player = self
+	var launch_mmissile_to_world = get_parent()
+	launch_mmissile_to_world.add_child.call_deferred(proj_instance)
 
 @rpc("call_local")
 func launch_lightning_ball():
@@ -684,6 +714,19 @@ func launch_salsa():
 	var launch_speed = 20.0
 	var forward_direction = main_camera.global_transform.basis.z.normalized()
 	proj_instance.linear_velocity = -forward_direction * launch_speed
+	
+
+@rpc("call_local")
+func launch_wand_fireball():
+	const fireball = preload("res://models/wand/Fireball/fireballs_proj.tscn")
+	var proj_instance = fireball.instantiate()
+
+	proj_instance.global_transform = main_camera.global_transform
+	
+	# Set the owner of the projectile
+	proj_instance.owner_player = self
+	var launch_fireball_to_world = get_parent()
+	launch_fireball_to_world.add_child.call_deferred(proj_instance)
 
 
 @rpc("call_local")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://1b06vhur3mw3"]
 
-[ext_resource type="Shader" path="res://PolyBlocks/EffectBlocks/source_files/shaders/plasma_beam.gdshader" id="1_od604"]
+[ext_resource type="Shader" uid="uid://dcaskgp34ylod" path="res://addons/EffectBlocks/source_files/shaders/plasma_beam.gdshader" id="1_od604"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u6lh4"]
 render_priority = 0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://b465dgbgga41q"]
 
-[ext_resource type="Script" path="res://PolyBlocks/EffectBlocks/source_files/scripts/lightning.gd" id="2_ktkax"]
-[ext_resource type="ArrayMesh" uid="uid://daded052qr3pn" path="res://PolyBlocks/EffectBlocks/source_files/meshes/lightning.mesh" id="3_8vhnv"]
+[ext_resource type="Script" uid="uid://tn5yg5pfbsnp" path="res://addons/EffectBlocks/source_files/scripts/lightning.gd" id="2_ktkax"]
+[ext_resource type="ArrayMesh" uid="uid://daded052qr3pn" path="res://addons/EffectBlocks/source_files/meshes/lightning.mesh" id="3_8vhnv"]
 
 [sub_resource type="Curve" id="Curve_ah8ft"]
 _data = [Vector2(0.152985, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

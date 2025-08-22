@@ -11,7 +11,7 @@ transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 
 script = ExtResource("1_5cmco")
 
 [node name="rocket_proj" parent="." instance=ExtResource("1_8j38g")]
-transform = Transform3D(1.91069e-16, 4.37114e-09, -0.1, 0.1, -4.37114e-09, -3.97047e-23, -4.37114e-09, -0.1, -4.37114e-09, 0, -0.075, -0.025)
+transform = Transform3D(1.91069e-16, 4.37114e-09, -0.1, 0.1, -4.37114e-09, 3.57342e-22, -4.37114e-09, -0.1, -4.37114e-09, 0, 0, 0)
 
 [node name="Area3D" type="Area3D" parent="rocket_proj"]
 transform = Transform3D(1, 0, -2.5411e-21, 0, 1, 4.26326e-14, 0, -4.26326e-14, 1, 5.36442e-07, 10, 1.94707e-06)
