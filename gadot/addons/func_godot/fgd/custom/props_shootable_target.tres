@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://cb50tu2hn3ymp"]
+
+[ext_resource type="PackedScene" uid="uid://r0vafdrlioqb" path="res://entities/props/grass/yellowflowers.tscn" id="1_s42ws"]
+[ext_resource type="Script" uid="uid://5mw8jtvjhbkl" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_dfbyc"]
+
+[resource]
+script = ExtResource("2_dfbyc")
+scene_file = ExtResource("1_s42ws")
+classname = "props_grass_yellowflowers"
+auto_apply_to_matching_node_properties = true
+metadata/_custom_type_script = "uid://5mw8jtvjhbkl"

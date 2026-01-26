@@ -1,3 +1,7 @@
+res://entities/pickup/weapon
+res://fonts
+res://entities/player
+res://entities/props/shootable
 res://models/wand/magic_missile
 res://addons/EffectBlocks/source_files/scripts
 res://addons/EffectBlocks/source_files/shaders
@@ -9,7 +13,6 @@ res://addons/func_godot/fgd/custom
 res://addons/func_godot/fgd
 res://entities
 res://mat
-res://fonts
 res://sys
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.3.8
 res://models/wand
@@ -19,7 +22,6 @@ C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.14.1
 res://tscn/settings
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.13.1
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.13
-res://sys/shaders
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.12
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.11
 C:/Users/creat/Desktop/github/wizards-with-guns/releases/25.2.10

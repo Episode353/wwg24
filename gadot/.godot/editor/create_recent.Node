@@ -1,15 +1,14 @@
+CollisionShape3D
+RigidBody3D
+Node3D
+Timer
+Label3D      - Matches the "text" keyword.
+Label      - Matches the "text" keyword.
+CSGCylinder3D
 OccluderInstance3D
 CSGBox3D
-Timer
-CollisionShape3D
 Area3D
-RigidBody3D
 TextureButton
 Button
 Control
 Panel
-Label
-ProgressBar
-CSGSphere3D
-MeshInstance3D
-FuncGodotMap

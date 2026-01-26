@@ -786,6 +786,56 @@ func receive_damage(dmg):
 	if health <= 0:
 		player_death()
 	play_hurt_sound()
+	make_damage_indicator(int(dmg))
+	
+@rpc("call_local")
+func make_damage_indicator(dmg):
+	const DAMAGE_INDICATOR = preload("uid://d5qfreuxoai3")
+
+	# ---- tuning ----
+	const STACK_WINDOW := 0.5
+	const STACK_STEP_Y := 0.8
+	const BASE_OFFSET := Vector3(0, 3.5, 0)
+
+	# Only allow a small number of “lanes” so it never gets too high.
+	# If you want “only one above”, set MAX_STACK := 1  (positions: 0 and 1).
+	const MAX_STACK := 3
+
+	# ---- persistent state on the spawner ----
+	if not has_meta("_dmg_stack"):
+		set_meta("_dmg_stack", 0)
+	if not has_meta("_dmg_stack_timer"):
+		set_meta("_dmg_stack_timer", null)
+
+	var stack := int(get_meta("_dmg_stack"))
+
+	# If we are still in the stacking window, move to the next lane.
+	# WRAP so it never climbs forever.
+	if get_meta("_dmg_stack_timer") != null:
+		stack = (stack + 1) % (MAX_STACK + 1)
+	else:
+		stack = 0
+
+	set_meta("_dmg_stack", stack)
+
+	# ---- spawn indicator ----
+	var indicator = DAMAGE_INDICATOR.instantiate()
+	indicator.position = global_position + BASE_OFFSET + Vector3(0, stack * STACK_STEP_Y, 0)
+	indicator.owner_player = self
+	indicator.dmg = dmg
+	get_parent().add_child.call_deferred(indicator)
+
+	# ---- reset window timer (keeps window alive while hits keep coming) ----
+	var timer := get_tree().create_timer(STACK_WINDOW)
+	set_meta("_dmg_stack_timer", timer)
+
+	timer.timeout.connect(func ():
+		# Only reset if this is still the active timer
+		if get_meta("_dmg_stack_timer") == timer:
+			set_meta("_dmg_stack", 0)
+			set_meta("_dmg_stack_timer", null)
+	)
+
 	
 	
 @rpc("any_peer", "call_local")

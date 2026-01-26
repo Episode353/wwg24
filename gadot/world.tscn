@@ -69,11 +69,6 @@ effect_callback_type = 4
 needs_motion_vectors = false
 needs_normal_roughness = false
 script = ExtResource("6_bo7i5")
-pre_blur_processor_stage = ExtResource("5_mc2jv")
-camera_rotation_component = ExtResource("3_il2jm")
-camera_movement_component = ExtResource("2_wukud")
-object_movement_component = ExtResource("4_wjb0r")
-debug = false
 metadata/_custom_type_script = "uid://dagbguxydihal"
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_wjb0r"]
@@ -84,18 +79,6 @@ effect_callback_type = 4
 needs_motion_vectors = false
 needs_normal_roughness = false
 script = ExtResource("5_bc84e")
-blur_stage = ExtResource("2_ikiii")
-overlay_stage = ExtResource("4_26xuy")
-tile_max_x_stage = ExtResource("6_wukud")
-tile_max_y_stage = ExtResource("7_il2jm")
-neighbor_max_stage = ExtResource("3_cbp6q")
-tile_variance_stage = ExtResource("8_wjb0r")
-tile_size = 40
-linear_falloff_slope = 1.0
-importance_bias = 40.0
-maximum_jitter_value = 0.95
-minimum_user_threshold = 1.5
-debug = false
 metadata/_custom_type_script = "uid://xdrmckvuitsc"
 
 [sub_resource type="Compositor" id="Compositor_mc2jv"]
@@ -103,10 +86,6 @@ compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_il2j
 script = ExtResource("9_mc2jv")
 samples = 4
 intensity = 0.112
-center_fade = 0.0
-framerate_independent = true
-uncapped_independence = false
-target_constant_framerate = 30.0
 metadata/_custom_type_script = "uid://co04ap10rbrrg"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkytg"]
@@ -238,6 +217,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_vcby2")
 value = 100.0
 
 [node name="COLOR PALETE" type="TextureRect" parent="CanvasLayer/HUD"]
+visible = false
 modulate = Color(1, 1, 1, 0.254902)
 z_index = 3
 z_as_relative = false

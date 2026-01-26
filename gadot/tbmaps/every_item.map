@@ -544,6 +544,15 @@
 ( 640 448 -48 ) ( 641 448 -48 ) ( 640 448 -47 ) ground/01Brick_03 0 0 0 1 1
 ( 1024 704 -48 ) ( 1024 704 -47 ) ( 1024 705 -48 ) ground/01Brick_03 -448 0 0 1 1
 }
+// brush 60
+{
+( 640 256 -80 ) ( 640 257 -80 ) ( 640 256 -79 ) ground/01Brick_03 -128 0 0 1 1
+( 256 0 -80 ) ( 256 0 -79 ) ( 257 0 -80 ) ground/01Brick_03 -256 0 0 1 1
+( 256 256 -80 ) ( 257 256 -80 ) ( 256 257 -80 ) ground/01Brick_03 -256 128 0 1 1
+( 384 384 -48 ) ( 384 385 -48 ) ( 385 384 -48 ) ground/01Brick_03 -256 128 0 1 1
+( 384 128 -48 ) ( 385 128 -48 ) ( 384 128 -47 ) ground/01Brick_03 -256 0 0 1 1
+( 768 384 -48 ) ( 768 384 -47 ) ( 768 385 -48 ) ground/01Brick_03 -128 0 0 1 1
+}
 }
 // entity 1
 {
@@ -749,133 +758,138 @@
 }
 // entity 21
 {
+"classname" "props_shootable_target"
+"origin" "712 72 -40"
+}
+// entity 22
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Entities"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 22
+// entity 23
 {
 "classname" "pickup_ammo_large"
 "origin" "72 72 -40"
 "_tb_layer" "1"
 }
-// entity 23
+// entity 24
 {
 "classname" "light"
 "origin" "-60 68 -44"
 "_tb_layer" "1"
 }
-// entity 24
+// entity 25
 {
 "classname" "pickup_ammo_medium"
 "origin" "200 72 -40"
 "_tb_layer" "1"
 }
-// entity 25
+// entity 26
 {
 "classname" "pickup_ammo_small"
 "origin" "328 72 -40"
 "_tb_layer" "1"
 }
-// entity 26
+// entity 27
 {
 "classname" "pickup_health_medium"
 "origin" "328 200 -40"
 "_tb_layer" "1"
 }
-// entity 27
+// entity 28
 {
 "classname" "pickup_mana_medium"
 "origin" "200 200 -40"
 "_tb_layer" "1"
 }
-// entity 28
+// entity 29
 {
 "classname" "player_spawn"
 "origin" "72 200 -8"
 "_tb_layer" "1"
 }
-// entity 29
+// entity 30
 {
 "classname" "props_grabbable_ball"
 "origin" "328 -56 -40"
 "_tb_layer" "1"
 }
-// entity 30
+// entity 31
 {
 "classname" "props_grabbable_box"
 "origin" "200 -56 -40"
 "_tb_layer" "1"
 }
-// entity 31
+// entity 32
 {
 "classname" "props_model_planet"
 "origin" "-312 456 -40"
 "_tb_layer" "1"
 }
-// entity 32
+// entity 33
 {
 "classname" "props_shootable_box"
 "origin" "-56 -56 -40"
 "_tb_layer" "1"
 }
-// entity 33
+// entity 34
 {
 "classname" "world_menu_camera"
 "origin" "-56 200 -40"
 "_tb_layer" "1"
 }
-// entity 34
+// entity 35
 {
 "classname" "pickup_weapon_shotgun"
 "origin" "456 -184 -40"
 "_tb_layer" "1"
 }
-// entity 35
+// entity 36
 {
 "classname" "pickup_weapon_salsa"
 "origin" "320 -200 -40"
 "_tb_layer" "1"
 }
-// entity 36
+// entity 37
 {
 "classname" "pickup_weapon_rocketlauncher"
 "origin" "88 -216 -40"
 "_tb_layer" "1"
 }
-// entity 37
+// entity 38
 {
 "classname" "pickup_weapon_keyboard"
 "origin" "-72 -200 -40"
 "_tb_layer" "1"
 }
-// entity 38
+// entity 39
 {
 "classname" "pickup_weapon_ak47"
 "origin" "200 -200 -40"
 "_tb_layer" "1"
 }
-// entity 39
+// entity 40
 {
 "classname" "pickup_weapon_hegrenade"
 "origin" "56 -72 -40"
 "_tb_layer" "1"
 }
-// entity 40
+// entity 41
 {
 "classname" "pickup_weapon_knife"
 "origin" "456 -56 -40"
 "_tb_layer" "1"
 }
-// entity 41
+// entity 42
 {
 "classname" "pickup_weapon_random"
 "origin" "-200 -200 -40"
 "_tb_layer" "1"
 }
-// entity 42
+// entity 43
 {
 "classname" "world_load_map"
 "origin" "-184 -72 -40"
@@ -883,13 +897,13 @@
 "size" "5 5 5"
 "_tb_layer" "1"
 }
-// entity 43
+// entity 44
 {
 "classname" "light"
 "origin" "-444 68 -12"
 "_tb_layer" "1"
 }
-// entity 44
+// entity 45
 {
 "classname" "player_teleport"
 "origin" "-184 56 -40"

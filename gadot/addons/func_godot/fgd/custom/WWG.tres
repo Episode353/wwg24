@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=35 format=3 uid="uid://dp2pyavhqiodf"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=36 format=3 uid="uid://dp2pyavhqiodf"]
 
 [ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_p7j0e"]
 [ext_resource type="Resource" uid="uid://b6nsx8unlujmq" path="res://addons/func_godot/fgd/custom/bot_spawn.tres" id="2_ouf3l"]
@@ -34,12 +34,10 @@
 [ext_resource type="Resource" uid="uid://bnxu5cvr6vh3f" path="res://addons/func_godot/fgd/custom/water.tres" id="31_q275a"]
 [ext_resource type="Resource" uid="uid://cxepfiyodlqn7" path="res://addons/func_godot/fgd/custom/grass.tres" id="32_ydbh2"]
 [ext_resource type="Resource" uid="uid://cfrh8ia5ul3dq" path="res://addons/func_godot/fgd/custom/rainwater.tres" id="33_32l44"]
+[ext_resource type="Resource" uid="uid://cb50tu2hn3ymp" path="res://addons/func_godot/fgd/custom/props_shootable_target.tres" id="34_cewsx"]
 
 [resource]
 script = ExtResource("5_dino8")
-export_file = false
-target_map_editor = 1
-fgd_name = "FuncGodot"
 base_fgd_files = Array[Resource]([ExtResource("1_p7j0e")])
-entity_definitions = Array[Resource]([ExtResource("2_ouf3l"), ExtResource("3_jqja6"), ExtResource("4_778nb"), ExtResource("5_ouf3l"), ExtResource("6_jqja6"), ExtResource("7_778nb"), ExtResource("8_dino8"), ExtResource("9_i355k"), ExtResource("10_25cyq"), ExtResource("11_bbnmw"), ExtResource("12_8mg6p"), ExtResource("13_m2eip"), ExtResource("14_p4ej5"), ExtResource("15_rpjpf"), ExtResource("16_gpv32"), ExtResource("17_bjf4j"), ExtResource("18_6y5vw"), ExtResource("19_7ncat"), ExtResource("20_g1uvd"), ExtResource("21_y8dke"), ExtResource("22_vc1p7"), ExtResource("23_nbc18"), ExtResource("24_jsx05"), ExtResource("25_fujb3"), ExtResource("26_yysb8"), ExtResource("27_0nw5q"), ExtResource("28_vfcb4"), ExtResource("29_thvbm"), ExtResource("30_ngc6h"), ExtResource("31_q275a"), ExtResource("32_ydbh2"), ExtResource("33_32l44")])
+entity_definitions = Array[Resource]([ExtResource("2_ouf3l"), ExtResource("3_jqja6"), ExtResource("4_778nb"), ExtResource("5_ouf3l"), ExtResource("6_jqja6"), ExtResource("7_778nb"), ExtResource("8_dino8"), ExtResource("9_i355k"), ExtResource("10_25cyq"), ExtResource("11_bbnmw"), ExtResource("12_8mg6p"), ExtResource("13_m2eip"), ExtResource("14_p4ej5"), ExtResource("15_rpjpf"), ExtResource("16_gpv32"), ExtResource("17_bjf4j"), ExtResource("18_6y5vw"), ExtResource("19_7ncat"), ExtResource("20_g1uvd"), ExtResource("21_y8dke"), ExtResource("22_vc1p7"), ExtResource("23_nbc18"), ExtResource("24_jsx05"), ExtResource("25_fujb3"), ExtResource("26_yysb8"), ExtResource("27_0nw5q"), ExtResource("28_vfcb4"), ExtResource("29_thvbm"), ExtResource("30_ngc6h"), ExtResource("31_q275a"), ExtResource("32_ydbh2"), ExtResource("33_32l44"), ExtResource("34_cewsx")])
 metadata/_custom_type_script = "uid://b3rx6ge1lps31"

@@ -113,3 +113,5 @@
 	grass_scale(float) : "Scale the size of the grass." : 1
 	spacing(float) : "Distance between grass blades. Value between 0 and 1. Lower Values less grass blades and better preformance" : 0.4
 ]
+
+@PointClass size(-8 -8 -8, 8 8 8) color(255 50 50) = props_shootable_target : "Target" []
