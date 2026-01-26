@@ -4391,7 +4391,7 @@ mesh = SubResource("ArrayMesh_dsgr1")
 skeleton = NodePath("")
 
 [node name="knife" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
-transform = Transform3D(0.0987963, -0.015446, -0.000841274, -0.000539298, 0.00199591, -0.0999785, 0.0154595, 0.0987797, 0.00188858, 0.183503, -0.105145, -0.144348)
+transform = Transform3D(0.0987963, -0.015446011, -0.0008412744, -0.0005392984, 0.0019959088, -0.0999785, 0.015459501, 0.0987797, 0.0018885825, 0.183503, -0.105145, -0.144348)
 visible = false
 
 [node name="Knife2" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/knife"]
@@ -4400,7 +4400,7 @@ mesh = SubResource("ArrayMesh_1bgpi")
 skeleton = NodePath("")
 
 [node name="ak47" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
-transform = Transform3D(-7.23998e-06, 0, 2, 0, 2, 0, -2, 0, -7.23998e-06, 0, -1.72134, 0)
+transform = Transform3D(-7.2399803e-06, 0, 2, 0, 2, 0, -2, 0, -7.2399803e-06, 0, -1.72134, 0)
 visible = false
 
 [node name="AK47" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/ak47"]
@@ -4412,7 +4412,7 @@ skeleton = NodePath("")
 [node name="flame_spell" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
 
 [node name="hand" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/flame_spell"]
-transform = Transform3D(0.0996258, 0, -0.0518552, 0, 0.1, 0, 0.00864253, 0, 0.597755, 0.497338, -0.256598, -0.472583)
+transform = Transform3D(0.0996258, 0, -0.05185521, 0, 0.1, 0, 0.008642533, 0, 0.597755, 0.497338, -0.256598, -0.472583)
 visible = false
 layers = 2
 mesh = SubResource("BoxMesh_834po")
@@ -4442,7 +4442,7 @@ anim_offset_min = 0.219
 anim_offset_max = 0.7921
 
 [node name="rocket_launcher" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
-transform = Transform3D(-3.35832e-08, -0.00868258, 0.0492404, 0.05, -1.81e-07, 2.18557e-09, 1.7787e-07, 0.0492404, 0.00868258, 1.3, -0.5, -2.2)
+transform = Transform3D(-3.3583202e-08, -0.0086825825, 0.0492404, 0.05, -1.8099966e-07, 2.1855717e-09, 1.7787009e-07, 0.0492404, 0.0086825825, 1.3, -0.5, -2.2)
 visible = false
 
 [node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher"]
@@ -4454,7 +4454,7 @@ mesh = SubResource("ArrayMesh_44dhd")
 skeleton = NodePath("")
 
 [node name="rocket" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher"]
-transform = Transform3D(3.55386e-06, -6.91747e-07, 1, -0.173648, -0.984808, -6.41175e-08, 0.984808, -0.173648, -3.61999e-06, 3.43323e-05, 4.98113, -5.21425)
+transform = Transform3D(3.5538608e-06, -6.9174683e-07, 1, -0.17364782, -0.9848078, -6.41175e-08, 0.9848078, -0.17364782, -3.6199901e-06, 3.43323e-05, 4.98113, -5.21425)
 visible = false
 
 [node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher/rocket"]
@@ -4466,7 +4466,7 @@ mesh = SubResource("ArrayMesh_ipnpe")
 skeleton = NodePath("")
 
 [node name="grenade" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
-transform = Transform3D(0.454216, -0.138737, -0.880022, 0.0671034, 0.990321, -0.121491, 0.88836, -0.00386928, 0.45913, 0.647791, -0.626831, -0.839788)
+transform = Transform3D(0.45421582, -0.13873704, -0.8800221, 0.06710338, 0.9903209, -0.121491075, 0.8883601, -0.0038692849, 0.45912966, 0.647791, -0.626831, -0.839788)
 visible = false
 
 [node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/grenade"]
@@ -4598,7 +4598,7 @@ skeleton = NodePath("")
 [node name="wand" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
 
 [node name="wand_01" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/wand"]
-transform = Transform3D(1, 0, 0, 0, -0.0755018, 0.997145, 0, -0.997146, -0.0755018, 0, -0.361018, -0.537551)
+transform = Transform3D(1, 0, 0, 0, -0.07550184, 0.997145, 0, -0.997146, -0.075501755, 0, -0.361018, -0.537551)
 visible = false
 
 [node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/wand/wand_01"]

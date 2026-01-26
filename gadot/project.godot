@@ -13,7 +13,7 @@ config_version=5
 config/name="Wizards With Guns"
 run/main_scene="res://tscn/shader_precomp.tscn"
 run/enable_alt_space_menu=true
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/image="res://mat/splash.png"
 config/icon="res://mat/ico.png"
 
@@ -236,8 +236,8 @@ common/max_physics_steps_per_frame=60
 3d/physics_engine="Jolt Physics"
 jolt_physics_3d/simulation/velocity_steps=120
 jolt_physics_3d/simulation/position_steps=120
-jolt_physics_3d/simulation/areas_detect_static_bodies=true
 common/physics_interpolation=true
+jolt_physics_3d/simulation/areas_detect_static_bodies=true
 jolt_3d/collisions/areas_detect_static_bodies=true
 jolt_3d/collisions/report_all_kinematic_contacts=true
 

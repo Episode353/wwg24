@@ -70,6 +70,9 @@ func on_object_picked_up(object_path: NodePath):
 		body.add_to_group("is_grabbed")
 		player.grabbed_object = body
 		player.is_holding_object = true
+		
+		# Disable Collision with player
+		body.add_collision_exception_with(player)
 
 
 func create_6dof_joint(body: RigidBody3D):
@@ -93,6 +96,8 @@ func release_grabbed_object():
 		grab_joint = null
 
 	if player.grabbed_object:
+		# Re enable collision with player
+		player.grabbed_object.remove_collision_exception_with(player)
 		# Optionally allow the object to sleep again
 		player.grabbed_object.can_sleep = true
 		# *** Remove the object from the "is_grabbed" group when it is released. ***
