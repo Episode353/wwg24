@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://d5qfreuxoai3"]
+[gd_scene format=3 uid="uid://d5qfreuxoai3"]
 
 [ext_resource type="Script" uid="uid://jumc38cpwqso" path="res://entities/player/damage_indicator.gd" id="1_iovl4"]
 [ext_resource type="FontFile" uid="uid://6e20625007tp" path="res://fonts/Daydream.ttf" id="2_04166"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=1261155369]
 script = ExtResource("1_iovl4")
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="Label3D" type="Label3D" parent="." unique_id=578134080]
 billboard = 1
 modulate = Color(1, 0, 0, 1)
 text = "Damage:"
@@ -14,7 +14,7 @@ font = ExtResource("2_04166")
 font_size = 128
 outline_size = 64
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=654517190]
 process_callback = 0
 wait_time = 0.5
 one_shot = true

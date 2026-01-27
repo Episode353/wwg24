@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnvdtqmyod42p"]
+[gd_scene format=3 uid="uid://cnvdtqmyod42p"]
 
 [ext_resource type="Shader" uid="uid://cqwjhklfsxrk5" path="res://addons/EffectBlocks/source_files/shaders/water.gdshader" id="1_uenhv"]
 
@@ -34,6 +34,6 @@ subdivide_width = 48
 subdivide_depth = 48
 orientation = 1
 
-[node name="Water" type="MeshInstance3D"]
+[node name="Water" type="MeshInstance3D" unique_id=337707199 groups=["HealthDrop"]]
 layers = 65536
 mesh = SubResource("QuadMesh_tj7r8")

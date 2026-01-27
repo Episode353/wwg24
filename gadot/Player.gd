@@ -236,16 +236,18 @@ func _physics_process(delta):
 			health = 0
 		player_death()
 		return  # Exit early after death
-	
+	_check_mana_pool()
+	calculate_fire_damage()
+	_check_health_pool()
 	if not is_multiplayer_authority():
 		return
 	
-	calculate_fire_damage()
+	
+
 	if is_bot: return
 	# ... rest of function
 
-	_check_mana_pool()
-	_check_health_pool()
+
 	
 	# HEAL: spend 2 mana, gain 1 health
 	if weapons_manager.get_current_wand_spell() == "Heal" and weapons_manager.current_weapon.weapon_name == "wand":

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://hu37f2jhi0lj" path="res://mat/bullet_hole_0.png" id="1_g4dty"]
 [ext_resource type="Script" uid="uid://bddv4jwhb4vur" path="res://tscn/bullet_decal.gd" id="1_j4246"]
 
-[node name="BulletDecal" type="Node3D" unique_id=400646451 groups=["bullet_decal"]]
+[node name="BulletDecal" type="Node3D" unique_id=400646451]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.02)
 script = ExtResource("1_j4246")
 
@@ -13,12 +13,8 @@ one_shot = true
 autostart = true
 
 [node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1029687215]
-transform = Transform3D(0.03, 0, 0, 0, -1.3113416e-09, -0.03, 0, 0.03, -1.3113416e-09, 0, 0, 0)
+transform = Transform3D(0.05, 0, 0, 0, -2.18557e-09, -0.05, 0, 0.05, -2.18557e-09, 0, 0, 0)
 axis = 1
 texture = ExtResource("1_g4dty")
-
-[node name="RayCast3D" type="RayCast3D" parent="." unique_id=2146492265]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.045)
-target_position = Vector3(0, -0.1, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

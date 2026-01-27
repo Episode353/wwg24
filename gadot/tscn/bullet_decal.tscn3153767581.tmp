@@ -6,6 +6,7 @@
 [node name="BulletDecal" type="Node3D" unique_id=400646451 groups=["bullet_decal"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.02)
 script = ExtResource("1_j4246")
+collision_mask = null
 
 [node name="Timer" type="Timer" parent="." unique_id=317705808]
 wait_time = 60.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=194 format=4 uid="uid://xcjrjq5cbn7y"]
+[gd_scene format=4 uid="uid://xcjrjq5cbn7y"]
 
 [ext_resource type="Script" uid="uid://d2ne21fikmggg" path="res://Player.gd" id="1_ebgxs"]
 [ext_resource type="Script" uid="uid://ddnxxp2m6samt" path="res://main_camera.gd" id="2_38wgo"]
@@ -4281,143 +4281,141 @@ material = SubResource("StandardMaterial3D_seme2")
 radius = 0.05
 height = 0.1
 
-[node name="Player" type="CharacterBody3D" groups=["moveable", "players"]]
+[node name="Player" type="CharacterBody3D" unique_id=1960304952 groups=["moveable", "players"]]
 collision_layer = 48
 collision_mask = 273
 floor_max_angle = 0.872665
 script = ExtResource("1_ebgxs")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=2110489231]
 replication_config = SubResource("SceneReplicationConfig_06gil")
 
-[node name="standing_collision_shape" type="CollisionShape3D" parent="."]
+[node name="standing_collision_shape" type="CollisionShape3D" parent="." unique_id=1882998739]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_5mehu")
 
-[node name="crouching_collision_shape" type="CollisionShape3D" parent="."]
+[node name="crouching_collision_shape" type="CollisionShape3D" parent="." unique_id=1121176952]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_stbbh")
 
-[node name="raycast_wall" type="RayCast3D" parent="."]
+[node name="raycast_wall" type="RayCast3D" parent="." unique_id=1118973053]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82686, -0.5)
 target_position = Vector3(0, 0, -0.75)
 
-[node name="raycast_crouching" type="RayCast3D" parent="."]
+[node name="raycast_crouching" type="RayCast3D" parent="." unique_id=1772344597]
 visible = false
 target_position = Vector3(0, 2, 0)
 
-[node name="neck" type="Node3D" parent="."]
+[node name="neck" type="Node3D" parent="." unique_id=1999474567]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
-[node name="head" type="Node3D" parent="neck"]
+[node name="head" type="Node3D" parent="neck" unique_id=78854118]
 
-[node name="main_camera" type="Camera3D" parent="neck/head" groups=["cameras"]]
+[node name="main_camera" type="Camera3D" parent="neck/head" unique_id=155311168 groups=["cameras"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00521731, 0.00207496, 0.00310946)
 cull_mask = 1
 attributes = ExtResource("2_vbl0t")
 script = ExtResource("2_38wgo")
 
-[node name="area_collision" type="Area3D" parent="neck/head/main_camera"]
+[node name="area_collision" type="Area3D" parent="neck/head/main_camera" unique_id=1226036956]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
 collision_layer = 16
 collision_mask = 16
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="neck/head/main_camera/area_collision"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="neck/head/main_camera/area_collision" unique_id=78196256]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83884, -2.25891)
 shape = SubResource("BoxShape3D_7xjel")
 
-[node name="Timer" type="Timer" parent="neck/head/main_camera/area_collision"]
+[node name="Timer" type="Timer" parent="neck/head/main_camera/area_collision" unique_id=1402704099]
 wait_time = 20.0
 
-[node name="interaction_ray" type="RayCast3D" parent="neck/head/main_camera"]
+[node name="interaction_ray" type="RayCast3D" parent="neck/head/main_camera" unique_id=475869958]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0477791, -0.0020399)
 target_position = Vector3(0, 0, -5)
 collision_mask = 256
 collide_with_areas = true
 script = ExtResource("3_hxk1l")
 
-[node name="raycast_shoot" type="RayCast3D" parent="neck/head/main_camera"]
+[node name="raycast_shoot" type="RayCast3D" parent="neck/head/main_camera" unique_id=1720320357]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0238895, -0.00101995)
 target_position = Vector3(0, 0, -50)
 collision_mask = 289
 hit_back_faces = false
 collide_with_areas = true
 
-[node name="Weapons_Manager" type="Node3D" parent="neck/head/main_camera" groups=["weapons_manager"]]
+[node name="Weapons_Manager" type="Node3D" parent="neck/head/main_camera" unique_id=1336135227 groups=["weapons_manager"]]
 script = ExtResource("2_dh310")
 _weapon_resources = Array[ExtResource("4_qoin8")]([ExtResource("3_vtnjn"), ExtResource("6_vxs5u"), ExtResource("8_85x0p"), ExtResource("9_022uy"), ExtResource("7_207gd"), ExtResource("10_ccirh"), ExtResource("12_2sgvr"), ExtResource("7_6ncrt"), ExtResource("15_oqu52")])
 start_weapons = Array[String](["hands"])
 
-[node name="FPS_RIG" type="Node3D" parent="neck/head/main_camera/Weapons_Manager"]
+[node name="FPS_RIG" type="Node3D" parent="neck/head/main_camera/Weapons_Manager" unique_id=748149423]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
-libraries = {
-&"": SubResource("AnimationLibrary_hucl6")
-}
-autoplay = "RESET"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG" unique_id=891165500]
+libraries/ = SubResource("AnimationLibrary_hucl6")
+autoplay = &"RESET"
 
-[node name="shotgun" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
+[node name="shotgun" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG" unique_id=321474506]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.72134, 0)
 visible = false
 
-[node name="cover" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/shotgun"]
+[node name="cover" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/shotgun" unique_id=1894503449]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_s18wd")
 skeleton = NodePath("")
 
-[node name="grip" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/shotgun"]
+[node name="grip" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/shotgun" unique_id=141252577]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_g1yim")
 skeleton = NodePath("")
 
-[node name="box01" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/shotgun"]
+[node name="box01" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/shotgun" unique_id=1503610164]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_wr5kx")
 skeleton = NodePath("")
 
-[node name="gun" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/shotgun"]
+[node name="gun" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/shotgun" unique_id=632319309]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_8iw2p")
 skeleton = NodePath("")
 
-[node name="sight" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/shotgun"]
+[node name="sight" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/shotgun" unique_id=1606589518]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_dsgr1")
 skeleton = NodePath("")
 
-[node name="knife" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
+[node name="knife" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG" unique_id=1741688177]
 transform = Transform3D(0.0987963, -0.015446011, -0.0008412744, -0.0005392984, 0.0019959088, -0.0999785, 0.015459501, 0.0987797, 0.0018885825, 0.183503, -0.105145, -0.144348)
 visible = false
 
-[node name="Knife2" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/knife"]
+[node name="Knife2" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/knife" unique_id=656478491]
 layers = 2
 mesh = SubResource("ArrayMesh_1bgpi")
 skeleton = NodePath("")
 
-[node name="ak47" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
+[node name="ak47" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG" unique_id=199259783]
 transform = Transform3D(-7.2399803e-06, 0, 2, 0, 2, 0, -2, 0, -7.2399803e-06, 0, -1.72134, 0)
 visible = false
 
-[node name="AK47" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/ak47"]
+[node name="AK47" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/ak47" unique_id=1213343902]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.137627, 0.144305, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_l6o1d")
 skeleton = NodePath("")
 
-[node name="flame_spell" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
+[node name="flame_spell" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG" unique_id=899549713]
 
-[node name="hand" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/flame_spell"]
+[node name="hand" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/flame_spell" unique_id=692141419]
 transform = Transform3D(0.0996258, 0, -0.05185521, 0, 0.1, 0, 0.008642533, 0, 0.597755, 0.497338, -0.256598, -0.472583)
 visible = false
 layers = 2
 mesh = SubResource("BoxMesh_834po")
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/flame_spell/hand"]
+[node name="CPUParticles3D" type="CPUParticles3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/flame_spell/hand" unique_id=1517168700]
 transform = Transform3D(29.8909, 0, 0, 0, 30, 0, 0, 0, 5.61566, 0.527873, -0.246926, -0.822805)
 visible = false
 emitting = false
@@ -4441,176 +4439,174 @@ anim_speed_max = 14.15
 anim_offset_min = 0.219
 anim_offset_max = 0.7921
 
-[node name="rocket_launcher" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
+[node name="rocket_launcher" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG" unique_id=55778581]
 transform = Transform3D(-3.3583202e-08, -0.0086825825, 0.0492404, 0.05, -1.8099966e-07, 2.1855717e-09, 1.7787009e-07, 0.0492404, 0.0086825825, 1.3, -0.5, -2.2)
 visible = false
 
-[node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher"]
+[node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher" unique_id=831474479]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 
-[node name="Layer_1" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher/Node"]
+[node name="Layer_1" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher/Node" unique_id=457462539]
 layers = 2
 mesh = SubResource("ArrayMesh_44dhd")
 skeleton = NodePath("")
 
-[node name="rocket" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher"]
+[node name="rocket" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher" unique_id=1757387650]
 transform = Transform3D(3.5538608e-06, -6.9174683e-07, 1, -0.17364782, -0.9848078, -6.41175e-08, 0.9848078, -0.17364782, -3.6199901e-06, 3.43323e-05, 4.98113, -5.21425)
 visible = false
 
-[node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher/rocket"]
+[node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher/rocket" unique_id=284792337]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 
-[node name="Layer_1" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher/rocket/Node"]
+[node name="Layer_1" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/rocket_launcher/rocket/Node" unique_id=616508634]
 layers = 2
 mesh = SubResource("ArrayMesh_ipnpe")
 skeleton = NodePath("")
 
-[node name="grenade" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
-transform = Transform3D(0.45421576, -0.13873702, -0.8800221, 0.06710336, 0.9903208, -0.121491075, 0.88836, -0.0038692844, 0.45912966, 0.647791, -0.626831, -0.839788)
+[node name="grenade" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG" unique_id=1368191459]
+transform = Transform3D(0.45421576, -0.13873702, -0.8800221, 0.06710336, 0.99032074, -0.121491075, 0.88836, -0.0038692842, 0.45912966, 0.647791, -0.626831, -0.839788)
 visible = false
 
-[node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/grenade"]
+[node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/grenade" unique_id=1318435236]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 
-[node name="body" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/grenade/Node"]
+[node name="body" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/grenade/Node" unique_id=1872651090]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_34aab")
 skeleton = NodePath("")
 
-[node name="pin" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/grenade/Node"]
+[node name="pin" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/grenade/Node" unique_id=505799236]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_frqae")
 skeleton = NodePath("")
 
-[node name="pin_1" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/grenade/Node"]
+[node name="pin_1" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/grenade/Node" unique_id=400130694]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_qd5t0")
 skeleton = NodePath("")
 
-[node name="salsa" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
+[node name="salsa" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG" unique_id=2010246653]
 
-[node name="body" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/salsa"]
+[node name="body" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/salsa" unique_id=2119444024]
 transform = Transform3D(0.01, 0, 0, 0, -3.61999e-08, 0.01, 0, -0.01, -3.61999e-08, 0, 0, -1.14374)
 visible = false
 layers = 2
 mesh = SubResource("ArrayMesh_dskyl")
 skeleton = NodePath("")
 
-[node name="the_power" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
+[node name="the_power" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG" unique_id=2012051722]
 visible = false
 script = ExtResource("27_uk5cr")
 
-[node name="the_power" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power"]
+[node name="the_power" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power" unique_id=1935142600]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
 
-[node name="keyboard_animation_player" type="AnimationPlayer" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power"]
-libraries = {
-&"": SubResource("AnimationLibrary_l02vw")
-}
+[node name="keyboard_animation_player" type="AnimationPlayer" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power" unique_id=1249935176]
+libraries/ = SubResource("AnimationLibrary_l02vw")
 speed_scale = 100.0
 
-[node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power"]
+[node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power" unique_id=1108893372]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 
-[node name="Base" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Base" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=1017841380]
 layers = 2
 mesh = SubResource("ArrayMesh_kahu0")
 skeleton = NodePath("")
 
-[node name="Key01" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key01" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=1679392994]
 layers = 2
 mesh = SubResource("ArrayMesh_ra45x")
 skeleton = NodePath("")
 
-[node name="Key02" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key02" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=1252242092]
 layers = 2
 mesh = SubResource("ArrayMesh_rgw3a")
 skeleton = NodePath("")
 
-[node name="Key03" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key03" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=1627627173]
 layers = 2
 mesh = SubResource("ArrayMesh_4e1b7")
 skeleton = NodePath("")
 
-[node name="Key04" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key04" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=844147695]
 layers = 2
 mesh = SubResource("ArrayMesh_n5jtc")
 skeleton = NodePath("")
 
-[node name="Key05" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key05" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=1282364339]
 layers = 2
 mesh = SubResource("ArrayMesh_wgdcx")
 skeleton = NodePath("")
 
-[node name="Key042" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key042" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=1396678557]
 layers = 2
 mesh = SubResource("ArrayMesh_2slap")
 skeleton = NodePath("")
 
-[node name="Key052" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key052" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=1326157217]
 layers = 2
 mesh = SubResource("ArrayMesh_awwmv")
 skeleton = NodePath("")
 
-[node name="Key06" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key06" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=81636974]
 layers = 2
 mesh = SubResource("ArrayMesh_3mhu8")
 skeleton = NodePath("")
 
-[node name="Key062" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key062" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=926224683]
 layers = 2
 mesh = SubResource("ArrayMesh_ep87f")
 skeleton = NodePath("")
 
-[node name="Key07" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key07" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=2127141878]
 layers = 2
 mesh = SubResource("ArrayMesh_lo622")
 skeleton = NodePath("")
 
-[node name="Key08" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key08" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=576117121]
 layers = 2
 mesh = SubResource("ArrayMesh_pf47a")
 skeleton = NodePath("")
 
-[node name="Key09" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key09" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=117928118]
 layers = 2
 mesh = SubResource("ArrayMesh_4l4d4")
 skeleton = NodePath("")
 
-[node name="Key10" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key10" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=424721496]
 layers = 2
 mesh = SubResource("ArrayMesh_371k4")
 skeleton = NodePath("")
 
-[node name="Key11" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key11" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=720695045]
 layers = 2
 mesh = SubResource("ArrayMesh_jj0hk")
 skeleton = NodePath("")
 
-[node name="Key12" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node"]
+[node name="Key12" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/the_power/the_power/Node" unique_id=410998696]
 layers = 2
 mesh = SubResource("ArrayMesh_b25bb")
 skeleton = NodePath("")
 
-[node name="wand" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
+[node name="wand" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG" unique_id=1155994702]
 
-[node name="wand_01" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/wand"]
+[node name="wand_01" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/wand" unique_id=2131933272]
 transform = Transform3D(1, 0, 0, 0, -0.07550184, 0.997145, 0, -0.997146, -0.075501755, 0, -0.361018, -0.537551)
 visible = false
 
-[node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/wand/wand_01"]
+[node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/wand/wand_01" unique_id=1698954599]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 
-[node name="Layer_1" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/wand/wand_01/Node"]
+[node name="Layer_1" type="MeshInstance3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/wand/wand_01/Node" unique_id=1639989271]
 transform = Transform3D(1.98975, -0.00298209, 0.202246, 0.0710846, 1.88253, -0.671589, -0.189366, 0.675334, 1.87298, 0.496813, 0.00214422, -0.934401)
 layers = 2
 mesh = SubResource("ArrayMesh_262ai")
 skeleton = NodePath("")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="neck/head/main_camera"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="neck/head/main_camera" unique_id=30523419]
 z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -4619,30 +4615,30 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="viewmodel_viewport" type="SubViewport" parent="neck/head/main_camera/SubViewportContainer"]
+[node name="viewmodel_viewport" type="SubViewport" parent="neck/head/main_camera/SubViewportContainer" unique_id=859106769]
 transparent_bg = true
 handle_input_locally = false
 canvas_cull_mask = 4293918720
 render_target_update_mode = 4
 
-[node name="viewmodel_camera" type="Camera3D" parent="neck/head/main_camera/SubViewportContainer/viewmodel_viewport" groups=["cameras"]]
+[node name="viewmodel_camera" type="Camera3D" parent="neck/head/main_camera/SubViewportContainer/viewmodel_viewport" unique_id=3735005 groups=["cameras"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00521731, 0.00207496, 0.00310946)
 cull_mask = 2
 fov = 37.8493
 script = ExtResource("28_p4825")
 
-[node name="holding_body" type="StaticBody3D" parent="neck/head/main_camera"]
+[node name="holding_body" type="StaticBody3D" parent="neck/head/main_camera" unique_id=1814260149]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.88758e-06, -1.76314)
 collision_layer = 256
 collision_mask = 257
 
-[node name="bot_debug_direction" type="CSGCylinder3D" parent="neck/head/main_camera"]
+[node name="bot_debug_direction" type="CSGCylinder3D" parent="neck/head/main_camera" unique_id=865551037]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -5)
 visible = false
 radius = 0.01
 height = 10.0
 
-[node name="username_label" type="Label3D" parent="."]
+[node name="username_label" type="Label3D" parent="." unique_id=111491815]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59967, 0)
 billboard = 2
 text = "Example Name"
@@ -4650,7 +4646,7 @@ font_size = 64
 outline_size = 32
 script = ExtResource("28_ip48q")
 
-[node name="Bot_Label" type="Label3D" parent="."]
+[node name="Bot_Label" type="Label3D" parent="." unique_id=151350462]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98495, 0)
 visible = false
 billboard = 2
@@ -4658,7 +4654,7 @@ text = "(Bot)"
 font_size = 64
 outline_size = 32
 
-[node name="display_health" type="Label3D" parent="."]
+[node name="display_health" type="Label3D" parent="." unique_id=395057409]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13091, 0)
 pixel_size = 0.002
 billboard = 2
@@ -4667,7 +4663,7 @@ font_size = 64
 outline_size = 32
 script = ExtResource("30_jkaaj")
 
-[node name="Weapon" type="Label3D" parent="."]
+[node name="Weapon" type="Label3D" parent="." unique_id=1996990359]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3049, 0)
 pixel_size = 0.002
 billboard = 2
@@ -4675,23 +4671,23 @@ text = "Example Name"
 font_size = 64
 outline_size = 32
 
-[node name="3p_model" type="Node3D" parent="."]
+[node name="3p_model" type="Node3D" parent="." unique_id=451481498]
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="3p_model"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="3p_model" unique_id=202470452]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 radius = 0.519
 material = SubResource("StandardMaterial3D_fwmod")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=38624376]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.251266, 0)
 collision_mask = 32768
 
-[node name="CollisionScript" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionScript" type="CollisionShape3D" parent="Area3D" unique_id=1047141250]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24581, 0)
 shape = SubResource("CapsuleShape3D_m5ipm")
 script = ExtResource("26_arl6k")
 
-[node name="PlayerFlamesFx" type="GPUParticles3D" parent="Area3D"]
+[node name="PlayerFlamesFx" type="GPUParticles3D" parent="Area3D" unique_id=959159554]
 emitting = false
 amount = 200
 randomness = 1.0
@@ -4699,43 +4695,42 @@ fixed_fps = 20
 process_material = SubResource("ParticleProcessMaterial_d2t3e")
 draw_pass_1 = SubResource("SphereMesh_65fof")
 
-[node name="StairsAheadRayCast3D" type="RayCast3D" parent="."]
+[node name="StairsAheadRayCast3D" type="RayCast3D" parent="." unique_id=335620354]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -1)
 target_position = Vector3(0, -0.55, 0)
 
-[node name="StairsBelowRayCast3D" type="RayCast3D" parent="."]
+[node name="StairsBelowRayCast3D" type="RayCast3D" parent="." unique_id=1596098212]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0342386, 0)
 target_position = Vector3(0, -0.75, 0)
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1613886407]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20213, 0)
 attenuation_model = 2
 max_db = 0.0
 max_distance = 10.0
 
-[node name="player_hurt_noise" type="AudioStreamPlayer3D" parent="."]
+[node name="player_hurt_noise" type="AudioStreamPlayer3D" parent="." unique_id=1623838669]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20213, 0)
 stream = ExtResource("34_jjjwd")
 volume_db = -30.0
 max_db = -10.0
 
-[node name="FootstepAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="FootstepAudioPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1673682795]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.116977, 0)
 attenuation_model = 2
 volume_db = -35.0
 max_db = 0.0
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=2039117035]
 simplify_path = true
 simplify_epsilon = 1.0
 avoidance_enabled = true
 radius = 1.0
 use_3d_avoidance = true
-debug_enabled = true
 
-[node name="Bot_Logic" type="Node3D" parent="."]
+[node name="Bot_Logic" type="Node3D" parent="." unique_id=6256111]
 script = ExtResource("35_oump4")
 
 [connection signal="timeout" from="neck/head/main_camera/area_collision/Timer" to="neck/head/main_camera/Weapons_Manager" method="_on_timer_timeout"]

@@ -1,27 +1,14 @@
-[gd_scene load_steps=50 format=3 uid="uid://c8oqxmm2w2wvv"]
+[gd_scene format=3 uid="uid://c8oqxmm2w2wvv"]
 
 [ext_resource type="Script" uid="uid://balg5y2xwumxc" path="res://world.gd" id="1_6tkge"]
 [ext_resource type="Script" uid="uid://cgfnx548wmxwr" path="res://sys/ServerConnectionHandler.gd" id="2_hna3u"]
-[ext_resource type="Resource" uid="uid://ca45noqewsyvp" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_experimental_blur_stage.tres" id="2_ikiii"]
 [ext_resource type="Script" uid="uid://dlji1l8xhgvux" path="res://CanvasLayer.gd" id="2_sgno6"]
-[ext_resource type="Resource" uid="uid://cslvcweyejh3c" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_movement_component.tres" id="2_wukud"]
-[ext_resource type="Resource" uid="uid://cvb65hfs2lrxo" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_neighbor_max_stage.tres" id="3_cbp6q"]
-[ext_resource type="Resource" uid="uid://iru8ynu04i00" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_rotation_component.tres" id="3_il2jm"]
-[ext_resource type="Resource" uid="uid://bidsfymvdyhek" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_overlay_stage.tres" id="4_26xuy"]
 [ext_resource type="Shader" uid="uid://cqn84s5kso51x" path="res://sys/shaders/COLOR_PALETTE.gdshader" id="4_73exp"]
 [ext_resource type="Shader" uid="uid://bdrf4xixe0qf3" path="res://sys/shaders/CRT_SHADER.gdshader" id="4_hlbr0"]
 [ext_resource type="Shader" uid="uid://cttxqdvjm1xil" path="res://sys/shaders/VHS_SHADER.gdshader" id="4_paja1"]
-[ext_resource type="Resource" uid="uid://rp3mpjmisoyh" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_object_movement_component.tres" id="4_wjb0r"]
 [ext_resource type="Shader" uid="uid://bq5y5ovypy0pn" path="res://sys/shaders/CROSSHAIR_SHADER.gdshader" id="4_y0pat"]
-[ext_resource type="Script" uid="uid://xdrmckvuitsc" path="res://addons/SphynxMotionBlurToolkit/Guertin/new_guertin_motion_blur.gd" id="5_bc84e"]
 [ext_resource type="Texture2D" uid="uid://cii13l8l6362c" path="res://mat/aurora-1x.png" id="5_j4an6"]
-[ext_resource type="Resource" uid="uid://c8ulad7utgrg7" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processing_stage.tres" id="5_mc2jv"]
-[ext_resource type="Script" uid="uid://dagbguxydihal" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processor.gd" id="6_bo7i5"]
-[ext_resource type="Resource" uid="uid://dipvwksvqb3dm" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_max_x_stage.tres" id="6_wukud"]
 [ext_resource type="PackedScene" uid="uid://c1lfio6su6m7o" path="res://menufadein.tscn" id="7_bypg1"]
-[ext_resource type="Resource" uid="uid://bxfg45ubc2pv7" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_max_y_stage.tres" id="7_il2jm"]
-[ext_resource type="Resource" uid="uid://bqehecsdgt70s" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_variance_stage.tres" id="8_wjb0r"]
-[ext_resource type="Script" uid="uid://co04ap10rbrrg" path="res://addons/SphynxMotionBlurToolkit/BaseClasses/mb_compositor.gd" id="9_mc2jv"]
 [ext_resource type="LabelSettings" uid="uid://bnk2duqdctk5g" path="res://fonts/hud_labels.tres" id="22_wjb0r"]
 [ext_resource type="Script" uid="uid://drtjocjfacr7n" path="res://sys/scripts/radial_menu.gd" id="23_k83mh"]
 [ext_resource type="Script" uid="uid://vbaq2o0k4qkk" path="res://tb_loader.gd" id="24_mc2jv"]
@@ -50,9 +37,19 @@ sky_material = SubResource("ProceduralSkyMaterial_clnmc")
 background_mode = 2
 sky = SubResource("Sky_ayvap")
 tonemap_mode = 4
-tonemap_exposure = 0.74
+tonemap_exposure = 0.55
+tonemap_agx_white = 16.5
+tonemap_agx_contrast = 1.59
+ssao_enabled = true
+ssao_radius = 6.25
+ssao_intensity = 3.05
+ssao_detail = 5.0
+ssao_horizon = 0.0
+ssao_sharpness = 0.27
+sdfgi_use_occlusion = true
 glow_map = SubResource("GradientTexture2D_7yniy")
 fog_density = 0.001
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.015
 volumetric_fog_albedo = Color(0.321728, 0.321728, 0.321728, 1)
 volumetric_fog_emission = Color(0.0962047, 0.0962048, 0.0962047, 1)
@@ -60,33 +57,6 @@ volumetric_fog_gi_inject = 0.4
 adjustment_enabled = true
 adjustment_brightness = 1.4
 adjustment_saturation = 1.2
-
-[sub_resource type="CompositorEffect" id="CompositorEffect_il2jm"]
-resource_local_to_scene = false
-resource_name = ""
-enabled = true
-effect_callback_type = 4
-needs_motion_vectors = false
-needs_normal_roughness = false
-script = ExtResource("6_bo7i5")
-metadata/_custom_type_script = "uid://dagbguxydihal"
-
-[sub_resource type="CompositorEffect" id="CompositorEffect_wjb0r"]
-resource_local_to_scene = false
-resource_name = ""
-enabled = true
-effect_callback_type = 4
-needs_motion_vectors = false
-needs_normal_roughness = false
-script = ExtResource("5_bc84e")
-metadata/_custom_type_script = "uid://xdrmckvuitsc"
-
-[sub_resource type="Compositor" id="Compositor_mc2jv"]
-compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_il2jm"), SubResource("CompositorEffect_wjb0r")])
-script = ExtResource("9_mc2jv")
-samples = 4
-intensity = 0.112
-metadata/_custom_type_script = "uid://co04ap10rbrrg"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkytg"]
 bg_color = Color(0.678431, 0.0980392, 0.772549, 1)
@@ -154,33 +124,32 @@ gradient = SubResource("Gradient_t8x7k")
 [sub_resource type="NavigationMesh" id="NavigationMesh_p4c1t"]
 agent_radius = 1.5
 
-[node name="World" type="Node" groups=["world_root"]]
+[node name="World" type="Node" unique_id=1886471463 groups=["world_root"]]
 script = ExtResource("1_6tkge")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1755706321]
 environment = SubResource("Environment_kwrsd")
-compositor = SubResource("Compositor_mc2jv")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1604481757]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 light_color = Color(1, 1, 0.678431, 1)
 shadow_enabled = true
 directional_shadow_blend_splits = true
 directional_shadow_max_distance = 8192.0
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=502359269]
 _spawnable_scenes = PackedStringArray("uid://xcjrjq5cbn7y")
 spawn_path = NodePath("..")
 
-[node name="ServerConnectionHandler" type="Node" parent="."]
+[node name="ServerConnectionHandler" type="Node" parent="." unique_id=1693137038]
 script = ExtResource("2_hna3u")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="ServerConnectionHandler"]
+[node name="HTTPRequest" type="HTTPRequest" parent="ServerConnectionHandler" unique_id=2015997127]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1488008598]
 script = ExtResource("2_sgno6")
 
-[node name="HUD" type="Control" parent="CanvasLayer"]
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=29244221]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -189,7 +158,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ManaBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+[node name="ManaBar" type="ProgressBar" parent="CanvasLayer/HUD" unique_id=1037893348]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -203,7 +172,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_lkytg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qy444")
 value = 50.0
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD" unique_id=1130048177]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -216,7 +185,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_3lhvk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vcby2")
 value = 100.0
 
-[node name="COLOR PALETE" type="TextureRect" parent="CanvasLayer/HUD"]
+[node name="COLOR PALETE" type="TextureRect" parent="CanvasLayer/HUD" unique_id=659019404]
 visible = false
 modulate = Color(1, 1, 1, 0.254902)
 z_index = 3
@@ -231,7 +200,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("PlaceholderTexture2D_s3tfj")
 
-[node name="CRT SHADER" type="ColorRect" parent="CanvasLayer/HUD"]
+[node name="CRT SHADER" type="ColorRect" parent="CanvasLayer/HUD" unique_id=1451629723]
 visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_ipgik")
@@ -242,7 +211,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VHS Shader" type="ColorRect" parent="CanvasLayer/HUD"]
+[node name="VHS Shader" type="ColorRect" parent="CanvasLayer/HUD" unique_id=164356121]
 material = SubResource("ShaderMaterial_ohlmd")
 layout_mode = 1
 anchors_preset = 15
@@ -252,7 +221,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Crosshair Shader" type="TextureRect" parent="CanvasLayer/HUD"]
+[node name="Crosshair Shader" type="TextureRect" parent="CanvasLayer/HUD" unique_id=1507927988]
 visible = false
 light_mask = 1023
 visibility_layer = 1023
@@ -268,12 +237,12 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_ehpd1")
 
-[node name="LOG" type="VBoxContainer" parent="CanvasLayer/HUD"]
+[node name="LOG" type="VBoxContainer" parent="CanvasLayer/HUD" unique_id=335317612]
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 77.0
 
-[node name="FPSCount" type="Label" parent="CanvasLayer/HUD/LOG"]
+[node name="FPSCount" type="Label" parent="CanvasLayer/HUD/LOG" unique_id=634058850]
 layout_mode = 2
 size_flags_horizontal = 0
 tooltip_text = "FPS"
@@ -282,22 +251,22 @@ text = "60"
 label_settings = ExtResource("22_wjb0r")
 horizontal_alignment = 1
 
-[node name="NodesCount" type="Label" parent="CanvasLayer/HUD/LOG"]
+[node name="NodesCount" type="Label" parent="CanvasLayer/HUD/LOG" unique_id=1228403435]
 layout_mode = 2
 size_flags_horizontal = 0
 label_settings = ExtResource("22_wjb0r")
 
-[node name="FrameTime" type="Label" parent="CanvasLayer/HUD/LOG"]
+[node name="FrameTime" type="Label" parent="CanvasLayer/HUD/LOG" unique_id=1828146962]
 layout_mode = 2
 size_flags_horizontal = 0
 label_settings = ExtResource("22_wjb0r")
 
-[node name="Info" type="Label" parent="CanvasLayer/HUD/LOG"]
+[node name="Info" type="Label" parent="CanvasLayer/HUD/LOG" unique_id=842515793]
 visible = false
 layout_mode = 2
 label_settings = ExtResource("22_wjb0r")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD" unique_id=647629574]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -310,39 +279,39 @@ grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/VBoxContainer" unique_id=585677948]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer" unique_id=1625475743]
 layout_mode = 2
 text = "Current Weapon:"
 
-[node name="CurrentWeapon" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer"]
+[node name="CurrentWeapon" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer" unique_id=530810652]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/HUD/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/HUD/VBoxContainer" unique_id=1074120659]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer2" unique_id=1785682621]
 layout_mode = 2
 text = "Ammo:"
 
-[node name="CurrentAmmo" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer2"]
+[node name="CurrentAmmo" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer2" unique_id=1840743268]
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/HUD/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/HUD/VBoxContainer" unique_id=1601981595]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer3" unique_id=376207022]
 layout_mode = 2
 text = "Weapon Stack:"
 
-[node name="WeaponStack" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer3"]
+[node name="WeaponStack" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HBoxContainer3" unique_id=3495766]
 layout_mode = 2
 
-[node name="KillfeedContainter" type="VBoxContainer" parent="CanvasLayer/HUD"]
+[node name="KillfeedContainter" type="VBoxContainer" parent="CanvasLayer/HUD" unique_id=712100019]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -351,7 +320,7 @@ offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
-[node name="WandRadialSelection" type="Control" parent="CanvasLayer/HUD"]
+[node name="WandRadialSelection" type="Control" parent="CanvasLayer/HUD" unique_id=925001577]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -360,7 +329,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Panel" type="Panel" parent="CanvasLayer/HUD/WandRadialSelection"]
+[node name="Panel" type="Panel" parent="CanvasLayer/HUD/WandRadialSelection" unique_id=549699104]
 modulate = Color(0.886275, 0.886275, 0.886275, 0.521569)
 layout_mode = 1
 anchors_preset = 15
@@ -370,7 +339,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Circle" type="Control" parent="CanvasLayer/HUD/WandRadialSelection/Panel"]
+[node name="Circle" type="Control" parent="CanvasLayer/HUD/WandRadialSelection/Panel" unique_id=742325139]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -386,10 +355,10 @@ grow_vertical = 2
 script = ExtResource("23_k83mh")
 normal_color = Color(0.219501, 0.219501, 0.219501, 1)
 
-[node name="menufadein" parent="CanvasLayer" instance=ExtResource("7_bypg1")]
+[node name="menufadein" parent="CanvasLayer" unique_id=15987483 instance=ExtResource("7_bypg1")]
 visible = false
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=1312342641]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -406,7 +375,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("24_o3ebs")
 
-[node name="Label" type="Label" parent="CanvasLayer/ProgressBar"]
+[node name="Label" type="Label" parent="CanvasLayer/ProgressBar" unique_id=482849795]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -417,21 +386,21 @@ offset_bottom = 11.5
 grow_vertical = 2
 text = "Loading Map..."
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=155091895]
 navigation_mesh = SubResource("NavigationMesh_p4c1t")
 
-[node name="TBLoader" type="TBLoader" parent="NavigationRegion3D"]
+[node name="TBLoader" type="TBLoader" parent="NavigationRegion3D" unique_id=8145401]
 map_resource = "res://tbmaps/scraper.map"
 option_skip_hidden_layers = false
 option_filter_nearest = true
 script = ExtResource("24_mc2jv")
 
-[node name="FuncGodotMap" type="Node3D" parent="NavigationRegion3D"]
+[node name="FuncGodotMap" type="Node3D" parent="NavigationRegion3D" unique_id=1996518265]
 script = ExtResource("25_4h6ng")
 map_settings = ExtResource("26_o3ebs")
 metadata/_custom_type_script = "uid://m1jt6dnvql6b"
 
-[node name="Log" type="Node" parent="."]
+[node name="Log" type="Node" parent="." unique_id=1911580930]
 script = ExtResource("24_wjb0r")
 warning_color = Color(0.901961, 0.937255, 0, 1)
 

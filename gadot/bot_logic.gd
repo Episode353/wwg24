@@ -85,11 +85,13 @@ func _ready() -> void:
 
 func initialize_bot() -> void:
 	bot_label.show()
-	bot_debug_direction.show()
+	
 	weapons_manager.infinite_ammo = true
 	weapons_manager.add_weapon(player.bot_starter_weapon)
 	
-	nav_agent.debug_enabled = Globals.show_bot_path
+	# Show Bot Debug Information
+	#bot_debug_direction.show()
+	#nav_agent.debug_enabled = Globals.show_bot_path
 	
 	# Initialize movement target
 	movement_target = get_wander_position()

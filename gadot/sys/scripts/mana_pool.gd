@@ -6,8 +6,8 @@ const WATER_SCENE_PATH := "res://addons/EffectBlocks/assets/water/mana_pool.tscn
 
 
 # ---- exported params (match FGD key names exactly) ----
-@export var water_color: Color = Color(0.294, 0.094, 0.973, 1.0)      # vec4 in shader uses alpha from transparency below
-@export var ripple_color: Color = Color(0.329, 1.0, 1.0, 1.0)
+@export var water_color: Color
+@export var ripple_color: Color
 
 @export var wave_strength : float = 0.2
 @export var wave_speed : float = 0.05
@@ -106,7 +106,6 @@ func _func_godot_build_complete() -> void:
 	# --- Make the original brush transparent blue and add it to "water" group ---
 	var mat := StandardMaterial3D.new()
 	mat.albedo_color = water_color
-
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	#mat.cull_mode = BaseMaterial3D.CULL_DISABLED       # optional: show both sides
 	mat.roughness = 0.5                                 # optional: a little shiny

@@ -8,7 +8,7 @@ var dmg: float = 0.0
 
 @export var merge_distance := 7.0
 @export var fade_start_ratio := 0.5
-@export var shrink_to := 0.6
+@export var shrink_to := 0.0
 
 var _base_a := 1.0
 var _base_outline_a := 1.0
@@ -76,16 +76,16 @@ func _fade_and_shrink():
 
 	var t := (progress - fade_start_ratio) / (1.0 - fade_start_ratio)
 
-	# Main text fades normally
-	var m := label_3d.modulate
-	m.a = clampf(lerpf(_base_a, 0.0, t), 0.0, 1.0)
-	label_3d.modulate = m
-
-	# Outline fades slower (lagging behind)
-	var outline_t := t * 0.2  # 20% speed
-	var o := label_3d.outline_modulate
-	o.a = clampf(lerpf(_base_outline_a, 0.0, outline_t), 0.0, 1.0)
-	label_3d.outline_modulate = o
+	## Main text fades normally
+	#var m := label_3d.modulate
+	#m.a = clampf(lerpf(_base_a, 0.0, t), 0.0, 1.0)
+	#label_3d.modulate = m
+#
+	## Outline fades slower (lagging behind)
+	#var outline_t := t * 0.2  # 20% speed
+	#var o := label_3d.outline_modulate
+	#o.a = clampf(lerpf(_base_outline_a, 0.0, outline_t), 0.0, 1.0)
+	#label_3d.outline_modulate = o
 
 	# Shrink
 	scale = _base_scale * lerpf(1.0, shrink_to, t)

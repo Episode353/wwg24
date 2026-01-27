@@ -238,3 +238,39 @@
 "classname" "pickup_health_medium"
 "origin" "1800 808 -96"
 }
+// entity 33
+{
+"classname" "mana_pool"
+"edge_intensity" "2"
+"edge_size" "2"
+"ripple_intensity" "2"
+"water_depth_fade" "2"
+"water_roughness" "2"
+"water_transparency" "2"
+"wave_speed" "2"
+"wave_strength" "2"
+// brush 0
+{
+( 960 1840 -192 ) ( 960 1841 -192 ) ( 960 1840 -191 ) ground/01Brick_03 0 0 0 1 1
+( 576 1584 -192 ) ( 576 1584 -191 ) ( 577 1584 -192 ) ground/01Brick_03 0 0 0 1 1
+( 576 1840 -168 ) ( 577 1840 -168 ) ( 576 1841 -168 ) ground/01Brick_03 0 0 0 1 1
+( 704 1968 -160 ) ( 704 1969 -160 ) ( 705 1968 -160 ) ground/01Brick_03 0 0 0 1 1
+( 704 1712 -160 ) ( 705 1712 -160 ) ( 704 1712 -159 ) ground/01Brick_03 0 0 0 1 1
+( 1088 1968 -160 ) ( 1088 1968 -159 ) ( 1088 1969 -160 ) ground/01Brick_03 0 0 0 1 1
+}
+}
+// entity 34
+{
+"classname" "health_pool"
+"edge_intensity" "2"
+"edge_size" "2"
+// brush 0
+{
+( 704 1840 -192 ) ( 704 1841 -192 ) ( 704 1840 -191 ) ground/01Brick_03 0 0 0 1 1
+( 320 1584 -192 ) ( 320 1584 -191 ) ( 321 1584 -192 ) ground/01Brick_03 0 0 0 1 1
+( 320 1840 -168 ) ( 321 1840 -168 ) ( 320 1841 -168 ) ground/01Brick_03 0 0 0 1 1
+( 448 1968 -160 ) ( 448 1969 -160 ) ( 449 1968 -160 ) ground/01Brick_03 0 0 0 1 1
+( 448 1712 -160 ) ( 449 1712 -160 ) ( 448 1712 -159 ) ground/01Brick_03 0 0 0 1 1
+( 832 1968 -160 ) ( 832 1968 -159 ) ( 832 1969 -160 ) ground/01Brick_03 0 0 0 1 1
+}
+}

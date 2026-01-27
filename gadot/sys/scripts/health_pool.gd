@@ -106,7 +106,7 @@ func _func_godot_build_complete() -> void:
 
 	# --- Make the original brush transparent blue and add it to "water" group ---
 	var mat := StandardMaterial3D.new()
-	mat.albedo_color = Color8(0x1a, 0x66, 0x66, 230)  # #1a6666 with ~50% alpha
+	mat.albedo_color = water_color
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	#mat.cull_mode = BaseMaterial3D.CULL_DISABLED       # optional: show both sides
 	mat.roughness = 0.5                                 # optional: a little shiny

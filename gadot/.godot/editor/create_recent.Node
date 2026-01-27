@@ -1,3 +1,4 @@
+RayCast3D
 StaticBody3D
 CollisionShape3D
 CSGBox3D
@@ -7,8 +8,6 @@ OmniLight3D
 Area3D
 RigidBody3D
 Timer
-Label3D      - Matches the "text" keyword.
-Label      - Matches the "text" keyword.
 CSGCylinder3D
 OccluderInstance3D
 TextureButton
