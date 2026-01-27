@@ -4466,7 +4466,7 @@ mesh = SubResource("ArrayMesh_ipnpe")
 skeleton = NodePath("")
 
 [node name="grenade" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG"]
-transform = Transform3D(0.4542158, -0.13873704, -0.8800221, 0.06710337, 0.99032086, -0.121491075, 0.88836, -0.0038692846, 0.45912966, 0.647791, -0.626831, -0.839788)
+transform = Transform3D(0.45421576, -0.13873702, -0.8800221, 0.06710336, 0.9903208, -0.121491075, 0.88836, -0.0038692844, 0.45912966, 0.647791, -0.626831, -0.839788)
 visible = false
 
 [node name="Node" type="Node3D" parent="neck/head/main_camera/Weapons_Manager/FPS_RIG/grenade"]

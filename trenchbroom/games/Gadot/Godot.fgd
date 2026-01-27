@@ -115,3 +115,28 @@
 ]
 
 @PointClass size(-8 -8 -8, 8 8 8) color(255 50 50) = props_shootable_target : "Target" []
+
+@SolidClass = mana_pool : "Mana Pool" [
+    wave_strength(float) : "Wave Strength" : 0.2 : "UV distortion amplitude"
+    wave_speed(float) : "Wave Speed" : 0.05 : "Scrolling speed"
+    water_transparency(float) : "Transparency (0–1)" : 0.8 : "Alpha, 0=opaque, 1=very transparent"
+    water_roughness(float) : "Roughness (0–1)" : 1.0 : "PBR roughness"
+    water_depth_fade(float) : "Depth Fade" : 0.5 : "Depth-based fade strength"
+
+    edge_size(float) : "Edge Size" : 2.0 : "Foam edge width"
+    edge_intensity(float) : "Edge Intensity" : 2.0 : "Foam edge intensity"
+    ripple_intensity(float) : "Ripple Intensity" : 0.6 : "Small ripple amount"
+]
+
+
+@SolidClass = health_pool : "Health Pool" [
+    wave_strength(float) : "Wave Strength" : 0.2 : "UV distortion amplitude"
+    wave_speed(float) : "Wave Speed" : 0.05 : "Scrolling speed"
+    water_transparency(float) : "Transparency (0–1)" : 0.8 : "Alpha, 0=opaque, 1=very transparent"
+    water_roughness(float) : "Roughness (0–1)" : 1.0 : "PBR roughness"
+    water_depth_fade(float) : "Depth Fade" : 0.5 : "Depth-based fade strength"
+
+    edge_size(float) : "Edge Size" : 2.0 : "Foam edge width"
+    edge_intensity(float) : "Edge Intensity" : 2.0 : "Foam edge intensity"
+    ripple_intensity(float) : "Ripple Intensity" : 0.6 : "Small ripple amount"
+]

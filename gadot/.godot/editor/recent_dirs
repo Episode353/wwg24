@@ -1,3 +1,4 @@
+res://sys/scripts
 res://entities/pickup/weapon
 res://fonts
 res://entities/player
@@ -7,7 +8,6 @@ res://addons/EffectBlocks/source_files/scripts
 res://addons/EffectBlocks/source_files/shaders
 res://models/wand/Fireball
 C:/Users/creat/Desktop/github/wizards-with-guns/wwg24/gadot
-res://sys/scripts
 res://shaders
 res://addons/func_godot/fgd/custom
 res://addons/func_godot/fgd

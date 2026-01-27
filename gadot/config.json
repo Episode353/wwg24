@@ -1,5 +1,5 @@
 {
-	"fullscreen": true,
+	"fullscreen": false,
 	"graphics_options": 3,
 	"master_volume": 0.61,
 	"max_fps": 219.0,

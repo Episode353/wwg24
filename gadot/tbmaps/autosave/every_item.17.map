@@ -673,6 +673,16 @@
 // entity 3
 {
 "classname" "water"
+"edge_intensity" "2"
+"wave_strength" "9"
+"wave_speed" "9"
+"water_transparency" "9"
+"water_roughness" "9"
+"water_depth_fade" "9"
+"water_color" "9"
+"ripple_intensity" "9"
+"ripple_color" "9"
+"edge_size" "9"
 // brush 0
 {
 ( 256 576 -80 ) ( 256 577 -80 ) ( 256 576 -79 ) ground/01Brick_03 -192 0 0 1 1
@@ -854,14 +864,14 @@
 // entity 22
 {
 "classname" "mana_pool"
-"edge_intensity" "2"
-"edge_size" "2"
-"ripple_intensity" "2"
-"water_depth_fade" "2"
-"water_roughness" "2"
-"water_transparency" "2"
-"wave_speed" "2"
-"wave_strength" "2"
+"edge_intensity" "9"
+"edge_size" "9"
+"ripple_intensity" "9"
+"water_depth_fade" "9"
+"water_roughness" "9"
+"water_transparency" "9"
+"wave_speed" "9"
+"wave_strength" "9"
 // brush 0
 {
 ( -256 576 -80 ) ( -256 577 -80 ) ( -256 576 -79 ) ground/01Brick_03 -192 0 0 1 1
@@ -875,8 +885,14 @@
 // entity 23
 {
 "classname" "health_pool"
-"edge_intensity" "2"
-"edge_size" "2"
+"edge_intensity" "9"
+"edge_size" "9"
+"ripple_intensity" "9"
+"water_depth_fade" "9"
+"water_roughness" "9"
+"water_transparency" "9"
+"wave_speed" "9"
+"wave_strength" "9"
 // brush 0
 {
 ( -512 576 -80 ) ( -512 577 -80 ) ( -512 576 -79 ) ground/01Brick_03 -192 0 0 1 1

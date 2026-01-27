@@ -1,4 +1,6 @@
+OmniLight3D
 CollisionShape3D
+Area3D
 RigidBody3D
 Node3D
 Timer
@@ -7,7 +9,6 @@ Label      - Matches the "text" keyword.
 CSGCylinder3D
 OccluderInstance3D
 CSGBox3D
-Area3D
 TextureButton
 Button
 Control

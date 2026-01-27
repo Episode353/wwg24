@@ -243,7 +243,9 @@ func _physics_process(delta):
 	calculate_fire_damage()
 	if is_bot: return
 	# ... rest of function
-	
+
+	_check_mana_pool()
+	_check_health_pool()
 	
 	# HEAL: spend 2 mana, gain 1 health
 	if weapons_manager.get_current_wand_spell() == "Heal" and weapons_manager.current_weapon.weapon_name == "wand":
@@ -515,6 +517,49 @@ func _current_water_surface_y() -> float:
 					if world_top > top_y:
 						top_y = world_top
 	return top_y
+
+var mana_pool_timeout := 12 # run receive_mana every 5 calls
+var _mana_pool_counter := 0
+func _check_mana_pool() -> bool:
+	var space := get_world_3d().direct_space_state
+	var params := PhysicsPointQueryParameters3D.new()
+	params.position = global_position
+	params.collide_with_areas = true
+	params.collide_with_bodies = false
+
+	var hits := space.intersect_point(params, 16)
+	for h in hits:
+		var area := h.get("collider") as Area3D
+		if area and area.is_in_group("mana_pool"):
+			_mana_pool_counter += 1
+			if _mana_pool_counter >= mana_pool_timeout:
+				_mana_pool_counter = 0
+				receive_mana(1)
+			return true
+
+	return false
+	
+var health_pool_timeout := 12 # run receive_mana every 5 calls
+var _health_pool_counter := 0
+func _check_health_pool() -> bool:
+	var space := get_world_3d().direct_space_state
+	var params := PhysicsPointQueryParameters3D.new()
+	params.position = global_position
+	params.collide_with_areas = true
+	params.collide_with_bodies = false
+
+	var hits := space.intersect_point(params, 16)
+	for h in hits:
+		var area := h.get("collider") as Area3D
+		if area and area.is_in_group("health_pool"):
+			_health_pool_counter += 1
+			if _health_pool_counter >= health_pool_timeout:
+				_health_pool_counter = 0
+				receive_health(1)
+			return true
+
+	return false
+
 
 
 func process_movement(delta):
