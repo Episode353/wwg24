@@ -8,10 +8,12 @@ script = ExtResource("1_iovl4")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=578134080]
 billboard = 1
+render_priority = 5
+outline_render_priority = 4
 modulate = Color(1, 0, 0, 1)
 text = "Damage:"
 font = ExtResource("2_04166")
-font_size = 128
+font_size = 64
 outline_size = 64
 
 [node name="Timer" type="Timer" parent="." unique_id=654517190]

@@ -842,7 +842,7 @@ func make_damage_indicator(dmg):
 	# ---- tuning ----
 	const STACK_WINDOW := 0.5
 	const STACK_STEP_Y := 0.8
-	const BASE_OFFSET := Vector3(0, 3.5, 0)
+	const BASE_OFFSET := Vector3(0, 2.5, 0)
 
 	# Only allow a small number of “lanes” so it never gets too high.
 	# If you want “only one above”, set MAX_STACK := 1  (positions: 0 and 1).
