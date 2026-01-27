@@ -1,5 +1,85 @@
-[gd_scene format=3 uid="uid://5oeqt4nqauus"]
+[gd_scene load_steps=6 format=3 uid="uid://5oeqt4nqauus"]
 
-[node name="Target" type="Node3D"]
+[ext_resource type="Script" uid="uid://cf58ygj21anxk" path="res://entities/props/shootable/target.gd" id="1_r3k77"]
+[ext_resource type="Shader" uid="uid://6i7iwegsbc4q" path="res://entities/props/shootable/target.gdshader" id="1_y6ys5"]
+[ext_resource type="FontFile" uid="uid://cxp5orm3sorkv" path="res://fonts/Overt.ttf" id="2_qbpwv"]
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qbpwv"]
+render_priority = 0
+shader = ExtResource("1_y6ys5")
+shader_parameter/fill_color = Color(0.06, 0.06, 0.09, 1)
+shader_parameter/wire_color = Color(0, 0.8, 0, 1)
+shader_parameter/wire_thickness = 1.25
+shader_parameter/wire_softness = 1.0
+shader_parameter/wire_strength = 1.0
+shader_parameter/shake_power = 0.05
+shader_parameter/shake_rate = 0.422000020045
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 25.0
+shader_parameter/spin_enabled = true
+shader_parameter/spin_speed = 0.1
+shader_parameter/spin_axis = 1
+shader_parameter/wobble_enabled = true
+shader_parameter/wobble_amount = 0.03
+shader_parameter/wobble_speed = 2.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r3k77"]
+radius = 0.81152344
+height = 2.4125977
+
+[node name="StaticBody3D" type="StaticBody3D" groups=["destructable"]]
+script = ExtResource("1_r3k77")
+
+[node name="Target" type="Node3D" parent="."]
+
+[node name="Node3D" type="Node3D" parent="Target"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.52514243, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Target/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5330267, 0.30664718)
+radius = 0.1
+height = 1.0014648
+material = SubResource("ShaderMaterial_qbpwv")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Target/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51074886, -0.27470487)
+radius = 0.1
+height = 0.9569092
+material = SubResource("ShaderMaterial_qbpwv")
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Target/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9099793, -0.03833048)
+radius = 0.15
+height = 0.2406311
+material = SubResource("ShaderMaterial_qbpwv")
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="Target/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2187037, -0.019164488)
+height = 0.43048096
+material = SubResource("ShaderMaterial_qbpwv")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Target/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 1.4, -0.7)
+radius = 0.1
+height = 0.9569092
+material = SubResource("ShaderMaterial_qbpwv")
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Target/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 1.4, 0.7)
+radius = 0.1
+height = 0.9569092
+material = SubResource("ShaderMaterial_qbpwv")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Target/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4051368, -0.025553823)
+height = 0.9569092
+material = SubResource("ShaderMaterial_qbpwv")
+
+[node name="Label3D" type="Label3D" parent="Target/Node3D"]
+transform = Transform3D(-0.012147171, 0, 0.9999262, 0, 1, 0, -0.9999262, 0, -0.012147171, 0.5048185, 2.192915, -0.029150728)
+text = "0_0"
+font = ExtResource("2_qbpwv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79973316, 0)
+shape = SubResource("CapsuleShape3D_r3k77")
