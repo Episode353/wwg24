@@ -27,6 +27,11 @@ class_name Weapon_Resource
 @export var damage: int # Damage dealt by the weapon
 @export var weapon_range: int # Effective range of the weapon (for hitscan weapons)
 
+# Bot behaviour with this weapon (meters)
+@export var bot_preferred_distance: float = 12.0 # Distance a bot tries to fight from
+@export var bot_engage_distance: float = 20.0 # Bots only fire inside this distance
+@export var bot_min_distance: float = 0.0 # Bots back off if closer (e.g. rockets, to avoid self-damage)
+
 # Weapon type properties
 @export var auto_fire: bool # If true, weapon can fire automatically
 @export var disable_wall_prox: bool # If true, weapon proximity to walls is disabled

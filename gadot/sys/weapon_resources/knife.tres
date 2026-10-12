@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=5 format=3 uid="uid://cea7mprhctago"]
+[gd_resource type="Resource" script_class="Weapon_Resource" format=3 uid="uid://cea7mprhctago"]
 
 [ext_resource type="AudioStream" uid="uid://byik2sv6bga8w" path="res://sounds/knife/knife_shoot_air.ogg" id="1_00jxw"]
 [ext_resource type="Script" uid="uid://c833r24e7s2jf" path="res://sys/weapon_resource.gd" id="1_nsgrx"]
@@ -26,16 +26,11 @@ mag_ammo_default = -1
 max_ammo = -1
 damage = 20
 weapon_range = -2
-auto_fire = false
+bot_preferred_distance = 1.5
+bot_engage_distance = 2.5
 disable_wall_prox = true
 disable_ammo = true
 is_gun = true
-is_spell = false
-is_projectile_launcher = false
-use_area_damage_collision = false
-area_damage_radius = 0
-skip_animation_on_fire = false
-fire_rate = 0.0
 fire_sound = ExtResource("1_00jxw")
 hit_wall = ExtResource("2_cutlk")
 hit_player = ExtResource("1_uws10")

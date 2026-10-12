@@ -83,6 +83,7 @@
     billboard(string) : "Billboard Rendering" : 0 : "0: Disabled, 1: Enabled, 2: Y-Billboard"
     pixel_size(float) : "Size of a pixel of text" : 0.005
     font_size(string) : "Size the font is rendered" : 45
+    outline_size(integer) : "Text outline size" : 12 : "Thickness of the text outline in pixels, 0 disables the outline"
     text_color(color255) : "Color" : "255 255 255" : "R,G,B"
     double_sided(bool) : "Double sided" : 1 : "If 1, Text visible on both sides; if 0, text only visible on one side"
 ]
@@ -109,7 +110,7 @@
 
 @SolidClass = rainwater : "Rain Water" []
 
-@SolidClass = grass : "Grass" [
+@SolidClass = grass : "Grass. Grows grass on top of the brush. A textured brush stays solid, visible ground (select a ground brush and use Create Brush Entity > grass). A fully untextured brush is invisible and not solid, so only the grass shows." [
 	grass_scale(float) : "Scale the size of the grass." : 1
 	spacing(float) : "Distance between grass blades. Value between 0 and 1. Lower Values less grass blades and better preformance" : 0.4
 ]
@@ -139,4 +140,31 @@
     edge_size(float) : "Edge Size" : 2.0 : "Foam edge width"
     edge_intensity(float) : "Edge Intensity" : 2.0 : "Foam edge intensity"
     ripple_intensity(float) : "Ripple Intensity" : 0.6 : "Small ripple amount"
+]
+
+// Weapons a player or bot spawns with at this spawnpoint (ignored during warmup, where everyone gets every weapon).
+// Keep the bit values in sync with WEAPON_FLAGS in gadot/entities/team/team_spawn.gd and team_*_spawn.tres.
+@baseclass = TeamLoadout [
+    weapons(flags) =
+    [
+        1 : "AK47" : 0 : "Spawn with the AK47 (automatic rifle)."
+        2 : "Shotgun" : 0 : "Spawn with the Shotgun (close range spread)."
+        4 : "Knife" : 0 : "Spawn with the Knife (melee, short range)."
+        8 : "HE Grenade" : 0 : "Spawn with HE Grenades (thrown explosive)."
+        16 : "Rocket Launcher" : 0 : "Spawn with the Rocket Launcher (explosive projectile)."
+        32 : "Salsa" : 0 : "Spawn with Salsa (thrown projectile)."
+        64 : "Keyboard" : 0 : "Spawn with the Keyboard (type spell sequences to cast)."
+        128 : "Wand" : 0 : "Spawn with the Wand (switchable spells: fireball, lightning, magic missile, heal, tap)."
+    ]
+]
+
+@PointClass base(TeamLoadout) size(-8 -8 -8, 8 8 8) color(255 0 255) = team_a_spawn : "Wizards (Team A) Spawnpoint. Players and bots on the Wizards team spawn here at the start of every round. WEAPONS: tick every weapon a player spawning here should get - you can tick as many as you like and they get all of them (bots start holding a random ranged one and pull the knife at close range). Hands are always given. Nothing ticked = hands only. During warmup the weapon list is ignored and everyone gets every weapon." []
+@PointClass base(TeamLoadout) size(-8 -8 -8, 8 8 8) color(255 0 255) = team_b_spawn : "Humans (Team B) Spawnpoint. Players and bots on the Humans team spawn here at the start of every round. WEAPONS: tick every weapon a player spawning here should get - you can tick as many as you like and they get all of them (bots start holding a random ranged one and pull the knife at close range). Hands are always given. Nothing ticked = hands only. During warmup the weapon list is ignored and everyone gets every weapon." []
+
+@PointClass size(-8 -8 -8, 8 8 8) color(0 255 0) model({ "path": "textures/signs/sign_hazard_04.png", "scale": 0.25 }) = gamemode_definition : "Gamemode Definition" [
+    game_type(string) : "Gamemode" : 0 : "0: None, 1: Casual, 2: Deathmatch"
+    rounds(float) : "Ammount of Rounds" : 5 : "Ammount of rounds in a game."
+    players_per_team(float) : "Players Per Team" : 4 : "Ammount of players in a team."
+    waiting_for_players(float) : "Wait for Players Seconds" : 10 : "Ammount of time in seconds we wait for players before the game begins."
+    friendly_fire(bool) : "Friendly Fire" : 1 : "0=Disabled; 1=Enabled"
 ]

@@ -1,15 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://drrgna76nd3ke"]
+[gd_scene format=3 uid="uid://drrgna76nd3ke"]
 
 [ext_resource type="Script" uid="uid://nacctfigurg6" path="res://entities/world/label/label_3d.gd" id="1_2shr4"]
 [ext_resource type="FontFile" uid="uid://be2nlepjb0rvf" path="res://fonts/Spotify.ttf" id="2_2shr4"]
 
-[node name="TextFloating" type="Node3D"]
+[node name="TextFloating" type="Node3D" unique_id=1033876417]
 script = ExtResource("1_2shr4")
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="Label3D" type="Label3D" parent="." unique_id=552472730]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shaded = true
 double_sided = false
 texture_filter = 2
 text = "testing123"
 font = ExtResource("2_2shr4")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Label3D" unique_id=752703187]
+size = Vector3(0.1, 0.1, 0.1)

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c2v72v24qhpjv"]
+
+[ext_resource type="Script" uid="uid://bo8jjn200ustc" path="res://entities/team/team_spawn.gd" id="1_team"]
+
+[node name="TeamBSpawn" type="Node3D" unique_id=1206015978]
+script = ExtResource("1_team")
+team = 2

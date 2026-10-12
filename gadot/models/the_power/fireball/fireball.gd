@@ -33,6 +33,8 @@ func _on_timer_timeout() -> void:
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body == owner_player:
 		return
-	body.rpc("receive_damage", 20)
+	# Every peer has a copy of this fireball, only the caster's copy deals the damage
+	if is_instance_valid(owner_player) and owner_player.is_multiplayer_authority() and body.has_method("receive_damage"):
+		body.rpc("receive_damage", 20, str(owner_player.name))
 	objects_removed = true
 	node_3d.queue_free()

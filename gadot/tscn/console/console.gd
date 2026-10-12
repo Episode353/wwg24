@@ -252,6 +252,7 @@ func _handle_variable_assignment(command: String):
 					_output_error("Invalid value for fullscreen. It must be 'true' or 'false'.")
 					return
 				value = value_str.to_lower() == "true"
+				Globals.fullscreen = value
 				if value:
 					DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 				else:

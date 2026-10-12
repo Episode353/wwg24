@@ -50,14 +50,19 @@ func _on_area_3d_body_entered(body):
 	if body == owner_player:
 		return
 	# players
+	var attacker_name := str(owner_player.name) if is_instance_valid(owner_player) else ""
+	# Every peer has a copy of this projectile, only the caster's copy deals the damage
+	var deals_damage: bool = is_instance_valid(owner_player) and owner_player.is_multiplayer_authority()
 	for player in get_tree().get_nodes_in_group("players"):
 		var d = player.global_transform.origin.distance_to(global_transform.origin)
 		if d <= explosion_radius:
 			_apply_explosion_force_to_character(player)
+			if not deals_damage:
+				continue
 			if player != owner_player:
-				player.rpc("receive_damage", _calc_damage(d))
+				player.rpc("receive_damage", _calc_damage(d), attacker_name)
 			elif Globals.self_harm:
-				player.rpc("receive_damage", _calc_damage(d) / 4.0)
+				player.rpc("receive_damage", _calc_damage(d) / 4.0, attacker_name)
 	# destructibles
 	for obj in get_tree().get_nodes_in_group("destructable"):
 		if obj.global_transform.origin.distance_to(global_transform.origin) <= explosion_radius:

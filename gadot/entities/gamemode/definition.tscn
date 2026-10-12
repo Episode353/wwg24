@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://entities/gamemode/gamemode_definition.gd" id="1_def"]
+[ext_resource type="Texture2D" uid="uid://dma6yff1ajgft" path="res://textures/signs/sign_hazard_04.png" id="2_icon"]
+
+[node name="GamemodeDefinition" type="Node3D"]
+script = ExtResource("1_def")
+
+[node name="Icon" type="Sprite3D" parent="."]
+cast_shadow = 0
+pixel_size = 0.015625
+billboard = 1
+texture = ExtResource("2_icon")

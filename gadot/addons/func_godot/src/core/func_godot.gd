@@ -73,6 +73,7 @@ func gather_texture_surfaces(texture_name: String) -> Dictionary:
 	sg.set_clip_filter_texture(map_settings.clip_texture)
 	sg.set_skip_filter_texture(map_settings.skip_texture)
 	sg.set_origin_filter_texture(map_settings.origin_texture)
+	sg.cull_buried_faces = true
 	sg.run()
 	return {
 		surfaces = fetch_surfaces(sg),

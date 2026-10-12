@@ -8,13 +8,16 @@ extends Node3D
 
 	
 func spawn_bot():
+	# Every peer builds the map, but only the host creates bots
+	if not multiplayer.is_server():
+		return
 	var world = get_tree().get_root().get_node("World")
 	if world:
 		if use_spawn_position:
 			var pos3d: Vector3 = Vector3(global_position.x, global_position.y, global_position.z)
-			world.rpc("add_bot", origin, use_spawn_position, weapon_range, weapon, disable_respawn, pos3d)
+			world.rpc("add_bot", origin, use_spawn_position, weapon_range, weapon, disable_respawn, pos3d, 0)
 		if !use_spawn_position:
-			world.rpc("add_bot", origin, use_spawn_position, weapon_range, weapon, disable_respawn, Vector3.ZERO)
+			world.rpc("add_bot", origin, use_spawn_position, weapon_range, weapon, disable_respawn, Vector3.ZERO, 0)
 
 @export var func_godot_properties: Dictionary
 

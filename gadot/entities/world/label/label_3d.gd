@@ -7,6 +7,7 @@ var pixel_size: float = 0.005
 var text_color: String = "255 255 255"
 var font_size: String = "32"
 var double_sided: String = "1"
+var outline_size: int = 12
 @onready var label_3d: Label3D = $Label3D
 
 @export var func_godot_properties: Dictionary
@@ -55,6 +56,7 @@ func _update_label() -> void:
 	label_3d.pixel_size = float(pixel_size)
 	label_3d.modulate = parse_color(text_color)
 	label_3d.font_size = int(font_size)
+	label_3d.outline_size = max(outline_size, 0)
 
 
 func parse_color(color_str: String) -> Color:

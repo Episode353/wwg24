@@ -9,7 +9,14 @@ var selected_map_name = ""
 
 
 func _ready():
-	
+	if Globals.network_error != "":
+		var dialog = AcceptDialog.new()
+		dialog.title = "Connection problem"
+		dialog.dialog_text = Globals.network_error
+		Globals.network_error = ""
+		add_child(dialog)
+		dialog.popup_centered()
+
 	# Populate map_entry with .map files from the res://tbmaps folder
 	var dir = DirAccess.open("tbmaps")
 	if dir:
@@ -27,7 +34,24 @@ func _ready():
 		print("Selected map: ", selected_map_name)
 	else:
 		print("No maps found in tbmaps")
-		
+
+	# Only consume the launch map once so returning to the menu doesn't relaunch it
+	if Globals.launch_map != "":
+		var launch_map = Globals.launch_map
+		Globals.launch_map = ""
+		if FileAccess.file_exists("tbmaps/" + launch_map):
+			print("Launching straight into offline map: ", launch_map)
+			selected_map_name = launch_map
+			# Scripts look the world up by the name "World", so the old one must be gone before
+			# the new one is added, otherwise the new one gets auto-renamed
+			var old_world = get_tree().root.get_node_or_null("World")
+			if old_world:
+				await old_world.tree_exited
+			# Deferred so the scene switch that created this menu has finished
+			call_deferred("_on_offline_button_pressed")
+			return
+		push_error("Launch map not found: tbmaps/" + launch_map)
+
 	load_map()
 
 func _process(_delta):

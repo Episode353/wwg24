@@ -9,6 +9,13 @@ var clip_filter_texture_idx: int
 var skip_filter_texture_idx: int
 var origin_filter_texture_idx: int
 var metadata_skip_flags: int
+var cull_buried_faces: bool = false
+
+const CULL_PUSH := 0.01
+const CULL_TOLERANCE := 0.001
+
+# entity_idx -> Array[AABB], one per brush, in map units
+var _brush_aabbs: Dictionary = {}
 
 var out_surfaces: Array[FuncGodotMapData.FuncGodotFaceGeometry]
 var out_metadata: Dictionary
@@ -57,6 +64,69 @@ func filter_face(entity_idx: int, brush_idx: int, face_idx: int) -> bool:
 	if texture_filter_idx != -1 and face.texture_idx != texture_filter_idx:
 		return true
 	
+	if cull_buried_faces and is_face_buried(entity_idx, brush_idx, face_idx):
+		return true
+	
+	return false
+
+func get_brush_aabbs(entity_idx: int) -> Array:
+	if _brush_aabbs.has(entity_idx):
+		return _brush_aabbs[entity_idx]
+	var aabbs: Array = []
+	for brush_geo in map_data.entity_geo[entity_idx].brushes:
+		var aabb := AABB()
+		var first := true
+		for face_geo in brush_geo.faces:
+			for v in face_geo.vertices:
+				if first:
+					aabb = AABB(v.vertex, Vector3.ZERO)
+					first = false
+				else:
+					aabb = aabb.expand(v.vertex)
+		aabbs.append(aabb.grow(CULL_PUSH + CULL_TOLERANCE))
+	_brush_aabbs[entity_idx] = aabbs
+	return aabbs
+
+# A face is buried when every vertex, nudged slightly outward along the face normal,
+# lies inside a single other brush of the same entity.
+func is_face_buried(entity_idx: int, brush_idx: int, face_idx: int) -> bool:
+	var entity: FuncGodotMapData.FuncGodotEntity = map_data.entities[entity_idx]
+	var face: FuncGodotMapData.FuncGodotFace = entity.brushes[brush_idx].faces[face_idx]
+	var face_geo: FuncGodotMapData.FuncGodotFaceGeometry = map_data.entity_geo[entity_idx].brushes[brush_idx].faces[face_idx]
+	var aabbs: Array = get_brush_aabbs(entity_idx)
+	
+	var pushed := PackedVector3Array()
+	var face_aabb := AABB()
+	for i in face_geo.vertices.size():
+		var p: Vector3 = face_geo.vertices[i].vertex + face.plane_normal * CULL_PUSH
+		pushed.append(p)
+		face_aabb = AABB(p, Vector3.ZERO) if i == 0 else face_aabb.expand(p)
+	
+	for other_idx in entity.brushes.size():
+		if other_idx == brush_idx:
+			continue
+		if not aabbs[other_idx].encloses(face_aabb):
+			continue
+		var other: FuncGodotMapData.FuncGodotBrush = entity.brushes[other_idx]
+		if is_non_occluding_brush(other):
+			continue
+		var all_inside := true
+		for p in pushed:
+			for of in other.faces:
+				if of.plane_normal.dot(p) > of.plane_dist + CULL_TOLERANCE:
+					all_inside = false
+					break
+			if not all_inside:
+				break
+		if all_inside:
+			return true
+	return false
+
+func is_non_occluding_brush(brush: FuncGodotMapData.FuncGodotBrush) -> bool:
+	for f in brush.faces:
+		var idx: int = f.texture_idx
+		if idx == clip_filter_texture_idx or idx == skip_filter_texture_idx or idx == origin_filter_texture_idx:
+			return true
 	return false
 
 func run() -> void:
@@ -207,6 +277,7 @@ func reset_params() -> void:
 	texture_filter_idx = -1
 	clip_filter_texture_idx = -1
 	skip_filter_texture_idx = -1
+	cull_buried_faces = false
 	metadata_skip_flags = FuncGodotMapData.FuncGodotEntityMetadataInclusionFlags.ENTITY_INDEX_RANGES
 
 # nested

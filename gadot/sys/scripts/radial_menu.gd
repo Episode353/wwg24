@@ -27,7 +27,7 @@ func find_weapons_manager():
 	
 	for manager in all_weapons_managers:
 		# Check if this weapons manager belongs to the local player
-		if manager.is_multiplayer_authority():
+		if manager.is_multiplayer_authority() and not manager.player.is_bot:
 			weapons_manager = manager
 			print("Found local player's weapons manager: ", weapons_manager)
 			return

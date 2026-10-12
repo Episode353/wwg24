@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://b7hn11nldeyn6"]
+[gd_resource type="Resource" script_class="Weapon_Resource" format=3 uid="uid://b7hn11nldeyn6"]
 
 [ext_resource type="Script" uid="uid://c833r24e7s2jf" path="res://sys/weapon_resource.gd" id="1_nmc78"]
 
@@ -23,13 +23,5 @@ mag_ammo_default = 12
 max_ammo = 12
 damage = 10
 weapon_range = 20
-auto_fire = false
-disable_wall_prox = false
+bot_preferred_distance = 10.0
 disable_ammo = true
-is_gun = false
-is_spell = false
-is_projectile_launcher = false
-use_area_damage_collision = false
-area_damage_radius = 0
-skip_animation_on_fire = false
-fire_rate = 0.0

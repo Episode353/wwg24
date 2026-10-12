@@ -16,13 +16,13 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Wizards With Guns"
 run/main_scene="res://tscn/shader_precomp.tscn"
-run/enable_alt_space_menu=true
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/image="res://mat/splash.png"
 config/icon="res://mat/ico.png"
 
 [audio]
 
+buses/default_bus_layout="uid://burm48w72nc4a"
 driver/enable_input=true
 
 [autoload]
@@ -46,7 +46,7 @@ project/assembly_name="fps-mp"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SphynxMotionBlurToolkit/plugin.cfg", "res://addons/func_godot/plugin.cfg", "res://addons/tbloader/plugin.cfg")
+enabled=PackedStringArray("res://addons/func_godot/plugin.cfg", "res://addons/tbloader/plugin.cfg", "res://addons/trenchbroom_launch/plugin.cfg")
 
 [filesystem]
 
@@ -113,6 +113,10 @@ backward={
 "events": []
 }
 shoot={
+"deadzone": 0.5,
+"events": []
+}
+alt_fire={
 "deadzone": 0.5,
 "events": []
 }
@@ -232,15 +236,20 @@ rebuild_map={
 "deadzone": 0.5,
 "events": []
 }
+toggle_camera={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194336,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
 
 [physics]
 
 3d/run_on_separate_thread=true
-common/max_physics_steps_per_frame=60
 3d/physics_engine="Jolt Physics"
 jolt_physics_3d/simulation/velocity_steps=120
 jolt_physics_3d/simulation/position_steps=120
 common/physics_interpolation=true
+#Defaultis8.Abackgroundedwindowcanstallaframeforafractionofasecond#8stepsthenleavestheserverbehindforgood.60letsthatframecatchup.common/max_physics_steps_per_frame=60
 jolt_physics_3d/simulation/areas_detect_static_bodies=true
 jolt_3d/collisions/areas_detect_static_bodies=true
 jolt_3d/collisions/report_all_kinematic_contacts=true

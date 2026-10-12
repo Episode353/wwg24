@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=4 format=3 uid="uid://bhrts7n8xjy7d"]
+[gd_resource type="Resource" script_class="Weapon_Resource" format=3 uid="uid://bhrts7n8xjy7d"]
 
 [ext_resource type="Script" uid="uid://c833r24e7s2jf" path="res://sys/weapon_resource.gd" id="1_0s1cx"]
 [ext_resource type="AudioStream" uid="uid://ci1pcnjhn0bqn" path="res://sounds/shotgun/shotgun_shoot.ogg" id="1_2juvi"]
@@ -14,8 +14,6 @@ deactivate_anim = "shotgun_deactivate"
 out_of_ammo_anim = "shotgun_ooa"
 wall_raise_anim = "shotgun_wall_raise"
 wall_lower_anim = "shotgun_wall_lower"
-has_idle_anim = false
-idle_anim = ""
 current_ammo = 10
 current_ammo_default = 10
 reserve_ammo = 12
@@ -25,15 +23,10 @@ mag_ammo_default = 12
 max_ammo = 12
 damage = 45
 weapon_range = -15
+bot_preferred_distance = 6.0
+bot_engage_distance = 12.0
 auto_fire = true
-disable_wall_prox = false
-disable_ammo = false
 is_gun = true
 is_spell = true
-is_projectile_launcher = false
-use_area_damage_collision = false
-area_damage_radius = 0
-skip_animation_on_fire = false
-fire_rate = 0.0
 reload_sound = ExtResource("2_kj742")
 fire_sound = ExtResource("1_2juvi")

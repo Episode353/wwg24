@@ -1,4 +1,5 @@
 import os
+import re
 import shutil
 import zipfile
 import subprocess
@@ -16,17 +17,60 @@ REMOTE_HOST = "ssh.pythonanywhere.com"
 REMOTE_USER = "joetoscani"
 REMOTE_PATH = "/home/joetoscani/wwgsite/wwgsite/wwgsite/media/versions"
 SYNC_URL = "https://www.wizardswithguns.com/sync_versions"
+# Same pattern the website uses to register versions (4+ numbers separated by dots)
+VERSION_ZIP_PATTERN = re.compile(r"^\d+(?:\.\d+){3,}\.zip$")
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+# Searched in order for a Godot executable; set the GODOT_EXE environment variable to override
+GODOT_SEARCH_DIRS = [SCRIPT_DIR, os.path.join(os.path.expanduser("~"), "Desktop")]
+
+
+def find_godot():
+    env_path = os.environ.get("GODOT_EXE")
+    if env_path:
+        if os.path.isfile(env_path):
+            return env_path
+        raise FileNotFoundError(f"GODOT_EXE is set but does not exist: {env_path}")
+    for folder in GODOT_SEARCH_DIRS:
+        if not os.path.isdir(folder):
+            continue
+        # Newest version first, and skip the *_console.exe wrapper
+        candidates = sorted(
+            (f for f in os.listdir(folder)
+             if f.lower().endswith(".exe") and "godot" in f.lower() and "console" not in f.lower()),
+            reverse=True)
+        if candidates:
+            return os.path.join(folder, candidates[0])
+    on_path = shutil.which("godot")
+    if on_path:
+        return on_path
+    raise FileNotFoundError(
+        "No Godot executable found. Looked in: " + ", ".join(GODOT_SEARCH_DIRS)
+        + " and PATH. Set GODOT_EXE to the full path of your Godot .exe.")
+
+
+def check_export_templates(godot_path):
+    # "4.6.1.stable.official.abc123" -> templates live in .../export_templates/4.6.1.stable
+    version = subprocess.run([godot_path, "--version"], capture_output=True, text=True).stdout.strip()
+    parts = version.split(".")
+    if len(parts) < 3:
+        print(f"[!] Could not read Godot version ({version!r}), skipping export template check.")
+        return
+    template_name = ".".join(parts[:-2]) if len(parts) > 3 else ".".join(parts[:3])
+    template_dir = os.path.join(os.environ.get("APPDATA", ""), "Godot", "export_templates", template_name)
+    if not os.path.isdir(template_dir):
+        raise FileNotFoundError(
+            f"Export templates for Godot {template_name} are not installed (expected {template_dir}). "
+            "Open the Godot editor > Editor > Manage Export Templates > Download and Install.")
+    print(f"[+] Export templates found: {template_dir}")
+
 
 print("[*] Starting build and upload process...")
 
 # === Step 1: Find Godot executable ===
 print("[*] Locating Godot executable...")
-godot_exe = next((f for f in os.listdir(SCRIPT_DIR) if f.lower().endswith(".exe") and "godot" in f.lower()), None)
-if not godot_exe:
-    raise FileNotFoundError("No Godot executable found in script folder.")
-godot_exe = os.path.join(SCRIPT_DIR, godot_exe)
+godot_exe = find_godot()
 print(f"[+] Found Godot executable: {godot_exe}")
+check_export_templates(godot_exe)
 
 # === Step 2: Create dated folder ===
 today = datetime.today()
@@ -34,9 +78,9 @@ base_date = f"{today.strftime('%y')}.{today.month}.{today.day}"  # YY.M.D
 release_dir = os.path.join(EXPORT_FOLDER, base_date)
 print(f"[*] Creating release folder for version: {base_date}")
 
-for i in range(0, 100):
-    suffix = f".{i}" if i else ""
-    final_dir = release_dir + suffix
+# Always YY.M.D.N: the website only registers versions with 4+ numbers
+for i in range(1, 100):
+    final_dir = f"{release_dir}.{i}"
     if not os.path.exists(final_dir):
         os.makedirs(final_dir)
         release_dir = final_dir
@@ -111,5 +155,32 @@ resp = requests.get(SYNC_URL)
 if resp.status_code != 200:
     raise RuntimeError(f"Sync failed with status {resp.status_code}")
 print("[+] Sync successful.")
+
+# === Step 8: Remove older version zips from the server ===
+uploaded_name = os.path.basename(zip_path)
+if not VERSION_ZIP_PATTERN.match(uploaded_name):
+    print(f"[!] {uploaded_name} does not match the website's version pattern, skipping cleanup.")
+else:
+    print("[*] Removing older versions from the server...")
+    transport = paramiko.Transport((REMOTE_HOST, 22))
+    transport.connect(username=REMOTE_USER, password=password)
+    sftp = paramiko.SFTPClient.from_transport(transport)
+    try:
+        # Only clean up once the new upload is confirmed complete on the server
+        remote_size = sftp.stat(remote_filename).st_size
+        if remote_size != file_size:
+            raise RuntimeError(f"Uploaded size {remote_size} does not match local size {file_size}, not deleting anything.")
+
+        removed = 0
+        for name in sftp.listdir(REMOTE_PATH):
+            if name == uploaded_name or not VERSION_ZIP_PATTERN.match(name):
+                continue
+            sftp.remove(f"{REMOTE_PATH}/{name}")
+            removed += 1
+            print(f"[-] Removed old version: {name}")
+    finally:
+        sftp.close()
+        transport.close()
+    print(f"[+] Cleanup complete, removed {removed} old version(s).")
 
 print(f"[✔] Build/export/upload complete: {release_dir}")

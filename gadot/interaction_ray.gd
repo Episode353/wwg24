@@ -14,6 +14,7 @@ func _process(delta):
 	if !is_multiplayer_authority(): 
 		return
 	if player.is_bot: return
+	if player.is_dead: return
 
 	# Handle pickup/release with "interact"
 	if Input.is_action_just_pressed("interact"):

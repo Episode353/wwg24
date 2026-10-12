@@ -25,7 +25,8 @@
 		"main_menu": "escape",
 		"interact": "e",
 		"fullscreen": "f11",
-		"rebuild_map": "f12"
+		"rebuild_map": "f12",
+		"toggle_camera": "f5"
 
 	},
 	"weapon_buttons": {

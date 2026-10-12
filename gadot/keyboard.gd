@@ -35,23 +35,40 @@ var _is_anim_playing: bool = false
 # New variable to track if an extra (air) speed boost is available.
 var can_air_speed_boost: bool = true
 
+# Synth notes, index matches numpad_actions (C4 up to B4)
+const SYNTH_MIX_RATE: int = 44100
+const SYNTH_NOTE_LENGTH: float = 0.8
+const SYNTH_BASE_FREQUENCY: float = 261.63
+static var _note_streams: Array[AudioStreamWAV] = []
+var _synth_playback: AudioStreamPlaybackPolyphonic
+
 func _ready():
 	_time_since_last_note = 0.0
 	# Connect the `animation_finished` signal to `_on_animation_finished` using Callable
 	keyboard_animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
+	_setup_synth()
 
 func _process(delta):
-	if is_visible_in_tree():
+	if is_visible_in_tree() and is_multiplayer_authority() and not player_self.is_bot:
+		if player_self.is_dead or Globals.paused:
+			return
 		_time_since_last_note += delta
 		handle_keyboard_input()
 
 func handle_keyboard_input():
 	var input_received = false
+
+	if Input.is_action_just_pressed("shoot"):
+		activate_spell("fireball")
+	if Input.is_action_just_pressed("alt_fire"):
+		activate_spell("speed")
 	
 	# Check for pressed actions to build spell sequences
-	for action in numpad_actions:
+	for note_index in numpad_actions.size():
+		var action = numpad_actions[note_index]
 		if Input.is_action_just_pressed(action):
 			input_received = true
+			rpc("play_note", note_index)
 			print(action + " Pressed")
 			if _time_since_last_note <= max_time_between_notes:
 				update_key_sequence(action)
@@ -147,6 +164,66 @@ func _on_animation_finished(animation_name: String) -> void:
 	_is_anim_playing = false
 	# Check if there's another animation to play
 	_play_next_animation()
+
+## SYNTH FUNCTIONS ##
+
+func _setup_synth() -> void:
+	if _note_streams.is_empty():
+		for note_index in numpad_actions.size():
+			_note_streams.append(_build_note_stream(SYNTH_BASE_FREQUENCY * pow(2.0, note_index / 12.0)))
+
+	var polyphonic := AudioStreamPolyphonic.new()
+	polyphonic.polyphony = 24
+	var synth_player := AudioStreamPlayer3D.new()
+	synth_player.name = "SynthPlayer"
+	synth_player.stream = polyphonic
+	add_child(synth_player)
+	synth_player.play()
+	_synth_playback = synth_player.get_stream_playback()
+
+@rpc("authority", "call_local", "unreliable_ordered")
+func play_note(note_index: int) -> void:
+	if _synth_playback and note_index >= 0 and note_index < _note_streams.size():
+		_synth_playback.play_stream(_note_streams[note_index])
+
+# Two detuned saws plus a square an octave down, through a low-pass that closes after the attack
+static func _build_note_stream(frequency: float) -> AudioStreamWAV:
+	var sample_count := int(SYNTH_MIX_RATE * SYNTH_NOTE_LENGTH)
+	var attack_samples := SYNTH_MIX_RATE * 0.005
+	var release_start := sample_count - int(SYNTH_MIX_RATE * 0.05)
+	var step_a := frequency * 1.003 / SYNTH_MIX_RATE
+	var step_b := frequency * 0.997 / SYNTH_MIX_RATE
+	var step_sub := frequency * 0.5 / SYNTH_MIX_RATE
+	var amp_decay := exp(-3.0 / SYNTH_MIX_RATE)
+	var filter_decay := exp(-10.0 / SYNTH_MIX_RATE)
+
+	var phase_a := 0.0
+	var phase_b := 0.0
+	var phase_sub := 0.0
+	var amp := 1.0
+	var filter_sweep := 1.0
+	var filtered := 0.0
+	var data := PackedByteArray()
+	data.resize(sample_count * 2)
+	for i in sample_count:
+		phase_a = fmod(phase_a + step_a, 1.0)
+		phase_b = fmod(phase_b + step_b, 1.0)
+		phase_sub = fmod(phase_sub + step_sub, 1.0)
+		var raw := 2.0 * (phase_a + phase_b) - 2.0 + (0.6 if phase_sub < 0.5 else -0.6)
+		var w := TAU * (600.0 + 5000.0 * filter_sweep) / SYNTH_MIX_RATE
+		filtered += w / (1.0 + w) * (raw - filtered)
+		var envelope := amp * minf(i / attack_samples, 1.0)
+		if i > release_start:
+			envelope *= float(sample_count - i) / (sample_count - release_start)
+		data.encode_s16(i * 2, int(clampf(filtered * envelope * 0.3, -1.0, 1.0) * 32767.0))
+		amp *= amp_decay
+		filter_sweep *= filter_decay
+
+	var stream := AudioStreamWAV.new()
+	stream.format = AudioStreamWAV.FORMAT_16_BITS
+	stream.mix_rate = SYNTH_MIX_RATE
+	stream.data = data
+	return stream
 
 ## SPELL HANDLING FUNCTIONS ##
 

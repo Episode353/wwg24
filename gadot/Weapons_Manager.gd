@@ -36,6 +36,7 @@ func _ready():
 func _input(event):
 	if not is_multiplayer_authority(): return
 	if player.is_bot: return
+	if player.is_dead: return
 	if Globals.paused:
 		return
 	if event.is_action_pressed("w_up"):
@@ -85,6 +86,14 @@ func switch_weapon(slot_index: int):
 			exit(selected_weapon)  # This will play the deactivate animation.
 	else:
 		print("Debug: No weapon in slot", slot_index + 1)  # No weapon in this slot.
+
+# Switches to a held weapon by name, with the deactivate / activate animations
+func equip_weapon(weapon_name: String) -> void:
+	if current_weapon == null or weapon_name == current_weapon.weapon_name:
+		return
+	if weapon_name == "hands" or not weapon_stack.has(weapon_name):
+		return
+	exit(weapon_name)
 
 
 func reset_all_ammo():
@@ -281,7 +290,7 @@ func _on_animation_player_animation_finished(anim_name):
 		animation_player.play(current_weapon.activate_anim)
 	
 	if anim_name == current_weapon.shoot_anim and current_weapon.auto_fire and not current_weapon.skip_animation_on_fire:
-		if Input.is_action_pressed("shoot"):
+		if not player.is_bot and Input.is_action_pressed("shoot"):
 			shoot()
 	
 	idle()
@@ -321,7 +330,7 @@ func raycast_shoot_procc():
 	
 	# Handle hitting a player
 	if hit_object.is_in_group("players"):
-		hit_object.rpc("receive_damage", current_weapon.damage)
+		hit_object.rpc("receive_damage", current_weapon.damage, str(player.name))
 		hit_object.rpc("update_last_tagged_by", player.name)
 		play_hit_player_sound()
 	
@@ -356,6 +365,8 @@ func create_bullet_decal(col_point: Vector3, col_nor: Vector3):
 
 	
 func area_collision_procc(self_id):
+	if player.is_dead:
+		return
 	var ac_enim = area_collision.get_overlapping_bodies()
 	print("Self ID: ", self_id) # Print self ID for debugging
 	for e in ac_enim:
@@ -365,8 +376,8 @@ func area_collision_procc(self_id):
 			print("In players group: Entity ID: ", e_id)
 			if e.name != str(self_id): # Compare with the player ID passed to the function
 				print("Damaging player: Entity ID: ", e_id) # Debug print
-				e.rpc("receive_damage", current_weapon.damage)
-				e.rpc("update_last_tagged_by", player.player_username)
+				e.rpc("receive_damage", current_weapon.damage, str(player.name))
+				e.rpc("update_last_tagged_by", player.name)
 			else:
 				print("Ignoring self: Entity ID: ", e_id) # Debug print
 
@@ -387,6 +398,7 @@ func shoot():
 			current_weapon.current_ammo -= 1
 			emit_signal("update_ammo", [current_weapon.current_ammo, current_weapon.reserve_ammo])
 		
+		raycast_shoot.force_raycast_update()
 		if raycast_shoot.is_colliding():
 			raycast_shoot_procc()
 			
@@ -396,6 +408,21 @@ func shoot():
 			if current_weapon.weapon_name == "rocket_launcher":
 				player.rpc("launch_rocket")
 				play_fire_sound()
+		
+		if current_weapon.use_area_damage_collision == true:
+			area_collision_procc(multiplayer.get_unique_id())
+		
+		if current_weapon.weapon_name == "hegrenade":
+			await get_tree().create_timer(0.5).timeout
+			player.rpc("launch_he_grenade")
+			animation_player.play(current_weapon.activate_anim)
+			play_fire_sound()
+			
+		if current_weapon.weapon_name == "salsa":
+			await get_tree().create_timer(0.5).timeout
+			player.rpc("launch_salsa")
+			animation_player.play(current_weapon.activate_anim)
+			#play_fire_sound()
 				
 		if current_weapon.weapon_name != "wand":
 			return
@@ -445,23 +472,6 @@ func shoot():
 		if mana_delta != 0:   player.rpc("receive_mana", mana_delta)      # + = gain, - = spend
 		if health_delta != 0: player.rpc("receive_health", health_delta)  # + = heal, - = hurt
 		play_fire_sound()
-
-
-			
-		if current_weapon.weapon_name == "hegrenade":
-			await get_tree().create_timer(0.5).timeout
-			player.rpc("launch_he_grenade")
-			animation_player.play(current_weapon.activate_anim)
-			play_fire_sound()
-			
-		if current_weapon.weapon_name == "salsa":
-			await get_tree().create_timer(0.5).timeout
-			player.rpc("launch_salsa")
-			animation_player.play(current_weapon.activate_anim)
-			#play_fire_sound()
-		
-		if current_weapon.use_area_damage_collision == true:
-			area_collision_procc(multiplayer.get_unique_id())
 		
 	else:
 		reload()
@@ -532,6 +542,8 @@ func _physics_process(_delta):
 		return
 	# in the future i don't want to update this every frame :(
 	rpc_update_weapon_info()
+	if player.is_dead:
+		return
 
 
 	if not current_weapon.disable_wall_prox:
@@ -574,6 +586,27 @@ func drop_all_weapons():
 	
 	# Play the activation animation for "hands"
 	animation_player.play("RESET")
+	# Apply the RESET pose now, otherwise a weapon activated this same frame replaces it and the old weapon model stays visible
+	animation_player.advance(0)
+
+# Replaces everything the player holds with exactly these weapons (plus hands), at full ammo
+func set_loadout(weapon_names: Array, equip: String = "") -> void:
+	drop_all_weapons()
+	for weapon_name in weapon_names:
+		if weapon_name == "hands" or not weapon_list.has(weapon_name):
+			continue
+		var weapon = weapon_list[weapon_name]
+		weapon.current_ammo = weapon.current_ammo_default
+		weapon.reserve_ammo = weapon.reserve_ammo_default
+		weapon.mag_ammo = weapon.mag_ammo_default
+		weapon_stack.push_back(weapon_name)
+	weapon_indicator = 0
+	emit_signal("update_weapon_stack", weapon_stack)
+
+	if equip == "" and weapon_stack.size() > 1:
+		equip = weapon_stack[1]
+	if equip != "":
+		change_weapon(equip)
 
 func add_all_weapons():
 	print("I shall add all the weapons")

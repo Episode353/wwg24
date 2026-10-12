@@ -40,7 +40,7 @@ func _on_area_3d_body_entered(body):
 		return
 	
 	if body.is_in_group("players"):
-		body.rpc("receive_damage", 32)
+		body.rpc("receive_damage", 32, str(owner_player.name) if is_instance_valid(owner_player) else "")
 		explode()
 
 func explode():

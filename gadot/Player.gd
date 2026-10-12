@@ -37,7 +37,30 @@ var bot_origin: String = "0 0 0"
 @onready var raycast_wall: RayCast3D = $raycast_wall
 
 @onready var _3p_model: Node3D = $"3p_model"
+@onready var viewmodel_container: SubViewportContainer = $neck/head/main_camera/SubViewportContainer
+@onready var _body_mesh: CSGCylinder3D = $"3p_model/CSGCylinder3D"
+
+# Third person view (toggle_camera, F5 by default). Shooting still comes from main_camera.
+const THIRD_PERSON_DISTANCE: float = 10
+const THIRD_PERSON_HEIGHT: float = 0
+const THIRD_PERSON_WALL_MARGIN: float = 0.2
+const THIRD_PERSON_FOV_SCALE: float = 1.25
+var third_person: bool = false
+var _third_person_arm: SpringArm3D
+var _third_person_camera: Camera3D
+
 var last_tagged_by: String = "Unknown"
+
+# Gamemode
+var team: int = 0: # 0 = no team (sandbox), 1 = Wizards (Team A), 2 = Humans (Team B)
+	set(value):
+		team = value
+		_apply_team_color()
+var _default_body_material: Material = null
+var is_dead: bool = false # Ghost waiting for the next round
+var _alive_collision_layer: int = 0
+var _alive_collision_mask: int = 0
+var _ghost_hidden_nodes: Array[Node3D] = []
 
 
 # Source
@@ -160,10 +183,39 @@ var cam_aligned_wish_dir := Vector3.ZERO
 var noclip_speed_mult := 8.0
 var noclip := false
 
-#func _enter_tree():
-	#set_multiplayer_authority(str(name).to_int())
-	#
-	#
+# Players spawned on clients by the MultiplayerSpawner only carry their name (the peer id),
+# so the authority the server assigned has to be restored from it.
+# Bots have negative names and are simulated by the host (peer 1).
+func _enter_tree():
+	if str(name).is_valid_int():
+		var id := str(name).to_int()
+		set_multiplayer_authority(id if id > 0 else 1)
+
+# The MultiplayerSynchronizer replicates these instead of the real transforms. Updates arrive unevenly
+# (frame rate differences between peers, lag, packet loss), so remote copies glide toward them
+# rather than snapping, which is what made other players rubberband.
+const REMOTE_SMOOTHING: float = 18.0 # Higher follows tighter, lower is smoother but lags more
+const REMOTE_SNAP_DISTANCE: float = 4.0 # Further than this is a teleport (respawn), so jump straight there
+var sync_position: Vector3:
+	set(value):
+		sync_position = value
+		_has_sync_state = true
+var sync_rotation: Vector3
+var sync_head_rotation: Vector3
+var sync_neck_rotation: Vector3
+var _has_sync_state: bool = false
+var _snapped_to_sync: bool = false
+# After the host respawns a remote player, their last synced position is where they died.
+# Ignore that until a position from the new life arrives, or the host drags them back there.
+var _stale_sync := Vector3.ZERO
+var _placement_lock_pos := Vector3.ZERO
+var _placement_lock: bool = false
+
+func lock_remote_placement() -> void:
+	_stale_sync = sync_position
+	_placement_lock_pos = global_position
+	_placement_lock = true
+
 # Peer id.
 @export var peer_id : int : 
 	set(value):
@@ -182,7 +234,13 @@ func _on_size_changed():
 	_adjust_viewport_size()
 
 func _ready():
-	if not is_multiplayer_authority():
+	# Not in _enter_tree: on clients the spawner applies is_bot after that
+	if is_bot:
+		add_to_group("bots")
+	# Fill the sync values before the spawner sends them, or clients first see bots at the origin
+	if is_multiplayer_authority():
+		_write_sync_state()
+	if not is_multiplayer_authority() or is_bot:
 		fps_rig.hide()
 		return
 	_3p_model.hide()
@@ -204,8 +262,6 @@ func _ready():
 	# Add collision shapes to the Players Group
 	$standing_collision_shape.add_to_group("players")
 	$crouching_collision_shape.add_to_group("players")
-	
-
 const CS_SENSITIVITY_SCALE = 0.022  # Counter-Strike scale factor for sensitivity
 
 func _unhandled_input(event):
@@ -230,22 +286,27 @@ const M_TO_H_COST := 2           # 2 mana -> 1 health
 const H_TO_M_COST := 2           # 2 health -> 1 mana
 
 func _physics_process(delta):
+	# A joining client gets its player before it has built the map, so don't fall through the void
+	if not Globals.map_loaded:
+		return
+	if is_multiplayer_authority():
+		_write_sync_state()
+	else:
+		_follow_sync_state(delta)
 	# Death check for both bots and players (before authority check)
 	if position.y < -100:
 		if is_bot:
 			health = 0
 		player_death()
 		return  # Exit early after death
-	_check_mana_pool()
-	calculate_fire_damage()
-	_check_health_pool()
-	if not is_multiplayer_authority():
+	if not is_dead:
+		_check_mana_pool()
+		calculate_fire_damage()
+		_check_health_pool()
+	if not is_multiplayer_authority() or is_bot:
+		# Remote players: crouching is replicated, keep their hitbox and body in step with it
+		_update_crouch_body(delta)
 		return
-	
-	
-
-	if is_bot: return
-	# ... rest of function
 
 
 	
@@ -280,15 +341,7 @@ func _physics_process(delta):
 		coyote_time_remaining = max(coyote_time_remaining - delta, 0)
 	
 	process_input()
-	
-	# Toggle collision shapes
-	if crouching:
-		standing_collision_shape.disabled = true
-		crouching_collision_shape.disabled = false
-		
-	else:
-		standing_collision_shape.disabled = false
-		crouching_collision_shape.disabled = true
+	_update_crouch_body(delta)
 
 	# Reset the boost flag when on the floor
 	if is_on_floor():
@@ -317,6 +370,8 @@ func _physics_process(delta):
 		neck.rotation.y = lerp(neck.rotation.y, 0.0, delta * 5)
 		neck.rotation.z = lerp(neck.rotation.z, 0.0, delta * 5)
 	viewmodel_camera.global_transform = main_camera.global_transform
+	if third_person:
+		_sync_third_person_camera()
 	
 
 
@@ -356,6 +411,117 @@ func update_view_bobbing(delta):
 
 
 
+# Enables the hitbox for the current stance and eases the 3rd person body to the same height.
+# Scaled rather than resized so the CSG mesh isn't rebuilt every frame.
+func _update_crouch_body(delta: float) -> void:
+	standing_collision_shape.disabled = crouching
+	crouching_collision_shape.disabled = not crouching
+
+	var hitbox: CollisionShape3D = crouching_collision_shape if crouching else standing_collision_shape
+	var target_scale := _shape_height(hitbox.shape) / _body_mesh.height
+	var target_y := hitbox.position.y
+	if is_equal_approx(_body_mesh.scale.y, target_scale) and is_equal_approx(_body_mesh.position.y, target_y):
+		return
+	var t := minf(delta * lerp_speed, 1.0)
+	_body_mesh.scale.y = lerpf(_body_mesh.scale.y, target_scale, t)
+	_body_mesh.position.y = lerpf(_body_mesh.position.y, target_y, t)
+	if absf(_body_mesh.scale.y - target_scale) < 0.005:
+		_body_mesh.scale.y = target_scale
+		_body_mesh.position.y = target_y
+
+
+func _write_sync_state() -> void:
+	sync_position = position
+	sync_rotation = rotation
+	sync_head_rotation = head.rotation
+	sync_neck_rotation = neck.rotation
+
+
+# Runs in the physics step so physics interpolation smooths it between ticks too
+func _follow_sync_state(delta: float) -> void:
+	if not _has_sync_state:
+		return
+	if _placement_lock:
+		var still_stale := sync_position.distance_to(_stale_sync) < 1.0 and sync_position.distance_to(_placement_lock_pos) > 2.0
+		if still_stale:
+			return
+		_placement_lock = false
+	if not _snapped_to_sync or position.distance_to(sync_position) > REMOTE_SNAP_DISTANCE:
+		_snapped_to_sync = true
+		position = sync_position
+		rotation = sync_rotation
+		head.rotation = sync_head_rotation
+		neck.rotation = sync_neck_rotation
+		reset_physics_interpolation()
+		return
+	var t := 1.0 - exp(-REMOTE_SMOOTHING * delta)
+	position = position.lerp(sync_position, t)
+	rotation = _lerp_euler(rotation, sync_rotation, t)
+	head.rotation = _lerp_euler(head.rotation, sync_head_rotation, t)
+	neck.rotation = _lerp_euler(neck.rotation, sync_neck_rotation, t)
+
+
+static func _lerp_euler(from: Vector3, to: Vector3, t: float) -> Vector3:
+	return Vector3(lerp_angle(from.x, to.x, t), lerp_angle(from.y, to.y, t), lerp_angle(from.z, to.z, t))
+
+
+static func _shape_height(shape: Shape3D) -> float:
+	if shape is BoxShape3D:
+		return (shape as BoxShape3D).size.y
+	if shape is CylinderShape3D:
+		return (shape as CylinderShape3D).height
+	if shape is CapsuleShape3D:
+		return (shape as CapsuleShape3D).height
+	return 2.0
+
+
+func set_third_person(enabled: bool) -> void:
+	if not is_multiplayer_authority() or is_bot:
+		return
+	third_person = enabled
+	if enabled and _third_person_camera == null:
+		# Spring arm on the head so the camera follows the view pitch and pulls in against walls
+		_third_person_arm = SpringArm3D.new()
+		_third_person_arm.name = "third_person_arm"
+		_third_person_arm.position = Vector3(0, THIRD_PERSON_HEIGHT, 0)
+		_third_person_arm.spring_length = THIRD_PERSON_DISTANCE
+		_third_person_arm.margin = THIRD_PERSON_WALL_MARGIN
+		_third_person_arm.collision_mask = 1
+		var probe := SphereShape3D.new()
+		probe.radius = 0.2
+		_third_person_arm.shape = probe
+		_third_person_arm.add_excluded_object(get_rid())
+		head.add_child(_third_person_arm)
+
+		_third_person_camera = Camera3D.new()
+		_third_person_camera.name = "third_person_camera"
+		_third_person_arm.add_child(_third_person_camera)
+	_apply_camera_mode()
+
+
+func _apply_camera_mode() -> void:
+	if not is_multiplayer_authority() or is_bot:
+		return
+	if _third_person_camera:
+		_sync_third_person_camera()
+		_third_person_camera.current = third_person
+	main_camera.current = not third_person
+	viewmodel_container.visible = not third_person
+	_3p_model.visible = third_person and not is_dead
+
+
+# main_camera.gd drives FOV, the underwater environment and the water layer; mirror them
+func _sync_third_person_camera() -> void:
+	if _third_person_camera == null:
+		return
+	_third_person_camera.cull_mask = main_camera.cull_mask
+	_third_person_camera.environment = main_camera.environment
+	# Assigning CameraAttributesPhysical resets fov from its focal length, so only reassign on change and set fov after
+	if _third_person_camera.attributes != main_camera.attributes:
+		_third_person_camera.attributes = main_camera.attributes
+	_third_person_camera.fov = minf(main_camera.fov * THIRD_PERSON_FOV_SCALE, 179.0)
+
+
 func process_input():
 	if is_bot: return
 	direction = Vector3()
@@ -367,6 +533,8 @@ func process_input():
 		player_death()
 	if Input.is_action_just_pressed("rebuild_map"):
 		world.rpc("rebuild_map")
+	if Input.is_action_just_pressed("toggle_camera"):
+		set_third_person(not third_person)
 
 	# Free-looking
 	if Input.is_action_just_pressed("free_look"):
@@ -407,7 +575,7 @@ func process_input():
 
 
 func _handle_noclip(delta) -> bool:
-	if Input.is_action_just_pressed("noclip") and OS.has_feature("debug"):
+	if Input.is_action_just_pressed("noclip") and OS.has_feature("debug") and not is_dead:
 		noclip = !noclip
 	#standing_collision_shape.disabled = noclip
 
@@ -659,7 +827,10 @@ func update_velocity_air(wish_dir: Vector3, delta):
 	
 
 func player_death():
-	if disable_respawn:
+	if is_dead:
+		return
+	# The spawner removes the copies on the other peers
+	if disable_respawn and is_multiplayer_authority():
 		queue_free()
 		
 	if interaction_ray:
@@ -671,10 +842,18 @@ func player_death():
 	weapons_manager.reset_all_ammo()
 	weapons_manager.drop_all_weapons()
 	
-	# Make these work for bots too
-	if is_multiplayer_authority() or is_bot:  # <-- Add this condition
+	# Every peer runs the death, only the owner (the host for bots) announces it
+	if is_multiplayer_authority():
 		rpc("spawn_mana_for_all", world_pos)
 		world.rpc("display_to_killfeed", last_tagged_by, self.name)
+
+	var becomes_ghost: bool = world.gamemode and world.gamemode.handle_death(self)
+	if is_multiplayer_authority() and not is_bot:
+		_show_death_message(becomes_ghost)
+
+	if becomes_ghost:
+		enter_ghost()
+		return
 
 	# Call the world's respawn player function
 	var world_to_respawn = get_parent()
@@ -688,7 +867,75 @@ func player_death():
 	
 	if is_bot:
 		bot_logic.initialize_bot()
-		
+
+
+func _show_death_message(spectating: bool) -> void:
+	var lines: PackedStringArray = []
+	if last_tagged_by != "Unknown" and last_tagged_by != str(name):
+		var killer: Node = world.get_node_or_null(last_tagged_by)
+		var killer_name := last_tagged_by
+		if killer and "is_bot" in killer and killer.is_bot:
+			killer_name = "bot " + last_tagged_by
+		lines.append("Killed by " + killer_name)
+	if spectating:
+		lines.append("Spectating until next round")
+	world.show_announcement("YOU DIED", "\n".join(lines), Color(1.0, 0.4, 0.4), 2.5)
+
+
+# Tints the 3rd person body with the team colour, or puts the default material back with no team (sandbox)
+func _apply_team_color() -> void:
+	var body := get_node_or_null("3p_model/CSGCylinder3D") as CSGCylinder3D
+	if body == null:
+		return
+	if _default_body_material == null:
+		_default_body_material = body.material
+	if not Globals.TEAM_COLORS.has(team):
+		body.material = _default_body_material
+		return
+	# Own copy: the scene's material is shared by every player instance
+	var team_material := _default_body_material.duplicate() as StandardMaterial3D
+	team_material.albedo_color = Globals.TEAM_COLORS[team]
+	body.material = team_material
+
+
+# Dead until the next round: invisible, not hittable, humans fly around with noclip
+func enter_ghost() -> void:
+	is_dead = true
+	health = 0
+	velocity = Vector3.ZERO
+	set_on_fire(false)
+	health_changed.emit(health)
+	# Layers instead of disabling the shapes, the crouch code re-enables the shapes every frame
+	_alive_collision_layer = collision_layer
+	_alive_collision_mask = collision_mask
+	collision_layer = 0
+	collision_mask = 0
+	for node in [_3p_model, fps_rig, $username_label, $Bot_Label, $display_health, $Weapon]:
+		if node.visible:
+			node.hide()
+			_ghost_hidden_nodes.append(node)
+	if is_multiplayer_authority() and not is_bot:
+		noclip = true
+
+
+func revive() -> void:
+	if is_dead:
+		is_dead = false
+		collision_layer = _alive_collision_layer
+		collision_mask = _alive_collision_mask
+		for node in _ghost_hidden_nodes:
+			node.show()
+		_ghost_hidden_nodes.clear()
+		noclip = false
+		_apply_camera_mode()
+		if is_bot:
+			bot_logic.initialize_bot()
+	health = max_health
+	mana = 50
+	velocity = Vector3.ZERO
+	set_on_fire(false)
+	mana_changed.emit(mana)
+	health_changed.emit(health)
 
 
 @rpc("call_local")
@@ -827,11 +1074,17 @@ func play_hurt_sound():
 	player_hurt_noise.play()
 
 @rpc("any_peer", "call_local")
-func receive_damage(dmg):
+func receive_damage(dmg, attacker_name: String = ""):
+	if is_dead:
+		return
+	if world.gamemode and not world.gamemode.can_damage(attacker_name, self):
+		return
 	health -= int(dmg)
 	health_changed.emit(health)
 	if health <= 0:
 		player_death()
+	elif is_bot:
+		bot_logic.on_damaged(attacker_name)
 	play_hurt_sound()
 	make_damage_indicator(int(dmg))
 	
@@ -851,14 +1104,12 @@ func make_damage_indicator(dmg):
 	# ---- persistent state on the spawner ----
 	if not has_meta("_dmg_stack"):
 		set_meta("_dmg_stack", 0)
-	if not has_meta("_dmg_stack_timer"):
-		set_meta("_dmg_stack_timer", null)
 
 	var stack := int(get_meta("_dmg_stack"))
 
 	# If we are still in the stacking window, move to the next lane.
 	# WRAP so it never climbs forever.
-	if get_meta("_dmg_stack_timer") != null:
+	if has_meta("_dmg_stack_timer"):
 		stack = (stack + 1) % (MAX_STACK + 1)
 	else:
 		stack = 0
@@ -878,9 +1129,9 @@ func make_damage_indicator(dmg):
 
 	timer.timeout.connect(func ():
 		# Only reset if this is still the active timer
-		if get_meta("_dmg_stack_timer") == timer:
+		if has_meta("_dmg_stack_timer") and get_meta("_dmg_stack_timer") == timer:
 			set_meta("_dmg_stack", 0)
-			set_meta("_dmg_stack_timer", null)
+			remove_meta("_dmg_stack_timer")
 	)
 
 	

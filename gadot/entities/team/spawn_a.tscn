@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://entities/team/team_spawn.gd" id="1_team"]
+
+[node name="TeamASpawn" type="Node3D"]
+script = ExtResource("1_team")
+team = 1

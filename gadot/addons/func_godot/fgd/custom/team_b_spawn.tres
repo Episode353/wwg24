@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" format=3 uid="uid://xa0wkfj8osoh"]
+
+[ext_resource type="Script" uid="uid://5mw8jtvjhbkl" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_point"]
+[ext_resource type="PackedScene" path="res://entities/team/spawn_b.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_point")
+scene_file = ExtResource("2_scene")
+classname = "team_b_spawn"
+description = "Humans (Team B) Spawnpoint"
+class_properties = {
+"weapons": [["AK47", 1, false], ["Shotgun", 2, false], ["Knife", 4, false], ["HE Grenade", 8, false], ["Rocket Launcher", 16, false], ["Salsa", 32, false], ["Keyboard", 64, false], ["Wand", 128, false]]
+}
+class_property_descriptions = {
+"weapons": "Weapons a player or bot spawns with at this spawnpoint"
+}
+auto_apply_to_matching_node_properties = true
+meta_properties = {
+"color": Color(1, 0, 1, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+metadata/_custom_type_script = "uid://5mw8jtvjhbkl"

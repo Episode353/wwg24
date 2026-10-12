@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://cqscctj06yo0b"]
+[gd_resource type="Resource" script_class="Weapon_Resource" format=3 uid="uid://cqscctj06yo0b"]
 
 [ext_resource type="Script" uid="uid://c833r24e7s2jf" path="res://sys/weapon_resource.gd" id="1_sxw7q"]
 
@@ -7,11 +7,7 @@ script = ExtResource("1_sxw7q")
 weapon_name = "hegrenade"
 activate_anim = "grenade_active"
 shoot_anim = "grenade_shoot"
-reload_anim = ""
 deactivate_anim = "grenade_deactive"
-out_of_ammo_anim = ""
-wall_raise_anim = ""
-wall_lower_anim = ""
 has_idle_anim = true
 idle_anim = "grenade_idle"
 current_ammo = 40
@@ -22,14 +18,5 @@ mag_ammo = 40
 mag_ammo_default = 40
 max_ammo = 40
 damage = 40
-weapon_range = 0
-auto_fire = false
-disable_wall_prox = false
-disable_ammo = false
-is_gun = false
-is_spell = false
+bot_min_distance = 6.0
 is_projectile_launcher = true
-use_area_damage_collision = false
-area_damage_radius = 0
-skip_animation_on_fire = false
-fire_rate = 0.0

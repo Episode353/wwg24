@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://textures/ground/stone_path_grass_01.jpg" id="1_porup"]
+
+[resource]
+albedo_texture = ExtResource("1_porup")
+metallic_specular = 0.0
+texture_filter = 2

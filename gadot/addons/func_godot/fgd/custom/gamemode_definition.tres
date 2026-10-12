@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" format=3 uid="uid://dn5ij0psvbdr1"]
+
+[ext_resource type="Script" uid="uid://5mw8jtvjhbkl" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_point"]
+[ext_resource type="PackedScene" path="res://entities/gamemode/definition.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_point")
+scene_file = ExtResource("2_scene")
+apply_rotation_on_map_build = false
+apply_scale_on_map_build = false
+classname = "gamemode_definition"
+description = "Gamemode Definition"
+class_properties = {
+"friendly_fire": 1,
+"game_type": 0,
+"players_per_team": 4,
+"rounds": 5,
+"waiting_for_players": 10
+}
+class_property_descriptions = {
+"friendly_fire": "0: Disabled, 1: Enabled",
+"game_type": "0: None, 1: Casual, 2: Deathmatch",
+"players_per_team": "Ammount of players in a team.",
+"rounds": "Ammount of rounds in a game.",
+"waiting_for_players": "Ammount of time in seconds we wait for players before the game begins."
+}
+auto_apply_to_matching_node_properties = true
+meta_properties = {
+"color": Color(0, 1, 0, 1),
+"model": "{ \"path\": \"textures/signs/sign_hazard_04.png\", \"scale\": 0.25 }",
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+metadata/_custom_type_script = "uid://5mw8jtvjhbkl"

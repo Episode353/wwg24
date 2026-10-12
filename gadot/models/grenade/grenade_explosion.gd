@@ -41,16 +41,21 @@ func calculate_damage(distance: float) -> float:
 
 func _ready():
 	show_smoke()
+	var attacker_name := str(owner_player.name) if is_instance_valid(owner_player) else ""
+	# Every peer has a copy of this explosion, only the thrower's copy deals the damage
+	var deals_damage: bool = is_instance_valid(owner_player) and owner_player.is_multiplayer_authority()
 	# Scan for all players within the explosion radius
 	var players = get_tree().get_nodes_in_group("players")
 	for player in players:
 		var distance = player.global_transform.origin.distance_to(global_transform.origin)
 		if distance <= explosion_radius:
 			apply_explosion_force(player)
+			if not deals_damage:
+				continue
 			if player != owner_player: #If you shoot someone else but you
-				player.rpc("receive_damage", calculate_damage(distance))
+				player.rpc("receive_damage", calculate_damage(distance), attacker_name)
 			elif Globals.self_harm: # If you shoot yourself, and self harm is enabled
-				player.rpc("receive_damage", calculate_damage(distance) / 4) # Deal a quarter Damage as you would to a normal person
+				player.rpc("receive_damage", calculate_damage(distance) / 4, attacker_name) # Deal a quarter Damage as you would to a normal person
 
 	# Scan for destructable objects
 	var objects = get_tree().get_nodes_in_group("destructable")

@@ -643,6 +643,33 @@
 ( -768 448 -56 ) ( -767 448 -56 ) ( -768 448 -55 ) ground/01Brick_03 256 -8 0 1 1
 ( -384 704 -56 ) ( -384 704 -55 ) ( -384 705 -56 ) ground/01Brick_03 -192 -8 0 1 1
 }
+// brush 71
+{
+( 128 -128 -80 ) ( 128 -127 -80 ) ( 128 -128 -79 ) ground/01Brick_03 128 0 0 1 1
+( -256 -384 -80 ) ( -256 -384 -79 ) ( -255 -384 -80 ) ground/01Brick_03 0 0 0 1 1
+( -256 -128 -80 ) ( -255 -128 -80 ) ( -256 -127 -80 ) ground/01Brick_03 0 -128 0 1 1
+( -128 0 -48 ) ( -128 1 -48 ) ( -127 0 -48 ) ground/01Brick_03 0 -128 0 1 1
+( -128 -256 -48 ) ( -127 -256 -48 ) ( -128 -256 -47 ) ground/01Brick_03 0 0 0 1 1
+( 256 0 -48 ) ( 256 0 -47 ) ( 256 1 -48 ) ground/01Brick_03 128 0 0 1 1
+}
+// brush 72
+{
+( 256 -128 -80 ) ( 256 -127 -80 ) ( 256 -128 -79 ) ground/01Brick_03 128 0 0 1 1
+( -128 -384 -80 ) ( -128 -384 -79 ) ( -127 -384 -80 ) ground/01Brick_03 0 0 0 1 1
+( -128 -128 -80 ) ( -127 -128 -80 ) ( -128 -127 -80 ) ground/01Brick_03 0 -128 0 1 1
+( 0 0 -48 ) ( 0 1 -48 ) ( 1 0 -48 ) ground/01Brick_03 0 -128 0 1 1
+( 0 -256 -48 ) ( 1 -256 -48 ) ( 0 -256 -47 ) ground/01Brick_03 0 0 0 1 1
+( 384 0 -48 ) ( 384 0 -47 ) ( 384 1 -48 ) ground/01Brick_03 128 0 0 1 1
+}
+// brush 73
+{
+( 384 -128 -80 ) ( 384 -127 -80 ) ( 384 -128 -79 ) ground/01Brick_03 128 0 0 1 1
+( 0 -384 -80 ) ( 0 -384 -79 ) ( 1 -384 -80 ) ground/01Brick_03 0 0 0 1 1
+( 0 -128 -80 ) ( 1 -128 -80 ) ( 0 -127 -80 ) ground/01Brick_03 0 -128 0 1 1
+( 128 0 -48 ) ( 128 1 -48 ) ( 129 0 -48 ) ground/01Brick_03 0 -128 0 1 1
+( 128 -256 -48 ) ( 129 -256 -48 ) ( 128 -256 -47 ) ground/01Brick_03 0 0 0 1 1
+( 512 0 -48 ) ( 512 0 -47 ) ( 512 1 -48 ) ground/01Brick_03 128 0 0 1 1
+}
 }
 // entity 1
 {
@@ -889,133 +916,198 @@
 }
 // entity 24
 {
+"classname" "team_a_spawn"
+"origin" "200 -328 -40"
+"weapons" "225"
+}
+// entity 25
+{
+"classname" "team_b_spawn"
+"origin" "328 -328 -40"
+"weapons" "31"
+}
+// entity 26
+{
+"classname" "gamemode_definition"
+"origin" "456 -328 -40"
+}
+// entity 27
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 152"
+"billboard" "0"
+"text" "32px Outline Size"
+"pixel_size" "0.01"
+"text_color" "255 255 255"
+"font_size" "100"
+"double_sided" "0"
+"outline_size" "32"
+}
+// entity 28
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 184"
+"billboard" "0"
+"text" "48px Outline Size"
+"pixel_size" "0.01"
+"text_color" "255 255 255"
+"font_size" "100"
+"double_sided" "0"
+"outline_size" "48"
+}
+// entity 29
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 216"
+"billboard" "0"
+"text" "64px Outline Size"
+"pixel_size" "0.01"
+"text_color" "255 255 255"
+"font_size" "100"
+"double_sided" "0"
+"outline_size" "64"
+}
+// entity 30
+{
+"classname" "world_label_label_3d"
+"origin" "-200 -312 248"
+"billboard" "0"
+"text" "Pixelated"
+"pixel_size" ".12"
+"text_color" "255 255 255"
+"font_size" "12"
+"double_sided" "0"
+"outline_size" "8"
+}
+// entity 31
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Entities"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 25
+// entity 32
 {
 "classname" "pickup_ammo_large"
 "origin" "72 72 -40"
 "_tb_layer" "1"
 }
-// entity 26
+// entity 33
 {
 "classname" "light"
 "origin" "-60 68 -44"
 "_tb_layer" "1"
 }
-// entity 27
+// entity 34
 {
 "classname" "pickup_ammo_medium"
 "origin" "200 72 -40"
 "_tb_layer" "1"
 }
-// entity 28
+// entity 35
 {
 "classname" "pickup_ammo_small"
 "origin" "328 72 -40"
 "_tb_layer" "1"
 }
-// entity 29
+// entity 36
 {
 "classname" "pickup_health_medium"
 "origin" "328 200 -40"
 "_tb_layer" "1"
 }
-// entity 30
+// entity 37
 {
 "classname" "pickup_mana_medium"
 "origin" "200 200 -40"
 "_tb_layer" "1"
 }
-// entity 31
+// entity 38
 {
 "classname" "player_spawn"
 "origin" "72 200 -8"
 "_tb_layer" "1"
 }
-// entity 32
+// entity 39
 {
 "classname" "props_grabbable_ball"
 "origin" "328 -56 -40"
 "_tb_layer" "1"
 }
-// entity 33
+// entity 40
 {
 "classname" "props_grabbable_box"
 "origin" "200 -56 -40"
 "_tb_layer" "1"
 }
-// entity 34
+// entity 41
 {
 "classname" "props_model_planet"
 "origin" "-632 776 -40"
 "_tb_layer" "1"
 }
-// entity 35
+// entity 42
 {
 "classname" "props_shootable_box"
 "origin" "-56 -56 -40"
 "_tb_layer" "1"
 }
-// entity 36
+// entity 43
 {
 "classname" "world_menu_camera"
 "origin" "-56 200 -40"
 "_tb_layer" "1"
 }
-// entity 37
+// entity 44
 {
 "classname" "pickup_weapon_shotgun"
 "origin" "456 -184 -40"
 "_tb_layer" "1"
 }
-// entity 38
+// entity 45
 {
 "classname" "pickup_weapon_salsa"
 "origin" "320 -200 -40"
 "_tb_layer" "1"
 }
-// entity 39
+// entity 46
 {
 "classname" "pickup_weapon_rocketlauncher"
 "origin" "88 -216 -40"
 "_tb_layer" "1"
 }
-// entity 40
+// entity 47
 {
 "classname" "pickup_weapon_keyboard"
 "origin" "-72 -200 -40"
 "_tb_layer" "1"
 }
-// entity 41
+// entity 48
 {
 "classname" "pickup_weapon_ak47"
 "origin" "200 -200 -40"
 "_tb_layer" "1"
 }
-// entity 42
+// entity 49
 {
 "classname" "pickup_weapon_hegrenade"
 "origin" "56 -72 -40"
 "_tb_layer" "1"
 }
-// entity 43
+// entity 50
 {
 "classname" "pickup_weapon_knife"
 "origin" "456 -56 -40"
 "_tb_layer" "1"
 }
-// entity 44
+// entity 51
 {
 "classname" "pickup_weapon_random"
 "origin" "-200 -200 -40"
 "_tb_layer" "1"
 }
-// entity 45
+// entity 52
 {
 "classname" "world_load_map"
 "origin" "-184 -72 -40"
@@ -1023,13 +1115,13 @@
 "size" "5 5 5"
 "_tb_layer" "1"
 }
-// entity 46
+// entity 53
 {
 "classname" "light"
 "origin" "-444 68 -12"
 "_tb_layer" "1"
 }
-// entity 47
+// entity 54
 {
 "classname" "player_teleport"
 "origin" "-184 56 -40"
