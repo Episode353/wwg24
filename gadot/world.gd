@@ -658,6 +658,7 @@ func _on_server_info_timer_timeout():
 			server_info_timer.stop()
 
 func _ready():
+	_ensure_weapon_hud()
 	connect("map_loaded", Callable (self, "_on_map_loaded"))
 	if map_name != "":
 		load_map(map_name)
@@ -718,9 +719,8 @@ func _on_server_disconnected():
 	print("Server disconnected")
 	send_to_main_menu()
 
-@onready var current_weapon_label = $CanvasLayer/HUD/VBoxContainer/HBoxContainer/CurrentWeapon
-@onready var current_ammo_label = $CanvasLayer/HUD/VBoxContainer/HBoxContainer2/CurrentAmmo
-@onready var weapon_stack_label = $CanvasLayer/HUD/VBoxContainer/HBoxContainer3/WeaponStack
+const WEAPON_HUD = preload("res://sys/hud/weapon_hud.gd")
+var _weapon_hud: Control
 
 var current_weapon_name = ""
 var current_weapon_ammo = 0
@@ -737,16 +737,37 @@ func update_weapon_info(weapon_name: String, ammo: int, reserve_ammo: int, stack
 	update_weapon_hud()  # Update the HUD elements
 
 
+func _ensure_weapon_hud() -> void:
+	if is_instance_valid(_weapon_hud):
+		return
+	var old_labels := get_node_or_null("CanvasLayer/HUD/VBoxContainer")
+	if old_labels:
+		old_labels.hide()
+	_weapon_hud = WEAPON_HUD.new()
+	hud.add_child(_weapon_hud)
+
+
 func update_weapon_hud():
-	current_weapon_label.text = current_weapon_name
-	current_ammo_label.text = str(current_weapon_ammo) + "/" + str(current_weapon_reserve_ammo)
-	
-	# Format weapon_stack to make it more readable
-	var formatted_stack = ""
-	for weapon in weapon_stack:
-		formatted_stack += weapon + ", "  # Add each weapon on a new line
-	
-	weapon_stack_label.text = formatted_stack.strip_edges()  # Remove any unnecessary trailing newline
+	_ensure_weapon_hud()
+	var team_name := "Sandbox"
+	var team_color := Color(0.08, 0.08, 0.1)
+	var player := get_node_or_null(str(multiplayer.get_unique_id()))
+	if player and "team" in player and int(player.team) != 0:
+		var team_id := int(player.team)
+		if gamemode and gamemode.has_method("_team_name"):
+			team_name = gamemode._team_name(team_id)
+		if Globals.TEAM_COLORS.has(team_id):
+			team_color = Globals.TEAM_COLORS[team_id]
+	var ammo_text := ""
+	var hide_ammo := false
+	if player and "weapons_manager" in player and player.weapons_manager and player.weapons_manager.current_weapon:
+		hide_ammo = player.weapons_manager.current_weapon.disable_ammo
+	if not hide_ammo:
+		if player and "weapons_manager" in player and player.weapons_manager and player.weapons_manager.current_weapon and player.weapons_manager.current_weapon.weapon_name == "hegrenade":
+			ammo_text = str(current_weapon_ammo)
+		else:
+			ammo_text = "%d / %d" % [current_weapon_ammo, current_weapon_reserve_ammo]
+	_weapon_hud.set_info(team_name, team_color, current_weapon_name, ammo_text, weapon_stack)
 
 @rpc("any_peer", "call_local")
 func disconnect_me():

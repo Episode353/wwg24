@@ -3,8 +3,10 @@ extends Control
 # Big centered text that fades in, holds and fades out. Styled like the world Label3D (Spotify font, black outline).
 
 const FONT = preload("res://fonts/Spotify.ttf")
-const TITLE_SIZE: int = 72
-const SUBTITLE_SIZE: int = 36
+# Sizes at the project's 720p window. They scale with the real window height.
+const REFERENCE_HEIGHT: float = 720.0
+const TITLE_SIZE: int = 48
+const SUBTITLE_SIZE: int = 24
 # Same outline-to-font ratio as the Label3D defaults (outline 12 on font 32)
 const OUTLINE_RATIO: float = 12.0 / 32.0
 const FADE_IN_TIME: float = 0.3
@@ -31,8 +33,27 @@ func _ready() -> void:
 	_subtitle = _make_label(SUBTITLE_SIZE)
 	box.add_child(_title)
 	box.add_child(_subtitle)
+	resized.connect(_apply_window_scale)
+	_apply_window_scale()
 	modulate.a = 0.0
 	hide()
+
+
+func _apply_window_scale() -> void:
+	var height := size.y
+	if height < 1.0:
+		height = get_viewport().get_visible_rect().size.y
+	if height < 1.0:
+		height = REFERENCE_HEIGHT
+	var window_scale := height / REFERENCE_HEIGHT
+	_set_label_size(_title, TITLE_SIZE, window_scale)
+	_set_label_size(_subtitle, SUBTITLE_SIZE, window_scale)
+
+
+func _set_label_size(label: Label, base_size: int, window_scale: float) -> void:
+	var font_size := maxi(1, roundi(float(base_size) * window_scale))
+	label.label_settings.font_size = font_size
+	label.label_settings.outline_size = maxi(1, roundi(font_size * OUTLINE_RATIO))
 
 
 func _make_label(font_size: int) -> Label:

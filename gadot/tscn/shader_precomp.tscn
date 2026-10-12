@@ -1,41 +1,85 @@
-[gd_scene load_steps=2 format=3 uid="uid://byiycuoyfk45q"]
+[gd_scene format=3 uid="uid://byiycuoyfk45q"]
 
 [ext_resource type="Script" uid="uid://kmddpn8pe5yi" path="res://tscn/shader_precomp.gd" id="1_jurwd"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=477819828]
 script = ExtResource("1_jurwd")
 
-[node name="Label" type="Label" parent="."]
-z_index = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 144.0
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Compiling Shaders"
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1720473506]
+current = true
 
-[node name="Compile Count Text" type="Label" parent="."]
-z_index = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -72.0
-offset_top = -23.0
-offset_right = 72.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=118391388]
+layer = 128
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="CanvasLayer" unique_id=1069390106]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Center" type="CenterContainer" parent="CanvasLayer" unique_id=105947315]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Column" type="VBoxContainer" parent="CanvasLayer/Center" unique_id=407554925]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="CanvasLayer/Center/Column" unique_id=773449661]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93, 0.86, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "Wizards With Guns"
+horizontal_alignment = 1
+
+[node name="Status" type="Label" parent="CanvasLayer/Center/Column" unique_id=512641169]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.7, 0.9, 1)
+theme_override_font_sizes/font_size = 16
+text = "Preparing shaders"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Center/Column" unique_id=847627999]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+max_value = 1.0
+show_percentage = false
+
+[node name="Count" type="Label" parent="CanvasLayer/Center/Column" unique_id=1463979408]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "0 / 0"
+horizontal_alignment = 1
+
+[node name="File" type="Label" parent="CanvasLayer/Center/Column" unique_id=1887698890]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.56, 0.72, 1)
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Skip" type="Button" parent="CanvasLayer/Center/Column" unique_id=277308951]
+custom_minimum_size = Vector2(160, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Skip"
+
+[node name="SkipNote" type="Label" parent="CanvasLayer/Center/Column" unique_id=1559714714]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.97, 0.92, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.04, 0.1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 13
+text = "May experience lag and stutters if skipped."
+horizontal_alignment = 1
+autowrap_mode = 3

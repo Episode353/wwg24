@@ -15,7 +15,7 @@ uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 uniform float speed = 0.05;
 uniform float frequency_uniform = 30.0;
-uniform vec3 blood_color: vec3(0.8, 0.0, 0.0); // Red color
+uniform vec3 blood_color = vec3(0.8, 0.0, 0.0); // Red color
 
 uniform bool is_breath = false;
 uniform float breath_speed = 0.368;

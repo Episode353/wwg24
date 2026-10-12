@@ -28,5 +28,6 @@ bot_engage_distance = 30.0
 bot_min_distance = 4.0
 auto_fire = true
 is_gun = true
+fire_rate = 0.25
 reload_sound = ExtResource("2_yshhs")
 fire_sound = ExtResource("1_ofg0p")

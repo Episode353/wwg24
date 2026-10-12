@@ -17,7 +17,7 @@ shader_parameter/margin = 0.05
 
 [sub_resource type="Sky" id="Sky_fd2ev"]
 sky_material = SubResource("ShaderMaterial_86sxb")
-process_mode = 1
+process_mode = 3
 
 [sub_resource type="Environment" id="Environment_dt0kg"]
 background_mode = 2

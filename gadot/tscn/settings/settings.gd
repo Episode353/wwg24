@@ -81,5 +81,14 @@ func _on_volume_slider_value_changed(value):
 	volume_label.text = "Volume = " + str(value)
 
 
+func _on_compile_shaders_pressed() -> void:
+	var stamp := "user://shader_warmup.cfg"
+	if FileAccess.file_exists(stamp):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(stamp))
+	Globals.paused = false
+	visible = false
+	get_tree().change_scene_to_file("res://tscn/shader_precomp.tscn")
+
+
 func _on_close_requested():
 	toggle_pause_menu()

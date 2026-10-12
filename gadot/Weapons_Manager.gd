@@ -39,13 +39,11 @@ func _input(event):
 	if player.is_dead: return
 	if Globals.paused:
 		return
+	# The list is drawn top to bottom in stack order. Wheel up moves up that list.
 	if event.is_action_pressed("w_up"):
-		weapon_indicator = (weapon_indicator + 1) % weapon_stack.size()
-		switch_weapon(weapon_indicator)
-
+		_cycle_weapon(-1)
 	if event.is_action_pressed("w_down"):
-		weapon_indicator = (weapon_indicator - 1 + weapon_stack.size()) % weapon_stack.size()
-		switch_weapon(weapon_indicator)
+		_cycle_weapon(1)
 
 
 	if event.is_action_pressed("shoot") && weapon_raise == false:
@@ -75,6 +73,22 @@ func _input(event):
 	elif event.is_action_pressed("w9"):
 		switch_weapon(9)
 	
+func _cycle_weapon(direction: int) -> void:
+	if weapon_stack.is_empty() or current_weapon == null:
+		return
+	var count := weapon_stack.size()
+	var index := weapon_stack.find(current_weapon.weapon_name)
+	if index < 0:
+		index = weapon_indicator
+	for _step in count:
+		index = (index + direction + count) % count
+		if weapon_stack[index] == "hands":
+			continue
+		weapon_indicator = index
+		switch_weapon(index)
+		return
+
+
 func switch_weapon(slot_index: int):
 	if slot_index < weapon_stack.size():
 		var selected_weapon = weapon_stack[slot_index]
@@ -124,6 +138,10 @@ func is_all_ammo_full() -> bool:
 		if weapon == null or typeof(weapon) != TYPE_OBJECT:
 			continue
 			
+		if weapon.weapon_name == "hegrenade":
+			if weapon.current_ammo < weapon.max_ammo:
+				return false
+			continue
 		if weapon.reserve_ammo < weapon.reserve_ammo_default or weapon.current_ammo < weapon.mag_ammo:
 			return false
 	return true
@@ -196,6 +214,11 @@ func add_ammo_to_all(amount: int):
 		var weapon = weapon_list[weapon_name]
 		if weapon == null:
 			print("Debug: Weapon is null for", weapon_name)
+			continue
+
+		# Grenades are a single stack, not a magazine plus reserve.
+		if weapon.weapon_name == "hegrenade":
+			weapon.current_ammo = min(weapon.current_ammo + amount, weapon.max_ammo)
 			continue
 
 		# Add ammo to the reserve
@@ -502,6 +525,9 @@ func play_ammo_pickup_sound():
 
 func reload():
 	print("reload")
+	# No magazine. current_ammo is the number of grenades left.
+	if current_weapon.weapon_name == "hegrenade":
+		return
 	if current_weapon.disable_ammo == false:
 		if current_weapon.current_ammo == current_weapon.mag_ammo:
 			print("Current Ammo is equal to Mag Ammo")

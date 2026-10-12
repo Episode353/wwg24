@@ -1021,11 +1021,14 @@ func handle_combat(delta: float) -> void:
 				bot_shoot()
 				shoot_timer = get_shoot_cooldown()
 
-# Auto-fire guns refire as fast as a held trigger; the shoot animation still gates slower ones in shoot()
+# Uses the weapon's fire_rate when it has one. Auto-fire guns with no rate fall back to a short gap;
+# everything else uses the default cooldown. shoot() still refuses a shot while its animation is playing.
 func get_shoot_cooldown() -> float:
 	var weapon = weapons_manager.current_weapon
+	if weapon.fire_rate > 0.0:
+		return weapon.fire_rate
 	if weapon.auto_fire:
-		return weapon.fire_rate if weapon.fire_rate > 0.0 else 0.1
+		return 0.1
 	return shoot_cooldown
 				
 func bot_shoot() -> void:
