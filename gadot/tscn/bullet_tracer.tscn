@@ -1,0 +1,25 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://tscn/bullet_tracer.gd" id="1_script"]
+[ext_resource type="Shader" path="res://tscn/bullet_tracer.gdshader" id="2_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tracer"]
+render_priority = 0
+shader = ExtResource("2_shader")
+shader_parameter/color = Color(1, 1, 1, 0.35)
+shader_parameter/tail_alpha = 0.25
+shader_parameter/edge_softness = 1.5
+shader_parameter/min_half_angle = 0.0012
+shader_parameter/near_fade_start = 1.0
+shader_parameter/near_fade_end = 4.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tracer"]
+material = SubResource("ShaderMaterial_tracer")
+size = Vector2(0.04, 1)
+
+[node name="BulletTracer" type="MeshInstance3D"]
+physics_interpolation_mode = 2
+cast_shadow = 0
+extra_cull_margin = 0.1
+mesh = SubResource("PlaneMesh_tracer")
+script = ExtResource("1_script")

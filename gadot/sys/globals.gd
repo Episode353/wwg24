@@ -5,7 +5,7 @@ extends Node
 const PORT_UDP_COMM: int = 7777
 # Bump whenever networking changes; hosts and clients on different values refuse each other
 # instead of connecting and silently desyncing (e.g. players frozen at spawn)
-const NET_PROTOCOL: int = 4
+const NET_PROTOCOL: int = 5
 const IP_SERVER_BROWSER: String = "www.wizardswithguns.com"
 
 # Team colours, keyed by team number (1 = Wizards / Team A, 2 = Humans / Team B)
@@ -45,6 +45,39 @@ func clear_local_host() -> void:
 	if FileAccess.file_exists(LOCAL_HOST_FILE):
 		DirAccess.remove_absolute(LOCAL_HOST_FILE)
 
+# True while a map change is tearing the current World down and opening a new one.
+# A second change_level in that window must not start another copy.
+var _session_relaunching := false
+
+# Closes the current match and opens a brand new World: host, join, or offline.
+# The old World has to leave the tree first. Scripts find it by the name "World",
+# and a second copy would be renamed, so the new one is added only after tree_exited.
+func relaunch_session(mode: String, arg: String, migration: bool = false) -> void:
+	if _session_relaunching:
+		return
+	_session_relaunching = true
+	var world = get_tree().root.get_node_or_null("World")
+	if is_instance_valid(world):
+		if world.has_method("_close_network"):
+			world._close_network()
+		world.queue_free()
+		await world.tree_exited
+	var new_world = load("res://world.tscn").instantiate()
+	if migration and mode == "host":
+		new_world._host_is_migration = true
+	if migration and mode == "join":
+		new_world._join_is_migration = true
+	get_tree().root.add_child(new_world)
+	get_tree().current_scene = new_world
+	match mode:
+		"host":
+			new_world.call_deferred("start_host", arg)
+		"join":
+			new_world.call_deferred("start_join", arg)
+		_:
+			new_world.call_deferred("start_offline", arg)
+	_session_relaunching = false
+
 func is_hosted_locally(ip: String, port: int) -> bool:
 	if not FileAccess.file_exists(LOCAL_HOST_FILE):
 		return false
@@ -71,10 +104,12 @@ func _ready():
 # focus signal does not fire for an embedded editor game view.
 var _sim_unfocused := false
 var _saved_update_mode := -1
+# The shader warmup waits on drawn frames, so it would stall until the window got focus again.
+var warmup_running := false
 
 func _process(_delta: float) -> void:
 	var minimized := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_MINIMIZED
-	var background := not DisplayServer.window_is_focused() or minimized
+	var background := (not DisplayServer.window_is_focused() or minimized) and not warmup_running
 	if background == _sim_unfocused:
 		return
 	_sim_unfocused = background

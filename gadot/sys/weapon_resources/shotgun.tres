@@ -23,6 +23,7 @@ mag_ammo_default = 12
 max_ammo = 12
 damage = 45
 weapon_range = -15
+has_tracer = true
 bot_preferred_distance = 6.0
 bot_engage_distance = 12.0
 auto_fire = true

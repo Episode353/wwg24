@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://2681c6a7uwt4"
+path="res://.godot/imported/casual_01.6.map-8ef6a330c7854b250c52f222cc0cfc0b.tres"
+
+[deps]
+
+source_file="res://tbmaps/autosave/casual_01.6.map"
+dest_files=["res://.godot/imported/casual_01.6.map-8ef6a330c7854b250c52f222cc0cfc0b.tres"]
+
+[params]
+

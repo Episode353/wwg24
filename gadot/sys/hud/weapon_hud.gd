@@ -1,15 +1,16 @@
 extends Control
 
 # One vertical list. Each row is the weapon name with its ammo on the right.
-# The bottom-left corner stays a fixed fraction in from the screen edges, so extra
-# weapons grow upward. The team tag sits under the health and mana bars.
+# The list sits in the bottom-right corner, opposite the health and mana bars, so extra
+# weapons grow upward. The team tag sits on top of the list.
 
 const FONT = preload("res://fonts/Spotify.ttf")
 const OUTLINE_RATIO: float = 12.0 / 32.0
 const PANEL_ALPHA: float = 0.85
 const NEUTRAL_COLOR := Color(0.08, 0.08, 0.1, 0.8)
-const LEFT_RATIO: float = 0.02
-const BOTTOM_RATIO: float = 0.1
+const RIGHT_RATIO: float = 0.02
+const BOTTOM_MARGIN: float = 20.0
+const PILL_GAP: float = 6.0
 const LIST_WIDTH: float = 260.0
 const ROW_HEIGHT: float = 28.0
 const ROW_GAP: int = 3
@@ -25,8 +26,10 @@ var _rows: Array[Label] = []
 var _ammo_labels: Array[Label] = []
 var _stack: Array[String] = []
 var _current := ""
+var _travel_time := 0.2
 var _slide: Tween
 var _flash: Tween
+var _tints: Array[Tween] = []
 
 
 func _ready() -> void:
@@ -68,7 +71,7 @@ func _ready() -> void:
 	_place()
 
 
-func set_info(team_name: String, team_color: Color, weapon_name: String, ammo_text: String, stack: Array) -> void:
+func set_info(team_name: String, team_color: Color, weapon_name: String, ammo_text: String, stack: Array, travel_time: float = 0.2) -> void:
 	_team_label.text = team_name.to_upper()
 	var on_team := team_name != "Sandbox"
 	_set_panel_color(_team_pill, team_color if on_team else Color(NEUTRAL_COLOR.r, NEUTRAL_COLOR.g, NEUTRAL_COLOR.b))
@@ -87,6 +90,9 @@ func set_info(team_name: String, team_color: Color, weapon_name: String, ammo_te
 	# Weapon info is pushed every frame. Only move the light when the selection changes.
 	if weapon_name == _current:
 		return
+	# travel_time is the put-away still left plus the new weapon's deploy, so the
+	# light arrives as that weapon finishes coming out.
+	_travel_time = maxf(travel_time, 0.05)
 	_select(weapon_name, _current != "")
 	_current = weapon_name
 
@@ -96,6 +102,7 @@ func _rebuild_rows() -> void:
 		_slide.kill()
 	if _flash:
 		_flash.kill()
+	_kill_tints()
 	for child in _rows_box.get_children():
 		child.queue_free()
 	_rows.clear()
@@ -172,14 +179,17 @@ func _select(weapon_name: String, animate: bool) -> void:
 		_slide.kill()
 	if _flash:
 		_flash.kill()
+	# Continue from wherever the light is now, so a second scroll bends toward the new row
+	# instead of restarting from the weapon still in hand.
 	_slide = create_tween()
-	_slide.tween_property(_highlight, "position", target, 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	_slide.tween_property(_highlight, "position", target, _travel_time).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	_flash = create_tween()
 	_flash.tween_property(_highlight, "modulate", Color(1.85, 1.75, 1.45), 0.06)
 	_flash.tween_property(_highlight, "modulate", Color.WHITE, 0.22)
 
 
 func _tint_rows(selected: int, animate: bool) -> void:
+	_kill_tints()
 	for i in _rows.size():
 		var color := Color.WHITE if i == selected else Color(1, 1, 1, 0.42)
 		_tint_label(_rows[i], color, animate)
@@ -190,19 +200,27 @@ func _tint_label(label: Label, color: Color, animate: bool) -> void:
 	var settings := label.label_settings
 	if animate:
 		var tint := create_tween()
-		tint.tween_property(settings, "font_color", color, 0.2)
+		tint.tween_property(settings, "font_color", color, _travel_time).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+		_tints.append(tint)
 	else:
 		settings.font_color = color
 
 
-# Bottom-left of the list stays this far in from the screen edges. Taller lists grow up.
+func _kill_tints() -> void:
+	for tint in _tints:
+		if tint and tint.is_valid():
+			tint.kill()
+	_tints.clear()
+
+
+# Bottom-right of the list stays this far in from the screen edges. Taller lists grow up.
 func _place() -> void:
 	if size.x < 1.0 or size.y < 1.0:
 		return
 	var height := _list.custom_minimum_size.y
-	var left := size.x * LEFT_RATIO
-	var bottom := size.y * (1.0 - BOTTOM_RATIO)
-	_list.position = Vector2(left, bottom - height)
+	var right := size.x * (1.0 - RIGHT_RATIO)
+	var bottom := size.y - BOTTOM_MARGIN
+	_list.position = Vector2(right - LIST_WIDTH, bottom - height)
 	_list.size = Vector2(LIST_WIDTH, height)
 	_well.position = Vector2.ZERO
 	_well.size = _list.size
@@ -210,9 +228,9 @@ func _place() -> void:
 	_rows_box.size = Vector2(LIST_WIDTH - PAD * 2.0, maxf(height - PAD * 2.0, 0.0))
 
 	var pill := Vector2(150, 24)
-	var right := size.x * (1.0 - LEFT_RATIO)
-	# Mana bar starts 48px up. Keep the tag just above both bars.
-	var pill_bottom := size.y - 54.0
+	var pill_bottom := bottom
+	if _list.visible:
+		pill_bottom -= height + PILL_GAP
 	_team_pill.position = Vector2(right - pill.x, pill_bottom - pill.y)
 	_team_pill.size = pill
 

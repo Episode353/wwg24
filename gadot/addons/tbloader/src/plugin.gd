@@ -53,9 +53,9 @@ func build_combined_csg():
 	loader.build_combined_csg()
 
 func set_icons(on):
-	var editor_interface = get_editor_interface()
-	var base_control = editor_interface.get_base_control()
-	var theme = base_control.theme
+	var theme = EditorInterface.get_editor_theme()
+	if theme == null:
+		return
 
 	if on:
 		var texture = ResourceLoader.load("res://addons/tbloader/icons/tbloader.svg")

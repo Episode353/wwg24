@@ -26,6 +26,7 @@ class_name Weapon_Resource
 @export var max_ammo: int # Maximum ammo the weapon can hold
 @export var damage: int # Damage dealt by the weapon
 @export var weapon_range: int # Effective range of the weapon (for hitscan weapons)
+@export var has_tracer: bool # If true, each shot draws a brief white line from the gun to where it hit
 
 # Bot behaviour with this weapon (meters)
 @export var bot_preferred_distance: float = 12.0 # Distance a bot tries to fight from

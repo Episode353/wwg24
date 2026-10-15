@@ -66,7 +66,7 @@ draw_pass_1 = SubResource("SphereMesh_jxty8")
 
 [node name="Salsa Explosion Noise" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_8wg73")
-volume_db = -15.0
+volume_db = -30.0
 max_db = 0.0
 autoplay = true
 

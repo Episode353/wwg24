@@ -32,7 +32,12 @@ const GRASS_MESHES: Array[String] = [
 	"res://mat/grass/grass2.glb",
 ]
 const CELL_SIZE := 1.0
-const PROGRESS_EVERY := 3
+# Instancing stops for a progress redraw after this long, even if more files are ready.
+const REDRAW_EVERY_US := 33000
+# Particle materials build their compute pipeline inside the load, so loads run side by side.
+const MAX_LOADS_IN_FLIGHT := 8
+const COLOR_EASE_RATE := 4.0
+const COLOR_MAX_STEP := 1.0 / 30.0
 const WARMUP_STAMP := "user://shader_warmup.cfg"
 
 @onready var camera: Camera3D = $Camera3D
@@ -59,7 +64,15 @@ var _loading_visible := false
 var _rendering_ready := false
 var _started_us := 0
 var _frame_wait_us := 0
+var _load_us := 0
+var _instance_us := 0
+var _idle_us := 0
 var _phase_us := {}
+# Paths the threaded loader is working on (path -> start usec), and everything it has finished.
+var _in_flight := {}
+var _serial_in_flight := ""
+var _loaded := {}
+var _thread_load_times: Array[Dictionary] = []
 var _spawn_times: Array[Dictionary] = []
 
 
@@ -67,12 +80,16 @@ func _process(delta: float) -> void:
 	if not _loading_visible:
 		return
 	# Ease toward the load progress so the shift reads as a fade, not a jump every few files.
-	_color_ratio = lerpf(_color_ratio, _color_target, 1.0 - exp(-delta * 3.0))
-	background.color = Globals.TEAM_COLORS[2].lerp(Globals.TEAM_COLORS[1], _color_ratio)
+	# A frame that waited on a long batch or the compile would otherwise cover the whole gap at once.
+	var step := minf(delta, COLOR_MAX_STEP)
+	_color_ratio = lerpf(_color_ratio, _color_target, 1.0 - exp(-step * COLOR_EASE_RATE))
+	background.color = Globals.TEAM_COLORS[2].lerp(Globals.TEAM_COLORS[1], smoothstep(0.0, 1.0, _color_ratio))
 
 
 func _ready() -> void:
 	_started_us = Time.get_ticks_usec()
+	print("Shader warmup: engine startup took %.0f ms before this scene" % [_started_us / 1000.0])
+	Globals.warmup_running = true
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	background.color = Color.BLACK
@@ -89,6 +106,17 @@ func _ready() -> void:
 		if not found_scenes.has(path) and FileAccess.file_exists(path):
 			found_scenes.append(path)
 	_phase_us["scan"] = Time.get_ticks_usec() - scan_start
+
+	# Keyed on every file found rather than the filtered list, so a cache hit doesn't
+	# have to read every scene as text first.
+	var stamp := _warmup_key(found_scenes, shaders)
+	if _stamp_matches(stamp):
+		print("Shader warmup: shader files match the last compile. Checking whether the GPU cache still has them.")
+		if _probe_driver_cache():
+			_print_timing("cache hit")
+			_leave()
+			return
+		print("Shader warmup: GPU cache is missing those pipelines. Compiling.")
 
 	var filter_start := Time.get_ticks_usec()
 	var scenes: Array[String] = []
@@ -108,76 +136,86 @@ func _ready() -> void:
 	_phase_us["filter"] = Time.get_ticks_usec() - filter_start
 	print("Shader warmup: %d scenes found, keeping %d. Skipped %d plain, %d meshes, %d broken." % [found_scenes.size(), scenes.size(), skipped_plain, skipped_meshes, skipped_broken])
 
-	var stamp := _warmup_key(scenes, shaders)
-	if _stamp_matches(stamp):
-		print("Shader warmup: shader files match the last compile. Checking whether the GPU cache still has them.")
-		if await _probe_driver_cache():
-			_print_timing("cache hit")
-			_leave()
-			return
-		print("Shader warmup: GPU cache is missing those pipelines. Compiling.")
+	# Files load on worker threads while the main thread instances finished ones and redraws
+	# the progress bar. Scenes with scripts or nested scenes load one at a time: two of them
+	# at once can both reach a shared dependency (grenade_proj.gd preloads
+	# grenade_explosion.tscn) and one fails to parse it. Everything else loads in parallel.
+	# Grass meshes go first because grass.gdshader instances them when it is built.
+	var serial_queue: Array[String] = []
+	var parallel_queue: Array[String] = []
+	for path in shaders:
+		if path.ends_with("grass.gdshader"):
+			parallel_queue.append_array(GRASS_MESHES)
+	for path in scenes:
+		if _loads_other_files(path):
+			serial_queue.append(path)
+		else:
+			parallel_queue.append(path)
+	parallel_queue.append_array(shaders)
+	print("Shader warmup: %d files load in parallel, %d one at a time" % [parallel_queue.size(), serial_queue.size()])
+	var before_load := _pipeline_snapshot()
+	_request_loads(serial_queue, parallel_queue)
 
 	if not _loading_visible:
 		_show_loading_screen()
 	await _enable_game_rendering()
 	if _skipped:
+		await _finish_loads()
 		_leave()
 		return
 
 	var total := scenes.size() + shaders.size()
 	_set_progress(0, total, "")
-	var before_load := _pipeline_snapshot()
 
 	# Stay out of the tree until the one compile frame. A progress redraw would
 	# otherwise render every scene loaded so far, over and over.
 	var holder := Node3D.new()
 	var cells: Array[Node3D] = []
 	var rects: Array[ColorRect] = []
-	var sky_paths: Array[String] = []
+	var sky_mats: Array[ShaderMaterial] = []
 
 	var spawn_start := Time.get_ticks_usec()
-	for path in scenes:
-		if _skipped:
-			break
-		await _advance(total, path)
-		if _skipped:
-			break
-		var file_start := Time.get_ticks_usec()
-		var instance := _spawn_scene(path)
-		_note_spawn(path, Time.get_ticks_usec() - file_start)
-		if instance:
-			cells.append(_wrap(holder, instance))
-	_phase_us["spawn"] = Time.get_ticks_usec() - spawn_start
-	print("Shader warmup: spawned %d scenes in %.0f ms" % [cells.size(), _phase_us["spawn"] / 1000.0])
-
-	var shader_start := Time.get_ticks_usec()
-	for path in shaders:
-		if _skipped:
-			break
-		await _advance(total, path)
-		if _skipped:
-			break
-		var file_start := Time.get_ticks_usec()
-		var kind := _shader_type(path)
-		if kind == "sky":
-			sky_paths.append(path)
+	var ready_paths: Array[String] = []
+	var last_redraw := Time.get_ticks_usec()
+	while (not _in_flight.is_empty() or not ready_paths.is_empty()) and not _skipped:
+		for loading in _in_flight.keys():
+			if ResourceLoader.load_threaded_get_status(loading) == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+				continue
+			var load_wait := Time.get_ticks_usec()
+			_thread_load_times.append({"path": loading, "us": load_wait - int(_in_flight[loading])})
+			_loaded[loading] = ResourceLoader.load_threaded_get(loading)
+			_load_us += Time.get_ticks_usec() - load_wait
+			_in_flight.erase(loading)
+			if loading == _serial_in_flight:
+				_serial_in_flight = ""
+			if not GRASS_MESHES.has(loading):
+				ready_paths.append(loading)
+		_request_loads(serial_queue, parallel_queue)
+		if not ready_paths.is_empty():
+			var path: String = ready_paths.pop_front()
+			_done += 1
+			_set_progress(_done, total, path)
+			var file_start := Time.get_ticks_usec()
+			_build(path, holder, cells, rects, sky_mats)
 			_note_spawn(path, Time.get_ticks_usec() - file_start)
-			continue
-		if kind == "canvas_item":
-			var rect := _make_canvas_rect(path)
-			if rect:
-				rects.append(rect)
-			_note_spawn(path, Time.get_ticks_usec() - file_start)
-			continue
-		var visual := _make_shader_visual(holder, path, kind, cells)
-		_note_spawn(path, Time.get_ticks_usec() - file_start)
-		if visual:
-			cells.append(visual)
-	_phase_us["shaders"] = Time.get_ticks_usec() - shader_start
-	print("Shader warmup: loaded %d shader files in %.0f ms" % [shaders.size(), _phase_us["shaders"] / 1000.0])
+		if Time.get_ticks_usec() - last_redraw > REDRAW_EVERY_US:
+			var wait_start := Time.get_ticks_usec()
+			await RenderingServer.frame_post_draw
+			_frame_wait_us += Time.get_ticks_usec() - wait_start
+			last_redraw = Time.get_ticks_usec()
+		elif ready_paths.is_empty():
+			var idle_start := Time.get_ticks_usec()
+			OS.delay_usec(250)
+			_idle_us += Time.get_ticks_usec() - idle_start
+	_phase_us["load and instance"] = Time.get_ticks_usec() - spawn_start
+	print("Shader warmup: loaded and instanced %d files in %.0f ms" % [total, _phase_us["load and instance"] / 1000.0])
 
 	if _skipped:
 		print("Shader warmup skipped before the draw. Shaders will compile the first time they appear.")
+		holder.free()
+		for rect in rects:
+			rect.free()
+		await _finish_loads()
 		_print_timing("skipped")
 		_leave()
 		return
@@ -186,8 +224,8 @@ func _ready() -> void:
 	for rect in rects:
 		$CanvasLayer.add_child(rect)
 	_tile_canvas_rects(rects)
-	if not sky_paths.is_empty():
-		_apply_sky(sky_paths[0])
+	if not sky_mats.is_empty():
+		_apply_sky(sky_mats[0])
 	_fit_cells(cells)
 	_frame_grid(cells.size())
 	_set_progress(total, total, "Drawing shaders")
@@ -203,12 +241,12 @@ func _ready() -> void:
 	holder.queue_free()
 	for rect in rects:
 		rect.queue_free()
-	var sky_start := Time.get_ticks_usec()
-	await RenderingServer.frame_post_draw
-	for i in range(1, sky_paths.size()):
-		_apply_sky(sky_paths[i])
-		await RenderingServer.frame_post_draw
-	_phase_us["skies"] = Time.get_ticks_usec() - sky_start
+	if sky_mats.size() > 1:
+		var sky_start := Time.get_ticks_usec()
+		for i in range(1, sky_mats.size()):
+			_apply_sky(sky_mats[i])
+			await RenderingServer.frame_post_draw
+		_phase_us["skies"] = Time.get_ticks_usec() - sky_start
 	_write_stamp(stamp)
 	_print_timing("compiled")
 	_leave()
@@ -359,27 +397,12 @@ func _stamp_matches(key: String) -> bool:
 
 # True when a previous compile is still in the driver cache. The stamp only
 # remembers that we drew these files. Deleting the NVIDIA cache leaves the stamp.
+# Godot's pipeline counters can't answer this: every new process creates its pipelines
+# again and counts them, and only the driver knows whether that was a cache hit.
 func _probe_driver_cache() -> bool:
-	var before := _pipeline_snapshot()
-	await _enable_game_rendering()
-	await RenderingServer.frame_post_draw
-	var after := _pipeline_snapshot()
-	_log_pipeline_delta(before, after, "driver cache probe")
-	if after.is_empty():
-		var intact := _driver_folder_intact()
-		print("Shader warmup: pipeline counters unavailable, driver folder %s" % ["still present" if intact else "missing or wiped"])
-		return intact
-	if _pipelines_grew(before, after):
-		return false
-	print("Shader warmup: driver cache still has these pipelines")
-	return true
-
-
-func _pipelines_grew(before: Dictionary, after: Dictionary) -> bool:
-	for key in after.keys():
-		if float(after[key]) > float(before.get(key, 0.0)):
-			return true
-	return false
+	var intact := _driver_folder_intact()
+	print("Shader warmup: driver cache folder %s" % ["still present" if intact else "missing or wiped"])
+	return intact
 
 
 func _driver_cache_dirs() -> Array[String]:
@@ -457,7 +480,14 @@ func _print_timing(note: String) -> void:
 	print("Shader warmup timing (%s): total %.0f ms" % [note, total_us / 1000.0])
 	for phase in _phase_us.keys():
 		print("  %s: %.0f ms" % [phase, float(_phase_us[phase]) / 1000.0])
-	print("  progress frames: %.0f ms" % [_frame_wait_us / 1000.0])
+	print("  inside load and instance: frames %.0f ms, waiting on loads %.0f ms, idle until the next load finished %.0f ms, instantiate %.0f ms" % [_frame_wait_us / 1000.0, _load_us / 1000.0, _idle_us / 1000.0, _instance_us / 1000.0])
+	if not _thread_load_times.is_empty():
+		_thread_load_times.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+			return int(a["us"]) > int(b["us"])
+		)
+		print("  slowest background loads:")
+		for i in mini(12, _thread_load_times.size()):
+			print("    %.0f ms  %s" % [float(_thread_load_times[i]["us"]) / 1000.0, _thread_load_times[i]["path"]])
 	if _spawn_times.is_empty():
 		return
 	_spawn_times.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
@@ -468,14 +498,67 @@ func _print_timing(note: String) -> void:
 		print("    %.0f ms  %s" % [float(_spawn_times[i]["us"]) / 1000.0, _spawn_times[i]["path"]])
 
 
+func _request_loads(serial_queue: Array[String], parallel_queue: Array[String]) -> void:
+	while _serial_in_flight == "" and not serial_queue.is_empty() and _in_flight.size() < MAX_LOADS_IN_FLIGHT:
+		var path: String = serial_queue.pop_front()
+		if _request_load(path):
+			_serial_in_flight = path
+	while not parallel_queue.is_empty() and _in_flight.size() < MAX_LOADS_IN_FLIGHT:
+		_request_load(parallel_queue.pop_front())
+
+
+func _request_load(path: String) -> bool:
+	if ResourceLoader.load_threaded_request(path) != OK:
+		push_warning("Shader warmup could not queue %s" % path)
+		return false
+	_in_flight[path] = Time.get_ticks_usec()
+	return true
+
+
+func _loads_other_files(path: String) -> bool:
+	if not path.ends_with(".tscn"):
+		return true
+	var text := FileAccess.get_file_as_string(path)
+	return "type=\"Script\"" in text or "type=\"PackedScene\"" in text
+
+
+func _fetch(path: String) -> Resource:
+	if _loaded.has(path):
+		return _loaded[path]
+	var load_start := Time.get_ticks_usec()
+	var res := load(path)
+	_load_us += Time.get_ticks_usec() - load_start
+	return res
+
+
+func _build(path: String, holder: Node3D, cells: Array[Node3D], rects: Array[ColorRect], sky_mats: Array[ShaderMaterial]) -> void:
+	if not path.ends_with(".gdshader"):
+		var instance := _spawn_scene(path)
+		if instance:
+			cells.append(_wrap(holder, instance))
+		return
+	var mat := _shader_material(path)
+	if mat == null:
+		return
+	match mat.shader.get_mode():
+		Shader.MODE_SKY:
+			sky_mats.append(mat)
+		Shader.MODE_CANVAS_ITEM:
+			rects.append(_make_canvas_rect(mat))
+		_:
+			cells.append(_make_shader_visual(holder, path, mat, cells))
+
+
 func _spawn_scene(path: String) -> Node:
-	var packed = load(path)
+	var packed = _fetch(path)
 	if packed == null or not packed is PackedScene:
 		push_warning("Shader warmup skipped %s" % path)
 		return null
+	var instance_start := Time.get_ticks_usec()
 	var instance: Node = (packed as PackedScene).instantiate()
 	_prepare(instance)
 	_release_main_cameras(instance)
+	_instance_us += Time.get_ticks_usec() - instance_start
 	return instance
 
 
@@ -486,10 +569,7 @@ func _wrap(holder: Node3D, instance: Node) -> Node3D:
 	return wrapper
 
 
-func _make_canvas_rect(path: String) -> ColorRect:
-	var mat := _load_shader_material(path)
-	if mat == null:
-		return null
+func _make_canvas_rect(mat: ShaderMaterial) -> ColorRect:
 	var rect := ColorRect.new()
 	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	rect.z_index = -1
@@ -497,11 +577,8 @@ func _make_canvas_rect(path: String) -> ColorRect:
 	return rect
 
 
-func _make_shader_visual(holder: Node3D, path: String, kind: String, cells: Array[Node3D]) -> Node3D:
-	var mat := _load_shader_material(path)
-	if mat == null:
-		return null
-	if kind == "particles":
+func _make_shader_visual(holder: Node3D, path: String, mat: ShaderMaterial, cells: Array[Node3D]) -> Node3D:
+	if mat.shader.get_mode() == Shader.MODE_PARTICLES:
 		var particles := GPUParticles3D.new()
 		particles.amount = 8
 		particles.emitting = true
@@ -527,8 +604,8 @@ func _make_shader_visual(holder: Node3D, path: String, kind: String, cells: Arra
 	return mesh_instance
 
 
-func _load_shader_material(path: String) -> ShaderMaterial:
-	var shader: Shader = load(path)
+func _shader_material(path: String) -> ShaderMaterial:
+	var shader := _fetch(path) as Shader
 	if shader == null:
 		push_warning("Shader warmup skipped %s" % path)
 		return null
@@ -537,10 +614,7 @@ func _load_shader_material(path: String) -> ShaderMaterial:
 	return mat
 
 
-func _apply_sky(path: String) -> void:
-	var mat := _load_shader_material(path)
-	if mat == null:
-		return
+func _apply_sky(mat: ShaderMaterial) -> void:
 	var sky := Sky.new()
 	sky.sky_material = mat
 	_environment.sky = sky
@@ -684,28 +758,6 @@ func _aim_at(point: Vector3) -> void:
 	camera.look_at(point)
 
 
-func _shader_type(path: String) -> String:
-	var file := FileAccess.open(path, FileAccess.READ)
-	if file == null:
-		return "spatial"
-	var lines_left := 40
-	while lines_left > 0 and not file.eof_reached():
-		var line := file.get_line().strip_edges()
-		lines_left -= 1
-		if line.begins_with("shader_type"):
-			return line.trim_prefix("shader_type").strip_edges().trim_suffix(";")
-	return "spatial"
-
-
-func _advance(total: int, path: String) -> void:
-	_done += 1
-	_set_progress(_done, total, path)
-	if _done % PROGRESS_EVERY == 0:
-		var wait_start := Time.get_ticks_usec()
-		await RenderingServer.frame_post_draw
-		_frame_wait_us += Time.get_ticks_usec() - wait_start
-
-
 func _show_loading_screen() -> void:
 	_loading_visible = true
 	_color_ratio = 0.0
@@ -715,18 +767,38 @@ func _show_loading_screen() -> void:
 
 
 func _on_skip_pressed() -> void:
-	if _left:
+	if _left or _skipped:
 		return
 	_skipped = true
+	print("Shader warmup: skip pressed at %.0f ms" % [(Time.get_ticks_usec() - _started_us) / 1000.0])
 	skip_button.disabled = true
 	skip_button.text = "Skipping"
 	status_label.text = "Skipping shader compile"
+
+
+# Loads already handed to worker threads can't be cancelled. Leaving before they finish
+# lets the next scene load the same files (the main menu's stars shader, the grenade
+# scenes) while the threads are still parsing them.
+func _finish_loads() -> void:
+	while not _in_flight.is_empty():
+		for loading in _in_flight.keys():
+			if ResourceLoader.load_threaded_get_status(loading) != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+				ResourceLoader.load_threaded_get(loading)
+				_in_flight.erase(loading)
+		if _in_flight.is_empty():
+			break
+		status_label.text = "Skipping shader compile (finishing %d files)" % _in_flight.size()
+		await RenderingServer.frame_post_draw
+	_serial_in_flight = ""
+	_loaded.clear()
+	print("Shader warmup: background loads finished at %.0f ms" % [(Time.get_ticks_usec() - _started_us) / 1000.0])
 
 
 func _leave() -> void:
 	if _left:
 		return
 	_left = true
+	Globals.warmup_running = false
 	_close_warmup_environment()
 	await RenderingServer.frame_post_draw
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
@@ -766,29 +838,25 @@ func _style_loading_screen() -> void:
 
 
 func _pipeline_snapshot() -> Dictionary:
-	var counts := {}
-	var names := Performance.get_custom_monitor_names()
-	for monitor_name in names:
-		if "pipeline" in String(monitor_name).to_lower():
-			counts[String(monitor_name)] = Performance.get_custom_monitor(monitor_name)
-	if counts.is_empty():
-		print("Shader warmup: no pipeline monitors. Custom monitors: ", names)
-	return counts
+	return {
+		"canvas": Performance.get_monitor(Performance.PIPELINE_COMPILATIONS_CANVAS),
+		"mesh": Performance.get_monitor(Performance.PIPELINE_COMPILATIONS_MESH),
+		"surface": Performance.get_monitor(Performance.PIPELINE_COMPILATIONS_SURFACE),
+		"draw": Performance.get_monitor(Performance.PIPELINE_COMPILATIONS_DRAW),
+		"specialization": Performance.get_monitor(Performance.PIPELINE_COMPILATIONS_SPECIALIZATION),
+	}
 
 
 func _log_pipeline_delta(before: Dictionary, after: Dictionary, tag: String) -> void:
-	if after.is_empty():
-		return
-	var changed := false
+	var parts: PackedStringArray = []
 	for key in after.keys():
-		var previous: float = float(before.get(key, 0))
-		var current: float = float(after[key])
-		var delta := int(current - previous)
-		print("Shader warmup %s: %s %d -> %d (%+d)" % [tag, key, int(previous), int(current), delta])
+		var delta := int(float(after[key]) - float(before.get(key, 0)))
 		if delta != 0:
-			changed = true
-	if not changed:
-		print("Shader warmup: no new pipelines ", tag, ". This pass used the cache.")
+			parts.append("%s %+d" % [key, delta])
+	if parts.is_empty():
+		print("Shader warmup: no pipelines created ", tag)
+	else:
+		print("Shader warmup: pipelines created %s: %s" % [tag, ", ".join(parts)])
 
 
 func _set_progress(done: int, total: int, path: String) -> void:

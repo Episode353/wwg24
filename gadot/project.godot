@@ -16,13 +16,12 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Wizards With Guns"
 run/main_scene="res://tscn/shader_precomp.tscn"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/image="res://mat/splash.png"
 config/icon="res://mat/ico.png"
 
 [audio]
 
-buses/default_bus_layout="uid://burm48w72nc4a"
 driver/enable_input=true
 
 [autoload]

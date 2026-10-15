@@ -118,10 +118,24 @@ func start_offline(map: String):
 	multiplayer.peer_disconnected.connect(Callable(self, "_on_peer_disconnected"))
 	add_player(multiplayer.get_unique_id())
 
+# Map changes free the old server and open a new one on the same port. The port can
+# still be held for a moment, so those restarts try again instead of giving up.
+const MIGRATION_HOST_RETRIES := 20
+const MIGRATION_HOST_DELAY := 0.2
+var _host_is_migration := false
+var _host_attempt := 0
+
 func start_host(map: String):
 	# Set up your map, create the server, etc.
 	var err = enet_peer.create_server(PORT)
 	if err != OK:
+		if _host_is_migration and _host_attempt < MIGRATION_HOST_RETRIES:
+			_host_attempt += 1
+			print("Map change: port %d still busy, retrying host (%d)..." % [PORT, _host_attempt])
+			enet_peer.close()
+			enet_peer = ENetMultiplayerPeer.new()
+			get_tree().create_timer(MIGRATION_HOST_DELAY).timeout.connect(start_host.bind(map))
+			return
 		_fail_network("Could not host on port %d (error %s). Another game instance or program is probably already using it." % [PORT, err])
 		return
 	multiplayer.multiplayer_peer = enet_peer
@@ -149,7 +163,19 @@ func start_host(map: String):
 	#
 
 const JOIN_TIMEOUT: float = 10.0
+# The new server is not listening for a moment after a map change. Keep trying
+# instead of dumping everyone back to the menu.
+const MIGRATION_JOIN_RETRIES := 15
+const MIGRATION_JOIN_DELAY := 0.5
+const MIGRATION_JOIN_TIMEOUT := 1.0
 var _join_timer: Timer
+var _join_ip := ""
+var _join_port := 0
+# Address this client actually connected with, so a map change can dial the same host again
+var _joined_address := ""
+var _join_is_migration := false
+var _migration_join_attempt := 0
+var _join_retry_pending := false
 
 func start_join(address: String):
 	hud.show()
@@ -170,11 +196,9 @@ func start_join(address: String):
 		print("%s:%d is hosted on this machine, connecting through 127.0.0.1 instead" % [ip, port])
 		ip = "127.0.0.1"
 
-	var err = enet_peer.create_client(ip, port)
-	if err != OK:
-		_fail_network("Could not start connecting to %s:%d (error %s)." % [ip, port, err])
-		return
-	multiplayer.multiplayer_peer = enet_peer
+	_join_ip = ip
+	_join_port = port
+	_joined_address = "%s:%d" % [ip, port]
 
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed.bind(ip, port))
@@ -184,16 +208,32 @@ func start_join(address: String):
 	# ENet can take ~30 seconds to give up on its own
 	_join_timer = Timer.new()
 	_join_timer.one_shot = true
-	_join_timer.wait_time = JOIN_TIMEOUT
 	_join_timer.timeout.connect(_on_connection_failed.bind(ip, port))
 	add_child(_join_timer)
-	_join_timer.start()
-	print("Connecting to %s:%d..." % [ip, port])
+	_begin_join_attempt()
 
 	# The server spawns our player through the MultiplayerSpawner once we're connected
 
+func _begin_join_attempt() -> void:
+	# Closing the previous attempt emits connection_failed. Ignore that, it is not a new failure.
+	_join_retry_pending = true
+	enet_peer.close()
+	enet_peer = ENetMultiplayerPeer.new()
+	var err = enet_peer.create_client(_join_ip, _join_port)
+	_join_retry_pending = false
+	if err != OK:
+		_on_connection_failed(_join_ip, _join_port)
+		return
+	multiplayer.multiplayer_peer = enet_peer
+	_join_timer.wait_time = MIGRATION_JOIN_TIMEOUT if _join_is_migration else JOIN_TIMEOUT
+	_join_timer.start()
+	print("Connecting to %s:%d..." % [_join_ip, _join_port])
+
 func _on_connected_to_server() -> void:
 	_join_timer.stop()
+	# Connected, so a later drop is a real disconnect and should return to the menu
+	_join_is_migration = false
+	_join_retry_pending = false
 	print("Connected to server, waiting for the map name...")
 	rpc_id(1, "_check_protocol", Globals.NET_PROTOCOL)
 	get_tree().create_timer(PROTOCOL_CHECK_TIMEOUT).timeout.connect(_on_protocol_check_timeout)
@@ -239,9 +279,26 @@ func _on_protocol_check_timeout() -> void:
 		_fail_network(VERSION_MISMATCH_MESSAGE)
 
 func _on_connection_failed(ip: String, port: int) -> void:
+	if _join_retry_pending:
+		return
 	if multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTED:
 		return
+	if _join_is_migration and _migration_join_attempt < MIGRATION_JOIN_RETRIES:
+		_join_retry_pending = true
+		_migration_join_attempt += 1
+		print("Map change: new server not ready, retrying join (%d)..." % _migration_join_attempt)
+		if _join_timer:
+			_join_timer.stop()
+		_drop_join_peer()
+		get_tree().create_timer(MIGRATION_JOIN_DELAY).timeout.connect(_begin_join_attempt)
+		return
 	_fail_network("Could not connect to %s:%d. The host may be offline, behind a firewall/VPN, or its port %d isn't forwarded." % [ip, port, port])
+
+# Closing our own client while retrying a map-change join must not count as the server kicking us
+func _drop_join_peer() -> void:
+	if multiplayer.multiplayer_peer == enet_peer:
+		enet_peer.close()
+		multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 
 # Returns to the main menu, which shows the reason in a popup
 func _fail_network(reason: String) -> void:
@@ -714,8 +771,26 @@ func _on_peer_disconnected(peer_id):
 			server_info_timer = null
 		print("Host disconnected. Stopped sending server info.")
 
+# Set once a map-change RPC has told this client which host to dial again.
+# Cleared before we tear the connection down so a second disconnect signal can't also open the menu.
+var _reconnect_address := ""
+var _leaving_for_migration := false
+
 @rpc("reliable")
 func _on_server_disconnected():
+	if _join_retry_pending or _leaving_for_migration:
+		return
+	# Still walking over to the new server: dial it again instead of dropping to the menu
+	if _join_is_migration and not _protocol_accepted:
+		return
+	if _reconnect_address != "":
+		var address := _reconnect_address
+		_reconnect_address = ""
+		_leaving_for_migration = true
+		print("Server is changing map, reconnecting to ", address)
+		_close_network()
+		Globals.relaunch_session("join", address, true)
+		return
 	print("Server disconnected")
 	send_to_main_menu()
 
@@ -758,16 +833,36 @@ func update_weapon_hud():
 			team_name = gamemode._team_name(team_id)
 		if Globals.TEAM_COLORS.has(team_id):
 			team_color = Globals.TEAM_COLORS[team_id]
+	# Highlight the weapon the player just asked for. The viewmodel catches up after
+	# its put-away and deploy animations, and the light is timed to land with them.
+	var menu_name: String = str(current_weapon_name)
+	var travel_time := 0.2
+	var shown_weapon = null
+	if player and "weapons_manager" in player and player.weapons_manager:
+		var wm = player.weapons_manager
+		if wm.has_method("get_menu_weapon"):
+			var preview := str(wm.get_menu_weapon())
+			if preview != "":
+				menu_name = preview
+			travel_time = float(wm.menu_travel_time)
+		if wm.weapon_list.has(menu_name):
+			shown_weapon = wm.weapon_list[menu_name]
 	var ammo_text := ""
 	var hide_ammo := false
-	if player and "weapons_manager" in player and player.weapons_manager and player.weapons_manager.current_weapon:
+	if shown_weapon:
+		hide_ammo = shown_weapon.disable_ammo
+	elif player and "weapons_manager" in player and player.weapons_manager and player.weapons_manager.current_weapon:
 		hide_ammo = player.weapons_manager.current_weapon.disable_ammo
 	if not hide_ammo:
-		if player and "weapons_manager" in player and player.weapons_manager and player.weapons_manager.current_weapon and player.weapons_manager.current_weapon.weapon_name == "hegrenade":
+		if shown_weapon and shown_weapon.weapon_name == "hegrenade":
+			ammo_text = str(shown_weapon.current_ammo)
+		elif shown_weapon:
+			ammo_text = "%d / %d" % [shown_weapon.current_ammo, shown_weapon.reserve_ammo]
+		elif current_weapon_name == "hegrenade":
 			ammo_text = str(current_weapon_ammo)
 		else:
 			ammo_text = "%d / %d" % [current_weapon_ammo, current_weapon_reserve_ammo]
-	_weapon_hud.set_info(team_name, team_color, current_weapon_name, ammo_text, weapon_stack)
+	_weapon_hud.set_info(team_name, team_color, menu_name, ammo_text, weapon_stack, travel_time)
 
 @rpc("any_peer", "call_local")
 func disconnect_me():
@@ -833,32 +928,70 @@ func spawn_box(desired_transform):
 	add_child(ball_instance)
 	print("Ball spawned at: ", ball_instance.global_transform.origin)
 	
-# Only the server should call change_level().
+# How long the host waits for every client to confirm it heard the map change
+# before it closes the server anyway. A client that never answers goes back to the menu.
+const MIGRATION_ACK_TIMEOUT := 2.0
+var _level_change_started := false
+var _migration_finished := false
+var _migration_map := ""
+var _migration_pending: Dictionary = {}
+var _migration_timer: SceneTreeTimer
+
+# Load-map volumes start a brand new match on the destination map.
+# The host opens a new server and every client dials back in, so weapons, health,
+# and ammo come from a fresh spawn instead of being carried across.
 func change_level(new_map_name: String) -> void:
-	# Make sure only the server initiates the level change.
-	if not is_multiplayer_authority():
+	if not multiplayer.is_server() or _level_change_started:
 		return
-	# Tell all connected peers (including ourself if needed) to change level.
-	rpc("change_level_rpc", new_map_name)
-	# Change the level on the server.
-	_do_change_level(new_map_name)
-
-@rpc("any_peer", "call_local")
-func change_level_rpc(new_map_name: String) -> void:
-	# On clients, only execute if not the server (so the server doesn’t run it twice).
-	if is_multiplayer_authority():
+	var map_file := new_map_name.strip_edges()
+	if not map_file.ends_with(".map"):
+		map_file += ".map"
+	if not FileAccess.file_exists("tbmaps/" + map_file):
+		push_error("Map change failed, map not found: tbmaps/" + map_file)
 		return
-	_do_change_level(new_map_name)
+	_level_change_started = true
+	_migration_map = map_file
+	print("Changing map, starting a new server on ", map_file)
+	show_announcement("CHANGING MAP", map_file.get_basename(), Color.WHITE, 3.0)
 
-func _do_change_level(new_map_name: String) -> void:		
-	# Update the map name and load the new map
-	map_name = new_map_name
-	load_map(map_name)
-	
-	# Respawn (reposition) all players
-	# (Assuming your players are added to the "players" group)
-	for node in get_tree().get_nodes_in_group("players"):
-		var player = node as CharacterBody3D
-		if player:
-			print("DOING THE MAP CHANGE WITH YOUR HOMIE", player)
-			spawn_player(player)
+	# Offline games have nobody to hand off. A listen server with no clients just rehosts.
+	var peers := multiplayer.get_peers()
+	if not (multiplayer.multiplayer_peer is ENetMultiplayerPeer) or peers.is_empty():
+		var mode := "host" if multiplayer.multiplayer_peer is ENetMultiplayerPeer else "offline"
+		Globals.relaunch_session(mode, map_file, mode == "host")
+		return
+
+	for peer_id in peers:
+		_migration_pending[peer_id] = true
+		rpc_id(peer_id, "prepare_map_change", map_file)
+	_migration_timer = get_tree().create_timer(MIGRATION_ACK_TIMEOUT)
+	_migration_timer.timeout.connect(_finish_map_migration, CONNECT_ONE_SHOT)
+
+# Clients remember who they joined and answer the host, then wait for the disconnect
+# that means the new server is about to come up.
+@rpc("authority", "reliable")
+func prepare_map_change(map_file: String) -> void:
+	if multiplayer.is_server():
+		return
+	_reconnect_address = _joined_address
+	print("Host is changing map to ", map_file, ", will reconnect to ", _reconnect_address)
+	show_announcement("CHANGING MAP", map_file.get_basename(), Color.WHITE, 3.0)
+	rpc_id(1, "migration_ready")
+
+@rpc("any_peer", "reliable")
+func migration_ready() -> void:
+	if not multiplayer.is_server() or not _level_change_started:
+		return
+	_migration_pending.erase(multiplayer.get_remote_sender_id())
+	if _migration_pending.is_empty():
+		_finish_map_migration()
+
+func _finish_map_migration() -> void:
+	if _migration_finished:
+		return
+	_migration_finished = true
+	if _migration_timer and _migration_timer.timeout.is_connected(_finish_map_migration):
+		_migration_timer.timeout.disconnect(_finish_map_migration)
+	print("Opening new server for ", _migration_map)
+	_close_network()
+	Globals.relaunch_session("host", _migration_map, true)

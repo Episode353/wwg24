@@ -16,9 +16,15 @@ var weapon_stack = [] # An array of all weapons the player has
 @onready var raycast_shoot: RayCast3D = $"../raycast_shoot"
 var weapon_indicator = 0
 var next_weapon: String
+# How long the weapon list highlight should take to reach the weapon just chosen.
+var menu_travel_time: float = 0.2
 @onready var ac_timer = $"../area_collision/Timer"
 
 @onready var bullet_decal = preload("res://tscn/bullet_decal.tscn")
+@onready var bullet_tracer = preload("res://tscn/bullet_tracer.tscn")
+# Camera-space point the tracer starts from, roughly where the barrel sits on screen.
+# Starting at the camera itself would draw the line straight away from the eye, as a dot.
+@export var tracer_start_offset := Vector3(0.12, -0.1, -0.5)
 
 var weapon_list = {}
 @export var _weapon_resources: Array[Weapon_Resource]
@@ -77,7 +83,9 @@ func _cycle_weapon(direction: int) -> void:
 	if weapon_stack.is_empty() or current_weapon == null:
 		return
 	var count := weapon_stack.size()
-	var index := weapon_stack.find(current_weapon.weapon_name)
+	# Keep scrolling from the weapon already chosen, so a second flick skips ahead
+	# while the first one is still being put away.
+	var index := weapon_stack.find(get_menu_weapon())
 	if index < 0:
 		index = weapon_indicator
 	for _step in count:
@@ -90,16 +98,18 @@ func _cycle_weapon(direction: int) -> void:
 
 
 func switch_weapon(slot_index: int):
-	if slot_index < weapon_stack.size():
-		var selected_weapon = weapon_stack[slot_index]
-		# Prevent switching to "hands" if the current weapon is a real weapon.
-		if selected_weapon == "hands" and current_weapon.weapon_name != "hands":
-			print("Switching back to 'hands' is not allowed!")
-			return
-		if selected_weapon != current_weapon.weapon_name:
-			exit(selected_weapon)  # This will play the deactivate animation.
-	else:
+	if current_weapon == null:
+		return
+	if slot_index >= weapon_stack.size():
 		print("Debug: No weapon in slot", slot_index + 1)  # No weapon in this slot.
+		return
+	var selected_weapon = weapon_stack[slot_index]
+	# Prevent switching to "hands" if the current weapon is a real weapon.
+	if selected_weapon == "hands" and current_weapon.weapon_name != "hands":
+		print("Switching back to 'hands' is not allowed!")
+		return
+	if selected_weapon != get_menu_weapon():
+		exit(selected_weapon)  # This will play the deactivate animation.
 
 # Switches to a held weapon by name, with the deactivate / activate animations
 func equip_weapon(weapon_name: String) -> void:
@@ -264,12 +274,49 @@ func enter():
 
 
 func exit(_next_weapon: String):
-	#In order to change weapons first call exit
-	if next_weapon != current_weapon.weapon_name:
-		if animation_player.get_current_animation() != current_weapon.deactivate_anim:
-			animation_player.play(current_weapon.deactivate_anim)
-			next_weapon = _next_weapon
-			
+	# Put the current weapon away, then bring the next one out when that finishes.
+	if current_weapon == null or _next_weapon == "" or not weapon_list.has(_next_weapon):
+		return
+	# Scrolling back to the weapon still in hand cancels the holster and draws it again.
+	if _next_weapon == current_weapon.weapon_name:
+		if animation_player.current_animation == current_weapon.deactivate_anim:
+			next_weapon = ""
+			animation_player.play(current_weapon.activate_anim)
+			menu_travel_time = maxf(_anim_length(current_weapon.activate_anim), 0.05)
+		return
+	if animation_player.current_animation != current_weapon.deactivate_anim:
+		animation_player.play(current_weapon.deactivate_anim)
+	next_weapon = _next_weapon
+	# The list highlight travels for the rest of this put-away plus the new weapon's deploy.
+	menu_travel_time = _swap_travel_time(_next_weapon)
+
+
+# Weapon the on-screen list should be highlighting. This updates on the scroll or key
+# press, before the viewmodel finishes putting the old weapon away.
+func get_menu_weapon() -> String:
+	if next_weapon != "" and weapon_stack.has(next_weapon):
+		return next_weapon
+	if current_weapon:
+		return current_weapon.weapon_name
+	return ""
+
+
+func _anim_length(anim_name: String) -> float:
+	if anim_name == "" or not animation_player.has_animation(anim_name):
+		return 0.0
+	return animation_player.get_animation(anim_name).length
+
+
+func _swap_travel_time(target_name: String) -> float:
+	var holster := _anim_length(current_weapon.deactivate_anim)
+	if animation_player.current_animation == current_weapon.deactivate_anim and animation_player.is_playing():
+		holster = maxf(animation_player.current_animation_length - animation_player.current_animation_position, 0.0)
+	var deploy := 0.0
+	if weapon_list.has(target_name):
+		deploy = _anim_length(weapon_list[target_name].activate_anim)
+	return maxf(holster + deploy, 0.05)
+
+
 func change_weapon(change_weapon_name: String):
 	# Prevent switching back to "hands" if a real weapon is already equipped.
 	if change_weapon_name == "hands" and current_weapon and current_weapon.weapon_name != "hands":
@@ -281,8 +328,13 @@ func change_weapon(change_weapon_name: String):
 		print("Weapon not found in weapon_list: " + change_weapon_name)
 		return
 
+	# A holster already told the menu which weapon is coming. An instant equip (pickup,
+	# loadout) should use the short slide instead of whatever swap was timed before.
+	var finishing_swap := next_weapon == change_weapon_name and next_weapon != ""
 	current_weapon = weapon_list[change_weapon_name]
-	
+	if not finishing_swap:
+		menu_travel_time = 0.2
+
 	# Set up weapon properties.
 	var weapon_range = current_weapon.weapon_range
 	raycast_shoot.target_position.z = weapon_range
@@ -368,6 +420,16 @@ func raycast_shoot_procc():
 
 
 
+@rpc("any_peer", "call_local", "unreliable")
+func create_bullet_tracer(from: Vector3, to: Vector3) -> void:
+	# The shooter's own first-person view doesn't get one. Bots have no one looking through them.
+	if is_multiplayer_authority() and not player.is_bot:
+		return
+	var tracer = bullet_tracer.instantiate()
+	world.add_child(tracer)
+	tracer.setup(from, to)
+
+
 @rpc("any_peer", "call_local")
 func create_bullet_decal(col_point: Vector3, col_nor: Vector3):
 	var b = bullet_decal.instantiate()
@@ -422,6 +484,11 @@ func shoot():
 			emit_signal("update_ammo", [current_weapon.current_ammo, current_weapon.reserve_ammo])
 		
 		raycast_shoot.force_raycast_update()
+		if current_weapon.has_tracer:
+			var tracer_end := raycast_shoot.to_global(raycast_shoot.target_position)
+			if raycast_shoot.is_colliding():
+				tracer_end = raycast_shoot.get_collision_point()
+			rpc("create_bullet_tracer", main_camera.to_global(tracer_start_offset), tracer_end)
 		if raycast_shoot.is_colliding():
 			raycast_shoot_procc()
 			
@@ -602,6 +669,8 @@ func drop_all_weapons():
 
 	# Force the player's current weapon to "hands"
 	current_weapon = weapon_list["hands"]
+	next_weapon = ""
+	menu_travel_time = 0.2
 	
 	# Add "hands" back into the weapon stack.
 	weapon_stack.append("hands")
